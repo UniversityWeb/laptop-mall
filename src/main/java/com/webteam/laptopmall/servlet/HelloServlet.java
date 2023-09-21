@@ -1,4 +1,4 @@
-package com.webteam.laptopmall;
+package com.webteam.laptopmall.servlet;
 
 import java.io.*;
 import javax.servlet.http.*;
