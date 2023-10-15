@@ -34,7 +34,7 @@ public abstract class BaseReposImpl<T, ID> implements BaseRepos<T, ID> {
             log.log(Level.SEVERE, e.getMessage());
             trans.rollback();
         } finally {
-            dbCon.closeEm(em);
+            em.close();
         }
         return null;
     }
@@ -51,7 +51,7 @@ public abstract class BaseReposImpl<T, ID> implements BaseRepos<T, ID> {
         } catch (NoResultException e) {
             log.log(Level.SEVERE, e.getMessage());
         } finally {
-            dbCon.closeEm(em);
+            em.close();
         }
         return Optional.empty();
     }
@@ -73,7 +73,7 @@ public abstract class BaseReposImpl<T, ID> implements BaseRepos<T, ID> {
             log.log(Level.SEVERE, e.getMessage());
             trans.rollback();
         } finally {
-            dbCon.closeEm(em);
+            em.close();
         }
         return entity;
     }
@@ -89,7 +89,7 @@ public abstract class BaseReposImpl<T, ID> implements BaseRepos<T, ID> {
             TypedQuery<T> q = em.createQuery(sqlStr, classType);
             prods = q.getResultList();
         } finally {
-            dbCon.closeEm(em);
+            em.close();
         }
         return prods;
     }

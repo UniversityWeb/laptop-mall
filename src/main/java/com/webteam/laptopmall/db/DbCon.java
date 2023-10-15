@@ -37,10 +37,4 @@ public class DbCon {
     public EntityManagerFactory getEmf() {
         return emf;
     }
-
-    public void closeEm(EntityManager em) {
-        if (em != null && em.isOpen()) {
-            em.close();
-        }
-    }
 }

@@ -45,7 +45,7 @@ public class CartItemReposImpl extends BaseReposImpl<CartItem, Long> implements 
             log.log(Level.SEVERE, e.getMessage());
             trans.rollback();
         } finally {
-            dbCon.closeEm(em);
+            em.close();
         }
         return updatedEntities > 0;
     }
@@ -60,7 +60,7 @@ public class CartItemReposImpl extends BaseReposImpl<CartItem, Long> implements 
         } catch (NoResultException e) {
             log.log(Level.SEVERE, e.getMessage());
         } finally {
-            dbCon.closeEm(em);
+            em.close();
         }
         return items;
     }
