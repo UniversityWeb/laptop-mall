@@ -26,6 +26,9 @@ public class Product {
     @Column(name = "img_url")
     private String imgUrl;
 
+    @Column(name = "discount_percent")
+    private double discountPercent;
+
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
@@ -33,11 +36,14 @@ public class Product {
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<CartItem> cartItems;
 
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private List<ProdColor> colors;
+
     public Product() {
     }
 
     public Product(Long id, String brand, String model, String desc, BigDecimal price,
-                   Integer stockQty, String imgUrl, Category category) {
+                   Integer stockQty, String imgUrl, double discountPercent, Category category) {
         this.id = id;
         this.brand = brand;
         this.model = model;
@@ -45,6 +51,7 @@ public class Product {
         this.price = price;
         this.stockQty = stockQty;
         this.imgUrl = imgUrl;
+        this.discountPercent = discountPercent;
         this.category = category;
     }
 
@@ -118,6 +125,14 @@ public class Product {
         this.imgUrl = imgUrl;
     }
 
+    public double getDiscountPercent() {
+        return discountPercent;
+    }
+
+    public void setDiscountPercent(double discountPercent) {
+        this.discountPercent = discountPercent;
+    }
+
     public Category getCategory() {
         return category;
     }
@@ -132,5 +147,13 @@ public class Product {
 
     public void setCartItems(List<CartItem> cartItems) {
         this.cartItems = cartItems;
+    }
+
+    public List<ProdColor> getColors() {
+        return colors;
+    }
+
+    public void setColors(List<ProdColor> colors) {
+        this.colors = colors;
     }
 }

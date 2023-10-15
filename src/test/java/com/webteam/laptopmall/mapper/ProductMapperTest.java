@@ -14,7 +14,7 @@ class ProductMapperTest {
     @Test
     void testToDTO() {
         Product product = new Product(1L, "Brand", "Model", "Description", new BigDecimal("1000.00"),
-                10, "image.jpg", new Category(1, "Laptop"));
+                10, "image.jpg", 0, new Category(1, "Laptop"));
         ProductDTO productDTO = ProductMapper.INSTANCE.toDTO(product);
 
         assertEquals(product.getId(), productDTO.getId());
@@ -29,7 +29,7 @@ class ProductMapperTest {
     @Test
     void testToEntity() {
         ProductDTO productDTO = new ProductDTO(1L, "Brand", "Model", "Description", new BigDecimal("1000.00"),
-                10, "image.jpg", new CategoryDTO(1, "Laptop"));
+                10, "image.jpg", 0, new CategoryDTO(1, "Laptop"));
         Product product = ProductMapper.INSTANCE.toEntity(productDTO);
 
         assertEquals(productDTO.getId(), product.getId());
