@@ -4,20 +4,19 @@ import com.webteam.laptopmall.dto.ProductDTO;
 import com.webteam.laptopmall.entity.Product;
 import com.webteam.laptopmall.exception.ProductNotFoundException;
 import com.webteam.laptopmall.mapper.ProductMapper;
-import com.webteam.laptopmall.mapper.UserMapper;
-import com.webteam.laptopmall.repository.prod.ProductRepos;
-import com.webteam.laptopmall.repository.prod.ProductReposImpl;
+import com.webteam.laptopmall.repository.prod.ProdRepos;
+import com.webteam.laptopmall.repository.prod.ProdReposImpl;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class ProdServiceImpl implements ProdService {
 
-    private ProductRepos prodRepos;
+    private ProdRepos prodRepos;
     private ProductMapper mapper;
 
     public ProdServiceImpl() {
-        prodRepos = new ProductReposImpl();
+        prodRepos = new ProdReposImpl();
         mapper = ProductMapper.INSTANCE;
     }
 
