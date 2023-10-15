@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css?family=Rochester');
+
+.content .success_text{
+    font-size: 50px;
+    font-weight: bold;
+    margin: 10px;
+}
+
+.content p{
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+.content .thanks_text{
+    font-family: 'Rochester';
+    font-size: 50px;
+}
+
+.content ion-icon{
+    color: #2189FF;
+    width: 90px;
+    height: 90px;
+}
+
+.button_shopping{
+    border: none;
+    border-radius: 24px;
+    width: 400px;
+    height: 40px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    background-color: #2189FF;
+    color: white;
+}
+
+.button_shopping:hover{
+    background-color: #fff;
+    color: #181818;
+    border: 1px solid #181818;
+}
