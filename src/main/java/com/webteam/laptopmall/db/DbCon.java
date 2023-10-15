@@ -1,5 +1,6 @@
 package com.webteam.laptopmall.db;
 
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.logging.Level;
@@ -22,10 +23,10 @@ public class DbCon {
     }
 
     private DbCon() {
-        initEMF();
+        initEmf();
     }
 
-    private void initEMF() {
+    private void initEmf() {
         try {
             emf = Persistence.createEntityManagerFactory("laptopMall");
         } catch (Exception e) {
@@ -35,5 +36,11 @@ public class DbCon {
 
     public EntityManagerFactory getEmf() {
         return emf;
+    }
+
+    public void closeEm(EntityManager em) {
+        if (em != null && em.isOpen()) {
+            em.close();
+        }
     }
 }

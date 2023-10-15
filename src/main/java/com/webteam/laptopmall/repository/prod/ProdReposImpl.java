@@ -9,11 +9,11 @@ import javax.persistence.NoResultException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class ProductReposImpl extends BaseReposImpl<Product, Long> implements ProductRepos {
+public class ProdReposImpl extends BaseReposImpl<Product, Long> implements ProdRepos {
 
-    private final Logger log = Logger.getLogger(ProductReposImpl.class.getName());
+    private final Logger log = Logger.getLogger(ProdReposImpl.class.getName());
 
-    public ProductReposImpl() {
+    public ProdReposImpl() {
         super();
     }
 

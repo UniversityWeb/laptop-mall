@@ -6,7 +6,6 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -14,9 +13,11 @@ public abstract class BaseReposImpl<T, ID> implements BaseRepos<T, ID> {
 
     private final Logger log = Logger.getLogger(BaseReposImpl.class.getName());
 
+    protected DbCon dbCon;
     protected EntityManagerFactory emf;
 
     protected BaseReposImpl() {
+        dbCon = DbCon.getIns();
         emf = DbCon.getIns().getEmf();
     }
 
@@ -33,7 +34,7 @@ public abstract class BaseReposImpl<T, ID> implements BaseRepos<T, ID> {
             log.log(Level.SEVERE, e.getMessage());
             trans.rollback();
         } finally {
-            em.close();
+            dbCon.closeEm(em);
         }
         return null;
     }
@@ -50,7 +51,7 @@ public abstract class BaseReposImpl<T, ID> implements BaseRepos<T, ID> {
         } catch (NoResultException e) {
             log.log(Level.SEVERE, e.getMessage());
         } finally {
-            em.close();
+            dbCon.closeEm(em);
         }
         return Optional.empty();
     }
@@ -59,36 +60,36 @@ public abstract class BaseReposImpl<T, ID> implements BaseRepos<T, ID> {
     public T deleteById(ID id) {
         EntityManager em = emf.createEntityManager();
         EntityTransaction trans = em.getTransaction();
+        T entity = null;
         try {
             trans.begin();
             Class<T> classType = getClassType();
-            T entity = em.find(classType, id);
+            entity = em.find(classType, id);
             if (entity != null) {
                 em.remove(entity);
             }
             trans.commit();
-            return entity;
         } catch (NoResultException e) {
             log.log(Level.SEVERE, e.getMessage());
             trans.rollback();
         } finally {
-            em.close();
+            dbCon.closeEm(em);
         }
-        return null;
+        return entity;
     }
 
     @Override
     public List<T> getAll() {
         EntityManager em = emf.createEntityManager();
-        String className = getClassType().getSimpleName();
-        String sqlStr = String.format("SELECT e FROM %s e", className);
+        String entityName = getClassType().getSimpleName();
+        String sqlStr = String.format("SELECT e FROM %s e", entityName);
         List<T> prods = new ArrayList<>();
         try {
             Class<T> classType = getClassType();
             TypedQuery<T> q = em.createQuery(sqlStr, classType);
             prods = q.getResultList();
         } finally {
-            em.close();
+            dbCon.closeEm(em);
         }
         return prods;
     }
