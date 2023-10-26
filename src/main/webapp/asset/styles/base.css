@@ -105,3 +105,36 @@ a{
     border-radius: 8px;
     animation: growth linear 0.1s;
 }
+
+
+.button-inner {
+    position: relative;
+    display: grid;
+    place-items: center;
+    border-radius: var(--radius-btn);
+    background-color: var(--icon-color);
+    width: 95%;
+    height: 50%;
+}
+.btn-txt ,.smartphone__btn-txt{
+    position: relative;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 95%;
+    height: auto;
+}
+.btn-obj:hover{
+    transform: scale(1.02);
+    background-color: var(--color1);
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    color: var(--color0);
+}
+
+.icon-obj:hover{
+    transform: scale(1.2);
+    cursor: pointer;
+}

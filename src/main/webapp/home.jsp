@@ -556,53 +556,65 @@
 </section>
 <footer>
 </footer>
-<div id="chat-box" class="chat_box">
-    <div class="chatbox__navbar">
-        <img class="logo-chatbox" src="asset/images/logo-light.svg" alt="">
-        <img id="close_chat" class="close__chatbox" src="asset/images/btn-close.svg" alt="">
-    </div>
-    <div class="chatbox__content">
-        <div class="chatbox__chat-received">
-            <img class="chat__bot-img" src="asset/images/account_icon.svg" alt="">
-            <ul class="list__bubble-chat">
-                <li class="bubble-chat__item">
-                    <p>Hi hiiiiiiiii</p>
-                </li>
-                <li class="bubble-chat__item">
-                    <p>Hi hiiiiiiiiiiiiiiiii</p>
-                </li>
-                <li class="bubble-chat__item">
-                    <p>Hi hiiiiiiiiiiiiiiiiicxjxkbcxjbcjbcjbcsabcshszchbscbcbhbcsch</p>
-                </li>
-            </ul>
-        </div>
-        <div class="chatbox__chat-Sent">
-            <div class="chat__my-img">A</div>
-            <ul class="list__bubble-chat">
-                <li class="bubble-chat__item">
-                    <p>Hi hiiiiiiiii</p>
-                </li>
-                <li class="bubble-chat__item">
-                    <p>Hi hiiiiiiiiiiiiiiiii</p>
-                </li>
-            </ul>
-        </div>
-        <div class="chatbox__chat-received">
-            <img class="chat__bot-img" src="asset/images/account_icon.svg" alt="">
-            <ul class="list__bubble-chat">
-                <li class="bubble-chat__item">
-                    <p>Hi hiiiiiiiii</p>
-                </li>
+<jsp:include page="chatbox.jsp"></jsp:include>
+<%--<div id="chat-box" class="chat_box">--%>
+<%--    <div class="chatbox__navbar">--%>
+<%--        <img class="logo-chatbox" src="asset/images/logo-light.svg" alt="">--%>
+<%--        <img id="close_chat" class="close__chatbox" src="asset/images/btn-close.svg" alt="">--%>
+<%--    </div>--%>
+<%--    <div class="chatbox__content">--%>
+<%--        <div class="chatbox__chat-received">--%>
+<%--            <img class="chat__bot-img" src="asset/images/account_icon.svg" alt="">--%>
+<%--            <ul class="list__bubble-chat">--%>
+<%--                <li class="bubble-chat__item">--%>
+<%--                    <p>Hi hiiiiiiiii</p>--%>
+<%--                </li>--%>
+<%--                <li class="bubble-chat__item">--%>
+<%--                    <p>Hi hiiiiiiiiiiiiiiiii</p>--%>
+<%--                </li>--%>
+<%--                <li class="bubble-chat__item">--%>
+<%--                    <p>Hi hiiiiiiiiiiiiiiiiicxjxkbcxjbcjbcjbcsabcshszchbscbcbhbcsch</p>--%>
+<%--                </li>--%>
+<%--            </ul>--%>
+<%--        </div>--%>
+<%--        <div class="chatbox__chat-Sent">--%>
+<%--            <div class="chat__my-img">A</div>--%>
+<%--            <ul class="list__bubble-chat">--%>
+<%--                <li class="bubble-chat__item">--%>
+<%--                    <p>Hi hiiiiiiiii</p>--%>
+<%--                </li>--%>
+<%--                <li class="bubble-chat__item">--%>
+<%--                    <p>Hi hiiiiiiiiiiiiiiiii</p>--%>
+<%--                </li>--%>
+<%--            </ul>--%>
+<%--        </div>--%>
+<%--        <div class="chatbox__chat-received">--%>
+<%--            <img class="chat__bot-img" src="asset/images/account_icon.svg" alt="">--%>
+<%--            <ul class="list__bubble-chat">--%>
+<%--                <li class="bubble-chat__item">--%>
+<%--                    <p>Hi hiiiiiiiii</p>--%>
+<%--                </li>--%>
 
-            </ul>
-        </div>
-    </div>
-    <div class="chatbox__group-items">
-        <input class="chatbox__input" name="" id="" cols="30" rows="10"></textarea>
-        <img class="chatbox__send" src="asset/images/send.svg" alt="">
-    </div>
-</div>
-<img id="chat-icon" class="chat_icon" src="asset/images/chat_btn.svg" alt="">
+<%--            </ul>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--    <div class="chatbox__group-items">--%>
+<%--        <input class="chatbox__input" name="" id="" cols="30" rows="10"></textarea>--%>
+<%--        <img class="chatbox__send" src="asset/images/send.svg" alt="">--%>
+<%--    </div>--%>
+<%--</div>--%>
+<%--<img id="chat-icon" class="chat_icon" src="asset/images/chat_btn.svg" alt="">--%>
+
+
+
+
+
+
+
+
+
+
+
 <%--<div id="modal-search" class="modal">--%>
 <%--    <div class="modal__overlay" style="margin-top: var(--nav-height); position:fixed;" onclick="closeModalSearch()">--%>
 <%--    </div>--%>
