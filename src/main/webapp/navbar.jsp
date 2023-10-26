@@ -118,7 +118,6 @@
       </div>
     </div>
   </div>
-
 </div>
 <script src="asset/javascript/navbar.js"></script>
 </body>
