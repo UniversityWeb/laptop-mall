@@ -68,14 +68,14 @@ var swiperProduct = new Swiper(".product-Swiper", {
 
 /////////
 
-var modal_search = document.getElementById("modal-search");
-function openModalSearch() {
-    modal_search.style.display = "flex";
-}
-
-function closeModalSearch() {
-    modal_search.style.display = "none";
-}
+// var modal_search = document.getElementById("modal-search");
+// function openModalSearch() {
+//     modal_search.style.display = "flex";
+// }
+//
+// function closeModalSearch() {
+//     modal_search.style.display = "none";
+// }
 
 
 ////

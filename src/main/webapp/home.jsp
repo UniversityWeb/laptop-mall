@@ -11,62 +11,63 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 </head>
 <body>
-<nav class="navbar-main">
-    <img class="navbar-logo" src="asset/images/logo.svg" alt="logo">
-    <ul class="navbar-list">
-        <li class="navbar-item">
-            <div class="button-inner btn-obj">
-                <b class="btn-txt">Sales</b>
-            </div>
-        </li>
-        <li class="navbar-item">
-            <div class="button-inner btn-obj">
-                <b class="btn-txt">Laptop</b>
-            </div>
-        </li>
-        <li class="navbar-item">
-            <div class="button-inner btn-obj">
-                <b class="btn-txt">Mobile</b>
-            </div>
-        </li>
-        <li class="navbar-item">
-            <div class="button-inner btn-obj">
-                <b class="btn-txt">Accessory</b>
-            </div>
-        </li>
-        <li class="navbar-item">
-            <div class="button-inner btn-obj">
-                <b class="btn-txt">Suports</b>
-            </div>
-        </li>
-    </ul>
-    <div class="nav__list-icon">
-        <div class="navbar-menu-container">
-            <img id="nav-list-btn"  src="asset/images/list-btn.svg" >
-            <ul id="nav-menu" class="navbar-menu">
-                <li class="navbar__menu-item">
-                    <p>Sales</p>
-                </li>
-                <li class="navbar__menu-item">
-                    <p>Laptop</p>
-                </li>
-                <li class="navbar__menu-item">
-                    <p>Mobile</p>
-                </li>
-                <li class="navbar__menu-item">
-                    <p>Accessory</p>
-                </li>
-                <li class="navbar__menu-item">
-                    <p>Support</p>
-                </li>
-            </ul>
-        </div>
-        <img class="nav__btn-icon icon-obj" src="asset/images/btnsearch.svg" onclick="openModalSearch()">
-        <img class="nav__btn-icon icon-obj" src="asset/images/cart.svg" alt="cart">
-        <img class="nav__btn-icon icon-obj" src="asset/images/account.svg" alt="">
-    </div>
+<jsp:include page="navbar.jsp"></jsp:include>
+<%--<nav class="navbar-main">--%>
+<%--    <img class="navbar-logo" src="asset/images/logo.svg" alt="logo">--%>
+<%--    <ul class="navbar-list">--%>
+<%--        <li class="navbar-item">--%>
+<%--            <div class="button-inner btn-obj">--%>
+<%--                <b class="btn-txt">Sales</b>--%>
+<%--            </div>--%>
+<%--        </li>--%>
+<%--        <li class="navbar-item">--%>
+<%--            <div class="button-inner btn-obj">--%>
+<%--                <b class="btn-txt">Laptop</b>--%>
+<%--            </div>--%>
+<%--        </li>--%>
+<%--        <li class="navbar-item">--%>
+<%--            <div class="button-inner btn-obj">--%>
+<%--                <b class="btn-txt">Mobile</b>--%>
+<%--            </div>--%>
+<%--        </li>--%>
+<%--        <li class="navbar-item">--%>
+<%--            <div class="button-inner btn-obj">--%>
+<%--                <b class="btn-txt">Accessory</b>--%>
+<%--            </div>--%>
+<%--        </li>--%>
+<%--        <li class="navbar-item">--%>
+<%--            <div class="button-inner btn-obj">--%>
+<%--                <b class="btn-txt">Suports</b>--%>
+<%--            </div>--%>
+<%--        </li>--%>
+<%--    </ul>--%>
+<%--    <div class="nav__list-icon">--%>
+<%--        <div class="navbar-menu-container">--%>
+<%--            <img id="nav-list-btn"  src="asset/images/list-btn.svg" >--%>
+<%--            <ul id="nav-menu" class="navbar-menu">--%>
+<%--                <li class="navbar__menu-item">--%>
+<%--                    <p>Sales</p>--%>
+<%--                </li>--%>
+<%--                <li class="navbar__menu-item">--%>
+<%--                    <p>Laptop</p>--%>
+<%--                </li>--%>
+<%--                <li class="navbar__menu-item">--%>
+<%--                    <p>Mobile</p>--%>
+<%--                </li>--%>
+<%--                <li class="navbar__menu-item">--%>
+<%--                    <p>Accessory</p>--%>
+<%--                </li>--%>
+<%--                <li class="navbar__menu-item">--%>
+<%--                    <p>Support</p>--%>
+<%--                </li>--%>
+<%--            </ul>--%>
+<%--        </div>--%>
+<%--        <img class="nav__btn-icon icon-obj" src="asset/images/btnsearch.svg" onclick="openModalSearch()">--%>
+<%--        <img class="nav__btn-icon icon-obj" src="asset/images/cart.svg" alt="cart">--%>
+<%--        <img class="nav__btn-icon icon-obj" src="asset/images/account.svg" alt="">--%>
+<%--    </div>--%>
 
-</nav>
+<%--</nav>--%>
 <section class="pr-container">
     <img class="pr-video" alt="video" src="asset/images/prvideo.gif" />
 </section>
@@ -602,55 +603,55 @@
     </div>
 </div>
 <img id="chat-icon" class="chat_icon" src="asset/images/chat_btn.svg" alt="">
-<div id="modal-search" class="modal">
-    <div class="modal__overlay" style="margin-top: var(--nav-height); position:fixed;" onclick="closeModalSearch()">
-    </div>
-    <div class="modal__body ">
-        <div class="modal__inner">
-            <div class="search-container">
-                <div class="search__box">
-                    <input id="inputSearch" type="text" >
-                    <img src="asset/images/btnsearch.svg" alt="">
-                </div>
-                <div class="search__fast">
-                    <p>Quick Links</p>
-                    <div class="list__search-link">
-                        <div class="search__link-item">
-                            <p>Abcjjkcjscncsjcsjcc</p>
-                            <img src="asset/images/btnsearch.svg" alt="">
-                        </div>
-                        <div class="search__link-item">
-                            <p>Abcjjkcjscncsjcsjcc</p>
-                            <img src="asset/images/btnsearch.svg" alt="">
-                        </div>
-                        <div class="search__link-item">
-                            <p>Abcjjkcjscncsjcsjcc</p>
-                            <img src="asset/images/btnsearch.svg" alt="">
-                        </div>
-                        <div class="search__link-item">
-                            <p>Abcjjkcjscncsjcsjcc</p>
-                            <img src="asset/images/btnsearch.svg" alt="">
-                        </div>
-                        <div class="search__link-item">
-                            <p>Abcjjkcjscncsjcsjcc</p>
-                            <img src="asset/images/btnsearch.svg" alt="">
-                        </div>
-                    </div>
-                </div>
-                <div class="search_history">
-                    <p>Search history</p>
-                    <div class="list__search-link">
-                        <div class="search__link-item">
-                            <p>Abcjjkcjscncsjcsjcc</p>
-                            <img src="asset/images/btnsearch.svg" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<%--<div id="modal-search" class="modal">--%>
+<%--    <div class="modal__overlay" style="margin-top: var(--nav-height); position:fixed;" onclick="closeModalSearch()">--%>
+<%--    </div>--%>
+<%--    <div class="modal__body ">--%>
+<%--        <div class="modal__inner">--%>
+<%--            <div class="search-container">--%>
+<%--                <div class="search__box">--%>
+<%--                    <input id="inputSearch" type="text" >--%>
+<%--                    <img src="asset/images/btnsearch.svg" alt="">--%>
+<%--                </div>--%>
+<%--                <div class="search__fast">--%>
+<%--                    <p>Quick Links</p>--%>
+<%--                    <div class="list__search-link">--%>
+<%--                        <div class="search__link-item">--%>
+<%--                            <p>Abcjjkcjscncsjcsjcc</p>--%>
+<%--                            <img src="asset/images/btnsearch.svg" alt="">--%>
+<%--                        </div>--%>
+<%--                        <div class="search__link-item">--%>
+<%--                            <p>Abcjjkcjscncsjcsjcc</p>--%>
+<%--                            <img src="asset/images/btnsearch.svg" alt="">--%>
+<%--                        </div>--%>
+<%--                        <div class="search__link-item">--%>
+<%--                            <p>Abcjjkcjscncsjcsjcc</p>--%>
+<%--                            <img src="asset/images/btnsearch.svg" alt="">--%>
+<%--                        </div>--%>
+<%--                        <div class="search__link-item">--%>
+<%--                            <p>Abcjjkcjscncsjcsjcc</p>--%>
+<%--                            <img src="asset/images/btnsearch.svg" alt="">--%>
+<%--                        </div>--%>
+<%--                        <div class="search__link-item">--%>
+<%--                            <p>Abcjjkcjscncsjcsjcc</p>--%>
+<%--                            <img src="asset/images/btnsearch.svg" alt="">--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--                <div class="search_history">--%>
+<%--                    <p>Search history</p>--%>
+<%--                    <div class="list__search-link">--%>
+<%--                        <div class="search__link-item">--%>
+<%--                            <p>Abcjjkcjscncsjcsjcc</p>--%>
+<%--                            <img src="asset/images/btnsearch.svg" alt="">--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--    </div>--%>
 
-</div>
+<%--</div>--%>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
