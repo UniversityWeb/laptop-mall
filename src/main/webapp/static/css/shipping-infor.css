@@ -1,0 +1,101 @@
+.information_deliver *{
+    font-size: 20px;
+}
+
+.information_deliver{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    margin: 10px;
+}
+
+.information_deliver .information_deliver-label-text{
+    transform: translateY(-40px) translateX(-10px);
+    width: 340px;
+    text-indent: 10px;
+    pointer-events: none;
+}
+
+.information_deliver-text{
+    margin-top: 25px;
+    margin-bottom: -50px;
+    border: none;
+    border-bottom: 1px solid #000;
+    box-shadow: none;
+    width: 330px;
+    height: 40px;
+    line-height: 1;
+    outline: none;
+}
+
+.information_deliver-only-line{
+    height: 70px;
+}
+
+.information_deliver-line{
+    height: 85px;
+    width: 100%;
+}
+
+.information_deliver-line .information_deliver-input{
+    flex: 1;
+}
+
+.information_deliver-line .information_deliver-label-text{
+    transform: translateX(-10px);
+}
+
+.information_deliver-method{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+.information_deliver-method input{
+    height: 25px;
+    width: 25px;
+    margin-right: 10px;
+}
+
+.information_deliver-method .information_deliver-input{
+    flex: 1;
+}
+
+.information_deliver-only-line input:focus ~ .information_deliver-label-text{
+    transform: translateY(-65px) translateX(-10px);
+    color: #2189FF;
+    font-size: 0.8em;
+    transition: transform 0.3s ease-in-out, color 0.3s ease-in;
+}
+
+.information_deliver-only-line input:not(:placeholder-shown) ~ .information_deliver-label-text{
+    transform: translateY(-65px) translateX(-10px);
+    font-size: 0.8em;
+}
+
+.information_deliver-line input:focus ~ .information_deliver-label-text,
+.information_deliver-input select:focus ~ .information_deliver-label-text{
+    transform: translateY(-25px) translateX(-10px);
+    font-size: 0.8em;
+    color: #2189FF;
+    transition: transform 0.3s ease-in-out, color 0.3s ease-in;
+}
+
+.information_deliver-line input:not(:placeholder-shown) ~ .information_deliver-label-text,
+.information_deliver-input select:valid ~ .information_deliver-label-text{
+    transform: translateY(-25px) translateX(-10px);
+    font-size: 0.8em;
+}
+
+.information_deliver input:focus,
+.information_deliver-input select:focus {
+    border-bottom: 1px solid #2189FF;
+    transition: border-bottom-color 0.3s ease-in;
+}
+
+.note-box{
+    border: 1px solid #000;
+    width: 700px;
+    height: 120px;
+    resize: none;
+}

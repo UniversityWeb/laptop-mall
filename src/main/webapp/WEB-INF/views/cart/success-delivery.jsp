@@ -1,3 +1,6 @@
+
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,22 +9,26 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0">
-    <link rel="stylesheet" href="styles/cart.css">
-    <link rel="stylesheet" href="styles/success-delivery.css">
+    <link rel="stylesheet" href="<c:url value="/static/css/cart.css"/>">
+    <link rel="stylesheet" href="<c:url value="/static/css/success-delivery.css"/>">
 </head>
 <body class="column">
 <header class="row center">
-    <div class="back_to_shop">
-        <a class="back_to_shop row left" href="#">
-            <ion-icon name="chevron-back-outline"></ion-icon>
-            <span> Tiếp Tục Mua Hàng </span>
-        </a>
+    <div class="back_to_shop left">
+        <form action="cart" method="post" class="center">
+            <input type="hidden" name="action" value="Return Home">
+            <button class="back_to_shop row left">
+                <ion-icon name="chevron-back-outline"></ion-icon>
+                <span> Back To Shop </span>
+            </button>
+        </form>
     </div>
     <h2>LaptopMall</h2>
     <div class="contact_shop right">
-        <form action="#" method="post">
-            <button class="row center">
-                <span> Nhận Hỗ Trợ Ngay </span>
+        <form action="cart" method="post" class="center">
+            <input type="hidden" name="action" value="Contact">
+            <button>
+                <span> Contact </span>
                 <ion-icon name="call-outline"></ion-icon>
             </button>
         </form>
@@ -32,19 +39,19 @@
         <ul class="process_list center row">
             <li class="process_step column center">
                 <span class="process_step-number center"><ion-icon name="checkmark-outline"></ion-icon></span>
-                <span class="process_step-title center">Kiểm tra giỏ hàng</span>
+                <span class="process_step-title center">Check Cart</span>
             </li>
             <li class="process_step column center">
                 <span class="process_step-number center"><ion-icon name="checkmark-outline"></ion-icon></span>
-                <span class="process_step-title center">Thông tin giao hàng</span>
+                <span class="process_step-title center">Shipping Information</span>
             </li>
             <li class="process_step column center">
                 <span class="process_step-number center"><ion-icon name="checkmark-outline"></ion-icon></span>
-                <span class="process_step-title center">Chọn thanh toán</span>
+                <span class="process_step-title center">Payment Method</span>
             </li>
             <li class="process_step column center">
                 <span class="process_step-number center" style="background-color: #2189FF;">4</span>
-                <span class="process_step-title center"><strong>Hoàn thành đặt hàng</strong></span>
+                <span class="process_step-title center"><strong>Complete Order</strong></span>
             </li>
         </ul>
     </div>
@@ -54,7 +61,7 @@
             <ion-icon name="bag-check-outline"></ion-icon>
             <p class="thanks_text">Thanks you!</p>
             <p>Your order has been successfully placed</p>
-            <form action="#" method="post" class="full center">
+            <form action="home-page" method="post" class="full center">
                 <button class="button_shopping">Continue Shopping</button>
             </form>
         </div>
