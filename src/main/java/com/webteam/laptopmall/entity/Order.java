@@ -25,7 +25,7 @@ public class Order {
     @Temporal(TemporalType.DATE)
     private Date orderDate;
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private EOrderStatus status;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

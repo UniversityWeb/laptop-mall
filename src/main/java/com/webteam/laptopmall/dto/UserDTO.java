@@ -1,6 +1,7 @@
 package com.webteam.laptopmall.dto;
 
 import com.webteam.laptopmall.customenum.EGender;
+import com.webteam.laptopmall.customenum.EUserRole;
 
 public class UserDTO {
     private Long id;
@@ -11,12 +12,13 @@ public class UserDTO {
     private String passHash;
     private String phoneNo;
     private String username;
+    private EUserRole role;
 
     public UserDTO() {
     }
 
-    public UserDTO(Long id, String address, String email, String fullName,
-                   EGender gender, String passHash, String phoneNo, String username) {
+    public UserDTO(Long id, String address, String email, String fullName, EGender gender,
+                   String passHash, String phoneNo, String username, EUserRole role) {
         this.id = id;
         this.address = address;
         this.email = email;
@@ -25,6 +27,7 @@ public class UserDTO {
         this.passHash = passHash;
         this.phoneNo = phoneNo;
         this.username = username;
+        this.role = role;
     }
 
     public Long getId() {
@@ -89,5 +92,13 @@ public class UserDTO {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public EUserRole getRole() {
+        return role;
+    }
+
+    public void setRole(EUserRole role) {
+        this.role = role;
     }
 }

@@ -1,6 +1,7 @@
 package com.webteam.laptopmall.mapper;
 
 import com.webteam.laptopmall.customenum.EGender;
+import com.webteam.laptopmall.customenum.EUserRole;
 import com.webteam.laptopmall.dto.UserDTO;
 import com.webteam.laptopmall.entity.User;
 import org.junit.jupiter.api.Test;
@@ -10,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class UserMapperTest {
     @Test
     void testToDTO() {
-        User user = new User(1L, "Address", "EmailAsn@gmail.com", "Full Name", EGender.FEMALE, "asdfasdf", "09128381238", "vanlongnek");
+        User user = new User(1L, "Address", "EmailAsn@gmail.com", "Full Name", EGender.FEMALE, "asdfasdf", "09128381238", "vanlongnek", EUserRole.SALESPERSON);
         UserDTO userDTO = UserMapper.INSTANCE.toDTO(user);
 
         assertEquals(user.getId(), userDTO.getId());
@@ -25,7 +26,8 @@ class UserMapperTest {
 
     @Test
     void testToEntity() {
-        UserDTO userDTO = new UserDTO(1L, "Address", "EmailAsn@gmail.com", "Full Name", EGender.FEMALE, "asdfasdf", "09128381238", "vanlongnek");
+        UserDTO userDTO = new UserDTO(1L, "Address", "EmailAsn@gmail.com", "Full Name",
+                EGender.FEMALE, "asdfasdf", "09128381238", "vanlongnek", EUserRole.CUSTOMER);
         User user = UserMapper.INSTANCE.toEntity(userDTO);
 
         assertEquals(userDTO.getId(), user.getId());

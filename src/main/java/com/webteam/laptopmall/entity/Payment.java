@@ -15,8 +15,10 @@ public class Payment {
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "payment")
     private Order order;
 
+    @Enumerated(EnumType.STRING)
     private EPaymentMethod paymentMethod;
 
+    @Enumerated(EnumType.STRING)
     private EPaymentStatus status;
 
     public Payment() {

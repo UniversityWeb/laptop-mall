@@ -1,6 +1,7 @@
 package com.webteam.laptopmall.entity;
 
 import com.webteam.laptopmall.customenum.EGender;
+import com.webteam.laptopmall.customenum.EUserRole;
 
 import javax.persistence.*;
 import java.util.List;
@@ -19,7 +20,7 @@ public class User {
     @Column(name = "full_name")
     private String fullName;
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private EGender gender;
 
     @Column(name = "pass_hash")
@@ -30,6 +31,9 @@ public class User {
 
     private String username;
 
+    @Enumerated(EnumType.STRING)
+    private EUserRole role;
+
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<CartItem> cartItems;
 
@@ -39,8 +43,8 @@ public class User {
     public User() {
     }
 
-    public User(Long id, String address, String email, String fullName,
-                EGender gender, String passHash, String phoneNo, String username) {
+    public User(Long id, String address, String email, String fullName, EGender gender,
+                String passHash, String phoneNo, String username, EUserRole role) {
         this.id = id;
         this.address = address;
         this.email = email;
@@ -49,17 +53,7 @@ public class User {
         this.passHash = passHash;
         this.phoneNo = phoneNo;
         this.username = username;
-    }
-
-    public User(String address, String email, String fullName,
-                EGender gender, String passHash, String phoneNo, String username) {
-        this.address = address;
-        this.email = email;
-        this.fullName = fullName;
-        this.gender = gender;
-        this.passHash = passHash;
-        this.phoneNo = phoneNo;
-        this.username = username;
+        this.role = role;
     }
 
     @Override
@@ -73,6 +67,7 @@ public class User {
                 ", passHash='" + passHash + '\'' +
                 ", phoneNo='" + phoneNo + '\'' +
                 ", username='" + username + '\'' +
+                ", role=" + role +
                 '}';
     }
 
@@ -138,6 +133,14 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public EUserRole getRole() {
+        return role;
+    }
+
+    public void setRole(EUserRole role) {
+        this.role = role;
     }
 
     public List<CartItem> getCartItems() {
