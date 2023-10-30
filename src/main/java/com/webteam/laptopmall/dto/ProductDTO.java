@@ -9,23 +9,25 @@ public class ProductDTO {
     private String desc;
     private BigDecimal price;
     private Integer stockQty;
-    private String imgUrl;
     private double discountPercent;
+    private String version;
+    private String color;
     private CategoryDTO category;
 
     public ProductDTO() {
     }
 
-    public ProductDTO(Long id, String brand, String model, String desc, BigDecimal price,
-                      Integer stockQty, String imgUrl, double discountPercent, CategoryDTO category) {
+    public ProductDTO(Long id, String brand, String model, String desc, BigDecimal price, Integer stockQty,
+                      double discountPercent, String version, String color, CategoryDTO category) {
         this.id = id;
         this.brand = brand;
         this.model = model;
         this.desc = desc;
         this.price = price;
         this.stockQty = stockQty;
-        this.imgUrl = imgUrl;
         this.discountPercent = discountPercent;
+        this.version = version;
+        this.color = color;
         this.category = category;
     }
 
@@ -77,20 +79,28 @@ public class ProductDTO {
         this.stockQty = stockQty;
     }
 
-    public String getImgUrl() {
-        return imgUrl;
-    }
-
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
-    }
-
     public double getDiscountPercent() {
         return discountPercent;
     }
 
     public void setDiscountPercent(double discountPercent) {
         this.discountPercent = discountPercent;
+    }
+
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 
     public CategoryDTO getCategory() {

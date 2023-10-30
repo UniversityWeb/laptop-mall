@@ -14,7 +14,7 @@ class ProductMapperTest {
     @Test
     void testToDTO() {
         Product product = new Product(1L, "Brand", "Model", "Description", new BigDecimal("1000.00"),
-                10, "image.jpg", 0, new Category(1, "Laptop"));
+                10, 0, "RAM 16GB | ROM 256", "GREEN",  new Category(1, "Laptop"));
         ProductDTO productDTO = ProductMapper.INSTANCE.toDTO(product);
 
         assertEquals(product.getId(), productDTO.getId());
@@ -23,13 +23,14 @@ class ProductMapperTest {
         assertEquals(product.getDesc(), productDTO.getDesc());
         assertEquals(product.getPrice(), productDTO.getPrice());
         assertEquals(product.getStockQty(), productDTO.getStockQty());
-        assertEquals(product.getImgUrl(), productDTO.getImgUrl());
+        assertEquals(product.getVersion(), productDTO.getVersion());
+        assertEquals(product.getColor(), productDTO.getColor());
     }
 
     @Test
     void testToEntity() {
         ProductDTO productDTO = new ProductDTO(1L, "Brand", "Model", "Description", new BigDecimal("1000.00"),
-                10, "image.jpg", 0, new CategoryDTO(1, "Laptop"));
+                10, 0, "RAM 16GB | ROM 256", "GREEN",   new CategoryDTO(1, "Laptop"));
         Product product = ProductMapper.INSTANCE.toEntity(productDTO);
 
         assertEquals(productDTO.getId(), product.getId());
@@ -38,6 +39,7 @@ class ProductMapperTest {
         assertEquals(productDTO.getDesc(), product.getDesc());
         assertEquals(productDTO.getPrice(), product.getPrice());
         assertEquals(productDTO.getStockQty(), product.getStockQty());
-        assertEquals(productDTO.getImgUrl(), product.getImgUrl());
+        assertEquals(product.getVersion(), productDTO.getVersion());
+        assertEquals(product.getColor(), productDTO.getColor());
     }
 }

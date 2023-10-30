@@ -23,11 +23,12 @@ public class Product {
     @Column(name = "stock_qty")
     private Integer stockQty;
 
-    @Column(name = "img_url")
-    private String imgUrl;
-
     @Column(name = "discount_percent")
     private double discountPercent;
+
+    private String version;
+
+    private String color;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
@@ -37,24 +38,26 @@ public class Product {
     private List<CartItem> cartItems;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<ProdColor> colors;
+    private List<OrderItem> orderItems;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<OrderItem> orderItems;
+    private List<Configuration> configurations;
 
     public Product() {
     }
 
-    public Product(Long id, String brand, String model, String desc, BigDecimal price,
-                   Integer stockQty, String imgUrl, double discountPercent, Category category) {
+    public Product(Long id, String brand, String model, String desc,
+                   BigDecimal price, Integer stockQty, double discountPercent,
+                   String version, String color, Category category) {
         this.id = id;
         this.brand = brand;
         this.model = model;
         this.desc = desc;
         this.price = price;
         this.stockQty = stockQty;
-        this.imgUrl = imgUrl;
         this.discountPercent = discountPercent;
+        this.version = version;
+        this.color = color;
         this.category = category;
     }
 
@@ -63,11 +66,13 @@ public class Product {
         return "Product{" +
                 "id=" + id +
                 ", brand='" + brand + '\'' +
-                ", mode='" + model + '\'' +
+                ", model='" + model + '\'' +
                 ", desc='" + desc + '\'' +
                 ", price=" + price +
                 ", stockQty=" + stockQty +
-                ", imgUrl='" + imgUrl + '\'' +
+                ", discountPercent=" + discountPercent +
+                ", version='" + version + '\'' +
+                ", color='" + color + '\'' +
                 ", category=" + category +
                 '}';
     }
@@ -120,20 +125,28 @@ public class Product {
         this.stockQty = stockQty;
     }
 
-    public String getImgUrl() {
-        return imgUrl;
-    }
-
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
-    }
-
     public double getDiscountPercent() {
         return discountPercent;
     }
 
     public void setDiscountPercent(double discountPercent) {
         this.discountPercent = discountPercent;
+    }
+
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 
     public Category getCategory() {
@@ -152,19 +165,19 @@ public class Product {
         this.cartItems = cartItems;
     }
 
-    public List<ProdColor> getColors() {
-        return colors;
-    }
-
-    public void setColors(List<ProdColor> colors) {
-        this.colors = colors;
-    }
-
     public List<OrderItem> getOrderItems() {
         return orderItems;
     }
 
     public void setOrderItems(List<OrderItem> orderItems) {
         this.orderItems = orderItems;
+    }
+
+    public List<Configuration> getConfigurations() {
+        return configurations;
+    }
+
+    public void setConfigurations(List<Configuration> configurations) {
+        this.configurations = configurations;
     }
 }
