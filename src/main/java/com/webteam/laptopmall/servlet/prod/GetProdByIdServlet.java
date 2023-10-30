@@ -28,7 +28,7 @@ public class GetProdByIdServlet extends HttpServlet {
             throws ServletException, IOException {
 
         String idStr = req.getParameter("id");
-        Long id = new Long(idStr);
+        Long id = Long.valueOf(idStr);
 
         ProductDTO prodDTO = prodService.getById(id);
         PrintWriter pw = resp.getWriter();

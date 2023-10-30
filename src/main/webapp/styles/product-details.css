@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+nav{
+    position: relative;
+    top: 0;
+    height: fit-content;
+    padding: 10px 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1c1c1c;
+}
+
+nav .navigation a{
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    padding: 2px 15px;
+    border-radius: 20px;
+    transition: 0.3s;
+    color: #ffffff;
+    transition-property: background;
+}
+
+nav .navigation a:not(:last-child){
+    margin-right: 30px;
+}
+
+nav .navigation a:hover{
+    color: #000000;
+    background: #ffffff;
+}
+
+.btn_collapse{
+    display: none;
+}
+
+#check{
+    z-index: 3;
+    display: none;
+}
+
+/* responsive styles */
+@media (max-width: 960px){
+    nav .navigation{
+        display: none;
+    }
+
+    .btn_collapse{
+        display: block;
+        font-size: 25px;
+        cursor: pointer;
+        transition: 0.3s;
+        transition-property: color;
+    }
+
+    .btn_collapse:hover{
+        color: #000000;
+    }
+
+    .btn_collapse .close-btn{
+        display: none;
+    }
+
+    #check:checked ~ nav .navigation{
+        z-index: 2;
+        position: fixed;
+        background: rgba(114, 223, 255, 0.9);
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #check:checked ~ nav .navigation a{
+        font-weight: 700;
+        margin-right: 0;
+        margin-bottom: 50px;
+        letter-spacing: 2px;
+    }
+
+    #check:checked ~ nav .btn_collapse .menu-btn{
+        display: none;
+    }
+
+    #check:checked ~ nav .btn_collapse .close-btn{
+        z-index: 2;
+        display: block;
+        position: fixed;
+    }
+
+    .btn_collapse .menu-btn{
+        position: absolute;
+    }
+}
+
+.container {
+    display: flex;
+}
+
+.prod_img, .prod_basic_info {
+    flex: 1;
+    padding: 10px;
+}
+
+.color_list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.color_list li {
+    display: inline-block;
+    border: 1px solid black;
+    padding: 5px 10px;
+    margin: 5px;
+    border-radius: 10px;
+}
+
+.color_list li:hover {
+    color: white;
+    background: black;
+}
