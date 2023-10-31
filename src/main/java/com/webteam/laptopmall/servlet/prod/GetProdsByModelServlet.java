@@ -1,17 +1,21 @@
 package com.webteam.laptopmall.servlet.prod;
 
 import com.webteam.laptopmall.dto.prod.ProductDTO;
+import com.webteam.laptopmall.service.image.ImageService;
+import com.webteam.laptopmall.service.image.ImageServiceImpl;
 import com.webteam.laptopmall.service.prod.ProdService;
 import com.webteam.laptopmall.service.prod.ProdServiceImpl;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
-
+@MultipartConfig()
 @WebServlet("/get-prods-by-model")
 public class GetProdsByModelServlet extends HttpServlet {
 
