@@ -188,6 +188,7 @@
     background-color: var(--color5);
     border-width: 0;
     padding: 0 10px;
+    outline: none;
 }
 
 .search__box img{

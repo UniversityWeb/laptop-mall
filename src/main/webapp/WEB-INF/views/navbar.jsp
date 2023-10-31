@@ -9,14 +9,14 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
-  <link rel="stylesheet" href="asset/styles/base.css" />
-  <link rel="stylesheet" href="asset/styles/navbar.css" />
+  <link rel="stylesheet" href="./static/css/base.css" />
+  <link rel="stylesheet" href="./static/css/navbar.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap"/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"/>
 </head>
 <body>
 <nav class="navbar-main">
-  <img class="navbar-logo" src="asset/images/logo.svg" alt="logo">
+  <img class="navbar-logo" src="./static/images/logo.svg" alt="logo">
   <ul class="navbar-list">
     <li class="navbar-item">
       <div class="button-inner btn-obj">
@@ -46,7 +46,7 @@
   </ul>
   <div class="nav__list-icon">
     <div class="navbar-menu-container">
-      <img id="nav-list-btn"  src="asset/images/list-btn.svg" >
+      <img id="nav-list-btn"  src="./static/images/list-btn.svg" >
       <ul id="nav-menu" class="navbar-menu">
         <li class="navbar__menu-item">
           <p>Sales</p>
@@ -65,9 +65,9 @@
         </li>
       </ul>
     </div>
-    <img class="nav__btn-icon icon-obj" src="asset/images/btnsearch.svg" onclick="openModalSearch()">
-    <img class="nav__btn-icon icon-obj" src="asset/images/cart.svg" alt="cart">
-    <img class="nav__btn-icon icon-obj" src="asset/images/account.svg" alt="">
+    <img class="nav__btn-icon icon-obj" src="./static/images/btnsearch.svg" onclick="openModalSearch()">
+    <img class="nav__btn-icon icon-obj" src="./static/images/cart.svg" alt="cart">
+    <img class="nav__btn-icon icon-obj" src="./static/images/account.svg" alt="">
   </div>
 
 </nav>
@@ -79,30 +79,30 @@
       <div class="search-container">
         <div class="search__box">
           <input id="inputSearch" type="text" >
-          <img class="icon-obj" src="asset/images/btnsearch.svg" alt="">
+          <img class="icon-obj" src="./static/images/btnsearch.svg" alt="">
         </div>
         <div class="search__fast">
           <p>Quick Links</p>
           <div class="list__search-link">
             <div class="search__link-item">
               <p>Abcjjkcjscncsjcsjcc</p>
-              <img src="asset/images/btnsearch.svg" alt="">
+              <img src="./static/images/btnsearch.svg" alt="">
             </div>
             <div class="search__link-item">
               <p>Abcjjkcjscncsjcsjcc</p>
-              <img src="asset/images/btnsearch.svg" alt="">
+              <img src="./static/images/btnsearch.svg" alt="">
             </div>
             <div class="search__link-item">
               <p>Abcjjkcjscncsjcsjcc</p>
-              <img src="asset/images/btnsearch.svg" alt="">
+              <img src="./static/images/btnsearch.svg" alt="">
             </div>
             <div class="search__link-item">
               <p>Abcjjkcjscncsjcsjcc</p>
-              <img src="asset/images/btnsearch.svg" alt="">
+              <img src="./static/images/btnsearch.svg" alt="">
             </div>
             <div class="search__link-item">
               <p>Abcjjkcjscncsjcsjcc</p>
-              <img src="asset/images/btnsearch.svg" alt="">
+              <img src="./static/images/btnsearch.svg" alt="">
             </div>
           </div>
         </div>
@@ -111,7 +111,7 @@
           <div class="list__search-link">
             <div class="search__link-item">
               <p>Abcjjkcjscncsjcsjcc</p>
-              <img src="asset/images/btnsearch.svg" alt="">
+              <img src="./static/images/btnsearch.svg" alt="">
             </div>
           </div>
         </div>
@@ -119,6 +119,6 @@
     </div>
   </div>
 </div>
-<script src="asset/javascript/navbar.js"></script>
+<script src="./static/js/navbar.js"></script>
 </body>
 </html>

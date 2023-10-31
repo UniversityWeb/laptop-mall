@@ -11,15 +11,15 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
-    <link rel="stylesheet" href="asset/styles/base.css" />
-    <link rel="stylesheet" href="asset/styles/search.css" />
+    <link rel="stylesheet" href="static/css/base.css" />
+    <link rel="stylesheet" href="static/css/search.css" />
     <link rel="stylesheet" href="asset/fonts/fontawesome-free-6.4.2-web/fontawesome-free-6.4.2-web/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 </head>
 <body>
-<jsp:include page="navbar.jsp"></jsp:include>
+<jsp:include page="WEB-INF/views/navbar.jsp"></jsp:include>
 <section class="query-input__wrap">
     <input class="input-search" type="text">
     <ul class="search__recomments">
@@ -89,45 +89,45 @@
         </div>
         <ul class="search-item__list">
             <li class="search__product-result">
-                <img src="asset/images/headphone-white.png" alt="" class="product__img">
+                <img src="static/images/headphone-white.png" alt="" class="product__img">
                 <p class="product__name">Khoa đần</p>
-                <img src="asset/images/btnbuynow.svg" alt="" class="btn__add-to-cart">
+                <img src="static/images/btnbuynow.svg" alt="" class="btn__add-to-cart">
             </li>
             <li class="search__product-result">
-                <img src="asset/images/headphone-white.png" alt="" class="product__img">
+                <img src="static/images/headphone-white.png" alt="" class="product__img">
                 <p class="product__name">Khoa đần</p>
-                <img src="asset/images/btnbuynow.svg" alt="" class="btn__add-to-cart">
+                <img src="static/images/btnbuynow.svg" alt="" class="btn__add-to-cart">
             </li>
             <li class="search__product-result">
-                <img src="asset/images/headphone-white.png" alt="" class="product__img">
+                <img src="static/images/headphone-white.png" alt="" class="product__img">
                 <p class="product__name">Khoa đần</p>
-                <img src="asset/images/btnbuynow.svg" alt="" class="btn__add-to-cart">
+                <img src="static/images/btnbuynow.svg" alt="" class="btn__add-to-cart">
             </li>
             <li class="search__product-result">
-                <img src="asset/images/headphone-white.png" alt="" class="product__img">
+                <img src="static/images/headphone-white.png" alt="" class="product__img">
                 <p class="product__name">Khoa đần</p>
-                <img src="asset/images/btnbuynow.svg" alt="" class="btn__add-to-cart">
+                <img src="static/images/btnbuynow.svg" alt="" class="btn__add-to-cart">
             </li>
             <li class="search__product-result">
-                <img src="asset/images/headphone-white.png" alt="" class="product__img">
+                <img src="static/images/headphone-white.png" alt="" class="product__img">
                 <p class="product__name">Khoa đần</p>
-                <img src="asset/images/btnbuynow.svg" alt="" class="btn__add-to-cart">
+                <img src="static/images/btnbuynow.svg" alt="" class="btn__add-to-cart">
             </li>
             <li class="search__product-result">
-                <img src="asset/images/headphone-white.png" alt="" class="product__img">
+                <img src="static/images/headphone-white.png" alt="" class="product__img">
                 <p class="product__name">Khoa đần</p>
-                <img src="asset/images/btnbuynow.svg" alt="" class="btn__add-to-cart">
+                <img src="static/images/btnbuynow.svg" alt="" class="btn__add-to-cart">
             </li>
             <li class="search__product-result">
-                <img src="asset/images/headphone-white.png" alt="" class="product__img">
+                <img src="static/images/headphone-white.png" alt="" class="product__img">
                 <p class="product__name">Khoa đần</p>
-                <img src="asset/images/btnbuynow.svg" alt="" class="btn__add-to-cart">
+                <img src="static/images/btnbuynow.svg" alt="" class="btn__add-to-cart">
             </li>
         </ul>
     </section>
 </section>
 <footer></footer>
-<jsp:include page="chatbox.jsp"></jsp:include>
-<script src="./asset/javascript/search.js"></script>
+<jsp:include page="WEB-INF/views/chatbox.jsp"></jsp:include>
+<script src="static/js/search.js"></script>
 </body>
 </html>
