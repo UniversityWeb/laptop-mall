@@ -98,7 +98,7 @@ footer{
 .giphy-4{
     position: relative;
     /* margin-left: 50%; */
-    margin-left: 3%;
+    margin-left: 18%;
     width: 25%;
     height: auto;
     object-fit: cover;
@@ -327,17 +327,31 @@ footer{
     .txt__smart-phone,.big-sale,.txt-laptop,.accessory-txt{
         font-size: 210%;
     }
+    .giphy-4{
+        margin-left: 12%;
+    }
+    .boy-laptop{
+        margin-left: 15%;
+    }
+    .giphy-9{
+        margin-left: 1%;
+    }
 }
 
 @media screen and (min-width:767px) and (max-width:1023px){
     .txt__smart-phone,.big-sale,.txt-laptop,.accessory-txt{
         font-size: 250%;
     }
+    .giphy-9{
+        margin-left: 1%;
+    }
 }
 
 @media screen and (min-width:1024px){
     .txt__smart-phone,.big-sale,.txt-laptop,.accessory-txt{
-        font-size: 350%;
+        font-size: 340%;
     }
-
+    .giphy-9{
+        margin-left: 6%;
+    }
 }
