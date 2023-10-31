@@ -52,16 +52,6 @@ public class CartItemReposImpl extends BaseReposImpl<CartItem, Long> implements 
 
     @Override
     public List<CartItem> getByUserId(Long userId) {
-        EntityManager em = emf.createEntityManager();
-        List<CartItem> items = new ArrayList<>();
-        try {
-            TypedQuery<CartItem> typedQuery = ciQuery.buildGetByUserId(em, userId);
-            items = typedQuery.getResultList();
-        } catch (NoResultException e) {
-            log.log(Level.SEVERE, e.getMessage());
-        } finally {
-            em.close();
-        }
-        return items;
+        return getResultList(em -> ciQuery.buildGetByUserId(em, userId));
     }
 }

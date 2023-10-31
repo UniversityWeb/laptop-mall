@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -95,4 +96,32 @@ public abstract class BaseReposImpl<T, ID> implements BaseRepos<T, ID> {
     }
 
     protected abstract Class<T> getClassType();
+
+    protected T getSingleResult(Function<EntityManager, TypedQuery<T>> query) {
+        EntityManager em = emf.createEntityManager();
+        T entity = null;
+        try {
+            TypedQuery<T> typedQuery = query.apply(em);
+            entity = typedQuery.getSingleResult();
+        } catch (NoResultException e) {
+            log.log(Level.SEVERE, e.getMessage());
+        } finally {
+            em.close();
+        }
+        return entity;
+    }
+
+    protected List<T> getResultList(Function<EntityManager, TypedQuery<T>> query) {
+        EntityManager em = emf.createEntityManager();
+        List<T> items = new ArrayList<>();
+        try {
+            TypedQuery<T> typedQuery = query.apply(em);
+            items = typedQuery.getResultList();
+        } catch (NoResultException e) {
+            log.log(Level.SEVERE, e.getMessage());
+        } finally {
+            em.close();
+        }
+        return items;
+    }
 }

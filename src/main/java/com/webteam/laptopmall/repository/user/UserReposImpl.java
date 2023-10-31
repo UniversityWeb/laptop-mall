@@ -1,17 +1,29 @@
 package com.webteam.laptopmall.repository.user;
 
 import com.webteam.laptopmall.db.DbCon;
-import com.webteam.laptopmall.entity.user.User;
+import com.webteam.laptopmall.entity.User;
+import com.webteam.laptopmall.query.UserQuery;
 import com.webteam.laptopmall.repository.base.BaseReposImpl;
 
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
+import javax.persistence.TypedQuery;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class UserReposImpl extends BaseReposImpl<User, Long> implements UserRepos {
 
-    private EntityManagerFactory emFactory;
+    private final Logger log = Logger.getLogger(UserReposImpl.class.getName());
+
+    private UserQuery uQuery;
 
     public UserReposImpl() {
-        emFactory = DbCon.getIns().getEmf();
+        super();
+        uQuery = new UserQuery();
     }
 
     @Override
@@ -22,5 +34,10 @@ public class UserReposImpl extends BaseReposImpl<User, Long> implements UserRepo
     @Override
     public User update(User user) {
         return null;
+    }
+
+    @Override
+    public User findByUsername(String username) {
+        return getSingleResult(em -> uQuery.buildFindByUsername(em, username));
     }
 }
