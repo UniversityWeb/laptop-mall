@@ -20,13 +20,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO save(UserDTO userDTO) {
-        User user = mapper.toEntity(userDTO);
-        User saved = userRepos.save(user);
-        return mapper.toDTO(saved);
-    }
-
-    @Override
     public UserDTO update(UserDTO userDTO) {
         if (getById(userDTO.getId()) == null)
             throw new UserNotFoundException("Count not find any users with id=" + userDTO.getId());

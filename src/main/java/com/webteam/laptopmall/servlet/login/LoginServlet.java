@@ -1,4 +1,4 @@
-package com.webteam.laptopmall.servlet;
+package com.webteam.laptopmall.servlet.login;
 
 import com.webteam.laptopmall.service.login.LoginService;
 import com.webteam.laptopmall.service.login.LoginServiceImpl;
@@ -23,7 +23,7 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String url = "/WEB-INF/views/login.html";
+        String url = "/WEB-INF/views/login.jsp";
         getServletContext().getRequestDispatcher(url).forward(req, resp);
     }
 
@@ -35,9 +35,9 @@ public class LoginServlet extends HttpServlet {
         String url;
         if (isSuccess) {
             req.getSession().setAttribute("username", username);
-            url = "/WEB-INF/views/home.jsp";
+            url = "/home-page";
         } else {
-            url = "/WEB-INF/views/login.html";
+            url = "/WEB-INF/views/access-denied.html";
         }
         getServletContext().getRequestDispatcher(url).forward(req, resp);
     }

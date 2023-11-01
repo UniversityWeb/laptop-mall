@@ -97,11 +97,11 @@ public abstract class BaseReposImpl<T, ID> implements BaseRepos<T, ID> {
 
     protected abstract Class<T> getClassType();
 
-    protected T getSingleResult(Function<EntityManager, TypedQuery<T>> query) {
+    protected <V> V getSingleResult(Function<EntityManager, TypedQuery<V>> query) {
         EntityManager em = emf.createEntityManager();
-        T entity = null;
+        V entity = null;
         try {
-            TypedQuery<T> typedQuery = query.apply(em);
+            TypedQuery<V> typedQuery = query.apply(em);
             entity = typedQuery.getSingleResult();
         } catch (NoResultException e) {
             log.log(Level.SEVERE, e.getMessage());
@@ -111,11 +111,11 @@ public abstract class BaseReposImpl<T, ID> implements BaseRepos<T, ID> {
         return entity;
     }
 
-    protected List<T> getResultList(Function<EntityManager, TypedQuery<T>> query) {
+    protected <V> List<V> getResultList(Function<EntityManager, TypedQuery<V>> query) {
         EntityManager em = emf.createEntityManager();
-        List<T> items = new ArrayList<>();
+        List<V> items = new ArrayList<>();
         try {
-            TypedQuery<T> typedQuery = query.apply(em);
+            TypedQuery<V> typedQuery = query.apply(em);
             items = typedQuery.getResultList();
         } catch (NoResultException e) {
             log.log(Level.SEVERE, e.getMessage());
