@@ -12,6 +12,12 @@ public abstract class ProductBuilderImpl<R extends Product> implements ProductBu
     }
 
     @Override
+    public ProductBuilder<R> id(Long id) {
+        prod.setId(id);
+        return this;
+    }
+
+    @Override
     public ProductBuilder<R> brand(String brand) {
         prod.setBrand(brand);
         return this;

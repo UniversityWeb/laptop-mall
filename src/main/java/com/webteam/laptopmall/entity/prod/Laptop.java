@@ -21,7 +21,7 @@ public class Laptop extends Product {
     }
 
     public enum OS {
-        WINDOW, MAC, LINUX
+        WINDOWS, MAC, LINUX
     }
 
     @Column(name = "cpu_name")

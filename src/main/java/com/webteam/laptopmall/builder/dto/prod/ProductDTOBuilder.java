@@ -6,6 +6,7 @@ import com.webteam.laptopmall.dto.prod.ProductDTO;
 import java.math.BigDecimal;
 
 public interface ProductDTOBuilder<R extends ProductDTO> {
+    ProductDTOBuilder<R> id(Long id);
     ProductDTOBuilder<R> brand(String brand);
 
     ProductDTOBuilder<R> model(String model);

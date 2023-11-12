@@ -12,6 +12,12 @@ public abstract class ProductDTOBuilderImpl<R extends ProductDTO> implements Pro
     }
 
     @Override
+    public ProductDTOBuilder<R> id(Long id) {
+        prod.setId(id);
+        return this;
+    }
+
+    @Override
     public ProductDTOBuilder<R> brand(String brand) {
         prod.setBrand(brand);
         return this;
