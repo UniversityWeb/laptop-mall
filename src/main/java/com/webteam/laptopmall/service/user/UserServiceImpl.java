@@ -1,6 +1,6 @@
 package com.webteam.laptopmall.service.user;
 
-import com.webteam.laptopmall.dto.UserDTO;
+import com.webteam.laptopmall.dto.user.UserDTO;
 import com.webteam.laptopmall.entity.user.User;
 import com.webteam.laptopmall.exception.UserNotFoundException;
 import com.webteam.laptopmall.mapper.UserMapper;

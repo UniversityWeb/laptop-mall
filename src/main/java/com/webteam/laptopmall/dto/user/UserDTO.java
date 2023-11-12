@@ -1,4 +1,4 @@
-package com.webteam.laptopmall.dto;
+package com.webteam.laptopmall.dto.user;
 
 import com.webteam.laptopmall.customenum.EGender;
 

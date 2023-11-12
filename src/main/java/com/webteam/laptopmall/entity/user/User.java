@@ -16,6 +16,7 @@ public class User {
 
     private String address;
 
+    @Column(unique = true)
     private String email;
 
     @Column(name = "full_name")
@@ -24,7 +25,7 @@ public class User {
     @Enumerated(EnumType.STRING)
     private EGender gender;
 
-    @Column(name = "phone_no")
+    @Column(name = "phone_no", unique = true)
     private String phoneNo;
 
     @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)

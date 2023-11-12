@@ -1,32 +1,17 @@
-package com.webteam.laptopmall.entity.user;
+package com.webteam.laptopmall.dto.user;
 
-import javax.persistence.*;
+import com.webteam.laptopmall.entity.user.UserLogin;
 
-@Entity
-@Table(name = "user_logins")
-public class UserLogin {
-    public enum ERole {
-        SALESPERSON, CUSTOMER
-    }
-
-    @Id
-    @Column(unique = true)
+public class UserLoginDTO {
     private String username;
-
-    @Column(name = "pass_hash")
     private String passHash;
+    private UserDTO user;
+    private UserLogin.ERole role;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", referencedColumnName = "id", unique = true)
-    private User user;
-
-    @Enumerated(EnumType.STRING)
-    private ERole role;
-
-    public UserLogin() {
+    public UserLoginDTO() {
     }
 
-    public UserLogin(String username, String passHash, User user, ERole role) {
+    public UserLoginDTO(String username, String passHash, UserDTO user, UserLogin.ERole role) {
         this.username = username;
         this.passHash = passHash;
         this.user = user;
@@ -35,7 +20,7 @@ public class UserLogin {
 
     @Override
     public String toString() {
-        return "UserLogin{" +
+        return "UserLoginDTO{" +
                 "username='" + username + '\'' +
                 ", passHash='" + passHash + '\'' +
                 ", user=" + user +
@@ -59,19 +44,19 @@ public class UserLogin {
         this.passHash = passHash;
     }
 
-    public User getUser() {
+    public UserDTO getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserDTO user) {
         this.user = user;
     }
 
-    public ERole getRole() {
+    public UserLogin.ERole getRole() {
         return role;
     }
 
-    public void setRole(ERole role) {
+    public void setRole(UserLogin.ERole role) {
         this.role = role;
     }
 }
