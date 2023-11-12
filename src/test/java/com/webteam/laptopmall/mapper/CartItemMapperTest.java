@@ -2,11 +2,9 @@ package com.webteam.laptopmall.mapper;
 
 import com.webteam.laptopmall.dto.CartItemDTO;
 import com.webteam.laptopmall.dto.prod.LaptopDTO;
-import com.webteam.laptopmall.dto.prod.ProductDTO;
-import com.webteam.laptopmall.dto.UserDTO;
+import com.webteam.laptopmall.dto.user.UserDTO;
 import com.webteam.laptopmall.entity.CartItem;
 import com.webteam.laptopmall.entity.prod.Laptop;
-import com.webteam.laptopmall.entity.prod.Product;
 import com.webteam.laptopmall.entity.user.User;
 import org.junit.jupiter.api.Test;
 

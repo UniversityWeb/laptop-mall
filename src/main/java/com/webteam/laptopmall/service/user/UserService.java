@@ -1,6 +1,6 @@
 package com.webteam.laptopmall.service.user;
 
-import com.webteam.laptopmall.dto.UserDTO;
+import com.webteam.laptopmall.dto.user.UserDTO;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.webteam.laptopmall.mapper;
 
-import com.webteam.laptopmall.dto.UserDTO;
+import com.webteam.laptopmall.dto.user.UserDTO;
 import com.webteam.laptopmall.entity.user.User;
 import org.mapstruct.Builder;
 import org.mapstruct.Mapper;
@@ -8,7 +8,7 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 import org.mapstruct.factory.Mappers;
 
-@Mapper(builder = @Builder)
+@Mapper
 public interface UserMapper {
     UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
 

@@ -1,6 +1,7 @@
 package com.webteam.laptopmall.dto;
 
 import com.webteam.laptopmall.dto.prod.ProductDTO;
+import com.webteam.laptopmall.dto.user.UserDTO;
 
 public class CartItemDTO {
     private Long id;
