@@ -1,7 +1,8 @@
-package com.webteam.laptopmall.entity;
+package com.webteam.laptopmall.entity.user;
 
 import com.webteam.laptopmall.customenum.EGender;
-import com.webteam.laptopmall.customenum.EUserRole;
+import com.webteam.laptopmall.entity.CartItem;
+import com.webteam.laptopmall.entity.Order;
 
 import javax.persistence.*;
 import java.util.List;
@@ -23,16 +24,11 @@ public class User {
     @Enumerated(EnumType.STRING)
     private EGender gender;
 
-    @Column(name = "pass_hash")
-    private String passHash;
-
     @Column(name = "phone_no")
     private String phoneNo;
 
-    private String username;
-
-    @Enumerated(EnumType.STRING)
-    private EUserRole role;
+    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
+    private UserLogin userLogin;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<CartItem> cartItems;
@@ -43,17 +39,13 @@ public class User {
     public User() {
     }
 
-    public User(Long id, String address, String email, String fullName, EGender gender,
-                String passHash, String phoneNo, String username, EUserRole role) {
+    public User(Long id, String address, String email, String fullName, EGender gender, String phoneNo) {
         this.id = id;
         this.address = address;
         this.email = email;
         this.fullName = fullName;
         this.gender = gender;
-        this.passHash = passHash;
         this.phoneNo = phoneNo;
-        this.username = username;
-        this.role = role;
     }
 
     @Override
@@ -64,10 +56,7 @@ public class User {
                 ", email='" + email + '\'' +
                 ", fullName='" + fullName + '\'' +
                 ", gender=" + gender +
-                ", passHash='" + passHash + '\'' +
                 ", phoneNo='" + phoneNo + '\'' +
-                ", username='" + username + '\'' +
-                ", role=" + role +
                 '}';
     }
 
@@ -111,14 +100,6 @@ public class User {
         this.gender = gender;
     }
 
-    public String getPassHash() {
-        return passHash;
-    }
-
-    public void setPassHash(String passHash) {
-        this.passHash = passHash;
-    }
-
     public String getPhoneNo() {
         return phoneNo;
     }
@@ -127,20 +108,12 @@ public class User {
         this.phoneNo = phoneNo;
     }
 
-    public String getUsername() {
-        return username;
+    public UserLogin getUserLogin() {
+        return userLogin;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public EUserRole getRole() {
-        return role;
-    }
-
-    public void setRole(EUserRole role) {
-        this.role = role;
+    public void setUserLogin(UserLogin userLogin) {
+        this.userLogin = userLogin;
     }
 
     public List<CartItem> getCartItems() {

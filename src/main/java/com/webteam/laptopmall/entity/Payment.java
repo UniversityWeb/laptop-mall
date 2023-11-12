@@ -1,32 +1,32 @@
 package com.webteam.laptopmall.entity;
 
-import com.webteam.laptopmall.customenum.EPaymentMethod;
-import com.webteam.laptopmall.customenum.EPaymentStatus;
-
 import javax.persistence.*;
 
 @Entity
 @Table(name = "payment_details")
 public class Payment {
+    public enum EMethod {
+        CASH_ON_DELIVERY, MOMO, VN_PAY
+    }
+
+    public enum EStatus {
+        PENDING, AUTHORIZED, FAILED, REFUNDED, CHANGE_BACK
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "payment")
-    private Order order;
+    @Enumerated(EnumType.STRING)
+    private EMethod paymentMethod;
 
     @Enumerated(EnumType.STRING)
-    private EPaymentMethod paymentMethod;
-
-    @Enumerated(EnumType.STRING)
-    private EPaymentStatus status;
+    private EStatus status;
 
     public Payment() {
     }
 
-    public Payment(Long id, Order order, EPaymentMethod paymentMethod, EPaymentStatus status) {
-        this.id = id;
-        this.order = order;
+    public Payment(EMethod paymentMethod, EStatus status) {
         this.paymentMethod = paymentMethod;
         this.status = status;
     }
@@ -48,27 +48,19 @@ public class Payment {
         this.id = id;
     }
 
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-
-    public EPaymentMethod getPaymentMethod() {
+    public EMethod getPaymentMethod() {
         return paymentMethod;
     }
 
-    public void setPaymentMethod(EPaymentMethod paymentMethod) {
+    public void setPaymentMethod(EMethod paymentMethod) {
         this.paymentMethod = paymentMethod;
     }
 
-    public EPaymentStatus getStatus() {
+    public EStatus getStatus() {
         return status;
     }
 
-    public void setStatus(EPaymentStatus status) {
+    public void setStatus(EStatus status) {
         this.status = status;
     }
 }

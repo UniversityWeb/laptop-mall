@@ -1,11 +1,13 @@
 package com.webteam.laptopmall.mapper;
 
 import com.webteam.laptopmall.dto.CartItemDTO;
-import com.webteam.laptopmall.dto.ProductDTO;
+import com.webteam.laptopmall.dto.prod.LaptopDTO;
+import com.webteam.laptopmall.dto.prod.ProductDTO;
 import com.webteam.laptopmall.dto.UserDTO;
 import com.webteam.laptopmall.entity.CartItem;
-import com.webteam.laptopmall.entity.Product;
-import com.webteam.laptopmall.entity.User;
+import com.webteam.laptopmall.entity.prod.Laptop;
+import com.webteam.laptopmall.entity.prod.Product;
+import com.webteam.laptopmall.entity.user.User;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -13,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class CartItemMapperTest {
     @Test
     void testToDTO() {
-        CartItem cartItem = new CartItem(1L, 2, new User(), new Product());
+        CartItem cartItem = new CartItem(1L, 2, new User(), new Laptop());
         CartItemDTO cartItemDTO = CartItemMapper.INSTANCE.toDTO(cartItem);
 
         assertEquals(cartItem.getId(), cartItemDTO.getId());
@@ -24,7 +26,7 @@ class CartItemMapperTest {
 
     @Test
     void testToEntity() {
-        CartItemDTO cartItemDTO = new CartItemDTO(1L, 2, new UserDTO(), new ProductDTO());
+        CartItemDTO cartItemDTO = new CartItemDTO(1L, 2, new UserDTO(), new LaptopDTO());
         CartItem cartItem = CartItemMapper.INSTANCE.toEntity(cartItemDTO);
 
         assertEquals(cartItemDTO.getId(), cartItem.getId());

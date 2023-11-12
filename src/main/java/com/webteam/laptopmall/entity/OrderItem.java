@@ -1,6 +1,9 @@
 package com.webteam.laptopmall.entity;
 
+import com.webteam.laptopmall.entity.prod.Product;
+
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "order_items")
@@ -21,26 +24,20 @@ public class OrderItem {
 
     private String note;
 
+    @Column(name = "cur_price")
+    private BigDecimal curPrice;
+
     public OrderItem() {
     }
 
-    public OrderItem(Long id, Order order, Product product, Integer qty, String note) {
-        this.id = id;
+    public OrderItem(Order order, Product product, Integer qty, String note, BigDecimal curPrice) {
         this.order = order;
         this.product = product;
         this.qty = qty;
         this.note = note;
+        this.curPrice = curPrice;
     }
 
-    @Override
-    public String toString() {
-        return "OrderItem{" +
-                "id=" + id +
-                ", order=" + order +
-                ", product=" + product +
-                ", qty=" + qty +
-                '}';
-    }
 
     public Long getId() {
         return id;
@@ -80,5 +77,13 @@ public class OrderItem {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public BigDecimal getCurPrice() {
+        return curPrice;
+    }
+
+    public void setCurPrice(BigDecimal curPrice) {
+        this.curPrice = curPrice;
     }
 }

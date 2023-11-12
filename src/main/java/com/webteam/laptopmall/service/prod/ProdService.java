@@ -1,6 +1,6 @@
 package com.webteam.laptopmall.service.prod;
 
-import com.webteam.laptopmall.dto.ProductDTO;
+import com.webteam.laptopmall.dto.prod.ProductDTO;
 
 import java.util.List;
 

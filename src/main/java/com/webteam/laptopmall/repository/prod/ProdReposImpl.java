@@ -1,6 +1,6 @@
 package com.webteam.laptopmall.repository.prod;
 
-import com.webteam.laptopmall.entity.Product;
+import com.webteam.laptopmall.entity.prod.Product;
 import com.webteam.laptopmall.repository.base.BaseReposImpl;
 
 import javax.persistence.EntityManager;

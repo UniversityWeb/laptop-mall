@@ -1,24 +1,27 @@
-package com.webteam.laptopmall.dto;
+package com.webteam.laptopmall.dto.prod;
+
+import com.webteam.laptopmall.customenum.ECategory;
 
 import java.math.BigDecimal;
 
-public class ProductDTO {
-    private Long id;
-    private String brand;
-    private String model;
-    private String desc;
-    private BigDecimal price;
-    private Integer stockQty;
-    private double discountPercent;
-    private String version;
-    private String color;
-    private CategoryDTO category;
+public abstract class ProductDTO {
+    protected Long id;
+    protected String brand;
+    protected String model;
+    protected String desc;
+    protected BigDecimal price;
+    protected Integer stockQty;
+    protected double discountPercent;
+    protected String version;
+    protected String color;
+    protected int releaseYear;
+    protected ECategory category;
 
-    public ProductDTO() {
+    protected ProductDTO() {
     }
 
-    public ProductDTO(Long id, String brand, String model, String desc, BigDecimal price, Integer stockQty,
-                      double discountPercent, String version, String color, CategoryDTO category) {
+    protected ProductDTO(Long id, String brand, String model, String desc, BigDecimal price, Integer stockQty,
+                      double discountPercent, String version, String color, int releaseYear,ECategory category) {
         this.id = id;
         this.brand = brand;
         this.model = model;
@@ -28,7 +31,25 @@ public class ProductDTO {
         this.discountPercent = discountPercent;
         this.version = version;
         this.color = color;
+        this.releaseYear = releaseYear;
         this.category = category;
+    }
+
+    @Override
+    public String toString() {
+        return "ProductDTO{" +
+                "id=" + id +
+                ", brand='" + brand + '\'' +
+                ", model='" + model + '\'' +
+                ", desc='" + desc + '\'' +
+                ", price=" + price +
+                ", stockQty=" + stockQty +
+                ", discountPercent=" + discountPercent +
+                ", version='" + version + '\'' +
+                ", color='" + color + '\'' +
+                ", releaseYear=" + releaseYear +
+                ", category=" + category +
+                '}';
     }
 
     public Long getId() {
@@ -103,11 +124,19 @@ public class ProductDTO {
         this.color = color;
     }
 
-    public CategoryDTO getCategory() {
+    public int getReleaseYear() {
+        return releaseYear;
+    }
+
+    public void setReleaseYear(int releaseYear) {
+        this.releaseYear = releaseYear;
+    }
+
+    public ECategory getCategory() {
         return category;
     }
 
-    public void setCategory(CategoryDTO category) {
+    public void setCategory(ECategory category) {
         this.category = category;
     }
 }
