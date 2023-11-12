@@ -1,5 +1,7 @@
 package com.webteam.laptopmall.dto;
 
+import com.webteam.laptopmall.dto.prod.ProductDTO;
+
 public class CartItemDTO {
     private Long id;
     private Integer qty;
@@ -11,6 +13,12 @@ public class CartItemDTO {
 
     public CartItemDTO(Long id, Integer qty, UserDTO customer, ProductDTO product) {
         this.id = id;
+        this.qty = qty;
+        this.customer = customer;
+        this.product = product;
+    }
+
+    public CartItemDTO(Integer qty, UserDTO customer, ProductDTO product) {
         this.qty = qty;
         this.customer = customer;
         this.product = product;

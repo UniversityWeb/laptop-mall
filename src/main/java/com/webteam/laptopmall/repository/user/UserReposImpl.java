@@ -1,7 +1,7 @@
 package com.webteam.laptopmall.repository.user;
 
 import com.webteam.laptopmall.db.DbCon;
-import com.webteam.laptopmall.entity.User;
+import com.webteam.laptopmall.entity.user.User;
 import com.webteam.laptopmall.repository.base.BaseReposImpl;
 
 import javax.persistence.EntityManagerFactory;

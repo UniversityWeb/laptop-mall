@@ -1,5 +1,8 @@
 package com.webteam.laptopmall.entity;
 
+import com.webteam.laptopmall.entity.prod.Product;
+import com.webteam.laptopmall.entity.user.User;
+
 import javax.persistence.*;
 
 @Entity
@@ -24,6 +27,12 @@ public class CartItem {
 
     public CartItem(Long id, Integer qty, User customer, Product product) {
         this.id = id;
+        this.qty = qty;
+        this.customer = customer;
+        this.product = product;
+    }
+
+    public CartItem(Integer qty, User customer, Product product) {
         this.qty = qty;
         this.customer = customer;
         this.product = product;

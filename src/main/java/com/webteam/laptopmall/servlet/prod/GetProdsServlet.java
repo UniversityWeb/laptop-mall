@@ -1,6 +1,6 @@
 package com.webteam.laptopmall.servlet.prod;
 
-import com.webteam.laptopmall.dto.ProductDTO;
+import com.webteam.laptopmall.dto.prod.ProductDTO;
 import com.webteam.laptopmall.service.prod.ProdService;
 import com.webteam.laptopmall.service.prod.ProdServiceImpl;
 

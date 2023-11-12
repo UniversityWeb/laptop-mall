@@ -8,23 +8,27 @@ public class UserDTO {
     private String email;
     private String fullName;
     private EGender gender;
-    private String passHash;
     private String phoneNo;
-    private String username;
 
     public UserDTO() {
     }
 
-    public UserDTO(Long id, String address, String email, String fullName,
-                   EGender gender, String passHash, String phoneNo, String username) {
+    public UserDTO(Long id, String address, String email,
+                   String fullName, EGender gender, String phoneNo) {
         this.id = id;
         this.address = address;
         this.email = email;
         this.fullName = fullName;
         this.gender = gender;
-        this.passHash = passHash;
         this.phoneNo = phoneNo;
-        this.username = username;
+    }
+
+    public UserDTO(String address, String email, String fullName, EGender gender, String phoneNo) {
+        this.address = address;
+        this.email = email;
+        this.fullName = fullName;
+        this.gender = gender;
+        this.phoneNo = phoneNo;
     }
 
     public Long getId() {
@@ -67,27 +71,11 @@ public class UserDTO {
         this.gender = gender;
     }
 
-    public String getPassHash() {
-        return passHash;
-    }
-
-    public void setPassHash(String passHash) {
-        this.passHash = passHash;
-    }
-
     public String getPhoneNo() {
         return phoneNo;
     }
 
     public void setPhoneNo(String phoneNo) {
         this.phoneNo = phoneNo;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 }
