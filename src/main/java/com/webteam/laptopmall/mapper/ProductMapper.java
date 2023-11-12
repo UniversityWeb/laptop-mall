@@ -14,7 +14,6 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 import org.mapstruct.factory.Mappers;
 
-@Mapper
 public class ProductMapper {
     public static ProductDTO toDTO(Product product) {
         if (product instanceof Laptop) {

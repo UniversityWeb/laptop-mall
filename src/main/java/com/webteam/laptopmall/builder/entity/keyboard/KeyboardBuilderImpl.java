@@ -1,4 +1,4 @@
-package com.webteam.laptopmall.builder.keyboard;
+package com.webteam.laptopmall.builder.entity.keyboard;
 
 import com.webteam.laptopmall.entity.prod.Laptop;
 import com.webteam.laptopmall.entity.prod.MechanicalKeyboard;

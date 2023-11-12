@@ -1,6 +1,6 @@
-package com.webteam.laptopmall.builder.laptop;
+package com.webteam.laptopmall.builder.entity.laptop;
 
-import com.webteam.laptopmall.builder.prod.ProductBuilderImpl;
+import com.webteam.laptopmall.builder.entity.prod.ProductBuilderImpl;
 import com.webteam.laptopmall.entity.prod.Laptop;
 
 public abstract class LaptopBuilder extends ProductBuilderImpl<Laptop> {

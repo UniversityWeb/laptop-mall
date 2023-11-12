@@ -1,90 +1,91 @@
-package com.webteam.laptopmall.builder.monitor;
+package com.webteam.laptopmall.builder.dto.monitor;
 
 
+import com.webteam.laptopmall.dto.prod.MonitorDTO;
 import com.webteam.laptopmall.entity.prod.Monitor;
 
 import java.util.Set;
 
-public class MonitorBuilderImpl extends MonitorBuilder {
+public class MonitorDTOBuilderImpl extends MonitorDTOBuilder {
 
-    public MonitorBuilderImpl() {
-        prod = new Monitor();
+    public MonitorDTOBuilderImpl() {
+        prod = new MonitorDTO();
     }
 
     @Override
-    public MonitorBuilder screenSize(double screenSize) {
+    public MonitorDTOBuilder screenSize(double screenSize) {
         prod.setScreenSize(screenSize);
         return this;
     }
 
     @Override
-    public MonitorBuilder resolution(String resolution) {
+    public MonitorDTOBuilder resolution(String resolution) {
         prod.setResolution(resolution);
         return this;
     }
 
     @Override
-    public MonitorBuilder touchScreen(boolean touchScreen) {
+    public MonitorDTOBuilder touchScreen(boolean touchScreen) {
         prod.setTouchScreen(touchScreen);
         return this;
     }
 
     @Override
-    public MonitorBuilder panelType(Monitor.EPanel panelType) {
+    public MonitorDTOBuilder panelType(Monitor.EPanel panelType) {
         prod.setPanelType(panelType);
         return this;
     }
 
     @Override
-    public MonitorBuilder refreshRate(int refreshRate) {
+    public MonitorDTOBuilder refreshRate(int refreshRate) {
         prod.setRefreshRate(refreshRate);
         return this;
     }
 
     @Override
-    public MonitorBuilder eyeCareTechnology(boolean eyeCareTechnology) {
+    public MonitorDTOBuilder eyeCareTechnology(boolean eyeCareTechnology) {
         prod.setEyeCareTechnology(eyeCareTechnology);
         return this;
     }
 
     @Override
-    public MonitorBuilder brightness(int brightness) {
+    public MonitorDTOBuilder brightness(int brightness) {
         prod.setBrightness(brightness);
         return this;
     }
 
     @Override
-    public MonitorBuilder hdrSupported(boolean hdrSupported) {
+    public MonitorDTOBuilder hdrSupported(boolean hdrSupported) {
         prod.setHdrSupported(hdrSupported);
         return this;
     }
 
     @Override
-    public MonitorBuilder builtInSpeakers(boolean builtInSpeakers) {
+    public MonitorDTOBuilder builtInSpeakers(boolean builtInSpeakers) {
         prod.setBuiltInSpeakers(builtInSpeakers);
         return this;
     }
 
     @Override
-    public MonitorBuilder powerConsumption(double powerConsumption) {
+    public MonitorDTOBuilder powerConsumption(double powerConsumption) {
         prod.setPowerConsumption(powerConsumption);
         return this;
     }
 
     @Override
-    public MonitorBuilder weight(double weight) {
+    public MonitorDTOBuilder weight(double weight) {
         prod.setWeight(weight);
         return this;
     }
 
     @Override
-    public MonitorBuilder connections(Set<Monitor.EConnection> connections) {
+    public MonitorDTOBuilder connections(Set<Monitor.EConnection> connections) {
         prod.setConnections(connections);
         return this;
     }
 
     @Override
-    public Monitor build() {
+    public MonitorDTO build() {
         return prod;
     }
 }

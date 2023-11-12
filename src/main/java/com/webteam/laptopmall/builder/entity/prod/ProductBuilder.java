@@ -1,4 +1,4 @@
-package com.webteam.laptopmall.builder.prod;
+package com.webteam.laptopmall.builder.entity.prod;
 
 import com.webteam.laptopmall.customenum.ECategory;
 import com.webteam.laptopmall.entity.prod.Product;
