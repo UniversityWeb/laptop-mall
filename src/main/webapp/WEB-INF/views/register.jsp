@@ -52,7 +52,7 @@
         </div>
 
         <div class="register_form-input">
-            <input type="submit" value="Register" class="button_register">
+            <input type="submit" value="Submit" class="button_register">
         </div>
     </form>
 </section>
