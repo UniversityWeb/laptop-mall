@@ -10,6 +10,7 @@ public class UserLogin {
     }
 
     @Id
+    @Column(unique = true)
     private String username;
 
     @Column(name = "pass_hash")
