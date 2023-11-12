@@ -4,25 +4,25 @@ import com.webteam.laptopmall.dto.user.UserLoginDTO;
 import com.webteam.laptopmall.entity.user.UserLogin;
 import com.webteam.laptopmall.exception.UserLoginNotFoundException;
 import com.webteam.laptopmall.mapper.UserLoginMapper;
-import com.webteam.laptopmall.repository.user.UserLoginRepos;
-import com.webteam.laptopmall.repository.user.UserReposImpl;
+import com.webteam.laptopmall.repository.userlogin.UserLoginRepos;
+import com.webteam.laptopmall.repository.userlogin.UserLoginReposImpl;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class LoginServiceImpl implements LoginService {
 
-    private UserLoginRepos userLoginRepos;
-    private UserLoginMapper mapper;
+    private UserLoginRepos uLoginRepos;
+    private UserLoginMapper uLoginMapper;
 
     public LoginServiceImpl() {
-        userLoginRepos = new UserReposImpl();
-        mapper = UserLoginMapper.INSTANCE;
+        uLoginRepos = new UserLoginReposImpl();
+        uLoginMapper = UserLoginMapper.INSTANCE;
     }
 
     @Override
     public boolean login(String username, String plainPass) {
-        UserLogin userLogin = userLoginRepos.findByUsername(username);
+        UserLogin userLogin = uLoginRepos.findByUsername(username);
         if (userLogin == null) {
             return false;
         }
@@ -56,16 +56,16 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public UserLoginDTO register(UserLoginDTO userLoginDTO) {
-        UserLogin userLogin = mapper.toEntity(userLoginDTO);
-        UserLogin saved = userLoginRepos.save(userLogin);
-        return mapper.toDTO(saved);
+        UserLogin userLogin = uLoginMapper.toEntity(userLoginDTO);
+        UserLogin savedUserLogin = uLoginRepos.save(userLogin);
+        return uLoginMapper.toDTO(savedUserLogin);
     }
 
     @Override
     public UserLogin.ERole getRoleByUsername(String username) {
-        if (userLoginRepos.findByUsername(username) == null) {
+        if (uLoginRepos.findByUsername(username) == null) {
             throw new UserLoginNotFoundException("Count not find any users with username=" + username);
         }
-        return userLoginRepos.getRoleByUsername(username);
+        return uLoginRepos.getRoleByUsername(username);
     }
 }

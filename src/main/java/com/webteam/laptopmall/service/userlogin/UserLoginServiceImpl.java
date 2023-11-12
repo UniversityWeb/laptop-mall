@@ -4,20 +4,19 @@ import com.webteam.laptopmall.dto.user.UserLoginDTO;
 import com.webteam.laptopmall.entity.user.UserLogin;
 import com.webteam.laptopmall.exception.UserLoginNotFoundException;
 import com.webteam.laptopmall.mapper.UserLoginMapper;
-import com.webteam.laptopmall.mapper.UserMapper;
-import com.webteam.laptopmall.repository.user.UserLoginRepos;
-import com.webteam.laptopmall.repository.user.UserReposImpl;
+import com.webteam.laptopmall.repository.userlogin.UserLoginRepos;
+import com.webteam.laptopmall.repository.userlogin.UserLoginReposImpl;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class UserLoginServiceImpl implements UserLoginService {
-    private UserLoginRepos userRepos;
-    private UserLoginMapper mapper;
+    private UserLoginRepos uLoginRepos;
+    private UserLoginMapper uLoginMapper;
 
     public UserLoginServiceImpl() {
-        userRepos = new UserReposImpl();
-        mapper = UserLoginMapper.INSTANCE;
+        uLoginRepos = new UserLoginReposImpl();
+        uLoginMapper = UserLoginMapper.INSTANCE;
     }
 
     @Override
@@ -25,31 +24,31 @@ public class UserLoginServiceImpl implements UserLoginService {
         Long id = userLoginDTO.getUser().getId();
         if (getById(id) == null)
             throw new UserLoginNotFoundException("Count not find any users with id=" + id);
-        UserLogin userLogin = mapper.toEntity(userLoginDTO);
-        UserLogin updated = userRepos.update(userLogin);
-        return mapper.toDTO(updated);
+        UserLogin userLogin = uLoginMapper.toEntity(userLoginDTO);
+        UserLogin updated = uLoginRepos.update(userLogin);
+        return uLoginMapper.toDTO(updated);
     }
 
     @Override
     public UserLoginDTO deleteById(Long id) {
         if (getById(id) == null)
             throw new UserLoginNotFoundException("Count not find any users with id=" + id);
-        UserLogin deleted = userRepos.deleteById(id);
-        return mapper.toDTO(deleted);
+        UserLogin deleted = uLoginRepos.deleteById(id);
+        return uLoginMapper.toDTO(deleted);
     }
 
     @Override
     public UserLoginDTO getById(Long id) {
-        UserLogin user = userRepos.getById(id)
+        UserLogin user = uLoginRepos.getById(id)
                 .orElseThrow(() -> new UserLoginNotFoundException("Count not find any users with id=" + id));
-        return mapper.toDTO(user);
+        return uLoginMapper.toDTO(user);
     }
 
     @Override
     public List<UserLoginDTO> getAll() {
-        List<UserLogin> users = userRepos.getAll();
+        List<UserLogin> users = uLoginRepos.getAll();
         return users.stream()
-                .map(mapper::toDTO)
+                .map(uLoginMapper::toDTO)
                 .collect(Collectors.toList());
     }
 }

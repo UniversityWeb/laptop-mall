@@ -1,6 +1,5 @@
-package com.webteam.laptopmall.repository.user;
+package com.webteam.laptopmall.repository.userlogin;
 
-import com.webteam.laptopmall.entity.user.User;
 import com.webteam.laptopmall.entity.user.UserLogin;
 import com.webteam.laptopmall.repository.base.BaseRepos;
 
