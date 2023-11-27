@@ -179,6 +179,7 @@
     align-items: center;
     margin: 30px;
     padding: 0 10px;
+    z-index: 999;
 }
 
 .search__box input{
