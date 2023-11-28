@@ -4,16 +4,14 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
-    <link rel="stylesheet" href="<c:url value="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>">
-    <link rel="stylesheet" href="<c:url value="https://site-assets.fontawesome.com/releases/v6.4.2/css/all.css"/>">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="<c:url value="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>">
-    <link rel="stylesheet" href="<c:url value="static/css/search.css"/>">
-    <link rel="stylesheet" href="<c:url value="static/css/base.css"/>">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.2/css/all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="stylesheet" href="<c:url value="/static/css/search.css"/>">
+    <link rel="stylesheet" href="<c:url value="/static/css/base.css"/>">
 </head>
 
 <body>
-<jsp:include page="WEB-INF/views/navbar.jsp"></jsp:include>
+<jsp:include page="navbar.jsp"></jsp:include>
 <section class="query-input__wrap">
     <div class="input-txt__group">
         <input id="input-element" class="input-search" type="text">
@@ -115,7 +113,7 @@
                 <div class="swiper-slide">
                     <li class="search__product-result">
                         <div class="product__img">
-                            <img src="static/images/headphone-white.png" alt="">
+                            <img src="/static/images/headphone-white.png" alt="">
                         </div>
                         <div class="product_info">
                             <span class="product__name">HeadPhone ABCDEFGHIJKJHHGBJBSBJS</span>
@@ -145,7 +143,7 @@
                     </li>
                     <li class="search__product-result">
                         <div class="product__img">
-                            <img src="static/images/headphone-white.png" alt="">
+                            <img src="/static/images/headphone-white.png" alt="">
                         </div>
                         <div class="product_info">
                             <span class="product__name">HeadPhone ABCDEFGHIJKJHHGBJBSBJS</span>
@@ -175,7 +173,7 @@
                     </li>
                     <li class="search__product-result">
                         <div class="product__img">
-                            <img src="static/images/headphone-white.png" alt="">
+                            <img src="/static/images/headphone-white.png" alt="">
                         </div>
                         <div class="product_info">
                             <span class="product__name">HeadPhone ABCDEFGHIJKJHHGBJBSBJS</span>
@@ -205,7 +203,7 @@
                     </li>
                     <li class="search__product-result">
                         <div class="product__img">
-                            <img src="static/images/headphone-white.png" alt="">
+                            <img src="/static/images/headphone-white.png" alt="">
                         </div>
                         <div class="product_info">
                             <span class="product__name">HeadPhone ABCDEFGHIJKJHHGBJBSBJS</span>
@@ -235,7 +233,7 @@
                     </li>
                     <li class="search__product-result">
                         <div class="product__img">
-                            <img src="static/images/headphone-white.png" alt="">
+                            <img src="/static/images/headphone-white.png" alt="">
                         </div>
                         <div class="product_info">
                             <span class="product__name">HeadPhone ABCDEFGHIJKJHHGBJBSBJS</span>
@@ -265,7 +263,7 @@
                     </li>
                     <li class="search__product-result">
                         <div class="product__img">
-                            <img src="static/images/headphone-white.png" alt="">
+                            <img src="/static/images/headphone-white.png" alt="">
                         </div>
                         <div class="product_info">
                             <span class="product__name">HeadPhone ABCDEFGHIJKJHHGBJBSBJS</span>
@@ -297,7 +295,7 @@
                 <div class="swiper-slide">
                     <li class="search__product-result">
                         <div class="product__img">
-                            <img src="static/images/headphone-white.png" alt="">
+                            <img src="/static/images/headphone-white.png" alt="">
                         </div>
                         <div class="product_info">
                             <span class="product__name">HeadPhone ABCDEFGHIJKJHHGBJBSBJS</span>
@@ -327,7 +325,7 @@
                     </li>
                     <li class="search__product-result">
                         <div class="product__img">
-                            <img src="static/images/headphone-white.png" alt="">
+                            <img src="/static/images/headphone-white.png" alt="">
                         </div>
                         <div class="product_info">
                             <span class="product__name">HeadPhone ABCDEFGHIJKJHHGBJBSBJS</span>
@@ -357,7 +355,7 @@
                     </li>
                     <li class="search__product-result">
                         <div class="product__img">
-                            <img src="static/images/headphone-white.png" alt="">
+                            <img src="/static/images/headphone-white.png" alt="">
                         </div>
                         <div class="product_info">
                             <span class="product__name">HeadPhone ABCDEFGHIJKJHHGBJBSBJS</span>
@@ -387,7 +385,7 @@
                     </li>
                     <li class="search__product-result">
                         <div class="product__img">
-                            <img src="static/images/headphone-white.png" alt="">
+                            <img src="/static/images/headphone-white.png" alt="">
                         </div>
                         <div class="product_info">
                             <span class="product__name">HeadPhone ABCDEFGHIJKJHHGBJBSBJS</span>
@@ -417,7 +415,7 @@
                     </li>
                     <li class="search__product-result">
                         <div class="product__img">
-                            <img src="static/images/headphone-white.png" alt="">
+                            <img src="/static/images/headphone-white.png" alt="">
                         </div>
                         <div class="product_info">
                             <span class="product__name">HeadPhone ABCDEFGHIJKJHHGBJBSBJS</span>
@@ -447,7 +445,7 @@
                     </li>
                     <li class="search__product-result">
                         <div class="product__img">
-                            <img src="static/images/headphone-white.png" alt="">
+                            <img src="/static/images/headphone-white.png" alt="">
                         </div>
                         <div class="product_info">
                             <span class="product__name">HeadPhone ABCDEFGHIJKJHHGBJBSBJS</span>
@@ -483,8 +481,8 @@
 </section>
 
 <footer></footer>
-<jsp:include page="WEB-INF/views/chatbox.jsp"></jsp:include>
-<script src="<c:url value="static/js/search.js"/>" async defer></script>
+<jsp:include page="chatbox.jsp"></jsp:include>
+<script src="<c:url value="/static/js/search.js"/>" async defer></script>
 <script src="<c:url value="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"/>" async defer></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </body>
