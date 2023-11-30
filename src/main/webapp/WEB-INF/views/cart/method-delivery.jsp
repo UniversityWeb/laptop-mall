@@ -112,13 +112,12 @@
                         </tr>
                         <tr class="product_details-right column">
                             <td class="product_details-price right">
-    <%--                            Số tiền sau giảm giá nếu có--%>
                                 <c:choose>
                                     <c:when test="${item.product.priceDiscounted > 0}">
-                                        <span><strong>${priceDiscounted}</strong></span>
+                                        <span><strong>${item.totalDiscountedAmountOfCartItemCurrentFormat()}</strong></span>
                                     </c:when>
                                     <c:otherwise>
-                                        <span><strong>${item.product.price}</strong></span>
+                                        <span><strong>${item.totalOriginalAmountOfCartItemCurrentFormat()}</strong></span>
                                     </c:otherwise>
                                 </c:choose>
                             </td>
@@ -130,21 +129,20 @@
                 </c:forEach>
                 <div class="sumary_invoice full">
                     <div class="sumary_invoice_line full">
-                        <%--                    Chỉ hiện tổng tiền nếu không có mặt hàng nào giảm giá--%>
                         <span class="left"><strong>Total order price:</strong></span>
-                        <span class="right"><strong>${priceDiscounted}</strong></span>
+                        <span class="right"><strong>${totalDiscountedAmount}</strong></span>
                     </div>
                     <div class="sumary_invoice_line full">
                         <span class="left">Order total before discount:</span>
-                        <span class="right">13.989.900đ</span>
+                        <span class="right">${totalOriginalAmount}</span>
                     </div>
                     <div class="sumary_invoice_line full">
                         <span class="left">Total amount after discount:</span>
-                        <span class="right">3.000.000đ</span>
+                        <span class="right">${totalDiscountAmount}</span>
                     </div>
                 </div>
                 <hr>
-                <form action="success-delivery" method="post" class="full center">
+                <form action="payment" method="post" class="full center">
                     <input type="hidden" name="action" value="Success Payment">
                     <input type="hidden" name="paymentMethod">
                     <button class="button_payment">Payment</button>

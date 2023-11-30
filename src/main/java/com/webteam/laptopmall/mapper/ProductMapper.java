@@ -8,7 +8,6 @@ import com.webteam.laptopmall.entity.prod.Laptop;
 import com.webteam.laptopmall.entity.prod.MechanicalKeyboard;
 import com.webteam.laptopmall.entity.prod.Monitor;
 import com.webteam.laptopmall.entity.prod.Product;
-import org.mapstruct.InheritConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;

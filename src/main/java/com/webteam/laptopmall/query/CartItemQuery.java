@@ -13,11 +13,4 @@ public class CartItemQuery {
         typedQuery.setParameter("newQty", newQty);
         return typedQuery;
     }
-
-    public TypedQuery<CartItem> buildGetByUserId(EntityManager em, Long userId) {
-        String sqlStr = "SELECT ci FROM CartItem ci WHERE ci.customer.id = :userId";
-        TypedQuery<CartItem> typedQuery = em.createQuery(sqlStr, CartItem.class);
-        typedQuery.setParameter("userId", userId);
-        return typedQuery;
-    }
 }

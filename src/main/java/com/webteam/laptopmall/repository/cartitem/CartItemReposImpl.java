@@ -46,6 +46,7 @@ public class CartItemReposImpl extends BaseReposImpl<CartItem, Long> implements 
 
     @Override
     public List<CartItem> getByUserId(Long userId) {
-        return getResultList(em -> ciQuery.buildGetByUserId(em, userId));
+//        return getResultList(em -> ciQuery.buildGetByUserId(em, userId));
+        return null;
     }
 }

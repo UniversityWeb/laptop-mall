@@ -1,11 +1,14 @@
 package com.webteam.laptopmall.entity.prod;
 
 import com.webteam.laptopmall.customenum.ECategory;
+import com.webteam.laptopmall.dto.CartItemDTO;
 import com.webteam.laptopmall.entity.CartItem;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 @Entity

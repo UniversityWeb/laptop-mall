@@ -87,14 +87,14 @@
                                 <span>${item.product.version}</span>
                             </td>
                             <td class="product_details-number left">
-                                <form action="" class="product_details-number-count row" method="post">
-                                    <input type="hidden" name="productCode"
+                                <form action="update" class="product_details-number-count row" method="post" id="quantity-form">
+                                    <input type="hidden" name="productId"
                                     value="<c:out value='${item.product.id}'/>">
-                                    <button name="crud" value="Minus Item" class="button-minus">
+                                    <button name="action" value="Minus Item" class="button-minus">
                                         <ion-icon name="remove-outline"></ion-icon>
                                     </button>
-                                    <input type="text" name="productNumber" value="<c:out value='${item.qty}'/>" readonly>
-                                    <button name="crud" value="Add Item" class="button-add">
+                                    <input type="text" name="quantity" value="<c:out value='${item.qty}'/>" onchange="submitQuantity()">
+                                    <button name="action" value="Add Item" class="button-add">
                                         <ion-icon name="add-outline"></ion-icon>
                                     </button>
                                 </form>
@@ -105,29 +105,27 @@
                                 <c:when test="${item.product.priceDiscounted > 0}">
                                 <td class="product_details-price right">
     <%--                                Tiền sau khi giảm giá--%>
-                                    <span><strong>${priceDiscounted}</strong></span>
+                                    <span><strong>${item.totalDiscountedAmountOfCartItemCurrentFormat()}</strong></span>
                                 </td>
-    <%--                            Viết hàm tính tiền dựa trên '%' discount--%>
                                 <td class="product_details-price-discount right">
-                                    <span>${abc}</span>
+                                    <span>${item.totalDiscountAmountOfCartItemCurrentFormat()}</span>
                                 </td>
-    <%--                            Nếu số tiền giảm giá khác 0 thì mới hiện dòng này--%>
                                 <td class="product_details-price-text right">
                                     <span>Discounted</span>
                                 </td>
                                 </c:when>
                                 <c:otherwise>
                                     <td class="product_details-price right">
-                                        <span><strong>${item.product.price}</strong></span>
+                                        <span><strong>${item.totalDiscountAmountOfCartItemCurrentFormat()}</strong></span>
                                     </td>
                                 </c:otherwise>
                             </c:choose>
                             <td class="product_details-remove right">
-                                <form action="" class="product_details-number-count row" method="post">
+                                <form action="delete" class="product_details-number-count row" method="post">
                                     <input type="hidden" name="productCode"
                                     value="<c:out value='${item.product.id}'/>">
                                     <input type="hidden" name="productNumber" value="0">
-                                    <button name="crud" value="Remove Item" class="button-remove">
+                                    <button name="action" value="Remove Item" class="button-remove">
                                         <ion-icon name="trash-outline"></ion-icon>
                                     </button>
                                 </form>
@@ -179,25 +177,20 @@
                 </div>
                 <div class="sumary_invoice full">
                     <div class="sumary_invoice_line full">
-    <%--                    Chỉ hiện tổng tiền nếu không có mặt hàng nào giảm giá--%>
-    <%--                    Tổng tiền đã trừ tiền discount của cart--%>
-                        <span class="left"><strong>Total order price:</strong></span>
-                        <span class="right"><strong>10.989.900đ</strong></span>
+                        <span class="left"><strong>Total discounted amount:</strong></span>
+                        <span class="right"><strong>${totalDiscountedAmount}</strong></span>
                     </div>
-                    <%--                    Tổng price của product trong card --%>
                     <div class="sumary_invoice_line full">
-                        <span class="left">Order total before discount:</span>
-                        <span class="right">13.989.900đ</span>
+                        <span class="left">Total original amount:</span>
+                        <span class="right">${totalOriginalAmount}</span>
                     </div>
-    <%--                    Tổng tiền giảm giá của cart--%>
                     <div class="sumary_invoice_line full">
-                        <span class="left">Total amount after discount:</span>
-                        <span class="right">3.000.000đ</span>
+                        <span class="left">Total discount amount</span>
+                        <span class="right">${totalDiscountAmount}</span>
                     </div>
                 </div>
                 <hr>
                 <form action="information" method="post" class="full center">
-                    <input type="hidden" name="cart" value="${cart}">
                     <button class="button_payment">Payment</button>
                 </form>
             </div>
@@ -208,7 +201,7 @@
 <footer class="center">
     <p>&copy; Copyright 2023</p>
 </footer>
-<script src="" async defer></script>
+<script src="<c:url value="/static/js/check-cart.js"/>" async defer></script>
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>

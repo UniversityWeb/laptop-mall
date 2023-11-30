@@ -15,8 +15,8 @@ public class SuccessDeliveryServlet extends HttpServlet {
         resp.setContentType("text/html");
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
-
         String url = "/WEB-INF/views/cart/success-delivery.jsp";
+
         getServletContext().getRequestDispatcher(url).forward(req, resp);
     }
 

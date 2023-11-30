@@ -8,22 +8,24 @@ function showPayment(paymentMethod) {
         if(cashPaymentContent.style.display === 'none'){
             cashPaymentContent.style.display = 'block';
             momoPaymentContent.style.display = 'none';
-            paymentMethodInput.value = 'Cash Payment';
+            paymentMethodInput.value = 'CASH_ON_DELIVERY';
         }
         else{
             cashPaymentContent.style.display = 'none';
             momoPaymentContent.style.display = 'none';
+            paymentMethodInput.value = null;
         }
     } else if (paymentMethod === 'momo_payment') {
 
         if(momoPaymentContent.style.display === 'none'){
             cashPaymentContent.style.display = 'none';
             momoPaymentContent.style.display = 'block';
-            paymentMethodInput.value = 'Momo Payment';
+            paymentMethodInput.value = 'MOMO';
         }
         else{
             cashPaymentContent.style.display = 'none';
             momoPaymentContent.style.display = 'none';
+            paymentMethodInput.value = null;
         }
     }
 }

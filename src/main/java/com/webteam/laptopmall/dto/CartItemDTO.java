@@ -2,6 +2,10 @@ package com.webteam.laptopmall.dto;
 
 import com.webteam.laptopmall.dto.prod.ProductDTO;
 
+import java.math.BigDecimal;
+import java.text.NumberFormat;
+import java.util.Locale;
+
 public class CartItemDTO {
     private Long id;
     private Integer qty;
@@ -54,5 +58,38 @@ public class CartItemDTO {
 
     public void setProduct(ProductDTO product) {
         this.product = product;
+    }
+
+    private NumberFormat currency = NumberFormat.getCurrencyInstance(Locale.US);
+    public BigDecimal totalDiscountedAmountOfCartItem() {
+        BigDecimal totalOriginalAmount = this.totalOriginalAmountOfCartItem();
+        BigDecimal totalDiscountAmount = this.totalDiscountAmountOfCartItem();
+        return totalOriginalAmount.subtract(totalDiscountAmount);
+    }
+
+    public BigDecimal totalOriginalAmountOfCartItem( ) {
+        BigDecimal pricePerUnit = this.getProduct().getPrice();
+        Integer quantity = this.getQty();
+        return pricePerUnit.multiply(new BigDecimal(quantity));
+    }
+
+    public BigDecimal totalDiscountAmountOfCartItem() {
+        Double discountPercent = this.getProduct().getDiscountPercent();
+        BigDecimal totalOriginalAmount = this.totalOriginalAmountOfCartItem();
+        if (discountPercent == null)
+            return new BigDecimal(0);
+        return totalOriginalAmount.divide(new BigDecimal(100)).multiply(new BigDecimal(discountPercent));
+    }
+
+    public String totalDiscountedAmountOfCartItemCurrentFormat() {
+        return currency.format(this.totalDiscountedAmountOfCartItem());
+    }
+
+    public String totalOriginalAmountOfCartItemCurrentFormat() {
+        return currency.format(this.totalOriginalAmountOfCartItem());
+    }
+
+    public String totalDiscountAmountOfCartItemCurrentFormat() {
+        return currency.format(this.totalDiscountAmountOfCartItem());
     }
 }
