@@ -1,6 +1,7 @@
 package com.webteam.laptopmall.repository.prod;
 
 import com.webteam.laptopmall.entity.prod.Product;
+import com.webteam.laptopmall.query.ProdQuery;
 import com.webteam.laptopmall.repository.base.BaseReposImpl;
 
 import javax.persistence.EntityManager;
@@ -15,9 +16,13 @@ public class ProdReposImpl extends BaseReposImpl<Product, Long> implements ProdR
 
     private static final Logger log = Logger.getLogger(ProdReposImpl.class.getName());
 
+    private ProdQuery pQuery;
+
     public ProdReposImpl() {
         super();
+        pQuery = new ProdQuery();
     }
+
 
     @Override
     protected Class<Product> getClassType() {
@@ -75,5 +80,11 @@ public class ProdReposImpl extends BaseReposImpl<Product, Long> implements ProdR
             deletedEntities++;
         }
         return deletedEntities;
+    }
+
+    @Override
+    public List<Product> getProdsByModel(String model) {
+        return getResultList(em -> pQuery.buildGetProdsByModel(em, model));
+
     }
 }

@@ -77,10 +77,16 @@
   <div class="modal__body ">
     <div class="modal__inner">
       <div class="search-container">
-        <div class="search__box">
-          <input id="inputSearch" type="text" >
-          <img class="icon-obj" src="./static/images/btnsearch.svg" alt="">
-        </div>
+<%--        <form method="get" class="search__box">--%>
+<%--          <input id="inputSearch" name="model" type="search" >--%>
+<%--          <img class="icon-obj" src="./static/images/btnsearch.svg" alt="">--%>
+<%--        </form>--%>
+        <form method="get" action="get-prods-by-model" class="search__box">
+          <input id="inputSearch" name="model" type="search">
+          <button type="submit" class="search-button">
+            <img class="icon-obj" src="./static/images/btnsearch.svg" alt="Search">
+          </button>
+        </form>
         <div class="search__fast">
           <p>Quick Links</p>
           <div class="list__search-link">

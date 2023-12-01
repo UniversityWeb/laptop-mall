@@ -10,4 +10,6 @@ public interface ProdService {
     ProductDTO deleteById(Long id);
     ProductDTO getById(Long id);
     List<ProductDTO> getAll();
+
+    List<ProductDTO> getProdsByModel(String model);
 }

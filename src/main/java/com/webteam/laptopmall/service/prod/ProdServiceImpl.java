@@ -52,4 +52,12 @@ public class ProdServiceImpl implements ProdService {
                 .map(ProductMapper::toDTO)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<ProductDTO> getProdsByModel(String model) {
+        List<Product> prods = prodRepos.getProdsByModel(model);
+        return prods.stream()
+                .map(ProductMapper::toDTO)
+                .collect(Collectors.toList());
+    }
 }
