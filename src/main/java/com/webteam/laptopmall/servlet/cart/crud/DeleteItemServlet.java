@@ -2,6 +2,7 @@ package com.webteam.laptopmall.servlet.cart.crud;
 
 import com.webteam.laptopmall.dto.CartItemDTO;
 import com.webteam.laptopmall.service.cart.CartService;
+import com.webteam.laptopmall.service.cart.CartServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,15 +28,17 @@ public class DeleteItemServlet extends HttpServlet {
 
         HttpSession session = req.getSession();
         List<CartItemDTO> cart = (List<CartItemDTO>) session.getAttribute("cart");
+        cartService = new CartServiceImpl(cart);
+
         Long productId = (Long) session.getAttribute("productId");
 
         String action = req.getParameter("action");
 
         if(action.equals("Remove Item")){
-            cartService.deleteItemByProductId(cart, productId);
+            cartService.deleteItemByProductId(productId);
         }
 
-        req.setAttribute("cart", cart);
+        session.setAttribute("cart", cart);
         getServletContext().getRequestDispatcher(url).forward(req, resp);
     }
 

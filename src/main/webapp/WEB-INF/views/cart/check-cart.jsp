@@ -59,7 +59,7 @@
                 <div class="your_cart full left row">
                     <h3 class="your_cart-title">Your Cart</h3>&nbsp;
 <%--                    x là tổng số sản phẩm có trong giỏ hàng--%>
-                    <span class="your_cart-number">(${numberItems} items)</span>
+                    <span class="your_cart-number">(${qtyItems} items)</span>
                 </div>
                 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                 <c:forEach var="item" items="${cart}">
@@ -90,11 +90,11 @@
                                 <form action="update" class="product_details-number-count row" method="post" id="quantity-form">
                                     <input type="hidden" name="productId"
                                     value="<c:out value='${item.product.id}'/>">
-                                    <button name="action" value="Minus Item" class="button-minus">
+                                    <button name="buttonUpdate" value="-1" class="button-minus">
                                         <ion-icon name="remove-outline"></ion-icon>
                                     </button>
                                     <input type="text" name="quantity" value="<c:out value='${item.qty}'/>" onchange="submitQuantity()">
-                                    <button name="action" value="Add Item" class="button-add">
+                                    <button name="buttonUpdate" value="1" class="button-add">
                                         <ion-icon name="add-outline"></ion-icon>
                                     </button>
                                 </form>
@@ -104,7 +104,6 @@
                             <c:choose>
                                 <c:when test="${item.product.priceDiscounted > 0}">
                                 <td class="product_details-price right">
-    <%--                                Tiền sau khi giảm giá--%>
                                     <span><strong>${item.totalDiscountedAmountOfCartItemCurrentFormat()}</strong></span>
                                 </td>
                                 <td class="product_details-price-discount right">
@@ -185,7 +184,7 @@
                         <span class="right">${totalOriginalAmount}</span>
                     </div>
                     <div class="sumary_invoice_line full">
-                        <span class="left">Total discount amount</span>
+                        <span class="left">Total discount amount:</span>
                         <span class="right">${totalDiscountAmount}</span>
                     </div>
                 </div>

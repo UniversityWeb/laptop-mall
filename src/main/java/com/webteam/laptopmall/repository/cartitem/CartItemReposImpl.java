@@ -26,13 +26,13 @@ public class CartItemReposImpl extends BaseReposImpl<CartItem, Long> implements 
     }
 
     @Override
-    public boolean updateQtyOnly(Long userId, int newQty) {
+    public boolean updateQtyOnly(Long cartItemId, int newQty) {
         EntityManager em = emf.createEntityManager();
         EntityTransaction trans = em.getTransaction();
         int updatedEntities = 0;
         try {
             trans.begin();
-            TypedQuery<CartItem> typedQuery = ciQuery.buildUpdateQtyOnly(em, userId, newQty);
+            TypedQuery<CartItem> typedQuery = ciQuery.buildUpdateQtyOnly(em, cartItemId, newQty);
             updatedEntities = typedQuery.executeUpdate();
             trans.commit();
         } catch (NoResultException e) {

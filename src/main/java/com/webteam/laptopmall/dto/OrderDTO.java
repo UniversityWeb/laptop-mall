@@ -3,6 +3,7 @@ package com.webteam.laptopmall.dto;
 import com.webteam.laptopmall.dto.user.UserDTO;
 import com.webteam.laptopmall.entity.Order;
 import com.webteam.laptopmall.entity.Payment;
+import com.webteam.laptopmall.utility.CurrencyUtil;
 
 import java.math.BigDecimal;
 import java.text.NumberFormat;
@@ -24,7 +25,8 @@ public class OrderDTO {
     public OrderDTO() {
     }
 
-    public OrderDTO(Long id, UserDTO customer, Date orderDate, String deliveryMethod, Order.EStatus status, Payment payment, String note, List<OrderItemDTO> orderItems) {
+    public OrderDTO(Long id, UserDTO customer, Date orderDate, String deliveryMethod,
+                    Order.EStatus status, Payment payment, String note, List<OrderItemDTO> orderItems) {
         this.id = id;
         this.customer = customer;
         this.orderDate = orderDate;
@@ -35,7 +37,8 @@ public class OrderDTO {
         this.orderItems = orderItems;
     }
 
-    public OrderDTO(Long id, UserDTO customer, Date orderDate, String deliveryMethod, Order.EStatus status, Payment payment, String note) {
+    public OrderDTO(Long id, UserDTO customer, Date orderDate, String deliveryMethod,
+                    Order.EStatus status, Payment payment, String note) {
         this.id = id;
         this.customer = customer;
         this.orderDate = orderDate;
@@ -108,7 +111,6 @@ public class OrderDTO {
     public void setOrderItems(List<OrderItemDTO> orderItems) {
         this.orderItems = orderItems;
     }
-    private NumberFormat currency = NumberFormat.getCurrencyInstance(Locale.US);
 
     public BigDecimal totalDiscountedAmountOfOrder() {
         BigDecimal totalDiscounted = new BigDecimal(0);
@@ -119,6 +121,6 @@ public class OrderDTO {
     }
 
     public String totalDiscountedAmountOfOrderCurrentFormat() {
-        return currency.format(this.totalDiscountedAmountOfOrder());
+        return CurrencyUtil.getVNFormat(this.totalDiscountedAmountOfOrder());
     }
 }

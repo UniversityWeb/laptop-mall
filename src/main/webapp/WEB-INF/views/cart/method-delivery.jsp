@@ -67,6 +67,9 @@
             </div>
             <hr>
             <h1>Payment Method:</h1>
+            <c:if test="${message != ''}">
+                <p><i style="color: red">${message}</i></p>
+            </c:if>
             <div class="payment_method row" onclick="showPayment('cash_payment')">
                 <p>Cash Payment</p>
                 <ion-icon name="chevron-down-outline"></ion-icon>
@@ -79,6 +82,13 @@
                 <ion-icon name="chevron-down-outline"></ion-icon>
             </div>
             <div class="momo_payment payment_method-content">
+                <img src="#" alt="Mã QR thanh toán">
+            </div>
+            <div class="payment_method row" onclick="showPayment('vnpay_payment')">
+                <p>VNPAY Payment</p>
+                <ion-icon name="chevron-down-outline"></ion-icon>
+            </div>
+            <div class="vnpay_payment payment_method-content">
                 <img src="#" alt="Mã QR thanh toán">
             </div>
         </div>

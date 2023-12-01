@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface OrderService {
     void save(OrderDTO orderDTO);
-    void setOrderItemByCart(OrderDTO order, List<CartItemDTO> cart);
+    void setOrderItemByCart(OrderDTO orderDTO, List<CartItemDTO> cart);
+    String getMailBody (OrderDTO orderDTO);
 }

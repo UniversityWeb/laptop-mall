@@ -63,13 +63,16 @@
     </div>
     <div class="content row">
         <div class="content_left">
-            <form class="information_deliver" id="form-infor" action="check-information" method="post">
+            <form class="information_deliver" id="form-infor" action="check-infor-delivery" method="post">
                 <h1> Payment: </h1>
                 <div class="information_deliver-only-line">
-                    <input class="information_deliver-text" type="email" name="email"  value="${customer.email}" placeholder=" " required>
-                    <p class="information_deliver-label-text"> Email* </p>
+                    <input class="information_deliver-text" type="email" name="email"  value="${order.customer.email}" placeholder=" " readonly>
+                    <p class="information_deliver-label-text"> Email </p>
                 </div>
                 <h1> Delivery Information Details: </h1>
+                <c:if test="${message != ''}">
+                    <p><i style="color: red">${message}</i></p>
+                </c:if>
                 <div class="information_deliver-method row">
                     <div class="information_deliver-input row left">
                         <input type="radio" name="deliveryMethod" value="Home Delivery" required>
@@ -82,23 +85,26 @@
                 </div>
                 <div class="information_deliver-line row">
                     <div class="information_deliver-input column">
-                        <input class="information_deliver-text" type="text" name="fullName" value="${customer.fullName}" placeholder=" " required>
-                        <p class="information_deliver-label-text"> Full Name* </p>
+                        <input class="information_deliver-text" type="text" name="fullName" value="${order.customer.fullName}" placeholder=" " readonly>
+                        <p class="information_deliver-label-text"> Full Name </p>
                     </div>
                     <div class="information_deliver-input column">
-                        <select class="information_deliver-text" name="gender" required>
-                            <option disabled selected hidden></option>
-                            <option value="MALE">Male</option>
-                            <option value="FEMALE">Female</option>
-                            <option value="HIDDEN">Hidden</option>
-                        </select>
-                        <p class="information_deliver-label-text"> Gender* </p>
+                        <input class="information_deliver-text" type="text" name="gender" value="${order.customer.gender}" placeholder=" " readonly>
+                        <p class="information_deliver-label-text"> Gender </p>
                     </div>
+<%--                    <div class="information_deliver-input column">--%>
+<%--                        <select class="information_deliver-text" name="gender" required>--%>
+<%--                            <option disabled selected hidden></option>--%>
+<%--                            <option value="MALE">Male</option>--%>
+<%--                            <option value="FEMALE">Female</option>--%>
+<%--                        </select>--%>
+<%--                        <p class="information_deliver-label-text"> Gender* </p>--%>
+<%--                    </div>--%>
                 </div>
 
                 <div class="information_deliver-line row">
                     <div class="information_deliver-input column">
-                        <input class="information_deliver-text" type="tel" name="phoneNo" value="${customer.phoneNo}" placeholder=" " required>
+                        <input class="information_deliver-text" type="tel" name="phoneNo" value="${order.customer.phoneNo}" placeholder=" " readonly>
                         <p class="information_deliver-label-text"> Contact Number* </p>
                     </div>
                     <div class="information_deliver-input column">
@@ -106,8 +112,8 @@
                     </div>
                 </div>
                 <div class="information_deliver-only-line">
-                    <input class="information_deliver-text" name="address" value="${customer.address}" placeholder=" " style="width: 700px;" required>
-                    <p class="information_deliver-label-text" style="width: 710px;"> Address* </p>
+                    <input class="information_deliver-text" name="address" value="${order.customer.address}" placeholder=" " style="width: 700px;" readonly>
+                    <p class="information_deliver-label-text" style="width: 710px;"> Address </p>
                 </div>
                 <p>Notes upon receiving</p>
                 <textarea class="note-box" name="note" value="${order.note}"></textarea>
@@ -152,15 +158,15 @@
                 </div>
                 <div class="sumary_invoice full">
                     <div class="sumary_invoice_line full">
-                        <span class="left"><strong>Total order price:</strong></span>
+                        <span class="left"><strong>Total discounted amount:</strong></span>
                         <span class="right"><strong>${totalDiscountedAmount}</strong></span>
                     </div>
                     <div class="sumary_invoice_line full">
-                        <span class="left">Order total before discount:</span>
+                        <span class="left">Total original amount:</span>
                         <span class="right">${totalOriginalAmount}</span>
                     </div>
                     <div class="sumary_invoice_line full">
-                        <span class="left">Total amount after discount:</span>
+                        <span class="left">Total discount amount:</span>
                         <span class="right">${totalDiscountAmount}</span>
                     </div>
                 </div>

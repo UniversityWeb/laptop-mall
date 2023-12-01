@@ -17,6 +17,7 @@ public class MethodDeliveryServlet extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
 
         String url = "/WEB-INF/views/cart/method-delivery.jsp";
+
         getServletContext().getRequestDispatcher(url).forward(req, resp);
     }
 

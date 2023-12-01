@@ -1,8 +1,8 @@
 package com.webteam.laptopmall.servlet.cart.crud;
 
 import com.webteam.laptopmall.dto.CartItemDTO;
-import com.webteam.laptopmall.dto.prod.ProductDTO;
 import com.webteam.laptopmall.service.cart.CartService;
+import com.webteam.laptopmall.service.cart.CartServiceImpl;
 import com.webteam.laptopmall.service.prod.ProdService;
 
 import javax.servlet.ServletException;
@@ -13,12 +13,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Logger;
 
 @WebServlet("/update")
 public class UpdateItemServlet extends HttpServlet {
 
     private ProdService prodService;
     private CartService cartService;
+    private static final Logger logger = Logger.getLogger(UpdateItemServlet.class.getName());
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
@@ -30,49 +32,44 @@ public class UpdateItemServlet extends HttpServlet {
 
         HttpSession session = req.getSession();
         List<CartItemDTO> cart = (List<CartItemDTO>) session.getAttribute("cart");
+        cartService = new CartServiceImpl(cart);
 
-        String action = req.getParameter("action");
-
+        String buttonUpdate = req.getParameter("buttonUpdate");
         Long productId = (Long) session.getAttribute("productId");
-        ProductDTO product = prodService.getById(productId);
-        CartItemDTO cartItem = new CartItemDTO();
 
-        for (CartItemDTO item: cart) {
-            if(item.getProduct().getId().equals(productId)){
-                cartItem = item;
-                break;
-            }
-        }
+        CartItemDTO cartItem = cartService.getItemOfCartById(productId);
 
-        if(action.equals("") || action.isEmpty()){
-            String quantityString =  (String) session.getAttribute("quantity");
+        if(buttonUpdate.equals("") || buttonUpdate.isEmpty()){
+            String quantityString = req.getParameter("quantity");
+
             int quantity;
-
             try{
-                quantity = Integer.valueOf(quantityString);
-                if(quantity < 0) {
-                    quantity = cartItem.getQty();
+                quantity = Integer.valueOf(buttonUpdate);
+                if (quantity < 0){
+                    quantity = 1;
                 }
-            }catch (NumberFormatException e){
+            } catch (NumberFormatException e){
                 quantity = cartItem.getQty();
+                logger.severe("ERROR: " + e.getMessage());
             }
 
-            cartService.updateItem(cart, cartItem);
+            cartItem.setQty(quantity);
+            cartService.updateItem(cartItem);
         }
         else{
-            if(action.equals("Add Item")){
-                cartItem.setQty(1);
+            int quantity;
+            try{
+                quantity = Integer.valueOf(buttonUpdate);
+            } catch (NumberFormatException e){
+                quantity = 0;
+                logger.severe("ERROR: " + e.getMessage());
             }
-            else if (action.equals("Minus Item")){
-                cartItem.setQty(-1);
-            }
-            else{
-                cartItem.setQty(0);
-            }
-            cartService.addItem(cart, cartItem);
+
+            cartItem.setQty(quantity);
+            cartService.addItem(cartItem);
         }
 
-        req.setAttribute("cart", cart);
+        session.setAttribute("cart", cart);
         getServletContext().getRequestDispatcher(url).forward(req, resp);
     }
 
