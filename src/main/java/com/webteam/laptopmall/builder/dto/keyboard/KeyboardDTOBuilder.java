@@ -8,7 +8,7 @@ import com.webteam.laptopmall.entity.prod.MechanicalKeyboard;
 import java.util.Set;
 
 public abstract class KeyboardDTOBuilder extends ProductDTOBuilderImpl<MechanicalKeyboardDTO> {
-    public abstract KeyboardDTOBuilder compatibilities(Set<Laptop.OS> compatibilities);
+    public abstract KeyboardDTOBuilder compatibilities(Set<Laptop.EOS> compatibilities);
     public abstract KeyboardDTOBuilder connections(Set<MechanicalKeyboard.EConnection> connections);
     public abstract KeyboardDTOBuilder cableLength(String cableLength);
     public abstract KeyboardDTOBuilder switchType(String switchType);

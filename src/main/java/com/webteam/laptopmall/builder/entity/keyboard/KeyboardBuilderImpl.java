@@ -12,7 +12,7 @@ public class KeyboardBuilderImpl extends KeyboardBuilder {
     }
 
     @Override
-    public KeyboardBuilder compatibilities(Set<Laptop.OS> compatibilities) {
+    public KeyboardBuilder compatibilities(Set<Laptop.EOS> compatibilities) {
         prod.setCompatibilities(compatibilities);
         return this;
     }

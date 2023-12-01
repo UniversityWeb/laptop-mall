@@ -25,5 +25,5 @@ public abstract class LaptopBuilder extends ProductBuilderImpl<Laptop> {
     public abstract LaptopBuilder graphicsCard(String graphicsCard);
     public abstract LaptopBuilder weight(double weight);
     public abstract LaptopBuilder material(String material);
-    public abstract LaptopBuilder operatingSystem(Laptop.OS operatingSystem);
+    public abstract LaptopBuilder operatingSystem(Laptop.EOS operatingSystem);
 }

@@ -137,7 +137,7 @@ public class LaptopDTOBuilderImpl extends LaptopDTOBuilder {
     }
 
     @Override
-    public LaptopDTOBuilder operatingSystem(Laptop.OS operatingSystem) {
+    public LaptopDTOBuilder operatingSystem(Laptop.EOS operatingSystem) {
         prod.setOperatingSystem(operatingSystem);
         return this;
     }

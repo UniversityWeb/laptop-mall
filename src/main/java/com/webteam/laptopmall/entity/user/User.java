@@ -49,8 +49,21 @@ public class User {
     public User() {
     }
 
-    public User(Long id, String address, String email, String fullName, EGender gender, String phoneNo, String username, String passHash, ERole role) {
+    public User(Long id, String address, String email, String fullName, EGender gender,
+                String phoneNo, String username, String passHash, ERole role) {
         this.id = id;
+        this.address = address;
+        this.email = email;
+        this.fullName = fullName;
+        this.gender = gender;
+        this.phoneNo = phoneNo;
+        this.username = username;
+        this.passHash = passHash;
+        this.role = role;
+    }
+
+    public User(String address, String email, String fullName, EGender gender,
+                String phoneNo, String username, String passHash, ERole role) {
         this.address = address;
         this.email = email;
         this.fullName = fullName;

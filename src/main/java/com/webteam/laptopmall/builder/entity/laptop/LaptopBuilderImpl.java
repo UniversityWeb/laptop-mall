@@ -136,7 +136,7 @@ public class LaptopBuilderImpl extends LaptopBuilder {
     }
 
     @Override
-    public LaptopBuilder operatingSystem(Laptop.OS operatingSystem) {
+    public LaptopBuilder operatingSystem(Laptop.EOS operatingSystem) {
         prod.setOperatingSystem(operatingSystem);
         return this;
     }

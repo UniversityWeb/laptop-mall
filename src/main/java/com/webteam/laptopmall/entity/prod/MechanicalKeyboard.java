@@ -24,10 +24,10 @@ public class MechanicalKeyboard extends Product {
         ERGONOMIC
     }
 
-    @ElementCollection(fetch = FetchType.EAGER, targetClass = Laptop.OS.class)
+    @ElementCollection(fetch = FetchType.EAGER, targetClass = Laptop.EOS.class)
     @CollectionTable(name = "keyboard_compatibilities", joinColumns = @JoinColumn(name = "keyboard_comp_id"))
     @Enumerated(EnumType.STRING)
-    private Set<Laptop.OS> compatibilities;
+    private Set<Laptop.EOS> compatibilities;
 
     @ElementCollection(fetch = FetchType.EAGER, targetClass = EConnection.class)
     @CollectionTable(name = "keyboard_connections", joinColumns = @JoinColumn(name = "keyboard_conn_id"))
@@ -54,7 +54,7 @@ public class MechanicalKeyboard extends Product {
 
     public MechanicalKeyboard(String brand, String model, String desc, BigDecimal price, Integer stockQty,
                               double discountPercent, String version, String color, ECategory category,
-                              int releaseYear, Set<Laptop.OS> compatibilities, Set<EConnection> connections,
+                              int releaseYear, Set<Laptop.EOS> compatibilities, Set<EConnection> connections,
                               String cableLength, String switchType, ELayout layout, int keyCount,
                               String keycapMaterial, String batteryType) {
         super(brand, model, desc, price, stockQty, discountPercent, version, color, category, releaseYear);
@@ -116,11 +116,11 @@ public class MechanicalKeyboard extends Product {
         return result;
     }
 
-    public Set<Laptop.OS> getCompatibilities() {
+    public Set<Laptop.EOS> getCompatibilities() {
         return compatibilities;
     }
 
-    public void setCompatibilities(Set<Laptop.OS> compatibilities) {
+    public void setCompatibilities(Set<Laptop.EOS> compatibilities) {
         this.compatibilities = compatibilities;
     }
 

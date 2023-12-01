@@ -107,7 +107,7 @@ class ProductMapperTest {
                     .graphicsCard("Nvidia GeForce GTX 1650")
                     .weight(2.3)
                     .material("Aluminum")
-                    .operatingSystem(Laptop.OS.WINDOWS)
+                    .operatingSystem(Laptop.EOS.WINDOWS)
                     .id(1L)
                     .brand("HP")
                     .model("Pavilion")
@@ -197,7 +197,7 @@ class ProductMapperTest {
                     .graphicsCard("Nvidia GeForce GTX 1650")
                     .weight(2.3)
                     .material("Aluminum")
-                    .operatingSystem(Laptop.OS.WINDOWS)
+                    .operatingSystem(Laptop.EOS.WINDOWS)
                     .id(1L)
                     .brand("HP")
                     .model("Pavilion")
@@ -246,10 +246,10 @@ class ProductMapperTest {
         }
 
         private MechanicalKeyboard keyboardBuilder() {
-            Set<Laptop.OS> compatibilities = new HashSet<>();
-            compatibilities.add(Laptop.OS.WINDOWS);
-            compatibilities.add(Laptop.OS.MAC);
-            compatibilities.add(Laptop.OS.LINUX);
+            Set<Laptop.EOS> compatibilities = new HashSet<>();
+            compatibilities.add(Laptop.EOS.WINDOWS);
+            compatibilities.add(Laptop.EOS.MAC);
+            compatibilities.add(Laptop.EOS.LINUX);
 
             Set<MechanicalKeyboard.EConnection> connections = new HashSet<>();
             connections.add(MechanicalKeyboard.EConnection.USB_RECEIVER);
@@ -311,10 +311,10 @@ class ProductMapperTest {
         }
 
         private MechanicalKeyboardDTO keyboardDTOBuilder() {
-            Set<Laptop.OS> compatibilities = new HashSet<>();
-            compatibilities.add(Laptop.OS.WINDOWS);
-            compatibilities.add(Laptop.OS.MAC);
-            compatibilities.add(Laptop.OS.LINUX);
+            Set<Laptop.EOS> compatibilities = new HashSet<>();
+            compatibilities.add(Laptop.EOS.WINDOWS);
+            compatibilities.add(Laptop.EOS.MAC);
+            compatibilities.add(Laptop.EOS.LINUX);
 
             Set<MechanicalKeyboard.EConnection> connections = new HashSet<>();
             connections.add(MechanicalKeyboard.EConnection.USB_RECEIVER);

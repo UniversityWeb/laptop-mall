@@ -27,7 +27,7 @@ public class LaptopDTO extends ProductDTO {
     private String graphicsCard;
     private double weight;
     private String material;
-    private Laptop.OS operatingSystem;
+    private Laptop.EOS operatingSystem;
 
     public LaptopDTO() {
     }
@@ -38,7 +38,7 @@ public class LaptopDTO extends ProductDTO {
                      int cpuCache, int ramSize, Laptop.ERam ramType, int ramBusSpeed, int ramMaxSupport,
                      Laptop.ERom romType, int romSize, double screenSize, String screenResolution,
                      int screenRefreshRate, String screenTechnology, int brightness, boolean antiGlare,
-                     String graphicsCard, double weight, String material, Laptop.OS operatingSystem) {
+                     String graphicsCard, double weight, String material, Laptop.EOS operatingSystem) {
         super(id, brand, model, desc, price, stockQty, discountPercent, version, color, releaseYear, category);
         this.cpuName = cpuName;
         this.cpuCores = cpuCores;
@@ -261,11 +261,11 @@ public class LaptopDTO extends ProductDTO {
         this.material = material;
     }
 
-    public Laptop.OS getOperatingSystem() {
+    public Laptop.EOS getOperatingSystem() {
         return operatingSystem;
     }
 
-    public void setOperatingSystem(Laptop.OS operatingSystem) {
+    public void setOperatingSystem(Laptop.EOS operatingSystem) {
         this.operatingSystem = operatingSystem;
     }
 }
