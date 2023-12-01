@@ -6,10 +6,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 public class CartItemQuery {
-    public TypedQuery<CartItem> buildUpdateQtyOnly(EntityManager em, Long cartItemId, int newQty) {
-        String sqlStr = "UPDATE CartItem ci SET ci.qty = :newQty WHERE ci.id = :cartItemId";
+    public TypedQuery<CartItem> buildUpdateQtyOnly(EntityManager em, Long userId, int newQty) {
+        String sqlStr = "UPDATE CartItem ci SET ci.qty = :newQty WHERE ci.customer.id = :userId";
         TypedQuery<CartItem> typedQuery = em.createQuery(sqlStr, CartItem.class);
-        typedQuery.setParameter("cartItemId", cartItemId);
+        typedQuery.setParameter("userId", userId);
         typedQuery.setParameter("newQty", newQty);
         return typedQuery;
     }

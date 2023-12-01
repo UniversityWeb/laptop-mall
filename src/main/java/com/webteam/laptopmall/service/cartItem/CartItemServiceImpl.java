@@ -22,7 +22,7 @@ public class CartItemServiceImpl implements CartItemService{
     }
 
     @Override
-    public void updateQtyOnly(Long id, Integer qty) {
-        cartItemRepos.updateQtyOnly(id, qty);
+    public void updateQtyOnly(Long userId, Integer qty) {
+        cartItemRepos.updateQtyOnly(userId, qty);
     }
 }
