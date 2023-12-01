@@ -1,9 +1,6 @@
 package com.webteam.laptopmall.servlet.cart;
 
-import com.webteam.laptopmall.customenum.EGender;
 import com.webteam.laptopmall.dto.OrderDTO;
-import com.webteam.laptopmall.dto.user.UserDTO;
-import com.webteam.laptopmall.servlet.cart.crud.UpdateItemServlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,6 +14,12 @@ import java.util.logging.Logger;
 @WebServlet("/check-infor-delivery")
 public class CheckInforDeliveryServlet extends HttpServlet {
     private static final Logger logger = Logger.getLogger(CheckInforDeliveryServlet.class.getName());
+
+    @Override
+    public void init() throws ServletException {
+        super.init();
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {

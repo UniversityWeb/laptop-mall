@@ -3,7 +3,6 @@ package com.webteam.laptopmall.servlet.cart.crud;
 import com.webteam.laptopmall.dto.CartItemDTO;
 import com.webteam.laptopmall.service.cart.CartService;
 import com.webteam.laptopmall.service.cart.CartServiceImpl;
-import com.webteam.laptopmall.service.prod.ProdService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,10 +16,16 @@ import java.util.logging.Logger;
 
 @WebServlet("/update")
 public class UpdateItemServlet extends HttpServlet {
-
-    private ProdService prodService;
     private CartService cartService;
+
     private static final Logger logger = Logger.getLogger(UpdateItemServlet.class.getName());
+
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        cartService = new CartServiceImpl();
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
@@ -32,12 +37,11 @@ public class UpdateItemServlet extends HttpServlet {
 
         HttpSession session = req.getSession();
         List<CartItemDTO> cart = (List<CartItemDTO>) session.getAttribute("cart");
-        cartService = new CartServiceImpl(cart);
 
         String buttonUpdate = req.getParameter("buttonUpdate");
         Long productId = (Long) session.getAttribute("productId");
 
-        CartItemDTO cartItem = cartService.getItemOfCartById(productId);
+        CartItemDTO cartItem = cartService.getItemOfCartById(cart, productId);
 
         if(buttonUpdate.equals("") || buttonUpdate.isEmpty()){
             String quantityString = req.getParameter("quantity");
@@ -54,7 +58,7 @@ public class UpdateItemServlet extends HttpServlet {
             }
 
             cartItem.setQty(quantity);
-            cartService.updateItem(cartItem);
+            cartService.updateItem(cart, cartItem);
         }
         else{
             int quantity;
@@ -66,7 +70,7 @@ public class UpdateItemServlet extends HttpServlet {
             }
 
             cartItem.setQty(quantity);
-            cartService.addItem(cartItem);
+            cartService.addItem(cart, cartItem);
         }
 
         session.setAttribute("cart", cart);

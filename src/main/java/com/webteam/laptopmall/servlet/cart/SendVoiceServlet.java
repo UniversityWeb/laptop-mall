@@ -1,8 +1,6 @@
 package com.webteam.laptopmall.servlet.cart;
 
 import com.webteam.laptopmall.dto.OrderDTO;
-import com.webteam.laptopmall.dto.OrderItemDTO;
-import com.webteam.laptopmall.dto.user.UserDTO;
 import com.webteam.laptopmall.service.order.OrderService;
 import com.webteam.laptopmall.utility.MailUtil;
 
@@ -18,6 +16,12 @@ import java.io.IOException;
 @WebServlet("/send-voice")
 public class SendVoiceServlet extends HttpServlet {
     private OrderService orderService;
+
+    @Override
+    public void init() throws ServletException {
+        super.init();
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {

@@ -20,6 +20,13 @@ public class CartServlet extends HttpServlet {
 
     private CartService cartService;
     private static final Logger logger = Logger.getLogger(CartServlet.class.getName());
+
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        cartService = new CartServiceImpl();
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
@@ -39,12 +46,10 @@ public class CartServlet extends HttpServlet {
             url = "/home-page";
         }
         else{
-            cartService = new CartServiceImpl(cart);
-
-            BigDecimal totalDiscountedAmount = cartService.totalDiscountedAmountOfCart();
-            BigDecimal totalOriginalAmount = cartService.totalOriginalAmountOfCart();
-            BigDecimal totalDiscountAmount = cartService.totalDiscountAmountOfCart();
-            int qtyItems = cartService.totalQtyOfCart();
+            BigDecimal totalDiscountedAmount = cartService.totalDiscountedAmountOfCart(cart);
+            BigDecimal totalOriginalAmount = cartService.totalOriginalAmountOfCart(cart);
+            BigDecimal totalDiscountAmount = cartService.totalDiscountAmountOfCart(cart);
+            int qtyItems = cartService.totalQtyOfCart(cart);
 
             req.setAttribute("totalDiscountedAmount", totalDiscountedAmount);
             req.setAttribute("totalOriginalAmount", totalOriginalAmount);

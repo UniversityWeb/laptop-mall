@@ -17,6 +17,13 @@ import java.util.List;
 @WebServlet("/delete")
 public class DeleteItemServlet extends HttpServlet {
     private CartService cartService;
+
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        cartService = new CartServiceImpl();
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
@@ -28,14 +35,13 @@ public class DeleteItemServlet extends HttpServlet {
 
         HttpSession session = req.getSession();
         List<CartItemDTO> cart = (List<CartItemDTO>) session.getAttribute("cart");
-        cartService = new CartServiceImpl(cart);
 
         Long productId = (Long) session.getAttribute("productId");
 
         String action = req.getParameter("action");
 
         if(action.equals("Remove Item")){
-            cartService.deleteItemByProductId(productId);
+            cartService.deleteItemByProductId(cart, productId);
         }
 
         session.setAttribute("cart", cart);

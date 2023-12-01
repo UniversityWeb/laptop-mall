@@ -5,13 +5,12 @@ import com.webteam.laptopmall.dto.OrderDTO;
 import com.webteam.laptopmall.dto.OrderItemDTO;
 import com.webteam.laptopmall.dto.user.UserDTO;
 import com.webteam.laptopmall.entity.Order;
-import com.webteam.laptopmall.entity.OrderItem;
-import com.webteam.laptopmall.mapper.CartItemMapper;
-import com.webteam.laptopmall.mapper.OrderItemMapper;
 import com.webteam.laptopmall.mapper.OrderMapper;
+import com.webteam.laptopmall.mapper.OrderMapperImpl;
 import com.webteam.laptopmall.repository.cartitem.CartItemRepos;
+import com.webteam.laptopmall.repository.cartitem.CartItemReposImpl;
 import com.webteam.laptopmall.repository.order.OrderRepos;
-import com.webteam.laptopmall.repository.orderItem.OrderItemRepos;
+import com.webteam.laptopmall.repository.order.OrderReposImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +20,12 @@ public class OrderServiceImpl implements OrderService{
     private OrderMapper orderMapper;
 
     private CartItemRepos cartItemRepos;
+
+    public OrderServiceImpl(){
+        orderRepos = new OrderReposImpl();
+        orderMapper = new OrderMapperImpl();
+        cartItemRepos = new CartItemReposImpl();
+    }
 
     @Override
     public void save(OrderDTO orderDTO) {

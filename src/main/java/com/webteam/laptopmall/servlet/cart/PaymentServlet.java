@@ -4,6 +4,7 @@ import com.webteam.laptopmall.dto.CartItemDTO;
 import com.webteam.laptopmall.dto.OrderDTO;
 import com.webteam.laptopmall.entity.Payment;
 import com.webteam.laptopmall.service.order.OrderService;
+import com.webteam.laptopmall.service.order.OrderServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,6 +20,13 @@ import java.util.logging.Logger;
 @WebServlet("/payment")
 public class PaymentServlet extends HttpServlet {
     private OrderService orderService;
+
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        orderService = new OrderServiceImpl();
+    }
+
     private static final Logger logger = Logger.getLogger(PaymentServlet.class.getName());
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -44,7 +52,6 @@ public class PaymentServlet extends HttpServlet {
             orderService.setOrderItemByCart(order, cart);
             order.setOrderDate(new Date());
             order.setPayment(new Payment(Payment.EMethod.valueOf(paymentMethod), Payment.EStatus.PENDING));
-            session.setAttribute("cart", null);
         }
 
         req.setAttribute("message", message);

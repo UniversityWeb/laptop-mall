@@ -7,18 +7,18 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public interface CartService {
-    void addItem( CartItemDTO cartItem);
-    void deleteItemByProductId(Long productId);
-    void updateItem(CartItemDTO cartItem);
-    CartItemDTO getItemOfCartById(Long productId);
-    void setCustomer(UserDTO customer);
+    void addItem(List<CartItemDTO> cart, CartItemDTO cartItem);
+    void deleteItemByProductId(List<CartItemDTO> cart, Long productId);
+    void updateItem(List<CartItemDTO> cart, CartItemDTO cartItem);
+    CartItemDTO getItemOfCartById(List<CartItemDTO> cart, Long productId);
+    void setCustomer(List<CartItemDTO> cart, UserDTO customer);
 
-    BigDecimal totalDiscountedAmountOfCart();
-    BigDecimal totalOriginalAmountOfCart();
-    BigDecimal totalDiscountAmountOfCart();
+    BigDecimal totalDiscountedAmountOfCart(List<CartItemDTO> cart);
+    BigDecimal totalOriginalAmountOfCart(List<CartItemDTO> cart);
+    BigDecimal totalDiscountAmountOfCart(List<CartItemDTO> cart);
 
-    String totalDiscountedAmountOfCartCurrentFormat();
-    String totalOriginalAmountOfCartCurrentFormat();
-    String totalDiscountAmountOfCartCurrentFormat();
-    int totalQtyOfCart();
+    String totalDiscountedAmountOfCartCurrentFormat(List<CartItemDTO> cart);
+    String totalOriginalAmountOfCartCurrentFormat(List<CartItemDTO> cart);
+    String totalDiscountAmountOfCartCurrentFormat(List<CartItemDTO> cart);
+    int totalQtyOfCart(List<CartItemDTO> cart);
 }

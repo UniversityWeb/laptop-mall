@@ -6,7 +6,7 @@ import com.webteam.laptopmall.dto.user.UserDTO;
 import com.webteam.laptopmall.service.cart.CartService;
 import com.webteam.laptopmall.service.cart.CartServiceImpl;
 import com.webteam.laptopmall.service.prod.ProdService;
-import com.webteam.laptopmall.servlet.cart.PaymentServlet;
+import com.webteam.laptopmall.service.prod.ProdServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,6 +27,13 @@ public class AddItemServlet extends HttpServlet {
     private static final Logger logger = Logger.getLogger(AddItemServlet.class.getName());
 
     @Override
+    public void init() throws ServletException {
+        super.init();
+        prodService = new ProdServiceImpl();
+        cartService = new CartServiceImpl();
+    }
+
+    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         resp.setContentType("text/html");
@@ -42,14 +49,13 @@ public class AddItemServlet extends HttpServlet {
         try{
             ProductDTO product = prodService.getById(productId);
             List<CartItemDTO> cart = (List<CartItemDTO>) session.getAttribute("cart");
-            cartService = new CartServiceImpl(cart);
 
             if(cart.equals(null)){
                 cart = new ArrayList<>();
             }
             UserDTO customer = new UserDTO();
             CartItemDTO cartItem = new CartItemDTO(1, customer, product);
-            cartService.addItem(cartItem);
+            cartService.addItem(cart, cartItem);
             url = "/cart";
             session.setAttribute("cart", cart);
         } catch (Exception e){
