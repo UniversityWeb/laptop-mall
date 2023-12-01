@@ -1,32 +1,32 @@
 package com.webteam.laptopmall.service.login;
 
-import com.webteam.laptopmall.dto.user.UserLoginDTO;
-import com.webteam.laptopmall.entity.user.UserLogin;
-import com.webteam.laptopmall.exception.UserLoginNotFoundException;
-import com.webteam.laptopmall.mapper.UserLoginMapper;
-import com.webteam.laptopmall.repository.userlogin.UserLoginRepos;
-import com.webteam.laptopmall.repository.userlogin.UserLoginReposImpl;
+import com.webteam.laptopmall.dto.UserDTO;
+import com.webteam.laptopmall.entity.user.User;
+import com.webteam.laptopmall.exception.UserNotFoundException;
+import com.webteam.laptopmall.mapper.UserMapper;
+import com.webteam.laptopmall.repository.login.LoginRepos;
+import com.webteam.laptopmall.repository.login.LoginReposImpl;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class LoginServiceImpl implements LoginService {
 
-    private UserLoginRepos uLoginRepos;
-    private UserLoginMapper uLoginMapper;
+    private LoginRepos uLoginRepos;
+    private UserMapper uLoginMapper;
 
     public LoginServiceImpl() {
-        uLoginRepos = new UserLoginReposImpl();
-        uLoginMapper = UserLoginMapper.INSTANCE;
+        uLoginRepos = new LoginReposImpl();
+        uLoginMapper = UserMapper.INSTANCE;
     }
 
     @Override
     public boolean login(String username, String plainPass) {
-        UserLogin userLogin = uLoginRepos.findByUsername(username);
-        if (userLogin == null) {
+        User User = uLoginRepos.findByUsername(username);
+        if (User == null) {
             return false;
         }
-        return comparePass(userLogin.getPassHash(), plainPass);
+        return comparePass(User.getPassHash(), plainPass);
     }
 
     private boolean comparePass(String passHash, String plainPass) {
@@ -55,16 +55,16 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
-    public UserLoginDTO register(UserLoginDTO userLoginDTO) {
-        UserLogin userLogin = uLoginMapper.toEntity(userLoginDTO);
-        UserLogin savedUserLogin = uLoginRepos.save(userLogin);
-        return uLoginMapper.toDTO(savedUserLogin);
+    public UserDTO register(UserDTO UserDTO) {
+        User User = uLoginMapper.toEntity(UserDTO);
+        User savedUser = uLoginRepos.save(User);
+        return uLoginMapper.toDTO(savedUser);
     }
 
     @Override
-    public UserLogin.ERole getRoleByUsername(String username) {
+    public User.ERole getRoleByUsername(String username) {
         if (uLoginRepos.findByUsername(username) == null) {
-            throw new UserLoginNotFoundException("Count not find any users with username=" + username);
+            throw new UserNotFoundException("Count not find any users with username=" + username);
         }
         return uLoginRepos.getRoleByUsername(username);
     }

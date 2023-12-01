@@ -10,6 +10,9 @@ import java.util.List;
 @Entity
 @Table(name = "users")
 public class User {
+    public enum ERole {
+        SALESPERSON, CUSTOMER
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -28,8 +31,14 @@ public class User {
     @Column(name = "phone_no", unique = true)
     private String phoneNo;
 
-    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
-    private UserLogin userLogin;
+    @Column(unique = true)
+    private String username;
+
+    @Column(name = "pass_hash")
+    private String passHash;
+
+    @Enumerated(EnumType.STRING)
+    private ERole role;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<CartItem> cartItems;
@@ -40,13 +49,16 @@ public class User {
     public User() {
     }
 
-    public User(Long id, String address, String email, String fullName, EGender gender, String phoneNo) {
+    public User(Long id, String address, String email, String fullName, EGender gender, String phoneNo, String username, String passHash, ERole role) {
         this.id = id;
         this.address = address;
         this.email = email;
         this.fullName = fullName;
         this.gender = gender;
         this.phoneNo = phoneNo;
+        this.username = username;
+        this.passHash = passHash;
+        this.role = role;
     }
 
     @Override
@@ -109,12 +121,28 @@ public class User {
         this.phoneNo = phoneNo;
     }
 
-    public UserLogin getUserLogin() {
-        return userLogin;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserLogin(UserLogin userLogin) {
-        this.userLogin = userLogin;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassHash() {
+        return passHash;
+    }
+
+    public void setPassHash(String passHash) {
+        this.passHash = passHash;
+    }
+
+    public ERole getRole() {
+        return role;
+    }
+
+    public void setRole(ERole role) {
+        this.role = role;
     }
 
     public List<CartItem> getCartItems() {

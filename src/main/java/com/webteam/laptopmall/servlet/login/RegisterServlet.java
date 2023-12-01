@@ -1,9 +1,8 @@
 package com.webteam.laptopmall.servlet.login;
 
 import com.webteam.laptopmall.customenum.EGender;
-import com.webteam.laptopmall.dto.user.UserDTO;
-import com.webteam.laptopmall.dto.user.UserLoginDTO;
-import com.webteam.laptopmall.entity.user.UserLogin;
+import com.webteam.laptopmall.dto.UserDTO;
+import com.webteam.laptopmall.entity.user.User;
 import com.webteam.laptopmall.service.login.LoginService;
 import com.webteam.laptopmall.service.login.LoginServiceImpl;
 
@@ -48,10 +47,9 @@ public class RegisterServlet extends HttpServlet {
         String phoneNo = req.getParameter("phoneNo");
         String username = req.getParameter("username");
 
-        UserDTO userDTO = new UserDTO(address, email, fullName, gender, phoneNo);
-        UserLoginDTO userLoginDTO = new UserLoginDTO(username, hashedPass, userDTO, UserLogin.ERole.CUSTOMER);
+        UserDTO userDTO = new UserDTO(address, email, fullName, gender, phoneNo, username, hashedPass, User.ERole.CUSTOMER);
 
-        UserLoginDTO saved = loginService.register(userLoginDTO);
+        UserDTO saved = loginService.register(userDTO);
         String url;
         if (saved != null) {
             req.getSession().setAttribute("username", username);

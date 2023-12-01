@@ -1,6 +1,6 @@
 package com.webteam.laptopmall.servlet.home;
 
-import com.webteam.laptopmall.entity.user.UserLogin;
+import com.webteam.laptopmall.entity.user.User;
 import com.webteam.laptopmall.service.login.LoginService;
 import com.webteam.laptopmall.service.login.LoginServiceImpl;
 
@@ -27,16 +27,16 @@ public class HomeServlet extends HttpServlet {
             throws ServletException, IOException {
 
         String username = (String) req.getSession().getAttribute("username");
-        UserLogin.ERole role = loginService.getRoleByUsername(username);
+        User.ERole role = loginService.getRoleByUsername(username);
         String url = getUrlByRole(role);
         getServletContext().getRequestDispatcher(url).forward(req, resp);
     }
 
-    private String getUrlByRole(UserLogin.ERole role) {
+    private String getUrlByRole(User.ERole role) {
         String url;
-        if (role == UserLogin.ERole.SALESPERSON) {
+        if (role == User.ERole.SALESPERSON) {
             url = "/WEB-INF/views/seller-main-page.jsp";
-        } else if (role == UserLogin.ERole.CUSTOMER) {
+        } else if (role == User.ERole.CUSTOMER) {
             url = "/WEB-INF/views/customer-main-page.jsp";
         } else {
             url = "/WEB-INF/views/access-denied.html";

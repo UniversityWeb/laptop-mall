@@ -1,14 +1,15 @@
 package com.webteam.laptopmall.service.login;
 
-import com.webteam.laptopmall.dto.user.UserLoginDTO;
-import com.webteam.laptopmall.entity.user.UserLogin;
+
+import com.webteam.laptopmall.dto.UserDTO;
+import com.webteam.laptopmall.entity.user.User;
 
 public interface LoginService {
     boolean login(String username, String plainPass);
 
     String hashPass(String plainPass);
 
-    UserLoginDTO register(UserLoginDTO userLoginDTO);
+    UserDTO register(UserDTO UserDTO);
 
-    UserLogin.ERole getRoleByUsername(String username);
+    User.ERole getRoleByUsername(String username);
 }

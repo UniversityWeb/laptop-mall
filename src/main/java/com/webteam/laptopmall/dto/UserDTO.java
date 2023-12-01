@@ -1,6 +1,7 @@
-package com.webteam.laptopmall.dto.user;
+package com.webteam.laptopmall.dto;
 
 import com.webteam.laptopmall.customenum.EGender;
+import com.webteam.laptopmall.entity.user.User;
 
 public class UserDTO {
     private Long id;
@@ -10,25 +11,35 @@ public class UserDTO {
     private EGender gender;
     private String phoneNo;
 
+    private String username;
+    private String passHash;
+    private User.ERole role;
+
     public UserDTO() {
     }
 
-    public UserDTO(Long id, String address, String email,
-                   String fullName, EGender gender, String phoneNo) {
+    public UserDTO(Long id, String address, String email, String fullName, EGender gender, String phoneNo, String username, String passHash, User.ERole role) {
         this.id = id;
         this.address = address;
         this.email = email;
         this.fullName = fullName;
         this.gender = gender;
         this.phoneNo = phoneNo;
+        this.username = username;
+        this.passHash = passHash;
+        this.role = role;
     }
 
-    public UserDTO(String address, String email, String fullName, EGender gender, String phoneNo) {
+    public UserDTO(String address, String email, String fullName, EGender gender,
+                   String phoneNo, String username, String passHash, User.ERole role) {
         this.address = address;
         this.email = email;
         this.fullName = fullName;
         this.gender = gender;
         this.phoneNo = phoneNo;
+        this.username = username;
+        this.passHash = passHash;
+        this.role = role;
     }
 
     public Long getId() {
@@ -77,5 +88,29 @@ public class UserDTO {
 
     public void setPhoneNo(String phoneNo) {
         this.phoneNo = phoneNo;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassHash() {
+        return passHash;
+    }
+
+    public void setPassHash(String passHash) {
+        this.passHash = passHash;
+    }
+
+    public User.ERole getRole() {
+        return role;
+    }
+
+    public void setRole(User.ERole role) {
+        this.role = role;
     }
 }
