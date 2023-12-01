@@ -57,10 +57,17 @@ section{
     height: 50px;
 }
 
+.history-menu{
+}
+
 .history-menu .history-menu-choose{
     width: 150px;
     background: transparent;
     border: none;
+}
+
+.active p{
+    border-bottom: 3px solid #000;
 }
 
 .history-menu-choose p{

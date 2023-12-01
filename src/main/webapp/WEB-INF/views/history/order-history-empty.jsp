@@ -27,35 +27,35 @@
         <h1>Ordered</h1>
         <hr>
     </div>
-    <div class="history-menu row center">
-        <button class="history-menu-choose column center">
-            <p style="border-bottom: 3px solid #000;">All</p>
+    <form class="history-menu row center">
+        <button name="tab" value="1" class="history-menu-choose column center">
+            <p>All</p>
         </button>
-        <button class="history-menu-choose column center">
+        <button name="tab" value="2" class="history-menu-choose column center">
             <p>Pending</p>
         </button>
-        <button class="history-menu-choose column center">
+        <button name="tab" value="3" class="history-menu-choose column center">
             <p>Processing</p>
         </button>
-        <button class="history-menu-choose column center">
+        <button name="tab" value="4" class="history-menu-choose column center">
             <p>Shipped</p>
         </button>
-        <button class="history-menu-choose column center">
+        <button name="tab" value="5" class="history-menu-choose column center">
             <p>Dilivered</p>
         </button>
-        <button class="history-menu-choose column center">
+        <button name="tab" value="6" class="history-menu-choose column center">
             <p>Canccelled</p>
         </button>
-        <button class="history-menu-choose column center">
+        <button name="tab" value="7" class="history-menu-choose column center">
             <p>Returned</p>
         </button>
-        <button class="history-menu-choose column center">
+        <button name="tab" value="8" class="history-menu-choose column center">
             <p>Refunded</p>
         </button>
-        <button class="history-menu-choose column center">
+        <button name="tab" value="9" class="history-menu-choose column center">
             <p>Completed</p>
         </button>
-    </div>
+    </form>
     <div class="history-search column center">
         <p>If you already have a account, please log in to track your order. If you don't have a account, you can enter your information in the table below for tracking.</p>
         <form action="#" method="get" class="history-search-id row">
@@ -73,7 +73,7 @@
 <footer class="center">
     <p>&copy; Copyright 2023</p>
 </footer>
-<script src="" async defer></script>
+<script src="<c:url value="/static/js/history.js"/>" async defer></script>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
