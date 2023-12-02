@@ -1,8 +1,11 @@
 package com.webteam.laptopmall.servlet.cart.crud;
 
 import com.webteam.laptopmall.dto.CartItemDTO;
+import com.webteam.laptopmall.dto.UserDTO;
 import com.webteam.laptopmall.service.cart.CartService;
 import com.webteam.laptopmall.service.cart.CartServiceImpl;
+import com.webteam.laptopmall.service.user.UserService;
+import com.webteam.laptopmall.service.user.UserServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,6 +20,7 @@ import java.util.logging.Logger;
 @WebServlet("/update")
 public class UpdateItemServlet extends HttpServlet {
     private CartService cartService;
+    private UserService userService;
 
     private static final Logger logger = Logger.getLogger(UpdateItemServlet.class.getName());
 
@@ -24,6 +28,7 @@ public class UpdateItemServlet extends HttpServlet {
     public void init() throws ServletException {
         super.init();
         cartService = new CartServiceImpl();
+        userService = new UserServiceImpl();
     }
 
     @Override
@@ -36,14 +41,15 @@ public class UpdateItemServlet extends HttpServlet {
         String url = "/cart";
 
         HttpSession session = req.getSession();
-        List<CartItemDTO> cart = (List<CartItemDTO>) session.getAttribute("cart");
+        UserDTO customer = (UserDTO) session.getAttribute("customer");
+        List<CartItemDTO> cart = cartService.getCartByUserId(customer.getId());
 
         String buttonUpdate = req.getParameter("buttonUpdate");
         Long productId = (Long) req.getAttribute("productId");
 
         CartItemDTO cartItem = cartService.getItemOfCartById(cart, productId);
 
-        if(buttonUpdate.equals("") || buttonUpdate.isEmpty()){
+        if(buttonUpdate.equals("") || buttonUpdate == null){
             String quantityString = req.getParameter("quantity");
 
             int quantity;
@@ -73,7 +79,6 @@ public class UpdateItemServlet extends HttpServlet {
             cartService.addItem(cart, cartItem);
         }
 
-        session.setAttribute("cart", cart);
         getServletContext().getRequestDispatcher(url).forward(req, resp);
     }
 

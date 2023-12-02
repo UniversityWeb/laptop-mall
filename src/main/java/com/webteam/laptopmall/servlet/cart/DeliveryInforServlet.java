@@ -31,15 +31,15 @@ public class DeliveryInforServlet extends HttpServlet {
         String url = "/WEB-INF/views/cart/delivery-infor.jsp";
 
         HttpSession session = req.getSession();
-        List<CartItemDTO> cart = (List<CartItemDTO>) session.getAttribute("cart");
-
         UserDTO customer = (UserDTO) session.getAttribute("customer");
         OrderDTO order = (OrderDTO) session.getAttribute("order");
+
         if (order == null) {
             order = new OrderDTO();
         }
 
         order.setCustomer(customer);
+        session.setAttribute("customer", null);
         session.setAttribute("order", order);
         getServletContext().getRequestDispatcher(url).forward(req, resp);
     }

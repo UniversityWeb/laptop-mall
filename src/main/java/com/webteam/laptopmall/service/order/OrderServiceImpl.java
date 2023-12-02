@@ -6,30 +6,30 @@ import com.webteam.laptopmall.dto.OrderItemDTO;
 import com.webteam.laptopmall.dto.UserDTO;
 import com.webteam.laptopmall.entity.Order;
 import com.webteam.laptopmall.mapper.OrderMapper;
-import com.webteam.laptopmall.mapper.OrderMapperImpl;
-import com.webteam.laptopmall.repository.cartitem.CartItemRepos;
-import com.webteam.laptopmall.repository.cartitem.CartItemReposImpl;
 import com.webteam.laptopmall.repository.order.OrderRepos;
 import com.webteam.laptopmall.repository.order.OrderReposImpl;
+import com.webteam.laptopmall.service.cartItem.CartItemService;
+import com.webteam.laptopmall.service.cartItem.CartItemServiceImpl;
+import com.webteam.laptopmall.service.orderItem.OrderItemService;
+import com.webteam.laptopmall.service.orderItem.OrderItemServiceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class OrderServiceImpl implements OrderService{
     private OrderRepos orderRepos;
-    private OrderMapper orderMapper;
-
-    private CartItemRepos cartItemRepos;
+    private CartItemService cartItemService;
+    private OrderItemService orderItemService;
 
     public OrderServiceImpl(){
         orderRepos = new OrderReposImpl();
-        orderMapper = new OrderMapperImpl();
-        cartItemRepos = new CartItemReposImpl();
+        orderItemService = new OrderItemServiceImpl();
+        cartItemService = new CartItemServiceImpl();
     }
 
     @Override
     public void save(OrderDTO orderDTO) {
-        Order order = orderMapper.toEntity(orderDTO);
+        Order order = OrderMapper.INSTANCE.toEntity(orderDTO);
         orderRepos.save(order);
     }
 
@@ -37,15 +37,10 @@ public class OrderServiceImpl implements OrderService{
     public void setOrderItemByCart(OrderDTO orderDTO, List<CartItemDTO> cart) {
         List<OrderItemDTO> orderItems = new ArrayList<>();
         for (CartItemDTO item: cart) {
-            OrderItemDTO orderItemDTO = new OrderItemDTO();
-            orderItemDTO.setQty(item.getQty());
-            orderItemDTO.setProduct(item.getProduct());
-            orderItemDTO.setCurPrice(item.totalDiscountedAmountOfCartItem());
+            OrderItemDTO orderItemDTO = cartItemService.toOrderItem(item);
             orderItems.add(orderItemDTO);
-            cartItemRepos.deleteById(item.getId());
         }
         orderDTO.setOrderItems(orderItems);
-        this.save(orderDTO);
     }
 
     @Override
@@ -94,7 +89,8 @@ public class OrderServiceImpl implements OrderService{
                 + listItem + "<tr style='margin: 10px 0px;'><td>&nbsp;</td><td>&nbsp;</td>" +
                 "<td>Total:</td><td style='width: 100px; overflow: auto; text-align: right'>&nbsp;</td>" +
                 "<td style='width: 100px; overflow: auto; text-align: right'>&nbsp;</td>" +
-                "<td style='width: 100px; overflow: auto; text-align: right;'>"+orderDTO.totalDiscountedAmountOfOrderCurrentFormat()+"</td></tr></table>" +
+                "<td style='width: 100px; overflow: auto; text-align: right;'>"
+                + orderDTO.totalDiscountedAmountOfOrderCurrentFormat() + "</td></tr></table>" +
                 "<hr style='width: 100%; margin: 0; border-bottom: 1px solid #bbbbbb;'>" +
                 "<p style='width: 100%; text-align: center; font-size: 1.2em;'><i>Thank you!</i></p></div></div>" +
                 "<p>At <strong>Laptop Mall</strong>, we are committed to providing top-quality laptops and accessories, " +
@@ -105,5 +101,12 @@ public class OrderServiceImpl implements OrderService{
                 "<p>Thank you once again for choosing <strong>Laptop Mall</strong>. We look forward to serving you " +
                 "in the future and providing you with the best in technology and customer satisfaction.</p>" +
                 "<p>Best regards,</p><p>Laptop Mall,</p><p>laptopmall@gmail.com,</p></section>";
+    }
+
+    @Override
+    public void saveOrderAndDeleteCart(OrderDTO order, List<CartItemDTO> cart) {
+        cart.forEach(cartItem -> cartItemService.deleteById(cartItem.getId()));
+        order.getOrderItems().forEach(orderItem -> orderItemService.save(orderItem));
+        this.save(order);
     }
 }

@@ -1,8 +1,11 @@
 package com.webteam.laptopmall.servlet.cart.crud;
 
 import com.webteam.laptopmall.dto.CartItemDTO;
+import com.webteam.laptopmall.dto.UserDTO;
 import com.webteam.laptopmall.service.cart.CartService;
 import com.webteam.laptopmall.service.cart.CartServiceImpl;
+import com.webteam.laptopmall.service.user.UserService;
+import com.webteam.laptopmall.service.user.UserServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,11 +20,13 @@ import java.util.List;
 @WebServlet("/delete")
 public class DeleteItemServlet extends HttpServlet {
     private CartService cartService;
+    private UserService userService;
 
     @Override
     public void init() throws ServletException {
         super.init();
         cartService = new CartServiceImpl();
+        userService = new UserServiceImpl();
     }
 
     @Override
@@ -34,7 +39,9 @@ public class DeleteItemServlet extends HttpServlet {
         String url = "/cart";
 
         HttpSession session = req.getSession();
-        List<CartItemDTO> cart = (List<CartItemDTO>) session.getAttribute("cart");
+        UserDTO customer = (UserDTO) session.getAttribute("customer");
+        List<CartItemDTO> cart = cartService.getCartByUserId(customer.getId());
+
         Long productId = (Long) session.getAttribute("productId");
         String action = req.getParameter("action");
 
@@ -42,7 +49,6 @@ public class DeleteItemServlet extends HttpServlet {
             cartService.deleteItemByProductId(cart, productId);
         }
 
-        session.setAttribute("cart", cart);
         getServletContext().getRequestDispatcher(url).forward(req, resp);
     }
 

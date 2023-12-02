@@ -5,8 +5,12 @@ import com.webteam.laptopmall.dto.UserDTO;
 import com.webteam.laptopmall.dto.prod.ProductDTO;
 import com.webteam.laptopmall.service.cart.CartService;
 import com.webteam.laptopmall.service.cart.CartServiceImpl;
+import com.webteam.laptopmall.service.cartItem.CartItemService;
+import com.webteam.laptopmall.service.cartItem.CartItemServiceImpl;
 import com.webteam.laptopmall.service.prod.ProdService;
 import com.webteam.laptopmall.service.prod.ProdServiceImpl;
+import com.webteam.laptopmall.service.user.UserService;
+import com.webteam.laptopmall.service.user.UserServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,6 +28,8 @@ public class AddItemServlet extends HttpServlet {
 
     private ProdService prodService;
     private CartService cartService;
+    private UserService userService;
+    private CartItemService cartItemService;
     private static final Logger logger = Logger.getLogger(AddItemServlet.class.getName());
 
     @Override
@@ -31,6 +37,9 @@ public class AddItemServlet extends HttpServlet {
         super.init();
         prodService = new ProdServiceImpl();
         cartService = new CartServiceImpl();
+        userService = new UserServiceImpl();
+        cartService = new CartServiceImpl();
+        cartItemService = new CartItemServiceImpl();
     }
 
     @Override
@@ -43,25 +52,30 @@ public class AddItemServlet extends HttpServlet {
         String url = "/home-page";
 
         HttpSession session = req.getSession();
+        UserDTO customer = (UserDTO) session.getAttribute("customer");
+        if (customer == null){
+            UserDTO user = (UserDTO) session.getAttribute("user");
+            customer = userService.getByUsername(user.getUsername());
+        }
 
-        Long productId = (Long) session.getAttribute("productId");
+        Long productId = (Long) req.getAttribute("productId");
 
         try{
             ProductDTO product = prodService.getById(productId);
-            List<CartItemDTO> cart = (List<CartItemDTO>) session.getAttribute("cart");
+            List<CartItemDTO> cart = cartService.getCartByUserId(customer.getId());
 
-            if(cart.equals(null)){
+            if(cart == null){
                 cart = new ArrayList<>();
             }
-            UserDTO customer = new UserDTO();
+
             CartItemDTO cartItem = new CartItemDTO(1, customer, product);
             cartService.addItem(cart, cartItem);
             url = "/cart";
-            session.setAttribute("cart", cart);
         } catch (Exception e){
             logger.severe(e.getMessage());
         }
 
+        session.setAttribute("customer", customer);
         resp.sendRedirect(req.getContextPath() + url);
     }
 

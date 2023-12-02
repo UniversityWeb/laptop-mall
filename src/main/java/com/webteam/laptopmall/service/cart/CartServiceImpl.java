@@ -4,9 +4,6 @@ import com.webteam.laptopmall.dto.CartItemDTO;
 import com.webteam.laptopmall.dto.UserDTO;
 import com.webteam.laptopmall.entity.CartItem;
 import com.webteam.laptopmall.mapper.CartItemMapper;
-import com.webteam.laptopmall.mapper.CartItemMapperImpl;
-import com.webteam.laptopmall.repository.cartitem.CartItemRepos;
-import com.webteam.laptopmall.repository.cartitem.CartItemReposImpl;
 import com.webteam.laptopmall.service.cartItem.CartItemService;
 import com.webteam.laptopmall.service.cartItem.CartItemServiceImpl;
 import com.webteam.laptopmall.utility.CurrencyUtil;
@@ -18,12 +15,8 @@ import java.util.List;
 public class CartServiceImpl implements CartService {
 
     private CartItemService cartItemService;
-    private CartItemRepos cartItemRepos;
-    private CartItemMapper cartItemMapper;
     public CartServiceImpl(){
         cartItemService = new CartItemServiceImpl();
-        cartItemRepos = new CartItemReposImpl();
-        cartItemMapper = new CartItemMapperImpl();
     }
 
     @Override
@@ -132,8 +125,8 @@ public class CartServiceImpl implements CartService {
     @Override
     public List<CartItemDTO> getCartByUserId(Long userId) {
         List<CartItemDTO> cartItems = new ArrayList<>();
-        for (CartItem cartItem: cartItemRepos.getByUserId(userId)) {
-            CartItemDTO cartItemDTO = cartItemMapper.toDTO(cartItem);
+        for (CartItem cartItem: cartItemService.getByUserId(userId)) {
+            CartItemDTO cartItemDTO = CartItemMapper.INSTANCE.toDTO(cartItem);
             cartItems.add(cartItemDTO);
         }
         return cartItems;

@@ -9,4 +9,5 @@ public interface OrderService {
     void save(OrderDTO orderDTO);
     void setOrderItemByCart(OrderDTO orderDTO, List<CartItemDTO> cart);
     String getMailBody (OrderDTO orderDTO);
+    void saveOrderAndDeleteCart(OrderDTO order, List<CartItemDTO> cart);
 }

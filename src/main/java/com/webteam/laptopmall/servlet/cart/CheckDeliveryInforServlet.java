@@ -12,8 +12,8 @@ import java.io.IOException;
 import java.util.logging.Logger;
 
 @WebServlet("/check-infor-delivery")
-public class CheckInforDeliveryServlet extends HttpServlet {
-    private static final Logger logger = Logger.getLogger(CheckInforDeliveryServlet.class.getName());
+public class CheckDeliveryInforServlet extends HttpServlet {
+    private static final Logger logger = Logger.getLogger(CheckDeliveryInforServlet.class.getName());
 
     @Override
     public void init() throws ServletException {
@@ -31,7 +31,6 @@ public class CheckInforDeliveryServlet extends HttpServlet {
 
         HttpSession session = req.getSession();
         OrderDTO order = (OrderDTO) session.getAttribute("order");
-
         String deliveryMethod = req.getParameter("deliveryMethod");
         String note = req.getParameter("note");
 

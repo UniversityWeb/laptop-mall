@@ -2,7 +2,6 @@ package com.webteam.laptopmall.servlet.cart;
 
 import com.webteam.laptopmall.dto.CartItemDTO;
 import com.webteam.laptopmall.dto.UserDTO;
-import com.webteam.laptopmall.repository.cartitem.CartItemRepos;
 import com.webteam.laptopmall.service.cart.CartService;
 import com.webteam.laptopmall.service.cart.CartServiceImpl;
 import com.webteam.laptopmall.service.user.UserService;
@@ -42,32 +41,33 @@ public class CartServlet extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
 
         String url = "/WEB-INF/views/cart/check-cart.jsp";
-        String message = "";
 
         HttpSession session = req.getSession();
-
-        UserDTO user = (UserDTO) session.getAttribute("user");
-        UserDTO customer = userService.getByUsername(user.getUsername());
+        UserDTO customer = (UserDTO) session.getAttribute("customer");
+        if (customer == null){
+            UserDTO user = (UserDTO) session.getAttribute("user");
+            customer = userService.getByUsername(user.getUsername());
+        }
         List<CartItemDTO> cart = cartService.getCartByUserId(customer.getId());
 
         if(cart == null || cart.size()<1) {
-            message = "Cart is empty";
             logger.info("Cart is empty!");
-            url = "/home-page";
+            url = "/home-page?cart=empty";
         }
         else{
             BigDecimal totalDiscountedAmount = cartService.totalDiscountedAmountOfCart(cart);
             BigDecimal totalOriginalAmount = cartService.totalOriginalAmountOfCart(cart);
             BigDecimal totalDiscountAmount = cartService.totalDiscountAmountOfCart(cart);
             int qtyItems = cartService.totalQtyOfCart(cart);
-
             req.setAttribute("totalDiscountedAmount", totalDiscountedAmount);
             req.setAttribute("totalOriginalAmount", totalOriginalAmount);
             req.setAttribute("totalDiscountAmount", totalDiscountAmount);
             req.setAttribute("qtyItems", qtyItems);
+
             session.setAttribute("customer", customer);
-            session.setAttribute("cart", cart);
         }
+
+        req.setAttribute("cart", cart);
         getServletContext().getRequestDispatcher(url).forward(req, resp);
     }
 
