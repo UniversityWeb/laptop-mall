@@ -35,9 +35,7 @@ public class DeleteItemServlet extends HttpServlet {
 
         HttpSession session = req.getSession();
         List<CartItemDTO> cart = (List<CartItemDTO>) session.getAttribute("cart");
-
         Long productId = (Long) session.getAttribute("productId");
-
         String action = req.getParameter("action");
 
         if(action.equals("Remove Item")){

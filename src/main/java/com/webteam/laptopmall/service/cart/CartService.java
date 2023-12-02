@@ -21,4 +21,5 @@ public interface CartService {
     String totalOriginalAmountOfCartCurrentFormat(List<CartItemDTO> cart);
     String totalDiscountAmountOfCartCurrentFormat(List<CartItemDTO> cart);
     int totalQtyOfCart(List<CartItemDTO> cart);
+    List<CartItemDTO> getCartByUserId(Long userId);
 }

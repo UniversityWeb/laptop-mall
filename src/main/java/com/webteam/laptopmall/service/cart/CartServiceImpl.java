@@ -2,18 +2,28 @@ package com.webteam.laptopmall.service.cart;
 
 import com.webteam.laptopmall.dto.CartItemDTO;
 import com.webteam.laptopmall.dto.user.UserDTO;
+import com.webteam.laptopmall.entity.CartItem;
+import com.webteam.laptopmall.mapper.CartItemMapper;
+import com.webteam.laptopmall.mapper.CartItemMapperImpl;
+import com.webteam.laptopmall.repository.cartitem.CartItemRepos;
+import com.webteam.laptopmall.repository.cartitem.CartItemReposImpl;
 import com.webteam.laptopmall.service.cartItem.CartItemService;
 import com.webteam.laptopmall.service.cartItem.CartItemServiceImpl;
 import com.webteam.laptopmall.utility.CurrencyUtil;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CartServiceImpl implements CartService {
 
     private CartItemService cartItemService;
+    private CartItemRepos cartItemRepos;
+    private CartItemMapper cartItemMapper;
     public CartServiceImpl(){
         cartItemService = new CartItemServiceImpl();
+        cartItemRepos = new CartItemReposImpl();
+        cartItemMapper = new CartItemMapperImpl();
     }
 
     @Override
@@ -23,7 +33,7 @@ public class CartServiceImpl implements CartService {
         for (CartItemDTO item: cart) {
             if(item.getProduct().getId().equals(productId)){
                 item.setQty(item.getQty() + quantity);
-                cartItemService.updateQtyOnly(item.getCustomer().getId(), item.getQty());
+                cartItemService.updateQtyOnly(item.getId(), item.getQty());
                 return;
             }
         }
@@ -45,7 +55,7 @@ public class CartServiceImpl implements CartService {
         for (CartItemDTO item: cart) {
             if(item.getProduct().getModel().equals(cartItem.getProduct().getModel())){
                 item.setQty(cartItem.getQty());
-                cartItemService.updateQtyOnly(item.getCustomer().getId(), item.getQty());
+                cartItemService.updateQtyOnly(item.getId(), item.getQty());
                 return;
             }
         }
@@ -117,5 +127,15 @@ public class CartServiceImpl implements CartService {
             qty += cartItemDTO.getQty();
         }
         return qty;
+    }
+
+    @Override
+    public List<CartItemDTO> getCartByUserId(Long userId) {
+        List<CartItemDTO> cartItems = new ArrayList<>();
+        for (CartItem cartItem: cartItemRepos.getByUserId(userId)) {
+            CartItemDTO cartItemDTO = cartItemMapper.toDTO(cartItem);
+            cartItems.add(cartItemDTO);
+        }
+        return cartItems;
     }
 }

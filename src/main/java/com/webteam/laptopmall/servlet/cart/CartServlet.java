@@ -1,6 +1,7 @@
 package com.webteam.laptopmall.servlet.cart;
 
 import com.webteam.laptopmall.dto.CartItemDTO;
+import com.webteam.laptopmall.dto.user.UserDTO;
 import com.webteam.laptopmall.service.cart.CartService;
 import com.webteam.laptopmall.service.cart.CartServiceImpl;
 
@@ -38,7 +39,8 @@ public class CartServlet extends HttpServlet {
         String message = "";
 
         HttpSession session = req.getSession();
-        List<CartItemDTO> cart = (List<CartItemDTO>) session.getAttribute("cart");
+        UserDTO customer = (UserDTO) session.getAttribute("user");
+        List<CartItemDTO> cart = cartService.getCartByUserId(customer.getId());
 
         if(cart == null || cart.size()<1) {
             message = "Cart is empty";

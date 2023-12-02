@@ -39,7 +39,7 @@ public class UpdateItemServlet extends HttpServlet {
         List<CartItemDTO> cart = (List<CartItemDTO>) session.getAttribute("cart");
 
         String buttonUpdate = req.getParameter("buttonUpdate");
-        Long productId = (Long) session.getAttribute("productId");
+        Long productId = (Long) req.getAttribute("productId");
 
         CartItemDTO cartItem = cartService.getItemOfCartById(cart, productId);
 
@@ -48,7 +48,7 @@ public class UpdateItemServlet extends HttpServlet {
 
             int quantity;
             try{
-                quantity = Integer.valueOf(buttonUpdate);
+                quantity = Integer.valueOf(quantityString);
                 if (quantity < 0){
                     quantity = 1;
                 }
