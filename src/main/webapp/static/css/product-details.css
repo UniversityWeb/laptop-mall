@@ -394,3 +394,154 @@ nav .navigation a:hover{
     background:  none;
     cursor: pointer;
 }
+
+
+.amount-title{
+    font-weight: 600;
+    color: var(--color1);
+}
+
+.amount-content{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    gap: 3%;
+}
+
+.sub-btn,.plus-btn{
+    width: 30px;
+    height: 30px;
+    border-radius: var(--radius-btn);
+    border: none;
+    background-color: var(--color1);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+}
+
+.sub-btn i,.plus-btn i{
+    color: var(--color0);
+}
+
+.amount-value{
+    width: 30%;
+    height: 60%;
+    border-radius: var(--radius-btn);
+    outline: none;
+    border: none;
+    background-color: var(--color5);
+    padding:0 20px ;
+    color: var(--color2);
+}
+
+.sub-btn:hover,.plus-btn:hover{
+    transform: scale(0.9);
+}
+
+.sub-btn:hover i{
+    color: rgb(241, 161, 161);
+}
+
+.plus-btn:hover i{
+    color: rgb(151, 238, 174);
+}
+
+.prod-total__price{
+    font-size: 1.8rem;
+    color: var(--color2);
+    font-weight: 600;
+}
+
+.prod-extra__price{
+    display: flex;
+    gap: 10px;
+    font-style: italic;
+}
+
+.old-price{
+    color: gray;
+    text-decoration: line-through;
+}
+
+.discount-price{
+    color: red;
+}
+
+.prod-price{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.selections-content{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.group-selections__prod{
+    display: flex;
+    flex-direction: row;
+    height: 120px;
+}
+
+.button__add-cart{
+    width: 80%;
+    height: 50px;
+    border-radius: var(--radius-btn);
+    background-color: var(--color1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap:4%;
+    border: none;
+    cursor: pointer;
+}
+.button__add-cart span{
+    position: relative;
+    color: var(--color0);
+    font-size: 80%;
+    font-weight: 600;
+    /* transition: opacity 0.4s ease-in-out; */
+}
+.button__add-cart i{
+    color: var(--color0);
+}
+.button__add-cart:hover span{
+    animation: hiddenItem 0.5s ease-in-out 0.1s forwards;
+}
+
+@keyframes hiddenItem {
+    from {
+        opacity: 100%;
+    }
+    to {
+        opacity: 0%;
+        display: none;
+    }
+}
+
+
+.line{
+    width: 90%;
+    height: 1px;
+    background-color: var(--color5);
+    border-radius: 30px;
+    margin: auto;
+    margin-top: 10%;
+}
+.line:hover{
+    animation: linear inputhover 0.2s;
+}
+@keyframes inputhover{
+    from{width: 0%;}
+    to{width: 100%;}
+}

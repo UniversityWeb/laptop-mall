@@ -11,6 +11,7 @@
 </head>
 <body>
 <input type="checkbox" id="check">
+<jsp:include page="navbar.jsp"></jsp:include>
 <nav>
     <div class="navigation">
         <a href="#prod-features">Features</a>
@@ -122,19 +123,6 @@
             </section>
         </div>
         <div class="prod_basic_info">
-            <!-- <h2>[Model]</h2>
-            <p>[brand]</p>
-            <p>Color</p>
-            <ul class="color_list">
-                <li>Red</li>
-                <li>Green</li>
-                <li>Blue</li>
-                <li>Yellow</li>
-                <li>Orange</li>
-                <li>Purple</li>
-                <li>Black</li>
-                <li>White</li>
-            </ul> -->
             <div class="brand-name">
                 DELL INSPIRON HIỆU SUẤT CAO</div>
             <div class="group-basic-info">
@@ -195,16 +183,17 @@
                 </div>
                 <div class="amount-prod">
                     <span class="amount-title">Amount</span>
-                    <div class="minus-content">
-                        <button class="sub-btn">
+                    <div class="amount-content">
+                        <button id="subBtn" class="sub-btn">
                             <i class="fa-solid fa-minus"></i>
                         </button>
-                        <input type="text" name="" id="" class="amount-value">
-                        <button class="plus-btn">
+                        <input type="text" name="" id="inputMount" class="amount-value" value="0">
+                        <button id="plusBtn" class="plus-btn">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
                 </div>
+                <div class="line"></div>
                 <div class="group-selections__prod">
                     <div class="prod-price">
                         <div class="prod-total__price">
@@ -212,17 +201,16 @@
                         </div>
                         <div class="prod-extra__price">
                             <div class="old-price">138.999$</div>
-                            <div class="discount-price">29%</div>
+                            <div class="discount-price">-29%</div>
                         </div>
                     </div>
                     <div class="selections-content">
-                        <div class="add-cart-btn__prod">
-
-                        </div>
-                        <div class="buy-now-btn__prod">
-
-                        </div>
+                        <button class="button__add-cart">
+                            <i class="fa-solid fa-cart-shopping button__icon"></i>
+                            <span>Add to cart</span>
+                        </button>
                     </div>
+                </div>
                 </div>
             </div>
         </div>
@@ -239,9 +227,6 @@
 </footer>
 
 <script src="<c:url value="/static/js/product-details.js"/>"></script>
-<%--<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js"--%>
-<%--        integrity="sha512-Ysw1DcK1P+uYLqprEAzNQJP+J4hTx4t/3X2nbVwszao8wD+9afLjBQYjz7Uk4ADP+Er++mJoScI42ueGtQOzEA=="--%>
-<%--        crossorigin="anonymous" referrerpolicy="no-referrer"></script>--%>
 
 </body>
 </html>

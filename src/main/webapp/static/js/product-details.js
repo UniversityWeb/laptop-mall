@@ -47,3 +47,62 @@ function copyToClipboard() {
     document.execCommand("copy");
     alert("PRODUCT ID: " + copyText.value);
 }
+
+
+var btn = document.querySelectorAll('.button__add-cart');
+btn.forEach(item =>{
+    item.addEventListener('mouseover', ()=> {
+
+        var icon = item.querySelectorAll('.button__icon')
+        icon.forEach(i=>{
+            i.classList.add('fa-bounce');
+        })
+    });
+
+    item.addEventListener('mouseout', function() {
+        var icon = item.querySelectorAll('.button__icon')
+        icon.forEach(i=>{
+            i.classList.remove('fa-bounce');
+            i.classList.remove('fa-cart-circle-check');
+            i.classList.add('fa-cart-shopping');
+        })
+        item.style.backgroundColor = '#181818';
+    });
+    item.addEventListener('click', function() {
+        var icon = item.querySelectorAll('.button__icon')
+        icon.forEach(i=>{
+            i.classList.remove('fa-cart-shopping');
+            i.classList.add('fa-cart-circle-check');
+        })
+        item.style.backgroundColor = '#261CE9';
+
+    });
+});
+
+var resetIcon = document.getElementById('reset-icon');
+
+resetIcon.addEventListener('click', function() {
+    resetIcon.classList.add('fa-spin')
+})
+resetIcon.addEventListener('mouseout', function() {
+    resetIcon.classList.remove('fa-spin')
+})
+
+var inputElement = document.getElementById('inputMount')
+var buttonElementAdd = document.getElementById('plusBtn')
+var buttonElementMinus = document.getElementById('subBtn')
+buttonElementAdd.addEventListener('click', function () {
+    var currentValue = parseInt(inputElement.value);
+    currentValue++;
+    inputElement.value = currentValue;
+});
+buttonElementMinus.addEventListener('click', function () {
+    var currentValue = parseInt(inputElement.value);
+    if(currentValue>0){
+        currentValue--;
+    }
+    else {
+        currentValue = 0;
+    }
+    inputElement.value = currentValue;
+});
