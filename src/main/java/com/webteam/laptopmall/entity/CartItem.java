@@ -1,9 +1,13 @@
 package com.webteam.laptopmall.entity;
 
+import com.webteam.laptopmall.dto.CartItemDTO;
 import com.webteam.laptopmall.entity.prod.Product;
 import com.webteam.laptopmall.entity.user.User;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 @Entity
 @Table(name = "cart_items")

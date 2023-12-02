@@ -68,6 +68,8 @@ public class Order {
     @JoinColumn(name = "payment_id", referencedColumnName = "id")
     private Payment payment;
 
+    private String note;
+
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "order_id")
     private List<OrderItem> orderItems;
@@ -75,12 +77,24 @@ public class Order {
     public Order() {
     }
 
-    public Order(User customer, Date orderDate, String deliveryMethod, EStatus status, Payment payment) {
+    public Order(Long id, User customer, Date orderDate, String deliveryMethod, EStatus status, Payment payment, String note, List<OrderItem> orderItems) {
+        this.id = id;
         this.customer = customer;
         this.orderDate = orderDate;
         this.deliveryMethod = deliveryMethod;
         this.status = status;
         this.payment = payment;
+        this.note = note;
+        this.orderItems = orderItems;
+    }
+
+    public Order(User customer, Date orderDate, String deliveryMethod, EStatus status, Payment payment, String note) {
+        this.customer = customer;
+        this.orderDate = orderDate;
+        this.deliveryMethod = deliveryMethod;
+        this.status = status;
+        this.payment = payment;
+        this.note = note;
     }
 
     @Override
@@ -149,5 +163,13 @@ public class Order {
 
     public void setOrderItems(List<OrderItem> orderItems) {
         this.orderItems = orderItems;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 }

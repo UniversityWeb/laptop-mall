@@ -42,6 +42,13 @@ public class UserDTO {
         this.role = role;
     }
 
+    public UserDTO(String address, String email, String fullName, String phoneNo) {
+        this.address = address;
+        this.email = email;
+        this.fullName = fullName;
+        this.phoneNo = phoneNo;
+    }
+
     public Long getId() {
         return id;
     }

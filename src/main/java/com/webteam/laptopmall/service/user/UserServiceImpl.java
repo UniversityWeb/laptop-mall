@@ -6,16 +6,20 @@ import com.webteam.laptopmall.exception.UserNotFoundException;
 import com.webteam.laptopmall.mapper.UserMapper;
 import com.webteam.laptopmall.repository.login.LoginRepos;
 import com.webteam.laptopmall.repository.login.LoginReposImpl;
+import com.webteam.laptopmall.repository.user.UserRepos;
+import com.webteam.laptopmall.repository.user.UserReposImpl;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class UserServiceImpl implements UserService {
     private LoginRepos loginRepos;
+    private UserRepos userRepos;
     private UserMapper uMapper;
 
     public UserServiceImpl() {
         loginRepos = new LoginReposImpl();
+        userRepos = new UserReposImpl();
         uMapper = UserMapper.INSTANCE;
     }
 
@@ -50,5 +54,11 @@ public class UserServiceImpl implements UserService {
         return users.stream()
                 .map(uMapper::toDTO)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public UserDTO getByUsername(String username) {
+        User user = userRepos.getUserByUsername(username);
+        return uMapper.toDTO(user);
     }
 }

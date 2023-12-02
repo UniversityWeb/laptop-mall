@@ -6,6 +6,6 @@ import com.webteam.laptopmall.repository.base.BaseRepos;
 import java.util.List;
 
 public interface CartItemRepos extends BaseRepos<CartItem, Long> {
-    boolean updateQtyOnly(Long userId, int newQty);
+    boolean updateQtyOnly(Long cartItemId, int newQty);
     List<CartItem> getByUserId(Long userId);
 }

@@ -13,16 +13,10 @@ public class OrderItem {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "order_id")
-    private Order order;
-
-    @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
 
     private Integer qty;
-
-    private String note;
 
     @Column(name = "cur_price")
     private BigDecimal curPrice;
@@ -30,11 +24,16 @@ public class OrderItem {
     public OrderItem() {
     }
 
-    public OrderItem(Order order, Product product, Integer qty, String note, BigDecimal curPrice) {
-        this.order = order;
+    public OrderItem(Long id, Product product, Integer qty, BigDecimal curPrice) {
+        this.id = id;
         this.product = product;
         this.qty = qty;
-        this.note = note;
+        this.curPrice = curPrice;
+    }
+
+    public OrderItem(Product product, Integer qty, BigDecimal curPrice) {
+        this.product = product;
+        this.qty = qty;
         this.curPrice = curPrice;
     }
 
@@ -45,14 +44,6 @@ public class OrderItem {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
     }
 
     public Product getProduct() {
@@ -69,14 +60,6 @@ public class OrderItem {
 
     public void setQty(Integer qty) {
         this.qty = qty;
-    }
-
-    public String getNote() {
-        return note;
-    }
-
-    public void setNote(String note) {
-        this.note = note;
     }
 
     public BigDecimal getCurPrice() {
