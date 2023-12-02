@@ -12,16 +12,16 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
+    <title>Delivery Information</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0">
     <link rel="stylesheet" href="<c:url value="/static/css/cart.css"/>">
-    <link rel="stylesheet" href="<c:url value="/static/css/shipping-infor.css"/>">
+    <link rel="stylesheet" href="<c:url value="/static/css/delivery-infor.css"/>">
 </head>
 <body class="column">
 <header class="row center">
     <div class="back_to_shop left">
-        <form action="cart" method="post" class="center">
+        <form action="home-page" method="post" class="center">
             <input type="hidden" name="action" value="Return Home">
             <button class="back_to_shop row left">
                 <ion-icon name="chevron-back-outline"></ion-icon>
@@ -31,13 +31,7 @@
     </div>
     <h2>LaptopMall</h2>
     <div class="contact_shop right">
-        <form action="cart" method="post" class="center">
-            <input type="hidden" name="action" value="Contact">
-            <button>
-                <span> Contact </span>
-                <ion-icon name="call-outline"></ion-icon>
-            </button>
-        </form>
+        &nbsp;
     </div>
 </header>
 <section class="column center">
@@ -70,8 +64,8 @@
                     <p class="information_deliver-label-text"> Email </p>
                 </div>
                 <h1> Delivery Information Details: </h1>
-                <c:if test="${message != ''}">
-                    <p><i style="color: red">${message}</i></p>
+                <c:if test="${param.error == 'True'}">
+                    <p><i style="color: red; font-size: 0.9em;">Please choose delivery method</i></p>
                 </c:if>
                 <div class="information_deliver-method row">
                     <div class="information_deliver-input row left">
@@ -89,8 +83,8 @@
                         <p class="information_deliver-label-text"> Full Name </p>
                     </div>
                     <div class="information_deliver-input column">
-                        <input class="information_deliver-text" type="text" name="gender" value="${order.customer.gender}" placeholder=" " readonly>
-                        <p class="information_deliver-label-text"> Gender </p>
+                        <input class="information_deliver-text" type="tel" name="phoneNo" value="${order.customer.phoneNo}" placeholder=" " readonly>
+                        <p class="information_deliver-label-text"> Contact Number* </p>
                     </div>
 <%--                    <div class="information_deliver-input column">--%>
 <%--                        <select class="information_deliver-text" name="gender" required>--%>
@@ -102,17 +96,17 @@
 <%--                    </div>--%>
                 </div>
 
-                <div class="information_deliver-line row">
-                    <div class="information_deliver-input column">
-                        <input class="information_deliver-text" type="tel" name="phoneNo" value="${order.customer.phoneNo}" placeholder=" " readonly>
-                        <p class="information_deliver-label-text"> Contact Number* </p>
-                    </div>
-                    <div class="information_deliver-input column">
-                        &nbsp;
-                    </div>
-                </div>
+<%--                <div class="information_deliver-line row">--%>
+<%--                    <div class="information_deliver-input column">--%>
+<%--                        <input class="information_deliver-text" type="tel" name="phoneNo" value="${order.customer.phoneNo}" placeholder=" " readonly>--%>
+<%--                        <p class="information_deliver-label-text"> Contact Number* </p>--%>
+<%--                    </div>--%>
+<%--                    <div class="information_deliver-input column">--%>
+<%--                        &nbsp;--%>
+<%--                    </div>--%>
+<%--                </div>--%>
                 <div class="information_deliver-only-line">
-                    <input class="information_deliver-text" name="address" value="${order.customer.address}" placeholder=" " style="width: 700px;" readonly>
+                    <input class="information_deliver-text" name="address" value="${order.customer.address}" placeholder=" " style="width: 730px;" readonly>
                     <p class="information_deliver-label-text" style="width: 710px;"> Address </p>
                 </div>
                 <p>Notes upon receiving</p>
@@ -182,7 +176,7 @@
 <footer class="center">
     <p>&copy; Copyright 2023</p>
 </footer>
-<script src="<c:url value="/static/js/shipping-infor.js"/>" async defer></script>
+<script src="<c:url value="/static/js/cart.js"/>" async defer></script>
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>

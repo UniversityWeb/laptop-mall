@@ -13,22 +13,22 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/information")
-public class ShippingInforServlet extends HttpServlet {
+@WebServlet("/delivery-infor")
+public class DeliveryInforServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         super.init();
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
         resp.setContentType("text/html");
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
 
-        String url = "/WEB-INF/views/cart/shipping-infor.jsp";
+        String url = "/WEB-INF/views/cart/delivery-infor.jsp";
 
         HttpSession session = req.getSession();
         List<CartItemDTO> cart = (List<CartItemDTO>) session.getAttribute("cart");
@@ -45,8 +45,8 @@ public class ShippingInforServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        doGet(req, resp);
+        doPost(req, resp);
     }
 }

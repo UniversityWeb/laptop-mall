@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
+    <title>Success Delivery</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0">
     <link rel="stylesheet" href="<c:url value="/static/css/cart.css"/>">
@@ -15,7 +15,7 @@
 <body class="column">
 <header class="row center">
     <div class="back_to_shop left">
-        <form action="cart" method="post" class="center">
+        <form action="home-page" method="post" class="center">
             <input type="hidden" name="action" value="Return Home">
             <button class="back_to_shop row left">
                 <ion-icon name="chevron-back-outline"></ion-icon>
@@ -25,13 +25,7 @@
     </div>
     <h2>LaptopMall</h2>
     <div class="contact_shop right">
-        <form action="cart" method="post" class="center">
-            <input type="hidden" name="action" value="Contact">
-            <button>
-                <span> Contact </span>
-                <ion-icon name="call-outline"></ion-icon>
-            </button>
-        </form>
+        &nbsp;&nbsp;
     </div>
 </header>
 <section class="column center">

@@ -2,6 +2,7 @@ package com.webteam.laptopmall.servlet.cart;
 
 import com.webteam.laptopmall.dto.CartItemDTO;
 import com.webteam.laptopmall.dto.UserDTO;
+import com.webteam.laptopmall.repository.cartitem.CartItemRepos;
 import com.webteam.laptopmall.service.cart.CartService;
 import com.webteam.laptopmall.service.cart.CartServiceImpl;
 import com.webteam.laptopmall.service.user.UserService;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -43,6 +45,7 @@ public class CartServlet extends HttpServlet {
         String message = "";
 
         HttpSession session = req.getSession();
+
         UserDTO user = (UserDTO) session.getAttribute("user");
         UserDTO customer = userService.getByUsername(user.getUsername());
         List<CartItemDTO> cart = cartService.getCartByUserId(customer.getId());
@@ -65,8 +68,6 @@ public class CartServlet extends HttpServlet {
             session.setAttribute("customer", customer);
             session.setAttribute("cart", cart);
         }
-
-        req.setAttribute("message", message);
         getServletContext().getRequestDispatcher(url).forward(req, resp);
     }
 

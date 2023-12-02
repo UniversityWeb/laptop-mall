@@ -5,32 +5,26 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
+    <title>Payment Method</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0">
     <link rel="stylesheet" href="<c:url value="/static/css/cart.css"/>">
-    <link rel="stylesheet" href="<c:url value="/static/css/method-delivery.css"/>">
+    <link rel="stylesheet" href="<c:url value="/static/css/payment-method.css"/>">
 </head>
 <body class="column">
 <header class="row center">
     <div class="back_to_shop left">
-        <form action="cart" method="post" class="center">
+        <form action="home-page" method="post" class="center">
             <input type="hidden" name="action" value="Return Home">
-            <button class="back_to_shop row left">
+            <button class="back_to_shop row left" style="pointer-events: all">
                 <ion-icon name="chevron-back-outline"></ion-icon>
-                <span> Back To Shop </span>
+                <span> Method Delivery </span>
             </button>
         </form>
     </div>
     <h2>LaptopMall</h2>
     <div class="contact_shop right">
-        <form action="cart" method="post" class="center">
-            <input type="hidden" name="action" value="Contact">
-            <button>
-                <span> Contact </span>
-                <ion-icon name="call-outline"></ion-icon>
-            </button>
-        </form>
+        &nbsp;
     </div>
 </header>
 <section class="column center">
@@ -67,30 +61,23 @@
             </div>
             <hr>
             <h1>Payment Method:</h1>
-            <c:if test="${message != ''}">
-                <p><i style="color: red">${message}</i></p>
+            <c:if test="${param.error == 'True'}">
+                <p><i style="color: red; font-size: 1.1em">Please choose payment method!</i></p>
             </c:if>
-            <div class="payment_method row" onclick="showPayment('cash_payment')">
-                <p>Cash Payment</p>
-                <ion-icon name="chevron-down-outline"></ion-icon>
-            </div>
-            <div class="cash_payment payment_method-content">
-                <input type="checkbox" class="check_box_policy" name="acceptPolicy" required> I agree to the policies and terms.
-            </div>
-            <div class="payment_method row" onclick="showPayment('momo_payment')">
-                <p>MOMO Payment</p>
-                <ion-icon name="chevron-down-outline"></ion-icon>
-            </div>
-            <div class="momo_payment payment_method-content">
-                <img src="#" alt="Mã QR thanh toán">
-            </div>
-            <div class="payment_method row" onclick="showPayment('vnpay_payment')">
-                <p>VNPAY Payment</p>
-                <ion-icon name="chevron-down-outline"></ion-icon>
-            </div>
-            <div class="vnpay_payment payment_method-content">
-                <img src="#" alt="Mã QR thanh toán">
-            </div>
+            <form class="payment-method row" id="form-method" action="payment" method="post">
+                <div class="payment-method-input row left">
+                    <input type="radio" name="paymentMethod" value="CASH_ON_DELIVERY">
+                    <p>Cash Payment</p>
+                </div>
+                <div class="payment-method-input row left">
+                    <input type="radio" name="paymentMethod" value="MOMO">
+                    <p>MOMO Payment</p>
+                </div>
+                <div class="payment-method-input row left">
+                    <input type="radio" name="paymentMethod" value="VN_PAY">
+                    <p>VNPAY payment</p>
+                </div>
+            </form>
         </div>
         <div class="content_right">
             <div class="content_right-container">
@@ -152,13 +139,9 @@
                     </div>
                 </div>
                 <hr>
-                <form action="payment" method="post" class="full center">
-                    <input type="hidden" name="action" value="Success Payment">
-                    <input type="hidden" name="paymentMethod">
-                    <button class="button_payment">Payment</button>
-                </form>
+                <button class="button_payment full" onclick="submitForm('form-method')">Payment</button>
 
-                <form action="information" method="post" class="full center">
+                <form action="check-infor-delivery" method="post" class="full center">
                     <input type="hidden" name="action" value="Shipping Information">
                     <button class="button_return">Return</button>
                 </form>
@@ -169,7 +152,7 @@
 <footer class="center">
     <p>&copy; Copyright 2023</p>
 </footer>
-<script src="<c:url value="/static/js/method-delivery.js"/>" async defer></script>
+<script src="<c:url value="/static/js/cart.js"/>" async defer></script>
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>

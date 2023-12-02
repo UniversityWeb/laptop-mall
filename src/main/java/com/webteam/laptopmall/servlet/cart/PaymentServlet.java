@@ -29,7 +29,7 @@ public class PaymentServlet extends HttpServlet {
 
     private static final Logger logger = Logger.getLogger(PaymentServlet.class.getName());
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         resp.setContentType("text/html");
         req.setCharacterEncoding("UTF-8");
@@ -43,10 +43,10 @@ public class PaymentServlet extends HttpServlet {
         List<CartItemDTO> cart = (List<CartItemDTO>) session.getAttribute("cart");
         String paymentMethod = req.getParameter("paymentMethod");
 
-        if(paymentMethod.isEmpty() || paymentMethod.equals("")){
+        if(paymentMethod == null){
             message = "Please choose delivery method!";
             logger.info("Delivery method is empty");
-            url = "/WEB-INF/views/cart/method-delivery.jsp";
+            url = "/payment-method?error=True";
         }
         else{
             orderService.setOrderItemByCart(order, cart);
@@ -54,14 +54,7 @@ public class PaymentServlet extends HttpServlet {
             order.setPayment(new Payment(Payment.EMethod.valueOf(paymentMethod), Payment.EStatus.PENDING));
         }
 
-        req.setAttribute("message", message);
         session.setAttribute("order", order);
-        getServletContext().getRequestDispatcher(url).forward(req, resp);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
-        doGet(req, resp);
+        resp.sendRedirect(req.getContextPath() + url);
     }
 }

@@ -23,7 +23,7 @@ public class SendVoiceServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         resp.setContentType("text/html");
         req.setCharacterEncoding("UTF-8");
@@ -51,11 +51,5 @@ public class SendVoiceServlet extends HttpServlet {
             url = "/method-delivery";
         }
         resp.sendRedirect(getServletContext().getContextPath() + url);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
-        doGet(req, resp);
     }
 }

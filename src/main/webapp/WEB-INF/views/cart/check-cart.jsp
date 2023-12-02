@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Your Shopping Cart</title>
+    <title>Your Cart</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0">
     <link rel="stylesheet" href="<c:url value="/static/css/cart.css"/>">
@@ -12,8 +12,8 @@
 </head>
 <body class="column">
 <header class="row center">
-    <div class="back_to_shop left">
-        <form action="cart" method="post" class="center">
+    <div class="back_to_shop left" style="margin-top: 15px">
+        <form action="home-page" method="post" class="center">
             <input type="hidden" name="action" value="Return Home">
             <button class="back_to_shop row left">
                 <ion-icon name="chevron-back-outline"></ion-icon>
@@ -23,13 +23,7 @@
     </div>
     <h2>LaptopMall</h2>
     <div class="contact_shop right">
-        <form action="cart" method="post" class="center">
-            <input type="hidden" name="action" value="Contact">
-            <button>
-                <span> Contact </span>
-                <ion-icon name="call-outline"></ion-icon>
-            </button>
-        </form>
+        &nbsp;
     </div>
 </header>
 <section class="column center">
@@ -58,7 +52,6 @@
             <div class="product_list full">
                 <div class="your_cart full left row">
                     <h3 class="your_cart-title">Your Cart</h3>&nbsp;
-<%--                    x là tổng số sản phẩm có trong giỏ hàng--%>
                     <span class="your_cart-number">(${qtyItems} items)</span>
                 </div>
                 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -75,7 +68,6 @@
                         <tbody class="row">
                         <tr class="product_details-left column">
                             <td class="product_details-title left">
-<%--                                Đường link dẫn đến sản phẩm--%>
                                 <a href="#">
                                     <strong>${item.product.model}</strong>
                                 </a>
@@ -189,7 +181,7 @@
                     </div>
                 </div>
                 <hr>
-                <form action="information" method="post" class="full center">
+                <form action="delivery-infor" method="post" class="full center">
                     <button class="button_payment">Payment</button>
                 </form>
             </div>

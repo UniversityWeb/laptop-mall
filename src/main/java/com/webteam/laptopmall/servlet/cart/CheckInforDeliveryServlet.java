@@ -21,14 +21,13 @@ public class CheckInforDeliveryServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         resp.setContentType("text/html");
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
 
-        String url = "/method-delivery";
-        String message = "";
+        String url = "/payment-method";
 
         HttpSession session = req.getSession();
         OrderDTO order = (OrderDTO) session.getAttribute("order");
@@ -39,20 +38,12 @@ public class CheckInforDeliveryServlet extends HttpServlet {
         order.setDeliveryMethod(deliveryMethod);
         order.setNote(note);
 
-        if(order.getDeliveryMethod().equals("") || order.getDeliveryMethod().equals(null)){
-            message = "Please choose delivery method";
+        if(order.getDeliveryMethod() == null){
             logger.severe("Delivery is empty");
-            url = "/WEB-INF/views/cart/shipping-infor.jsp";
+            url = "/delivery-infor?error=True";
         }
 
-        req.setAttribute("message", message);
         session.setAttribute("order", order);
-        getServletContext().getRequestDispatcher(url).forward(req, resp);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
-        doGet(req, resp);
+        resp.sendRedirect(req.getContextPath() + url);
     }
 }
