@@ -1,11 +1,11 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%><html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <title>${prod.model}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="https://site-/statics.fontawesome.com/releases/v6.4.2/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="<c:url value="/static/css/product-details.css"/>">
     <link rel="stylesheet" href="<c:url value="/static/css/base.css"/>">
 </head>
@@ -28,18 +28,19 @@
             <section class="prod_img-content">
                 <ul class="prod_img-list">
 
+                    <c:url value=""/>
                     <li class="prod_img-item">
-                        <img src="/static/images/headphone-white.png" alt="item">
+                        <img src="<c:url value="/static/images/headphone-white.png"/>" alt="item">
                     </li>
 
                     <li class="prod_img-item">
-                        <img src="/static/images/headphone-white.png" alt="item">
+                        <img src="<c:url value="/static/images/headphone-white.png"/>" alt="item">
                     </li>
                     <li class="prod_img-item">
-                        <img src="/static/images/headphone-white.png" alt="item">
+                        <img src="<c:url value="/static/images/headphone-white.png"/>" alt="item">
                     </li>
                     <li class="prod_img-item">
-                        <img src="/static/images/headphone-white.png" alt="item">
+                        <img src="<c:url value="/static/images/headphone-white.png"/>" alt="item">
                     </li>
                 </ul>
                 <div  class="prod_img-full">
@@ -237,7 +238,10 @@
 
 </footer>
 
-<script src="/static/js/product-details.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="<c:url value="/static/js/product-details.js"/>"></script>
+<%--<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js"--%>
+<%--        integrity="sha512-Ysw1DcK1P+uYLqprEAzNQJP+J4hTx4t/3X2nbVwszao8wD+9afLjBQYjz7Uk4ADP+Er++mJoScI42ueGtQOzEA=="--%>
+<%--        crossorigin="anonymous" referrerpolicy="no-referrer"></script>--%>
+
 </body>
 </html>
