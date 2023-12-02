@@ -27,33 +27,30 @@
         <h1>Ordered</h1>
         <hr>
     </div>
-    <form class="history-menu row center">
-        <button name="tab" value="1" class="history-menu-choose column center">
-            <p>All</p>
+    <form class="history-menu row center" action="filter-order" method="get">
+        button name="tab" value="ALL" class="history-menu-choose column center">
+        <p>All</p>
         </button>
-        <button name="tab" value="2" class="history-menu-choose column center">
+        <button name="tab" value="PENDING" class="history-menu-choose column center">
             <p>Pending</p>
         </button>
-        <button name="tab" value="3" class="history-menu-choose column center">
+        <button name="tab" value="PROCESSING" class="history-menu-choose column center">
             <p>Processing</p>
         </button>
-        <button name="tab" value="4" class="history-menu-choose column center">
+        <button name="tab" value="SHIPPED" class="history-menu-choose column center">
             <p>Shipped</p>
         </button>
-        <button name="tab" value="5" class="history-menu-choose column center">
-            <p>Dilivered</p>
+        <button name="tab" value="DELIVERED" class="history-menu-choose column center">
+            <p>Delivered</p>
         </button>
-        <button name="tab" value="6" class="history-menu-choose column center">
-            <p>Canccelled</p>
+        <button name="tab" value="CANCELLED" class="history-menu-choose column center">
+            <p>Cancelled</p>
         </button>
-        <button name="tab" value="7" class="history-menu-choose column center">
+        <button name="tab" value="RETURNED" class="history-menu-choose column center">
             <p>Returned</p>
         </button>
-        <button name="tab" value="8" class="history-menu-choose column center">
+        <button name="tab" value="REFUNDED" class="history-menu-choose column center">
             <p>Refunded</p>
-        </button>
-        <button name="tab" value="9" class="history-menu-choose column center">
-            <p>Completed</p>
         </button>
     </form>
     <div class="history-search column center">
@@ -115,11 +112,18 @@
                         <div class="product_history-controls-left row">
                             <p>Completed</p>
                         </div>
-                        <form class="product_history-controls-right row">
-                            <button class="button-return">Rebuy</button>
-                            <button class="button-return">Return</button>
-                            <button class="button-contact">Contact</button>
-                            <button class="button-details">Details</button>
+                        <form class="product_history-controls-right row" id="controlForm" method="get">
+                            <input type="hidden" name="orderId" value="${item.id}">
+                            <c:if test="${item.status == 'PENDING'}">
+                                <button class="button-cancel" name="status" value="CANCELLED" onclick="submitFormWithAction('change-order-status')">Cancel</button>
+                            </c:if>
+                            <c:if test="${item.status == 'SHIPPED'}">
+                                <button class="button-return" name="status" value="RETURNED" onclick="submitFormWithAction('change-order-status')">Return</button>
+                            </c:if>
+                            <c:if test="${item.status == 'SHIPPED'}">
+                                <button class="button-deliver" name="status" value="DELIVERED" onclick="submitFormWithAction('change-order-status')">Deliver</button>
+                            </c:if>
+                            <button class="button-details" onclick="submitControlForm('order-details')">Details</button>
                         </form>
                     </div>
                 </div>

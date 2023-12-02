@@ -27,33 +27,30 @@
         <h1>Ordered</h1>
         <hr>
     </div>
-    <form class="history-menu row center">
-        <button name="tab" value="1" class="history-menu-choose column center">
+    <form class="history-menu row center" action="filter-order" method="get">
+        <button name="tab" value="ALL" class="history-menu-choose column center">
             <p>All</p>
         </button>
-        <button name="tab" value="2" class="history-menu-choose column center">
+        <button name="tab" value="PENDING" class="history-menu-choose column center">
             <p>Pending</p>
         </button>
-        <button name="tab" value="3" class="history-menu-choose column center">
+        <button name="tab" value="PROCESSING" class="history-menu-choose column center">
             <p>Processing</p>
         </button>
-        <button name="tab" value="4" class="history-menu-choose column center">
+        <button name="tab" value="SHIPPED" class="history-menu-choose column center">
             <p>Shipped</p>
         </button>
-        <button name="tab" value="5" class="history-menu-choose column center">
-            <p>Dilivered</p>
+        <button name="tab" value="DELIVERED" class="history-menu-choose column center">
+            <p>Delivered</p>
         </button>
-        <button name="tab" value="6" class="history-menu-choose column center">
-            <p>Canccelled</p>
+        <button name="tab" value="CANCELLED" class="history-menu-choose column center">
+            <p>Cancelled</p>
         </button>
-        <button name="tab" value="7" class="history-menu-choose column center">
+        <button name="tab" value="RETURNED" class="history-menu-choose column center">
             <p>Returned</p>
         </button>
-        <button name="tab" value="8" class="history-menu-choose column center">
+        <button name="tab" value="REFUNDED" class="history-menu-choose column center">
             <p>Refunded</p>
-        </button>
-        <button name="tab" value="9" class="history-menu-choose column center">
-            <p>Completed</p>
         </button>
     </form>
     <div class="history-search column center">

@@ -27,33 +27,30 @@
         <h1>Ordered</h1>
         <hr>
     </div>
-    <form class="history-menu row center">
-        <button name="tab" value="1" class="history-menu-choose column center">
-            <p>All</p>
+    <form class="history-menu row center" action="filter-order" method="get">
+        button name="tab" value="ALL" class="history-menu-choose column center">
+        <p>All</p>
         </button>
-        <button name="tab" value="2" class="history-menu-choose column center">
+        <button name="tab" value="PENDING" class="history-menu-choose column center">
             <p>Pending</p>
         </button>
-        <button name="tab" value="3" class="history-menu-choose column center">
+        <button name="tab" value="PROCESSING" class="history-menu-choose column center">
             <p>Processing</p>
         </button>
-        <button name="tab" value="4" class="history-menu-choose column center">
+        <button name="tab" value="SHIPPED" class="history-menu-choose column center">
             <p>Shipped</p>
         </button>
-        <button name="tab" value="5" class="history-menu-choose column center">
-            <p>Dilivered</p>
+        <button name="tab" value="DELIVERED" class="history-menu-choose column center">
+            <p>Delivered</p>
         </button>
-        <button name="tab" value="6" class="history-menu-choose column center">
-            <p>Canccelled</p>
+        <button name="tab" value="CANCELLED" class="history-menu-choose column center">
+            <p>Cancelled</p>
         </button>
-        <button name="tab" value="7" class="history-menu-choose column center">
+        <button name="tab" value="RETURNED" class="history-menu-choose column center">
             <p>Returned</p>
         </button>
-        <button name="tab" value="8" class="history-menu-choose column center">
+        <button name="tab" value="REFUNDED" class="history-menu-choose column center">
             <p>Refunded</p>
-        </button>
-        <button name="tab" value="9" class="history-menu-choose column center">
-            <p>Completed</p>
         </button>
     </form>
     <div class="history_details-header row center">
@@ -71,7 +68,7 @@
             <p>&nbsp;|&nbsp;</p>
             <div class="history_details-order-status row">
                 <p>ORDER STATUS:&nbsp;</p>
-                <p>${order.statusName}</p>
+                <p>${order.status}</p>
             </div>
         </div>
     </div>
@@ -82,38 +79,49 @@
             <div class="history_details-information column">
                 <div class="history_details-information-line row center">
                     <label>Full Name</label>
-                    <p>: ${order.customer.fullName}</p>
+                    <p>: ${orderHistory.customer.fullName}</p>
                 </div>
                 <div class="history_details-information-line row center">
                     <label>Phone Number</label>
-                    <p>: ${order.customer.phoneNo}</p>
+                    <p>: ${orderHistory.customer.phoneNo}</p>
                 </div>
                 <div class="history_details-information-line row center">
                     <label>Address</label>
-                    <p>: ${order.customer.address}</p>
+                    <p>: ${orderHistory.customer.address}</p>
                 </div>
                 <div class="history_details-information-line row center">
                     <label>Delivery Method</label>
-                    <p>: ${order.customer.deliveryMethod}</p>
+                    <p>: ${orderHistory.customer.deliveryMethod}</p>
                 </div>
             </div>
             <hr>
-            <ul class="order-process row center">
+            <ul class="order-process row center" id="order-process-container"  order-status="${order.status}" payment-status="${order.payment.status}">
                 <li class="order-step column center">
-                    <span class="order_step-icon center"><ion-icon name="reader-outline"></ion-icon></span>
+                    <span class="order_step-icon center" id="odered-status"><ion-icon name="reader-outline"></ion-icon></span>
                     <span class="order_step-title">Ordered</span>
                 </li>
-                <li class="order_step column center">
-                    <span class="order_step-icon center"><ion-icon name="checkmark-circle-outline"></ion-icon></span>
-                    <span class="order_step-title">Order Confirmed</span>
-                </li>
-                <li class="order_step column center">
-                    <span class="order_step-icon center"><ion-icon name="card-outline"></ion-icon></span>
+                <li class="order_step column center" id="payment-status">
+                    <span class="order_step-icon center"><ion-icon name="logo-usd"></ion-icon></span>
                     <span class="order_step-title">Paid</span>
                 </li>
-                <li class="order_step column center">
-                    <span class="order_step-icon center"><ion-icon name="download-outline"></ion-icon></span>
-                    <span class="order_step-title">Completed</span>
+                <li class="order_step column center" id="shipping-status">
+                    <span class="order_step-icon center"><ion-icon name="bag-check-outline"></ion-icon></span>
+                    <span class="order_step-title">Shipped</span>
+                </li>
+
+                <li class="order_step column center" id="result-status">
+                    <c:if test="${item.status != 'CANCELLED' and item.status != 'RETURNED'}">
+                        <span class="order_step-icon center"><ion-icon name="download-outline"></ion-icon></span>
+                        <span class="order_step-title">Delivered</span>
+                    </c:if>
+                    <c:if test="${item.status == 'CANCELLED'}">
+                        <span class="order_step-icon center"><ion-icon name="sync-outline"></ion-icon></span>
+                        <span class="order_step-title">Cancelled</span>
+                    </c:if>
+                    <c:if test="${item.status == 'RETURNED'}">
+                        <span class="order_step-icon center"><ion-icon name="sync-outline"></ion-icon></span>
+                        <span class="order_step-title">Returned</span>
+                    </c:if>
                 </li>
             </ul>
         </div>
@@ -122,7 +130,7 @@
     <div class="history_cart center column">
         <div class="product_list">
 
-            <c:forEach var="item" items="${order.orderItems}">
+            <c:forEach var="item" items="${orderHistory.orderItems}">
             <div class="product_item row center">
                 <table class="product_details">
                     <tr>
@@ -144,7 +152,7 @@
                     </tr>
                     <tr class="product_details-right column">
                         <td class="product_details-price">
-                            <span><strong>${item.subTotal}</strong></span>
+                            <span><strong>${item.currPrice}</strong></span>
                         </td>
                         <td class="product_details-price-text right">
                             <span><del>${item.product.price}</del></span>
@@ -160,15 +168,11 @@
                 <table>
                     <tr>
                         <td class="history_cart-summary-left">Order Total</td>
-                        <td class="history_cart-summary-right">13.989.800đ</td>
+                        <td class="history_cart-summary-right"><del>13.989.800đ</del></td>
                     </tr>
                     <tr>
                         <td class="history_cart-summary-left">Ship COD</td>
                         <td class="history_cart-summary-right">Free</td>
-                    </tr>
-                    <tr>
-                        <td class="history_cart-summary-left">Discount</td>
-                        <td class="history_cart-summary-right">3.000.000đ</td>
                     </tr>
                     <tr>
                         <td class="history_cart-summary-left">Order total before discount</td>
@@ -176,7 +180,7 @@
                     </tr>
                     <tr>
                         <td class="history_cart-summary-left">Payment Method</td>
-                        <td class="history_cart-summary-right">${order.payment.method}</td>
+                        <td class="history_cart-summary-right">${order.payment.paymentMethod}</td>
                     </tr>
                 </table>
             </div>
