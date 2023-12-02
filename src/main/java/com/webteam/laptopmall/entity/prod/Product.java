@@ -9,9 +9,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "products",uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"model", "version", "price", "color", "stock_qty", "discount_percent"})
-})
+@Table(name = "products")
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Product {
     @Id

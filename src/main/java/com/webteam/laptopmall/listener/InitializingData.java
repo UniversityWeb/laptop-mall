@@ -41,29 +41,71 @@ public class InitializingData  implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        cartItemRepos = new CartItemReposImpl();
-        prodRepos = new ProdReposImpl();
-        userRepos = new UserReposImpl();
-        loginService = new LoginServiceImpl();
+        init();
+
+        deleteAll();
 
         List<User> savedUsers =  initUser();
         List<Product> savedProducts =  initProduct();
         List<CartItem> savedCartItems =  initCartItem(savedUsers, savedProducts);
     }
 
+    private void init() {
+        cartItemRepos = new CartItemReposImpl();
+        prodRepos = new ProdReposImpl();
+        userRepos = new UserReposImpl();
+        loginService = new LoginServiceImpl();
+    }
+
+    private void deleteAll() {
+        int deleteCartItems = cartItemRepos.deleteAll();
+        int deleteProds = prodRepos.deleteAll();
+        int deleteUsers = userRepos.deleteAll();
+    }
+
     private List<CartItem> initCartItem(List<User> savedUsers, List<Product> savedProducts) {
-        return new ArrayList<>();
+
+        User customer = userRepos.getUserByUsername( savedUsers.get(0).getUsername() );
+        CartItem cartItem = new CartItem(4, customer, savedProducts.get(0));
+        CartItem cartItem2 = new CartItem(2, customer, savedProducts.get(1));
+        CartItem cartItem3 = new CartItem(1, customer, savedProducts.get(2));
+
+
+        User customer2 = userRepos.getUserByUsername( savedUsers.get(1).getUsername() );
+        CartItem cartItem4 = new CartItem(2, customer2, savedProducts.get(3));
+        CartItem cartItem5 = new CartItem(8, customer2, savedProducts.get(4));
+        CartItem cartItem6 = new CartItem(4, customer2, savedProducts.get(5));
+
+        List<CartItem> cartItems = new ArrayList<>();
+        cartItems.add(cartItem);
+        cartItems.add(cartItem2);
+        cartItems.add(cartItem3);
+        cartItems.add(cartItem4);
+        cartItems.add(cartItem5);
+        cartItems.add(cartItem6);
+
+        List<CartItem> savedCartItems = new ArrayList<>();
+        cartItems.forEach(ci -> {
+            CartItem savedCartItem = cartItemRepos.save(ci);
+            savedCartItems.add(savedCartItem);
+        });
+
+        return savedCartItems;
     }
 
     private List<Product> initProduct() {
-        List<Product> products = new ArrayList<>();
-        products.addAll(buildLaptops());
-        products.addAll(buildKeyboards());
-        products.addAll(builMonitors());
+        List<Product> prods = new ArrayList<>();
+        prods.addAll(buildLaptops());
+        prods.addAll(buildKeyboards());
+        prods.addAll(buildMonitors());
 
-        products.forEach(prodRepos::save);
+        List<Product> savedProds = new ArrayList<>();
+        prods.forEach(p -> {
+            Product saveProd = prodRepos.save(p);
+            savedProds.add(saveProd);
+        });
 
-        return products;
+        return savedProds;
     }
 
     private List<Laptop> buildLaptops() {
@@ -94,7 +136,6 @@ public class InitializingData  implements ServletContextListener {
                 .weight(2.3)
                 .material("Aluminum")
                 .operatingSystem(Laptop.EOS.WINDOWS)
-                .id(1L)
                 .brand("HP")
                 .model("Pavilion")
                 .desc("Powerful and stylish laptop for everyday use")
@@ -114,7 +155,7 @@ public class InitializingData  implements ServletContextListener {
                 .cpuMaxSpeed(4.0)
                 .cpuCache(8)
                 .ramSize(16)
-                .ramType(Laptop.ERam.DDR4)
+                .ramType(Laptop.ERam.DDR3)
                 .ramBusSpeed(3200)
                 .ramMaxSupport(32)
                 .romType(Laptop.ERom.SSD)
@@ -129,7 +170,6 @@ public class InitializingData  implements ServletContextListener {
                 .weight(2.3)
                 .material("Aluminum")
                 .operatingSystem(Laptop.EOS.LINUX)
-                .id(1L)
                 .brand("Dell")
                 .model("Pavilion")
                 .desc("Powerful and stylish laptop for everyday use")
@@ -172,7 +212,6 @@ public class InitializingData  implements ServletContextListener {
                 .keyCount(104)
                 .keycapMaterial("ABS")
                 .batteryType("AA")
-                .id(1L)
                 .brand("BrandName")
                 .model("Model123")
                 .desc("Description of the keyboard")
@@ -195,7 +234,6 @@ public class InitializingData  implements ServletContextListener {
                 .keyCount(104)
                 .keycapMaterial("ABS")
                 .batteryType("AA")
-                .id(1L)
                 .brand("BrandName")
                 .model("Model123")
                 .desc("Description of the keyboard")
@@ -214,7 +252,7 @@ public class InitializingData  implements ServletContextListener {
         return mechanicalKeyboards;
     }
 
-    private List<Monitor> builMonitors() {
+    private List<Monitor> buildMonitors() {
         Set<Monitor.EConnection> connections = new HashSet<>();
         connections.add(Monitor.EConnection.HDMI);
         connections.add(Monitor.EConnection.USB_C);
@@ -236,7 +274,6 @@ public class InitializingData  implements ServletContextListener {
                 .powerConsumption(50.5)
                 .weight(7.2)
                 .connections(connections)
-                .id(1L)
                 .brand("BrandName")
                 .model("Model123")
                 .desc("Description of the monitor")
@@ -262,7 +299,6 @@ public class InitializingData  implements ServletContextListener {
                 .powerConsumption(50.5)
                 .weight(7.2)
                 .connections(connections)
-                .id(1L)
                 .brand("BrandName")
                 .model("Model123")
                 .desc("Description of the monitor")
@@ -285,11 +321,16 @@ public class InitializingData  implements ServletContextListener {
         List<User> users = new ArrayList<>();
 
         final String hashedPass =  loginService.hashPass("123456");
-        User user1 = new User("HCM", "nguyenvana0606@gmail.com", "Nguyễn Văn A", EGender.MALE, "0123456789", "vana0505", hashedPass, User.ERole.CUSTOMER);
-        User user2 = new User("Hà Nội", "nguyenvanb0505@gmail.com", "Lê Hoàng Giang", EGender.MALE, "0123456788", "vanb0606", hashedPass, User.ERole.CUSTOMER);
-        User user3 = new User("Đà Nẵng", "nguyenvanc0707@gmail.com", "Hà Hồ", EGender.FEMALE, "0123456787", "vanc0707", hashedPass, User.ERole.CUSTOMER);
-        User user4 = new User("Quảng Ninh", "nguyenvand0808@gmail.com", "Nguyễn Trường An", EGender.MALE, "0123456786", "vand0808", hashedPass, User.ERole.SALESPERSON);
-        User user5 = new User("Cần Thơ", "nguyenvan0909e@gmail.com", "Trần Văn An", EGender.MALE, "0123456785", "vane0909", hashedPass, User.ERole.SALESPERSON);
+        User user1 = new User("HCM", "nguyenvana0606@gmail.com", "Nguyễn Văn A",
+                EGender.MALE, "0123456789", "vana0505", hashedPass, User.ERole.CUSTOMER);
+        User user2 = new User("Hà Nội", "nguyenvanb0505@gmail.com", "Lê Hoàng Giang",
+                EGender.MALE, "0123456788", "vanb0606", hashedPass, User.ERole.CUSTOMER);
+        User user3 = new User("Đà Nẵng", "nguyenvanc0707@gmail.com", "Hà Hồ",
+                EGender.FEMALE, "0123456787", "vanc0707", hashedPass, User.ERole.CUSTOMER);
+        User user4 = new User("Quảng Ninh", "nguyenvand0808@gmail.com", "Nguyễn Trường An",
+                EGender.MALE, "0123456786", "vand0808", hashedPass, User.ERole.SALESPERSON);
+        User user5 = new User("Cần Thơ", "nguyenvan0909e@gmail.com", "Trần Văn An",
+                EGender.MALE, "0123456785", "vane0909", hashedPass, User.ERole.SALESPERSON);
 
         users.add(user1);
         users.add(user2);
@@ -297,8 +338,12 @@ public class InitializingData  implements ServletContextListener {
         users.add(user4);
         users.add(user5);
 
-        users.forEach(userRepos::save);
+        List<User> savesUsers = new ArrayList<>();
+        users.forEach(u -> {
+            User savedUser = userRepos.save(u);
+            savesUsers.add(savedUser);
+        });
 
-        return users;
+        return savesUsers;
     }
 }

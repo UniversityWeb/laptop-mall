@@ -6,12 +6,14 @@ import com.webteam.laptopmall.repository.base.BaseReposImpl;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
+import javax.persistence.Query;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ProdReposImpl extends BaseReposImpl<Product, Long> implements ProdRepos {
 
-    private final Logger log = Logger.getLogger(ProdReposImpl.class.getName());
+    private static final Logger log = Logger.getLogger(ProdReposImpl.class.getName());
 
     public ProdReposImpl() {
         super();
@@ -38,5 +40,40 @@ public class ProdReposImpl extends BaseReposImpl<Product, Long> implements ProdR
             em.close();
         }
         return null;
+    }
+
+    @Override
+    public int deleteAll() {
+//        EntityManager em = emf.createEntityManager();
+//        EntityTransaction trans = em.getTransaction();
+//        int deletedEntities = 0;
+//
+//        try {
+//            trans.begin();
+//            List<Product> products = getAll();
+//
+//            for (Product product : products) {
+//                deleteById(product.getId());
+//                deletedEntities++;
+//            }
+//
+//            trans.commit();
+//        } catch (Exception e) {
+//            log.log(Level.SEVERE, e.getMessage());
+//            trans.rollback();
+//        } finally {
+//            em.close();
+//        }
+//
+//        return deletedEntities;
+
+        int deletedEntities = 0;
+
+        List<Product> products = getAll();
+        for (Product product : products) {
+            deleteById(product.getId());
+            deletedEntities++;
+        }
+        return deletedEntities;
     }
 }

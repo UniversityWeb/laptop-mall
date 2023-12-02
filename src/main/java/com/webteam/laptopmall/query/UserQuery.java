@@ -19,4 +19,11 @@ public class UserQuery {
         typedQuery.setParameter("username", username);
         return typedQuery;
     }
+
+    public TypedQuery<User> buildGetByUsername(EntityManager em, String username) {
+        String sqlStr = "SELECT u FROM User u WHERE u.username = :username";
+        TypedQuery<User> typedQuery = em.createQuery(sqlStr, User.class);
+        typedQuery.setParameter("username", username);
+        return typedQuery;
+    }
 }

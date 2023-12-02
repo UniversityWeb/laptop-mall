@@ -8,4 +8,5 @@ public interface BaseRepos<T, ID> {
     Optional<T> getById(ID id);
     T deleteById(ID id);
     List<T> getAll();
+    int deleteAll();
 }
