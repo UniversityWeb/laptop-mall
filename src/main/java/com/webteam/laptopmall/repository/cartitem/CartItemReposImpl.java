@@ -3,14 +3,8 @@ package com.webteam.laptopmall.repository.cartitem;
 import com.webteam.laptopmall.entity.CartItem;
 import com.webteam.laptopmall.query.CartItemQuery;
 import com.webteam.laptopmall.repository.base.BaseReposImpl;
-import com.webteam.laptopmall.repository.prod.ProdReposImpl;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.NoResultException;
-import javax.persistence.TypedQuery;
-import java.io.Serializable;
-import java.util.ArrayList;
+import javax.persistence.*;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;

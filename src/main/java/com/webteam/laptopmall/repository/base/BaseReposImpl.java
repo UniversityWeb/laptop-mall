@@ -28,9 +28,9 @@ public abstract class BaseReposImpl<T, ID> implements BaseRepos<T, ID> {
         EntityTransaction trans = em.getTransaction();
         try {
             trans.begin();
-            em.persist(entity);
+            T savedEntity = em.merge(entity);
             trans.commit();
-            return entity;
+            return savedEntity;
         } catch (Exception e) {
             log.log(Level.SEVERE, e.getMessage());
             trans.rollback();
@@ -93,6 +93,29 @@ public abstract class BaseReposImpl<T, ID> implements BaseRepos<T, ID> {
             em.close();
         }
         return prods;
+    }
+
+    @Override
+    public int deleteAll() {
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        int deletedEntities = 0;
+
+        try {
+            trans.begin();
+            String entityName = getClassType().getSimpleName();
+            String sqlStr = String.format("DELETE FROM %s", entityName);
+            Query jpqlQuery = em.createQuery(sqlStr);
+            deletedEntities = jpqlQuery.executeUpdate();
+            trans.commit();
+        } catch (Exception e) {
+            log.log(Level.SEVERE, e.getMessage());
+            trans.rollback();
+        } finally {
+            em.close();
+        }
+
+        return deletedEntities;
     }
 
     protected abstract Class<T> getClassType();

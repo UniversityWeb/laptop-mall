@@ -20,7 +20,7 @@ public class Laptop extends Product {
         SSD
     }
 
-    public enum OS {
+    public enum EOS {
         WINDOWS, MAC, LINUX
     }
 
@@ -74,7 +74,7 @@ public class Laptop extends Product {
 
     @Column(name = "operating_system")
     @Enumerated(EnumType.STRING)
-    private OS operatingSystem;
+    private EOS operatingSystem;
 
     public Laptop() {
         super();
@@ -86,7 +86,7 @@ public class Laptop extends Product {
                   int cpuCache, int ramSize, ERam ramType, int ramBusSpeed, int ramMaxSupport,
                   ERom romType, int romSize, double screenSize, String screenResolution,
                   int screenRefreshRate, String screenTechnology, int brightness, boolean antiGlare,
-                  String graphicsCard, double weight, String material, OS operatingSystem) {
+                  String graphicsCard, double weight, String material, EOS operatingSystem) {
         super(brand, model, desc, price, stockQty, discountPercent, version, color, category, releaseYear);
         this.cpuName = cpuName;
         this.cpuCores = cpuCores;
@@ -377,11 +377,11 @@ public class Laptop extends Product {
         this.material = material;
     }
 
-    public OS getOperatingSystem() {
+    public EOS getOperatingSystem() {
         return operatingSystem;
     }
 
-    public void setOperatingSystem(OS operatingSystem) {
+    public void setOperatingSystem(EOS operatingSystem) {
         this.operatingSystem = operatingSystem;
     }
 }

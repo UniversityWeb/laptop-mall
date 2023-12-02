@@ -13,7 +13,7 @@ public class KeyboardDTOBuilderImpl extends KeyboardDTOBuilder {
     }
 
     @Override
-    public KeyboardDTOBuilder compatibilities(Set<Laptop.OS> compatibilities) {
+    public KeyboardDTOBuilder compatibilities(Set<Laptop.EOS> compatibilities) {
         prod.setCompatibilities(compatibilities);
         return this;
     }

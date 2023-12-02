@@ -7,7 +7,7 @@ import com.webteam.laptopmall.entity.prod.MechanicalKeyboard;
 import java.util.Set;
 
 public abstract class KeyboardBuilder extends ProductBuilderImpl<MechanicalKeyboard> {
-    public abstract KeyboardBuilder compatibilities(Set<Laptop.OS> compatibilities);
+    public abstract KeyboardBuilder compatibilities(Set<Laptop.EOS> compatibilities);
     public abstract KeyboardBuilder connections(Set<MechanicalKeyboard.EConnection> connections);
     public abstract KeyboardBuilder cableLength(String cableLength);
     public abstract KeyboardBuilder switchType(String switchType);

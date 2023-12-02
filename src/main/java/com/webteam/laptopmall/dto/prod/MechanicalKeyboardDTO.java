@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 import java.util.Set;
 
 public class MechanicalKeyboardDTO extends ProductDTO {
-    private Set<Laptop.OS> compatibilities;
+    private Set<Laptop.EOS> compatibilities;
     private Set<MechanicalKeyboard.EConnection> connections;
     private String cableLength;
     private String switchType;
@@ -22,7 +22,7 @@ public class MechanicalKeyboardDTO extends ProductDTO {
 
     public MechanicalKeyboardDTO(Long id, String brand, String model, String desc, BigDecimal price,
                                  Integer stockQty, double discountPercent, String version, String color,
-                                 int releaseYear, ECategory category, Set<Laptop.OS> compatibilities,
+                                 int releaseYear, ECategory category, Set<Laptop.EOS> compatibilities,
                                  Set<MechanicalKeyboard.EConnection> connections, String cableLength,
                                  String switchType, MechanicalKeyboard.ELayout layout,
                                  int keyCount, String keycapMaterial, String batteryType) {
@@ -52,11 +52,11 @@ public class MechanicalKeyboardDTO extends ProductDTO {
                 '}';
     }
 
-    public Set<Laptop.OS> getCompatibilities() {
+    public Set<Laptop.EOS> getCompatibilities() {
         return compatibilities;
     }
 
-    public void setCompatibilities(Set<Laptop.OS> compatibilities) {
+    public void setCompatibilities(Set<Laptop.EOS> compatibilities) {
         this.compatibilities = compatibilities;
     }
 

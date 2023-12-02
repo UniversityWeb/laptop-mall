@@ -26,5 +26,5 @@ public abstract class LaptopDTOBuilder extends ProductDTOBuilderImpl<LaptopDTO> 
     public abstract LaptopDTOBuilder graphicsCard(String graphicsCard);
     public abstract LaptopDTOBuilder weight(double weight);
     public abstract LaptopDTOBuilder material(String material);
-    public abstract LaptopDTOBuilder operatingSystem(Laptop.OS operatingSystem);
+    public abstract LaptopDTOBuilder operatingSystem(Laptop.EOS operatingSystem);
 }
