@@ -1,14 +1,17 @@
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
-    <link rel="stylesheet" href="<c:url value="./static/css/home.css"/>">
-    <link rel="stylesheet" href="<c:url value="./static/css/base.css"/>">
+    <link rel="stylesheet" href="./static/css/home.css">
+    <link rel="stylesheet" href="./static/css/base.css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.2/css/all.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
 <body>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="navbar.jsp"></jsp:include>
 <section class="pr-container">
     <img class="pr-video" alt="video" src="./static/images/prvideo.gif" />
@@ -43,8 +46,8 @@
                 <c:forEach var="product" items="${prodDTOs}">
                     <div class="swiper-slide">
                         <div class="product-item">
-                            <img class="product-img" alt="" src="<c:out value="${product.image}" />" />
-                            <b class="product-name"><c:out value="${product.name}" /></b>
+                            <img class="product-img" alt="" src="./static/images/smartphone-product.png" />
+                            <b class="product-name"><c:out value="${product.model}" /></b>
                             <img class="btn-buynow" alt="" src="./static/images/btnbuynow.svg" />
                         </div>
                     </div>
@@ -372,7 +375,7 @@
 <jsp:include page="chatbox.jsp"></jsp:include>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="./static/js/home.js"></script>
 </body>
 </html>

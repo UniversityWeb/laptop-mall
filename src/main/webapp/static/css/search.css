@@ -64,6 +64,10 @@ section{
     font-size: large;
 }
 
+input[type="search"]::-webkit-search-cancel-button {
+    display: none;
+}
+
 .input-search:focus {
     border: dotted 2px #181818;
 }

@@ -1,3 +1,4 @@
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -6,20 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.2/css/all.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-    <link rel="stylesheet" href="<c:url value="/static/css/search.css"/>">
-    <link rel="stylesheet" href="<c:url value="/static/css/base.css"/>">
+    <link rel="stylesheet" href="=./static/css/search.css">
+    <link rel="stylesheet" href="./static/css/base.css">
 </head>
 
 <body>
 <jsp:include page="navbar.jsp"></jsp:include>
 <section class="query-input__wrap">
-    <div class="input-txt__group">
-        <input id="input-element" class="input-search" type="text">
-
+    <form method="get" action="get-prods-by-model" class="input-txt__group">
+        <input id="input-element" name="model" class="input-search" type="search">
         <i id="clear-btn-search" class="fa-solid fa-circle-xmark close-btn"></i>
-
-        <i class="fa-regular fa-magnifying-glass find-btn"></i>
-    </div>
+        <button type="submit" class="find-btn" style="border: none; background-color: transparent">
+            <i class="fa-regular fa-magnifying-glass "></i>
+        </button>
+    </form>
 
     <ul class="search__recomments">
         <li class="search__recomments-item">
@@ -103,376 +104,42 @@
                     > 500
                 </label>
             </div>
-
-            <!-- <input type="submit" value="<=100">
-            <input type="submit" value=">100 and <=500">
-            <input type="submit" value=">500"> -->
         </div>
         <ul class="swiper mySwiper search-item__list ">
             <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <li class="search__product-result">
-                        <div class="product__img">
-                            <img src="/static/images/headphone-white.png" alt="">
-                        </div>
-                        <div class="product_info">
-                            <span class="product__name">HeadPhone ABCDEFGHIJKJHHGBJBSBJS</span>
-                            <span class="product__id">PROD-001-01</span>
-                            <span class="product__price">18.99$</span>
-                            <div class="product_des">
-                                <span>-- Miễn phí 6 tháng Samsung Care+ và gói dịch vụ cao cấp</span>
-                                <span>-- Nhập HELLONOV ưu đãi ngay 1 triệu</span>
+                <div name="page0" class="swiper-slide">
+                    <c:forEach var="product" items="${prodDTOs}">
+                        <li class="search__product-result">
+                            <div class="product__img">
+                                <img src="/static/images/headphone-white.png" alt="">
                             </div>
-                            <div class="product__selection">
-                                <div class="button__add-cart">
-                                    <i class="fa-solid fa-cart-shopping button__icon"></i>
-                                    <span>Add to cart</span>
+                            <div class="product_info">
+                                <span class="product__name"><c:out value="${product.model}" /></span>
+                                <span class="product__id"><c:out value="${product.id}" /></span>
+                                <span class="product__price"><c:out value="${product.price}" />$</span>
+                                <div class="product_des">
+                                    <span>-- Miễn phí 6 tháng Samsung Care+ và gói dịch vụ cao cấp</span>
+                                    <span>-- Nhập HELLONOV ưu đãi ngay 1 triệu</span>
                                 </div>
-                                <div class="input__group-selection">
-                                    <input type="submit" value="LEARN MORE">
-                                    <div class="line"></div>
-                                </div>
-                                <div class="input__group-selection">
-                                    <input type="submit" value="FIND SUPPORT">
-                                    <div class="line"></div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </li>
-                    <li class="search__product-result">
-                        <div class="product__img">
-                            <img src="/static/images/headphone-white.png" alt="">
-                        </div>
-                        <div class="product_info">
-                            <span class="product__name">HeadPhone ABCDEFGHIJKJHHGBJBSBJS</span>
-                            <span class="product__id">PROD-001-01</span>
-                            <span class="product__price">18.99$</span>
-                            <div class="product_des">
-                                <span>-- Miễn phí 6 tháng Samsung Care+ và gói dịch vụ cao cấp</span>
-                                <span>-- Nhập HELLONOV ưu đãi ngay 1 triệu</span>
-                            </div>
-                            <div class="product__selection">
-                                <div class="button__add-cart">
-                                    <i class="fa-solid fa-cart-shopping button__icon"></i>
-                                    <span>Add to cart</span>
-                                </div>
-                                <div class="input__group-selection">
-                                    <input type="submit" value="LEARN MORE">
-                                    <div class="line"></div>
-                                </div>
-                                <div class="input__group-selection">
-                                    <input type="submit" value="FIND SUPPORT">
-                                    <div class="line"></div>
+                                <div class="product__selection">
+                                    <div class="button__add-cart">
+                                        <i class="fa-solid fa-cart-shopping button__icon"></i>
+                                        <span>Add to cart</span>
+                                    </div>
+                                    <div class="input__group-selection">
+                                        <input type="submit" value="LEARN MORE">
+                                        <div class="line"></div>
+                                    </div>
+                                    <div class="input__group-selection">
+                                        <input type="submit" value="FIND SUPPORT">
+                                        <div class="line"></div>
+                                    </div>
                                 </div>
                             </div>
+                        </li>
+                    </c:forEach>
 
-                        </div>
 
-                    </li>
-                    <li class="search__product-result">
-                        <div class="product__img">
-                            <img src="/static/images/headphone-white.png" alt="">
-                        </div>
-                        <div class="product_info">
-                            <span class="product__name">HeadPhone ABCDEFGHIJKJHHGBJBSBJS</span>
-                            <span class="product__id">PROD-001-01</span>
-                            <span class="product__price">18.99$</span>
-                            <div class="product_des">
-                                <span>-- Miễn phí 6 tháng Samsung Care+ và gói dịch vụ cao cấp</span>
-                                <span>-- Nhập HELLONOV ưu đãi ngay 1 triệu</span>
-                            </div>
-                            <div class="product__selection">
-                                <div class="button__add-cart">
-                                    <i class="fa-solid fa-cart-shopping button__icon"></i>
-                                    <span>Add to cart</span>
-                                </div>
-                                <div class="input__group-selection">
-                                    <input type="submit" value="LEARN MORE">
-                                    <div class="line"></div>
-                                </div>
-                                <div class="input__group-selection">
-                                    <input type="submit" value="FIND SUPPORT">
-                                    <div class="line"></div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </li>
-                    <li class="search__product-result">
-                        <div class="product__img">
-                            <img src="/static/images/headphone-white.png" alt="">
-                        </div>
-                        <div class="product_info">
-                            <span class="product__name">HeadPhone ABCDEFGHIJKJHHGBJBSBJS</span>
-                            <span class="product__id">PROD-001-01</span>
-                            <span class="product__price">18.99$</span>
-                            <div class="product_des">
-                                <span>-- Miễn phí 6 tháng Samsung Care+ và gói dịch vụ cao cấp</span>
-                                <span>-- Nhập HELLONOV ưu đãi ngay 1 triệu</span>
-                            </div>
-                            <div class="product__selection">
-                                <div class="button__add-cart">
-                                    <i class="fa-solid fa-cart-shopping button__icon"></i>
-                                    <span>Add to cart</span>
-                                </div>
-                                <div class="input__group-selection">
-                                    <input type="submit" value="LEARN MORE">
-                                    <div class="line"></div>
-                                </div>
-                                <div class="input__group-selection">
-                                    <input type="submit" value="FIND SUPPORT">
-                                    <div class="line"></div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </li>
-                    <li class="search__product-result">
-                        <div class="product__img">
-                            <img src="/static/images/headphone-white.png" alt="">
-                        </div>
-                        <div class="product_info">
-                            <span class="product__name">HeadPhone ABCDEFGHIJKJHHGBJBSBJS</span>
-                            <span class="product__id">PROD-001-01</span>
-                            <span class="product__price">18.99$</span>
-                            <div class="product_des">
-                                <span>-- Miễn phí 6 tháng Samsung Care+ và gói dịch vụ cao cấp</span>
-                                <span>-- Nhập HELLONOV ưu đãi ngay 1 triệu</span>
-                            </div>
-                            <div class="product__selection">
-                                <div class="button__add-cart">
-                                    <i class="fa-solid fa-cart-shopping button__icon"></i>
-                                    <span>Add to cart</span>
-                                </div>
-                                <div class="input__group-selection">
-                                    <input type="submit" value="LEARN MORE">
-                                    <div class="line"></div>
-                                </div>
-                                <div class="input__group-selection">
-                                    <input type="submit" value="FIND SUPPORT">
-                                    <div class="line"></div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </li>
-                    <li class="search__product-result">
-                        <div class="product__img">
-                            <img src="/static/images/headphone-white.png" alt="">
-                        </div>
-                        <div class="product_info">
-                            <span class="product__name">HeadPhone ABCDEFGHIJKJHHGBJBSBJS</span>
-                            <span class="product__id">PROD-001-01</span>
-                            <span class="product__price">18.99$</span>
-                            <div class="product_des">
-                                <span>-- Miễn phí 6 tháng Samsung Care+ và gói dịch vụ cao cấp</span>
-                                <span>-- Nhập HELLONOV ưu đãi ngay 1 triệu</span>
-                            </div>
-                            <div class="product__selection">
-                                <div class="button__add-cart">
-                                    <i class="fa-solid fa-cart-shopping button__icon"></i>
-                                    <span>Add to cart</span>
-                                </div>
-                                <div class="input__group-selection">
-                                    <input type="submit" value="LEARN MORE">
-                                    <div class="line"></div>
-                                </div>
-                                <div class="input__group-selection">
-                                    <input type="submit" value="FIND SUPPORT">
-                                    <div class="line"></div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </li>
-                </div>
-                <div class="swiper-slide">
-                    <li class="search__product-result">
-                        <div class="product__img">
-                            <img src="/static/images/headphone-white.png" alt="">
-                        </div>
-                        <div class="product_info">
-                            <span class="product__name">HeadPhone ABCDEFGHIJKJHHGBJBSBJS</span>
-                            <span class="product__id">PROD-001-01</span>
-                            <span class="product__price">18.99$</span>
-                            <div class="product_des">
-                                <span>-- Miễn phí 6 tháng Samsung Care+ và gói dịch vụ cao cấp</span>
-                                <span>-- Nhập HELLONOV ưu đãi ngay 1 triệu</span>
-                            </div>
-                            <div class="product__selection">
-                                <div class="button__add-cart">
-                                    <i class="fa-solid fa-cart-shopping button__icon"></i>
-                                    <span>Add to cart</span>
-                                </div>
-                                <div class="input__group-selection">
-                                    <input type="submit" value="LEARN MORE">
-                                    <div class="line"></div>
-                                </div>
-                                <div class="input__group-selection">
-                                    <input type="submit" value="FIND SUPPORT">
-                                    <div class="line"></div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </li>
-                    <li class="search__product-result">
-                        <div class="product__img">
-                            <img src="/static/images/headphone-white.png" alt="">
-                        </div>
-                        <div class="product_info">
-                            <span class="product__name">HeadPhone ABCDEFGHIJKJHHGBJBSBJS</span>
-                            <span class="product__id">PROD-001-01</span>
-                            <span class="product__price">18.99$</span>
-                            <div class="product_des">
-                                <span>-- Miễn phí 6 tháng Samsung Care+ và gói dịch vụ cao cấp</span>
-                                <span>-- Nhập HELLONOV ưu đãi ngay 1 triệu</span>
-                            </div>
-                            <div class="product__selection">
-                                <div class="button__add-cart">
-                                    <i class="fa-solid fa-cart-shopping button__icon"></i>
-                                    <span>Add to cart</span>
-                                </div>
-                                <div class="input__group-selection">
-                                    <input type="submit" value="LEARN MORE">
-                                    <div class="line"></div>
-                                </div>
-                                <div class="input__group-selection">
-                                    <input type="submit" value="FIND SUPPORT">
-                                    <div class="line"></div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </li>
-                    <li class="search__product-result">
-                        <div class="product__img">
-                            <img src="/static/images/headphone-white.png" alt="">
-                        </div>
-                        <div class="product_info">
-                            <span class="product__name">HeadPhone ABCDEFGHIJKJHHGBJBSBJS</span>
-                            <span class="product__id">PROD-001-01</span>
-                            <span class="product__price">18.99$</span>
-                            <div class="product_des">
-                                <span>-- Miễn phí 6 tháng Samsung Care+ và gói dịch vụ cao cấp</span>
-                                <span>-- Nhập HELLONOV ưu đãi ngay 1 triệu</span>
-                            </div>
-                            <div class="product__selection">
-                                <div class="button__add-cart">
-                                    <i class="fa-solid fa-cart-shopping button__icon"></i>
-                                    <span>Add to cart</span>
-                                </div>
-                                <div class="input__group-selection">
-                                    <input type="submit" value="LEARN MORE">
-                                    <div class="line"></div>
-                                </div>
-                                <div class="input__group-selection">
-                                    <input type="submit" value="FIND SUPPORT">
-                                    <div class="line"></div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </li>
-                    <li class="search__product-result">
-                        <div class="product__img">
-                            <img src="/static/images/headphone-white.png" alt="">
-                        </div>
-                        <div class="product_info">
-                            <span class="product__name">HeadPhone ABCDEFGHIJKJHHGBJBSBJS</span>
-                            <span class="product__id">PROD-001-01</span>
-                            <span class="product__price">18.99$</span>
-                            <div class="product_des">
-                                <span>-- Miễn phí 6 tháng Samsung Care+ và gói dịch vụ cao cấp</span>
-                                <span>-- Nhập HELLONOV ưu đãi ngay 1 triệu</span>
-                            </div>
-                            <div class="product__selection">
-                                <div class="button__add-cart">
-                                    <i class="fa-solid fa-cart-shopping button__icon"></i>
-                                    <span>Add to cart</span>
-                                </div>
-                                <div class="input__group-selection">
-                                    <input type="submit" value="LEARN MORE">
-                                    <div class="line"></div>
-                                </div>
-                                <div class="input__group-selection">
-                                    <input type="submit" value="FIND SUPPORT">
-                                    <div class="line"></div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </li>
-                    <li class="search__product-result">
-                        <div class="product__img">
-                            <img src="/static/images/headphone-white.png" alt="">
-                        </div>
-                        <div class="product_info">
-                            <span class="product__name">HeadPhone ABCDEFGHIJKJHHGBJBSBJS</span>
-                            <span class="product__id">PROD-001-01</span>
-                            <span class="product__price">18.99$</span>
-                            <div class="product_des">
-                                <span>-- Miễn phí 6 tháng Samsung Care+ và gói dịch vụ cao cấp</span>
-                                <span>-- Nhập HELLONOV ưu đãi ngay 1 triệu</span>
-                            </div>
-                            <div class="product__selection">
-                                <div class="button__add-cart">
-                                    <i class="fa-solid fa-cart-shopping button__icon"></i>
-                                    <span>Add to cart</span>
-                                </div>
-                                <div class="input__group-selection">
-                                    <input type="submit" value="LEARN MORE">
-                                    <div class="line"></div>
-                                </div>
-                                <div class="input__group-selection">
-                                    <input type="submit" value="FIND SUPPORT">
-                                    <div class="line"></div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </li>
-                    <li class="search__product-result">
-                        <div class="product__img">
-                            <img src="/static/images/headphone-white.png" alt="">
-                        </div>
-                        <div class="product_info">
-                            <span class="product__name">HeadPhone ABCDEFGHIJKJHHGBJBSBJS</span>
-                            <span class="product__id">PROD-001-01</span>
-                            <span class="product__price">18.99$</span>
-                            <div class="product_des">
-                                <span>-- Miễn phí 6 tháng Samsung Care+ và gói dịch vụ cao cấp</span>
-                                <span>-- Nhập HELLONOV ưu đãi ngay 1 triệu</span>
-                            </div>
-                            <div class="product__selection">
-                                <div class="button__add-cart">
-                                    <i class="fa-solid fa-cart-shopping button__icon"></i>
-                                    <span>Add to cart</span>
-                                </div>
-                                <div class="input__group-selection">
-                                    <input type="submit" value="LEARN MORE">
-                                    <div class="line"></div>
-                                </div>
-                                <div class="input__group-selection">
-                                    <input type="submit" value="FIND SUPPORT">
-                                    <div class="line"></div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </li>
                 </div>
             </div>
             <div class="swiper-pagination"></div>

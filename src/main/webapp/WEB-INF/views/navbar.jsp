@@ -9,10 +9,10 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
-  <link rel="stylesheet" href="./static/css/base.css" />
-  <link rel="stylesheet" href="./static/css/navbar.css" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap"/>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"/>
+  <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.2/css/all.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <link rel="stylesheet" href="./static/css/search.css">
+  <link rel="stylesheet" href="./static/css/navbar.css">
 </head>
 <body>
 <nav class="navbar-main">
@@ -81,10 +81,11 @@
 <%--          <input id="inputSearch" name="model" type="search" >--%>
 <%--          <img class="icon-obj" src="./static/images/btnsearch.svg" alt="">--%>
 <%--        </form>--%>
-        <form method="get" action="get-prods-by-model" class="search__box">
-          <input id="inputSearch" name="model" type="search">
-          <button type="submit" class="search-button">
-            <img class="icon-obj" src="./static/images/btnsearch.svg" alt="Search">
+        <form method="get" action="get-prods-by-model" class="input-txt__group">
+          <input id="input-element" name="model" class="input-search" type="search">
+          <i id="clear-btn-search" class="fa-solid fa-circle-xmark close-btn"></i>
+          <button type="submit" class="find-btn" style="border: none; background-color: transparent">
+            <i class="fa-regular fa-magnifying-glass "></i>
           </button>
         </form>
         <div class="search__fast">

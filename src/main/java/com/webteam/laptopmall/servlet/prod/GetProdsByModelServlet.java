@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet("/get-prods-by-model")
-public class GetProductsServlet extends HttpServlet {
+public class GetProdsByModelServlet extends HttpServlet {
 
     private ProdService prodService;
 
@@ -30,10 +30,9 @@ public class GetProductsServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
 
         String model = req.getParameter("model");
-        List<ProductDTO> prodDTDs = prodService.getProdsByModel(model);
+       List<ProductDTO> prodDTDs = prodService.getProdsByModel(model);
         String url = "/WEB-INF/views/search.jsp";
-
-        req.setAttribute("prodDTDs", prodDTDs);
+        req.setAttribute("prods", prodDTDs);
 
         getServletContext().getRequestDispatcher(url).forward(req, resp);
     }

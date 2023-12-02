@@ -85,6 +85,5 @@ public class ProdReposImpl extends BaseReposImpl<Product, Long> implements ProdR
     @Override
     public List<Product> getProdsByModel(String model) {
         return getResultList(em -> pQuery.buildGetProdsByModel(em, model));
-
     }
 }
