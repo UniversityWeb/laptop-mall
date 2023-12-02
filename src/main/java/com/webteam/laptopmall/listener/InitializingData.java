@@ -104,7 +104,6 @@ public class InitializingData  implements ServletContextListener {
             Product saveProd = prodRepos.save(p);
             savedProds.add(saveProd);
         });
-
         return savedProds;
     }
 

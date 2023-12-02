@@ -6,13 +6,14 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
-  <link rel="stylesheet" href="./static/css/base.css" />
-  <link rel="stylesheet" href="./static/css/navbar.css" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap"/>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"/>
+  <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.2/css/all.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <link rel="stylesheet" href="<c:url value="/static/css/base.css"/>" type="text/css">
+  <link rel="stylesheet" href="<c:url value="/static/css/navbar.css"/>" type="text/css">
 </head>
 <body>
 <nav class="navbar-main">
@@ -77,10 +78,13 @@
   <div class="modal__body ">
     <div class="modal__inner">
       <div class="search-container">
-        <div class="search__box">
-          <input id="inputSearch" type="text" >
-          <img class="icon-obj" src="./static/images/btnsearch.svg" alt="">
-        </div>
+        <form method="get" action="get-prods-by-model" class="input-txt__group">
+          <input id="input-element-nav" name="model" class="input-search" type="search">
+          <i id="clear-btn-search-nav" class="fa-solid fa-circle-xmark close-btn"></i>
+          <button type="submit" class="find-btn" style="border: none; background-color: transparent">
+            <i class="fa-regular fa-magnifying-glass "></i>
+          </button>
+        </form>
         <div class="search__fast">
           <p>Quick Links</p>
           <div class="list__search-link">
@@ -119,6 +123,6 @@
     </div>
   </div>
 </div>
-<script src="./static/js/navbar.js"></script>
+<script src="<c:url value="/static/js/navbar.js"/>" async defer ></script>
 </body>
 </html>

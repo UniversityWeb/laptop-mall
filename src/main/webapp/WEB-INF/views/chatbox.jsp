@@ -6,13 +6,12 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
-    <link rel="stylesheet" href="./static/css/base.css" />
-    <link rel="stylesheet" href="./static/css/chatbox.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"/>
+    <link rel="stylesheet" href="<c:url value="/static/css/base.css"/>" type="text/css">
+    <link rel="stylesheet" href="<c:url value="/static/css/chatbox.css"/>" type="text/css">
 </head>
 <body>
 <div id="chat-box" class="chat_box">
@@ -61,6 +60,6 @@
     </div>
 </div>
 <img id="chat-icon" class="chat_icon" src="./static/images/chat_btn.svg" alt="">
-<script src="./static/js/chatbox.js"></script>
+<script src="<c:url value="/static/js/chatbox.js"/>" async defer ></script>
 </body>
 </html>
