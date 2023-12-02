@@ -1,5 +1,6 @@
 package com.webteam.laptopmall.repository.prod;
 
+import com.webteam.laptopmall.customenum.ECategory;
 import com.webteam.laptopmall.entity.prod.Product;
 import com.webteam.laptopmall.query.ProdQuery;
 import com.webteam.laptopmall.repository.base.BaseReposImpl;
@@ -86,4 +87,10 @@ public class ProdReposImpl extends BaseReposImpl<Product, Long> implements ProdR
     public List<Product> getProdsByModel(String model) {
         return getResultList(em -> pQuery.buildGetProdsByModel(em, model));
     }
+
+    @Override
+    public List<Product> getProdsByCategory(ECategory eCategory) {
+        return getResultList(em -> pQuery.buildGetProdsByCategoryl(em, eCategory));
+    }
+
 }

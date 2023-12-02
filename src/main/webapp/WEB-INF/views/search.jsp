@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.2/css/all.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-    <link rel="stylesheet" href="=./static/css/search.css">
-    <link rel="stylesheet" href="./static/css/base.css">
+    <link rel="stylesheet" href="<c:url value="/static/css/base.css"/>" type="text/css">
+    <link rel="stylesheet" href="<c:url value="/static/css/search.css"/>" type="text/css">
 </head>
 
 <body>
@@ -54,11 +54,10 @@
         <ul class="tab-bar__list">
             <li class="tab-bar__item">
                 <span>All</span>
-                <span class="number-results">(26)</span>
+                <span class="number-results">(${prods.size()})</span>
             </li>
         </ul>
     </section>
-
     <section class="features-search">
         <ul class="filter-selects">
             <li class="filter-select__title">
@@ -86,71 +85,72 @@
     <section class="result-content">
         <div class="filter-select__content">
             <div class="radio_group">
-                <input type="radio" name="price-radio" id="radio-price1">
+                <input type="radio"  name="priceFilter" id="radio-price0" value="all"  onclick="filterProducts()">
+                <label class="form-check-label" for="radio-price0">
+                    All
+                </label>
+            </div>
+            <div class="radio_group">
+                <input type="radio" name="priceFilter" id="radio-price1" value="50"  onclick="filterProducts()">
                 <label class="form-check-label" for="radio-price1">
-                    <= 100
+                    $50 and below
                 </label>
             </div>
             <div class="radio_group">
-                <input type="radio" name="price-radio" id="radio-price2">
+                <input type="radio" name="priceFilter" id="radio-price2" value="100"  onclick="filterProducts()">
                 <label class="form-check-label" for="radio-price2">
-                    > 100 <= 500
+                    $100 and below
                 </label>
             </div>
-
             <div class="radio_group">
-                <input type="radio" name="price-radio" id="radio-price3">
+                <input type="radio" name="priceFilter" id="radio-price3" value="1000"  onclick="filterProducts()">
                 <label class="form-check-label" for="radio-price3">
-                    > 500
+                    $1000 and below
                 </label>
             </div>
         </div>
-        <ul class="swiper mySwiper search-item__list ">
-            <div class="swiper-wrapper">
-                <div name="page0" class="swiper-slide">
-                    <c:forEach var="product" items="${prodDTOs}">
-                        <li class="search__product-result">
-                            <div class="product__img">
-                                <img src="/static/images/headphone-white.png" alt="">
-                            </div>
-                            <div class="product_info">
-                                <span class="product__name"><c:out value="${product.model}" /></span>
-                                <span class="product__id"><c:out value="${product.id}" /></span>
-                                <span class="product__price"><c:out value="${product.price}" />$</span>
-                                <div class="product_des">
-                                    <span>-- Miễn phí 6 tháng Samsung Care+ và gói dịch vụ cao cấp</span>
-                                    <span>-- Nhập HELLONOV ưu đãi ngay 1 triệu</span>
+        <ul  class="swiper mySwiper  ">
+                <li class="swiper-wrapper">
+                    <ul  class="swiper-slide  search-item__list " id="productList">
+                        <c:forEach var="product" items="${prods}">
+                            <li class="search__product-result">
+                                <div class="product__img">
+                                    <img src="<c:url value="/static/images/headphone-white.png" />" alt="">
                                 </div>
-                                <div class="product__selection">
-                                    <div class="button__add-cart">
-                                        <i class="fa-solid fa-cart-shopping button__icon"></i>
-                                        <span>Add to cart</span>
+                                <div class="product_info">
+                                    <span class="product__name"><c:out value="${product.model}" /></span>
+                                    <span class="product__id"><c:out value="${product.id}" /></span>
+                                    <span class="product__price"><c:out value="${product.price}" /></span>
+                                    <div class="product_des">
+                                        <span>Color:  <c:out value="${product.color}"/></span>
                                     </div>
-                                    <div class="input__group-selection">
-                                        <input type="submit" value="LEARN MORE">
-                                        <div class="line"></div>
-                                    </div>
-                                    <div class="input__group-selection">
-                                        <input type="submit" value="FIND SUPPORT">
-                                        <div class="line"></div>
+                                    <div class="product__selection">
+                                        <button class="button__add-cart" style="width: 30%;">
+                                            <i class="fa-solid fa-cart-shopping button__icon"></i>
+                                            <span>Add to cart</span>
+                                        </button>
+                                        <div class="input__group-selection">
+                                            <input type="submit" value="LEARN MORE">
+                                            <div class="line"></div>
+                                        </div>
+                                        <div class="input__group-selection">
+                                            <input type="submit" value="FIND SUPPORT">
+                                            <div class="line"></div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </li>
-                    </c:forEach>
-
-
-                </div>
-            </div>
-            <div class="swiper-pagination"></div>
+                            </li>
+                        </c:forEach>
+                    </ul>
+                </li>
+                <div class="swiper-pagination"></div>
         </ul>
     </section>
 </section>
-
 <footer></footer>
 <jsp:include page="chatbox.jsp"></jsp:include>
-<script src="<c:url value="/static/js/search.js"/>" async defer></script>
-<script src="<c:url value="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"/>" async defer></script>
+<script src="<c:url value="/static/js/base.js"/>" async defer ></script>
+<script src="<c:url value="/static/js/search.js"/>" async defer ></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </body>
 

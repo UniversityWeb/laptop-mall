@@ -11,17 +11,17 @@ function closeModalSearch() {
 }
 
 //Search JS
-const inputElement = document.getElementById('input-element');
-var clearbtn = document.getElementById('clear-btn-search')
-inputElement.addEventListener('input', function(event) {
-    clearbtn.style.opacity = '100%'
-    clearbtn.style.cursor='pointer'
-    if (inputElement.value == ''){
-        clearbtn.style.opacity = '0%'
+const inputElementNav = document.getElementById('input-element-nav');
+var clearbtnNav = document.getElementById('clear-btn-search-nav')
+inputElementNav.addEventListener('input', function(event) {
+    clearbtnNav.style.opacity = '100%'
+    clearbtnNav.style.cursor='pointer'
+    if (inputElementNav.value == ''){
+        clearbtnNav.style.opacity = '0%'
     }
 });
 
-clearbtn.addEventListener('click',()=>{
-    inputElement.value=''
-    clearbtn.style.opacity= '0%'
+clearbtnNav.addEventListener('click',()=>{
+    inputElementNav.value=''
+    clearbtnNav.style.opacity= '0%'
 })

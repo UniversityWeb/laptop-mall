@@ -145,3 +145,42 @@ a{
     transform: scale(1.2);
     cursor: pointer;
 }
+
+.button__add-cart{
+    width: 50%;
+    height: 50px;
+    border-radius: var(--radius-btn);
+    background-color: var(--color1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap:4%;
+    border: none;
+    cursor: pointer;
+}
+.button__add-cart span{
+    position: relative;
+    color: var(--color0);
+    font-size: 80%;
+    font-weight: 600;
+    /* transition: opacity 0.4s ease-in-out; */
+}
+.button__add-cart i{
+    color: var(--color0);
+}
+.button__add-cart:hover span{
+    animation: hiddenItem 0.5s ease-in-out 0.1s forwards;
+}
+
+@keyframes hiddenItem {
+    from {
+        opacity: 100%;
+    }
+    to {
+        opacity: 0%;
+        display: none;
+    }
+}
+
+

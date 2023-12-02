@@ -1,5 +1,7 @@
 package com.webteam.laptopmall.service.prod;
 
+import com.webteam.laptopmall.customenum.ECategory;
+import com.webteam.laptopmall.dto.prod.LaptopDTO;
 import com.webteam.laptopmall.dto.prod.ProductDTO;
 import com.webteam.laptopmall.entity.prod.Product;
 import com.webteam.laptopmall.exception.ProductNotFoundException;
@@ -60,4 +62,13 @@ public class ProdServiceImpl implements ProdService {
                 .map(ProductMapper::toDTO)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<ProductDTO> getProdsByCategory(ECategory eCategory) {
+        List<Product> prods = prodRepos.getProdsByCategory(eCategory);
+        return prods.stream()
+                .map(ProductMapper::toDTO)
+                .collect(Collectors.toList());
+    }
+
 }

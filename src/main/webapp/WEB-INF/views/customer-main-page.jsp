@@ -1,17 +1,17 @@
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
-    <link rel="stylesheet" href="./static/css/home.css">
-    <link rel="stylesheet" href="./static/css/base.css">
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.2/css/all.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="<c:url value="/static/css/base.css"/>" type="text/css">
+    <link rel="stylesheet" href="<c:url value="/static/css/home.css"/>" type="text/css">
 </head>
 <body>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <jsp:include page="navbar.jsp"></jsp:include>
 <section class="pr-container">
     <img class="pr-video" alt="video" src="./static/images/prvideo.gif" />
@@ -36,19 +36,15 @@
         </div>
         <div class="product-container swiper product-Swiper">
             <div class=" swiper-wrapper product-wrapper">
-<%--                <div class="swiper-slide">--%>
-<%--                    <div class="product-item">--%>
-<%--                        <img class="product-img" alt="" src="./static/images/smartphone-product.png" />--%>
-<%--                        <b class="product-name">Samsung Galaxy S21</b>--%>
-<%--                        <img class="btn-buynow" alt="" src="./static/images/btnbuynow.svg" />--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-                <c:forEach var="product" items="${prodDTOs}">
+                <c:forEach var="product" items="${laptops}">
                     <div class="swiper-slide">
                         <div class="product-item">
-                            <img class="product-img" alt="" src="./static/images/smartphone-product.png" />
+                            <img class="product-img" alt="" src="<c:url value="/static/images/smartphone-product.png"/>" />
                             <b class="product-name"><c:out value="${product.model}" /></b>
-                            <img class="btn-buynow" alt="" src="./static/images/btnbuynow.svg" />
+                            <button type="submit" class="button__add-cart">
+                                <i class="fa-solid fa-cart-shopping button__icon"></i>
+                                <span>Add to cart</span>
+                            </button>
                         </div>
                     </div>
                 </c:forEach>
@@ -376,6 +372,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script src="./static/js/home.js"></script>
+<script src="<c:url value="/static/js/base.js"/>" async defer ></script>
+<script src="<c:url value="/static/js/home.js"/>" async defer ></script>
 </body>
 </html>
