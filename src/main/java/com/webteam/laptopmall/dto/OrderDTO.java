@@ -1,15 +1,12 @@
 package com.webteam.laptopmall.dto;
 
-import com.webteam.laptopmall.dto.user.UserDTO;
 import com.webteam.laptopmall.entity.Order;
 import com.webteam.laptopmall.entity.Payment;
 import com.webteam.laptopmall.utility.CurrencyUtil;
 
 import java.math.BigDecimal;
-import java.text.NumberFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 public class OrderDTO {
     private Long id;

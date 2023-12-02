@@ -2,7 +2,7 @@ package com.webteam.laptopmall.servlet.cart;
 
 import com.webteam.laptopmall.dto.CartItemDTO;
 import com.webteam.laptopmall.dto.OrderDTO;
-import com.webteam.laptopmall.dto.user.UserDTO;
+import com.webteam.laptopmall.dto.UserDTO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,7 +33,7 @@ public class ShippingInforServlet extends HttpServlet {
         HttpSession session = req.getSession();
         List<CartItemDTO> cart = (List<CartItemDTO>) session.getAttribute("cart");
 
-        UserDTO customer = (UserDTO) session.getAttribute("user");
+        UserDTO customer = (UserDTO) session.getAttribute("customer");
         OrderDTO order = (OrderDTO) session.getAttribute("order");
         if (order == null) {
             order = new OrderDTO();

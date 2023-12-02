@@ -1,7 +1,7 @@
 package com.webteam.laptopmall.mapper;
 
 import com.webteam.laptopmall.dto.OrderDTO;
-import com.webteam.laptopmall.dto.user.UserDTO;
+import com.webteam.laptopmall.dto.UserDTO;
 import com.webteam.laptopmall.entity.Order;
 import com.webteam.laptopmall.entity.Payment;
 import com.webteam.laptopmall.entity.user.User;

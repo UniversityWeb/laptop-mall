@@ -1,9 +1,11 @@
 package com.webteam.laptopmall.servlet.cart;
 
 import com.webteam.laptopmall.dto.CartItemDTO;
-import com.webteam.laptopmall.dto.user.UserDTO;
+import com.webteam.laptopmall.dto.UserDTO;
 import com.webteam.laptopmall.service.cart.CartService;
 import com.webteam.laptopmall.service.cart.CartServiceImpl;
+import com.webteam.laptopmall.service.user.UserService;
+import com.webteam.laptopmall.service.user.UserServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,12 +22,14 @@ import java.util.logging.Logger;
 public class CartServlet extends HttpServlet {
 
     private CartService cartService;
+    private UserService userService;
     private static final Logger logger = Logger.getLogger(CartServlet.class.getName());
 
     @Override
     public void init() throws ServletException {
         super.init();
         cartService = new CartServiceImpl();
+        userService = new UserServiceImpl();
     }
 
     @Override
@@ -39,7 +43,8 @@ public class CartServlet extends HttpServlet {
         String message = "";
 
         HttpSession session = req.getSession();
-        UserDTO customer = (UserDTO) session.getAttribute("user");
+        UserDTO user = (UserDTO) session.getAttribute("user");
+        UserDTO customer = userService.getByUsername(user.getUsername());
         List<CartItemDTO> cart = cartService.getCartByUserId(customer.getId());
 
         if(cart == null || cart.size()<1) {
@@ -57,6 +62,7 @@ public class CartServlet extends HttpServlet {
             req.setAttribute("totalOriginalAmount", totalOriginalAmount);
             req.setAttribute("totalDiscountAmount", totalDiscountAmount);
             req.setAttribute("qtyItems", qtyItems);
+            session.setAttribute("customer", customer);
             session.setAttribute("cart", cart);
         }
 

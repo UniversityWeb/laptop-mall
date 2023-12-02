@@ -1,7 +1,7 @@
 package com.webteam.laptopmall.service.cart;
 
 import com.webteam.laptopmall.dto.CartItemDTO;
-import com.webteam.laptopmall.dto.user.UserDTO;
+import com.webteam.laptopmall.dto.UserDTO;
 import com.webteam.laptopmall.entity.CartItem;
 import com.webteam.laptopmall.mapper.CartItemMapper;
 import com.webteam.laptopmall.mapper.CartItemMapperImpl;
@@ -72,7 +72,7 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public void setCustomer(List<CartItemDTO> cart,UserDTO customer) {
+    public void setCustomer(List<CartItemDTO> cart, UserDTO customer) {
         for (CartItemDTO item: cart) {
             item.setCustomer(customer);
         }

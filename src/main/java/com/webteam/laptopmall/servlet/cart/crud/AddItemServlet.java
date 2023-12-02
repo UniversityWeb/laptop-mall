@@ -1,8 +1,8 @@
 package com.webteam.laptopmall.servlet.cart.crud;
 
 import com.webteam.laptopmall.dto.CartItemDTO;
+import com.webteam.laptopmall.dto.UserDTO;
 import com.webteam.laptopmall.dto.prod.ProductDTO;
-import com.webteam.laptopmall.dto.user.UserDTO;
 import com.webteam.laptopmall.service.cart.CartService;
 import com.webteam.laptopmall.service.cart.CartServiceImpl;
 import com.webteam.laptopmall.service.prod.ProdService;

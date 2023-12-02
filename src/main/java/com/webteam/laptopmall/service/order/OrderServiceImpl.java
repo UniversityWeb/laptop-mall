@@ -3,7 +3,7 @@ package com.webteam.laptopmall.service.order;
 import com.webteam.laptopmall.dto.CartItemDTO;
 import com.webteam.laptopmall.dto.OrderDTO;
 import com.webteam.laptopmall.dto.OrderItemDTO;
-import com.webteam.laptopmall.dto.user.UserDTO;
+import com.webteam.laptopmall.dto.UserDTO;
 import com.webteam.laptopmall.entity.Order;
 import com.webteam.laptopmall.mapper.OrderMapper;
 import com.webteam.laptopmall.mapper.OrderMapperImpl;

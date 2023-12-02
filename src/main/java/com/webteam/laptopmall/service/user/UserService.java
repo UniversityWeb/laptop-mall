@@ -9,4 +9,6 @@ public interface UserService {
     UserDTO deleteById(Long id);
     UserDTO getById(Long id);
     List<UserDTO> getAll();
+
+    UserDTO getByUsername(String username);
 }

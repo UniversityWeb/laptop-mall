@@ -1,7 +1,7 @@
 package com.webteam.laptopmall.service.cart;
 
 import com.webteam.laptopmall.dto.CartItemDTO;
-import com.webteam.laptopmall.dto.user.UserDTO;
+import com.webteam.laptopmall.dto.UserDTO;
 
 import java.math.BigDecimal;
 import java.util.List;
