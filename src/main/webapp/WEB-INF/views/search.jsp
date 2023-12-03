@@ -133,14 +133,17 @@
                                         <span>Color:  <c:out value="${product.color}"/></span>
                                     </div>
                                     <div class="product__selection">
-                                        <button class="button__add-cart" style="width: 30%;">
-                                            <i class="fa-solid fa-cart-shopping button__icon"></i>
-                                            <span>Add to cart</span>
-                                        </button>
-                                        <div class="input__group-selection">
+                                        <form  action="add-cart-item" method="post" style="width: 30%;">
+                                            <button type="submit" class="button__add-cart" >
+                                                <i class="fa-solid fa-cart-shopping button__icon"></i>
+                                                <span>Add to cart</span>
+                                            </button>
+                                        </form>
+
+                                        <form action="get-prod-by-id?id=${product.id}" method="get" class="input__group-selection">
                                             <input type="submit" value="LEARN MORE">
                                             <div class="line"></div>
-                                        </div>
+                                        </form>
                                         <div class="input__group-selection">
                                             <input type="submit" value="FIND SUPPORT">
                                             <div class="line"></div>
