@@ -68,7 +68,7 @@ public class OrderItemDTO {
     }
 
     public BigDecimal totalDiscountOfCartItem(){
-        return this.product.priceDiscount().multiply(new BigDecimal(this.qty));
+        return this.product.getDiscountPrice().multiply(new BigDecimal(this.qty));
     }
 
     public String getCurrPiceCurrentFormat() {

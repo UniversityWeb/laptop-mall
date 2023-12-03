@@ -29,6 +29,9 @@ public class CartServiceImpl implements CartService {
         CartItemDTO theCartItem = cartItemService.getByUserAndProductId(customerId, productId);
         if(theCartItem != null){
             quantity += theCartItem.getQty();
+            if (quantity > theCartItem.getProduct().getStockQty()){
+                quantity = theCartItem.getProduct().getStockQty();
+            }
             cartItemService.updateQtyOnly(theCartItem.getId(), quantity);
             return;
         }
@@ -44,9 +47,12 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public void updateQtyOnly(CartItemDTO cartItem) {
-        Long cartItemId = cartItem.getId();
-        Integer quantity = cartItem.getQty();
+    public void updateQtyOnly(CartItemDTO cartItemDTO) {
+        Long cartItemId = cartItemDTO.getId();
+        Integer quantity = cartItemDTO.getQty();
+        if (quantity > cartItemDTO.getProduct().getStockQty()){
+            quantity = cartItemDTO.getProduct().getStockQty();
+        }
         cartItemService.updateQtyOnly(cartItemId, quantity);
     }
 

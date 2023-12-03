@@ -141,20 +141,21 @@ public abstract class ProductDTO {
         this.category = category;
     }
 
-    public BigDecimal priceDiscount(){
+    public BigDecimal getDiscountPrice(){
         return this.price.multiply(new BigDecimal(this.discountPercent)).divide(new BigDecimal(100));
     }
-    public BigDecimal priceDiscounted(){
-        return this.price.subtract(this.priceDiscount());
+    public BigDecimal getDiscountedPrice(){
+        return this.price.subtract(this.getDiscountPrice());
     }
 
-    public String priceCurrentFormat() {
+    public String getPriceCurrentFormat() {
         return CurrencyUtil.getVNFormat(this.price);
     }
-    public String priceDiscountCurrentFormat() {
-        return CurrencyUtil.getVNFormat(this.priceDiscount());
+    public String getDiscountPriceCurrentFormat() {
+        return CurrencyUtil.getVNFormat(this.getDiscountPrice());
     }
-    public String priceDiscountedCurrentFormat() {
-        return CurrencyUtil.getVNFormat(this.priceDiscounted());
+    public String getDiscountedPriceCurrentFormat() {
+        return CurrencyUtil.getVNFormat(this.getDiscountedPrice());
     }
 }
+
