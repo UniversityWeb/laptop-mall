@@ -25,8 +25,6 @@ nav{
     justify-content: space-between;
     align-items: center;
     background-color: #1c1c1c;
-    height: 40px;
-
 }
 
 nav .navigation{
@@ -379,29 +377,13 @@ nav .navigation a:hover{
 .prod-value__item::selection{
     background: none;
 }
-.prod__id-content input{
-    background-color: var(--color7);
-    border: none;
-    outline: none;
-    height: 30px;
-    width: 80%;
-    text-align: center;
-    font-style: italic;
-}
 
-.prod__id-content button{
-    border:  none;
-    background:  none;
-    cursor: pointer;
-}
-
-
-.amount-title{
+.qty-title{
     font-weight: 600;
     color: var(--color1);
 }
 
-.amount-content{
+.qty-content{
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -425,7 +407,7 @@ nav .navigation a:hover{
     color: var(--color0);
 }
 
-.amount-value{
+.qty-value{
     width: 30%;
     height: 60%;
     border-radius: var(--radius-btn);
@@ -434,6 +416,7 @@ nav .navigation a:hover{
     background-color: var(--color5);
     padding:0 20px ;
     color: var(--color2);
+    justify-content: center;
 }
 
 .sub-btn:hover,.plus-btn:hover{

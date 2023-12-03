@@ -106,3 +106,36 @@ buttonElementMinus.addEventListener('click', function () {
     }
     inputElement.value = currentValue;
 });
+
+
+// custom function
+function validateAmountInput(inputQty) {
+    inputQty.value = inputQty.value
+        .replace(/[^0-9]/g, '')
+        .replace(/^0+/, '');
+
+    if (parseInt(inputQty.value) < 1) {
+        inputQty.value = '1';
+    }
+}
+
+function decreaseQtyOfProd() {
+    const inputQty = document.getElementById("input-qty");
+    const qty = parseInt(inputQty.value) - 1;
+    inputQty.value = qty >= 1 ? qty : 1;
+}
+
+function increaseQtyOfProd(maxQtyStr) {
+    const inputQty = document.getElementById("input-qty");
+    const qty = parseInt(inputQty.value) + 1;
+
+    const maxQty = parseInt(maxQtyStr)
+    inputQty.value = qty <= maxQty ? qty : maxQty;
+}
+
+function addToCart(prodId) {
+    const inputQty = document.getElementById("input-qty");
+    const qty = inputQty.value;
+
+}
+
