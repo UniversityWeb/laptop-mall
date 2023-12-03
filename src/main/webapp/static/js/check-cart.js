@@ -1,3 +1,3 @@
-function submitQuantity(){
-    document.getElementById("quantity-form").submit();
+function submitQuantity(formId){
+    document.getElementsByClassName(formId).submit();
 }

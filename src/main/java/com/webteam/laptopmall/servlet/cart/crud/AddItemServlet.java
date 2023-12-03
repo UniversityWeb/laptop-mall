@@ -43,7 +43,7 @@ public class AddItemServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         resp.setContentType("text/html");
         req.setCharacterEncoding("UTF-8");
@@ -57,12 +57,22 @@ public class AddItemServlet extends HttpServlet {
 
         List<CartItemDTO> cart = cartService.getCartByUserId(customer.getId());
         String productIdString = req.getParameter("productId");
+        String qtyString = req.getParameter("qty");
 
         try{
             Long productId = Long.valueOf(productIdString);
             ProductDTO product = prodService.getById(productId);
-
-            CartItemDTO cartItem = new CartItemDTO(1, customer, product);
+            int qty;
+            try{
+                qty = Integer.valueOf(qtyString);
+                if(qty <= 0){
+                    qty = 1;
+                }
+            } catch (NumberFormatException e){
+                qty = 1;
+                logger.severe(e.getMessage());
+            }
+            CartItemDTO cartItem = new CartItemDTO(qty, customer, product);
             cartService.addItem(cartItem);
             url = "/cart";
         } catch (Exception e){
@@ -70,11 +80,5 @@ public class AddItemServlet extends HttpServlet {
         }
 
         resp.sendRedirect(req.getContextPath() + url);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
-        doGet(req, resp);
     }
 }

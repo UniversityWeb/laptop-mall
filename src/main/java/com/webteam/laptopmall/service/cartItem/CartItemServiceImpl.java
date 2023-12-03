@@ -38,7 +38,7 @@ public class CartItemServiceImpl implements CartItemService{
     public OrderItemDTO toOrderItem(CartItemDTO cartItemDTO) {
         OrderItemDTO orderItemDTO = new OrderItemDTO();
         orderItemDTO.setQty(cartItemDTO.getQty());
-        orderItemDTO.setCurPrice(cartItemDTO.getProduct().priceDiscounted());
+        orderItemDTO.setCurPrice(cartItemDTO.getProduct().getDiscountedPrice());
         orderItemDTO.setProduct(cartItemDTO.getProduct());
         return orderItemDTO;
     }

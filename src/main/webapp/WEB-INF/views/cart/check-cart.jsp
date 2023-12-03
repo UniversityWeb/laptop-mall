@@ -67,12 +67,12 @@
                                 <span>${item.product.version}</span>
                             </td>
                             <td class="product_details-number left">
-                                <form action="update-cart-item" class="product_details-number-count row" method="post" id="quantity-form">
-                                    <input type="hidden" name="productId" value="${item.product.id}">
+                                <form action="update-cart-item" class="product_details-number-count row" method="post" id="${item.id}">
+                                    <input type="hidden" name="productId" value="<c:out value='${item.product.id}'/>">
                                     <button name="action" value="decrease" class="button-minus">
                                         <ion-icon name="remove-outline"></ion-icon>
                                     </button>
-                                    <input type="text" name="quantity" value="<c:out value='${item.qty}'/>" onchange="submitQuantity()">
+                                    <input type="text" name="qty" value="<c:out value='${item.qty}'/>" onchange="submitForm('${item.id}')">
                                     <button name="action" value="increase" class="button-add">
                                         <ion-icon name="add-outline"></ion-icon>
                                     </button>
@@ -176,7 +176,7 @@
 <footer class="center">
     <p>&copy; Copyright 2023</p>
 </footer>
-<script src="<c:url value="/static/js/check-cart.js"/>" async defer></script>
+<script src="<c:url value="/static/js/cart.js"/>" async defer></script>
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>

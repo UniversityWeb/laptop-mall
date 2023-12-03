@@ -55,8 +55,8 @@ public class OrderServiceImpl implements OrderService{
                     "<td style='width: 150px; overflow: auto;'>" + orderItemDTO.getProduct().getModel() +"</td>" +
                     "<td style='width: 50px; overflow: auto;'>"+ orderItemDTO.getProduct().getColor() +"</td>" +
                     "<td style='width: 100px; overflow: auto; text-align: right'> x"+ orderItemDTO.getQty() +"</td>" +
-                    "<td style='width: 100px; overflow: auto; text-align: right'><del>"+ orderItemDTO.getProduct().priceCurrentFormat() +"</del></td>" +
-                    "<td style='width: 100px; overflow: auto; text-align: right'>"+ orderItemDTO.getProduct().priceDiscountedCurrentFormat() +"</td>" +
+                    "<td style='width: 100px; overflow: auto; text-align: right'><del>"+ orderItemDTO.getProduct().getPriceCurrentFormat() +"</del></td>" +
+                    "<td style='width: 100px; overflow: auto; text-align: right'>"+ orderItemDTO.getProduct().getDiscountedPriceCurrentFormat() +"</td>" +
                     "<td style='width: 100px; overflow: auto; text-align: right'>" + orderItemDTO.totalDiscountedOfCartItemCurrentFormat() +"</td></tr>";
         }
 

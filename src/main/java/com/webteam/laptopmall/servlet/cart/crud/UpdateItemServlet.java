@@ -54,33 +54,34 @@ public class UpdateItemServlet extends HttpServlet {
 
         String productIdString = req.getParameter("productId");
         Long productId = Long.valueOf(productIdString);
-        String quantityString = req.getParameter("quantity");
-        int quantity;
+        int qty;
 
         CartItemDTO cartItem = cartService.getItemOfCartById(cart, productId);
 
         if(action.equals("increase")){
-            quantity = cartItem.getQty() + 1;
+            qty = cartItem.getQty() + 1;
         }
         else if (action.equals("decrease")){
-            quantity = cartItem.getQty() - 1;
-            if (quantity <= 0){
+            qty = cartItem.getQty() - 1;
+            if (qty <= 0){
                 cartService.deleteItem(cartItem);
             }
         }
         else{
+            String qtyString = req.getParameter("qty");
+            System.out.println(qtyString);
             try{
-                quantity = Integer.valueOf(quantityString);
-                if (quantity < 0){
-                    quantity = 1;
+                qty = Integer.valueOf(qtyString);
+                if (qty < 0){
+                    qty = 1;
                 }
             } catch (NumberFormatException e){
-                quantity = cartItem.getQty();
+                qty = cartItem.getQty();
                 logger.severe("ERROR: " + e.getMessage());
             }
         }
 
-        cartItem.setQty(quantity);
+        cartItem.setQty(qty);
         cartService.updateQtyOnly(cartItem);
 
         resp.sendRedirect(req.getContextPath() + url);
