@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.2/css/all.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="<c:url value="/static/css/base.css"/>" type="text/css">
     <link rel="stylesheet" href="<c:url value="/static/css/search.css"/>" type="text/css">
 </head>
@@ -84,35 +85,42 @@
     </section>
     <section class="result-content">
         <div class="filter-select__content">
-            <div class="radio_group">
-                <input type="radio"  name="priceFilter" id="radio-price0" value="all"  onclick="filterProducts()">
-                <label class="form-check-label" for="radio-price0">
-                    All
-                </label>
+            <span class="filter-title">Price</span>
+            <div class="filter-price-prods">
+                <div class="radio_group">
+                    <input type="radio"  name="priceFilter" id="radio-price0" value="all"  onclick="filterProducts()">
+                    <label class="form-check-label" for="radio-price0">
+                        All
+                    </label>
+                </div>
+                <div class="radio_group">
+                    <input type="radio" name="priceFilter" id="radio-price1" value="50"  onclick="filterProducts()">
+                    <label class="form-check-label" for="radio-price1">
+                        $50 and below
+                    </label>
+                </div>
+                <div class="radio_group">
+                    <input type="radio" name="priceFilter" id="radio-price2" value="100"  onclick="filterProducts()">
+                    <label class="form-check-label" for="radio-price2">
+                        $100 and below
+                    </label>
+                </div>
+                <div class="radio_group">
+                    <input type="radio" name="priceFilter" id="radio-price3" value="1000"  onclick="filterProducts()">
+                    <label class="form-check-label" for="radio-price3">
+                        $1000 and below
+                    </label>
+                </div>
             </div>
-            <div class="radio_group">
-                <input type="radio" name="priceFilter" id="radio-price1" value="50"  onclick="filterProducts()">
-                <label class="form-check-label" for="radio-price1">
-                    $50 and below
-                </label>
-            </div>
-            <div class="radio_group">
-                <input type="radio" name="priceFilter" id="radio-price2" value="100"  onclick="filterProducts()">
-                <label class="form-check-label" for="radio-price2">
-                    $100 and below
-                </label>
-            </div>
-            <div class="radio_group">
-                <input type="radio" name="priceFilter" id="radio-price3" value="1000"  onclick="filterProducts()">
-                <label class="form-check-label" for="radio-price3">
-                    $1000 and below
-                </label>
-            </div>
+            <span class="filter-title">Branch</span>
+            <select id="branchs" class="form-select filter-branch-prods" aria-label="Default select example">
+                <option selected>All</option>
+                <option>1</option>
+                <option>2</option>
+            </select>
         </div>
-        <ul  class="swiper mySwiper  ">
-                <li class="swiper-wrapper">
-                    <ul  class="swiper-slide  search-item__list " id="productList">
-                        <c:forEach var="product" items="${prods}">
+        <ul  class="search-item__list " id="productList">
+            <c:forEach var="product" items="${prods}">
                             <li class="search__product-result">
                                 <div class="product__img">
                                     <img src="<c:url value="/static/images/headphone-white.png" />" alt="">
@@ -141,9 +149,6 @@
                                 </div>
                             </li>
                         </c:forEach>
-                    </ul>
-                </li>
-                <div class="swiper-pagination"></div>
         </ul>
     </section>
 </section>
@@ -152,6 +157,8 @@
 <script src="<c:url value="/static/js/base.js"/>" async defer ></script>
 <script src="<c:url value="/static/js/search.js"/>" async defer ></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 </body>
 
 </html>

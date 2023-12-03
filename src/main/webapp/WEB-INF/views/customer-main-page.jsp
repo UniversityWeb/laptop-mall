@@ -42,8 +42,8 @@
             <img src="<c:url value="/static/images/logo-dell.png"/>" alt="dell-logo">
         </section>
         <section style="display: flex;justify-content: center;align-items: center">
-            <form method="post" action="/" class="more-product">
-                <input type="hidden" name="category" value="monitor">
+            <form method="get" action="get-prods-by-category" class="more-product">
+                <input type="hidden" name="category" value="laptop">
                 <input type="submit" value="LEARN MORE">
                 <div class="line"></div>
             </form>
@@ -82,8 +82,8 @@
         <section class="accessory__group-img">
             <img class="accessory__product-img" src="<c:url value="/static/images/keyboard-white.png"/>"alt="" style="margin-left: 1%; margin-bottom:-5%;">
             <img src="<c:url value="/static/images/block1.png"/>" alt="">
-            <form method="post" action="/" class="more-product">
-                <input type="hidden" name="category" value="monitor">
+            <form method="get" action="get-prods-by-category" class="more-product">
+                <input type="hidden" name="category" value="keyboard">
                 <input type="submit" value="LEARN MORE">
                 <div class="line"></div>
             </form>
@@ -113,7 +113,7 @@
         <section class="accessory__group-img">
             <img class="accessory__product-img" src="<c:url value="/static/images/monitor.svg"/>"alt="monitor" style="margin-left: 1%; margin-bottom:-7%;">
             <img src="<c:url value="/static/images/block1.png"/>" alt="">
-            <form method="post" action="/" class="more-product">
+            <form method="get" action="get-prods-by-category" class="more-product">
                 <input type="hidden" name="category" value="monitor">
                 <input type="submit" value="LEARN MORE">
                 <div class="line"></div>

@@ -16,4 +16,5 @@ public interface ProdService {
     List<ProductDTO> getProdsByModel(String model);
 
     List<ProductDTO> getProdsByCategory(ECategory eCategory);
+
 }

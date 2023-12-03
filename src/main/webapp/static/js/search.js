@@ -75,3 +75,9 @@ function filterProducts() {
     }
 
 }
+
+
+document.getElementById('#reset-icon').addEventListener('click', () => {
+    document.querySelector('select').value = 'All';
+    document.querySelector('#radio-price0').checked = true;
+});
