@@ -5,6 +5,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+    <link href="<c:url value="/static/images/logo_short.svg"/>" rel="icon"/>
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.2/css/all.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -112,16 +113,22 @@
                     </label>
                 </div>
             </div>
-            <span class="filter-title">Branch</span>
-            <select id="branchs" class="form-select filter-branch-prods" aria-label="Default select example">
+            <span class="filter-title">Category</span>
+            <select class="form-select filter-select-prods" aria-label="Default select example">
                 <option selected>All</option>
+                <option>1</option>
+                <option>2</option>
+            </select>
+            <span class="filter-title">Branch</span>
+            <select class="form-select filter-select-prods" aria-label="Default select example">
+                <option selected >All</option>
                 <option>1</option>
                 <option>2</option>
             </select>
         </div>
         <ul  class="search-item__list " id="productList">
             <c:forEach var="product" items="${prods}">
-                <a href="get-prod-by-id?id=${product.id}" class="search__product-result">
+                <li class="search__product-result">
                     <div class="product__img">
                         <img src="<c:url value="/static/images/headphone-white.png" />" alt="">
                     </div>
@@ -133,8 +140,9 @@
                             <span>Color:  <c:out value="${product.color}"/></span>
                         </div>
                         <div class="product__selection">
-                            <form  action="add-cart-item" method="post" style="width: 30%;">
-                                <button type="submit" class="button__add-cart" >
+                            <form  action="add-cart-item" method="post" style="width: 50%;">
+                                <button type="submit" class="button__add-cart" style="width: 80%;">
+                                    <input type="hidden" name="productId" value="${product.id}">
                                     <i class="fa-solid fa-cart-shopping button__icon"></i>
                                     <span>Add to cart</span>
                                 </button>
@@ -150,7 +158,7 @@
                             </div>
                         </div>
                     </div>
-                </a>
+                </li>
             </c:forEach>
         </ul>
     </section>

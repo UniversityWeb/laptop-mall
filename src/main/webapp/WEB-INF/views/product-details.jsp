@@ -4,14 +4,17 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <link href="<c:url value="/static/images/logo_short.svg"/>" rel="icon"/>
     <title>${prod.category} | ${prod.model}</title>
-    <link rel="stylesheet" href="<c:url value="/static/css/product-details.css"/>">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.2/css/all.css">
     <link rel="stylesheet" href="<c:url value="/static/css/base.css"/>">
+    <link rel="stylesheet" href="<c:url value="/static/css/product-details.css"/>">
+
 </head>
 <body>
 <input type="checkbox" id="check">
 <jsp:include page="navbar.jsp"></jsp:include>
-<nav style="margin-top: 110px;">
+<nav style="margin-top: var(--nav-height);">
     <div class="navigation">
         <a href="#prod-features">Features</a>
         <a href="#prod-specifications">Specifications</a>
@@ -21,7 +24,7 @@
         <i class="fas fa-bars menu-btn"></i>
         <i class="fas fa-times close-btn"></i>
     </label>
-</nav>
+</nav >
 <section class="product-detail__container">
     <section id="prod-features">
         <div class="container">
@@ -334,39 +337,73 @@
                 ${prod.brand}
             </div>
             <div class="group-basic-info">
-                <span>
+                <div class="prod__id-content">
+                    <input type="text" name="" id="prod-id" value=" ${prod.id}">
+                    <button onclick="copyToClipboard()"><i class="fa-solid fa-copy"></i></button>
+                </div>
+                <span class="prod-name">
                     ${prod.model}
                 </span>
-            </div>
-            <div class="qty-prod">
-                <span class="qty-title">Quantity</span>
-                <div class="qty-content">
-                    <button id="subBtn" class="sub-btn" onclick="decreaseQtyOfProd()">
-                        <i class="fa-solid fa-minus"></i>
-                    </button>
-                    <input type="text" name="" id="input-qty" class="qty-value"
-                           value="1" oninput="validateAmountInput(this)">
-                    <button id="plusBtn" class="plus-btn" onclick="increaseQtyOfProd(${prod.stockQty})">
-                        <i class="fa-solid fa-plus"></i>
-                    </button>
+                <div class="product-attributes">
+                        <span class="product-attributes__name">
+                            Version
+                        </span>
+                    <ul class="product-attribute__values">
+                        <li class="prod-value__item">
+                            ${prod.version}
+                        </li>
+                    </ul>
                 </div>
-            </div>
-            <div class="line"></div>
-            <div class="group-selections__prod">
-                <div class="prod-price">
-                    <div class="prod-total__price">
-                        ${prod.discountedPriceCurrencyFormat}
-                    </div>
-                    <div class="prod-extra__price">
-                        <div class="old-price">${prod.priceCurrencyFormat}</div>
-                        <div class="discount-price">-${prod.discountPercent}%</div>
+                <div class="product-attributes">
+                        <span class="product-attributes__name">
+                            Color
+                        </span>
+                    <ul class="product-attribute__values">
+                        <li class="prod-value__item">
+                            ${prod.color}
+                        </li>
+                    </ul>
+                </div>
+                <div class="product-attributes">
+                        <span class="product-attributes__name">
+                            Category
+                        </span>
+                    <ul class="product-attribute__values">
+                        <li class="prod-value__item">
+                            ${prod.category}
+                        </li>
+                    </ul>
+                </div>
+                <div class="amount-prod">
+                    <span class="amount-title">Amount</span>
+                    <div class="amount-content">
+                        <button id="subBtn" class="sub-btn" onclick="decreaseQtyOfProd()">
+                            <i class="fa-solid fa-minus"></i>
+                        </button>
+                        <input type="text" name="" id="input-qty" class="amount-value"
+                               value="1" oninput="validateAmountInput(this)">
+                        <button id="plusBtn" class="plus-btn" onclick="increaseQtyOfProd(${prod.stockQty})">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
                     </div>
                 </div>
-                <div class="selections-content">
-                    <button class="button__add-cart" onclick="addToCart(${prod.id})">
-                        <i class="fa-solid fa-cart-shopping button__icon"></i>
-                        <span>Add to cart</span>
-                    </button>
+                <div class="line"></div>
+                <div class="group-selections__prod">
+                    <div class="prod-price">
+                        <div class="prod-total__price">
+                            120.999$
+                        </div>
+                        <div class="prod-extra__price">
+                            <div class="old-price">138.999$</div>
+                            <div class="discount-price">-29%</div>
+                        </div>
+                    </div>
+                    <div class="selections-content">
+                        <button class="button__add-cart">
+                            <i class="fa-solid fa-cart-shopping button__icon"></i>
+                            <span>Add to cart</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

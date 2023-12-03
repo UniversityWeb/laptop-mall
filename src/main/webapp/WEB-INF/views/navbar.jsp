@@ -10,7 +10,6 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
-  <link href="<c:url value="/static/images/logo.svg"/>" rel="icon"/>
   <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.2/css/all.css">
   <link rel="stylesheet" href="<c:url value="/static/css/base.css"/>" type="text/css">
   <link rel="stylesheet" href="<c:url value="/static/css/navbar.css"/>" type="text/css">
@@ -66,12 +65,18 @@
         </li>
       </ul>
     </div>
+    <form action="home-page" method="get">
+      <button type="submit" class="nav__btn-icon">
+        <i class="fa-solid fa-house hover_icon"></i>
+      </button>
+    </form>
     <button class="nav__btn-icon" onclick="openModalSearch()">
       <i class="fa-solid fa-magnifying-glass hover_icon" ></i>
     </button>
     <form action="cart" method="post">
       <button type="submit" class="nav__btn-icon">
         <i class="fa-solid fa-cart-shopping hover_icon" ></i>
+        <div class="cart-bubble">3</div>
       </button>
     </form>
     <form action="/" method="post">
