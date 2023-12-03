@@ -2,6 +2,7 @@ package com.webteam.laptopmall.servlet.cart;
 
 import com.webteam.laptopmall.dto.CartItemDTO;
 import com.webteam.laptopmall.dto.OrderDTO;
+import com.webteam.laptopmall.entity.Order;
 import com.webteam.laptopmall.entity.Payment;
 import com.webteam.laptopmall.service.cart.CartService;
 import com.webteam.laptopmall.service.cart.CartServiceImpl;
@@ -39,7 +40,6 @@ public class PaymentServlet extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
 
         String url = "/send-voice";
-        String message = "";
 
         HttpSession session = req.getSession();
         OrderDTO order = (OrderDTO) session.getAttribute("order");
@@ -54,7 +54,9 @@ public class PaymentServlet extends HttpServlet {
             orderService.setOrderItemByCart(order, cart);
             order.setOrderDate(new Date());
             order.setPayment(new Payment(Payment.EMethod.valueOf(paymentMethod), Payment.EStatus.PENDING));
-            orderService.saveOrderAndDeleteCart(order, cart);
+            order.setStatus(Order.EStatus.PENDING);
+            order = orderService.saveOrderAndDeleteCart(order, cart);
+            session.setAttribute("customer", null);
         }
 
         session.setAttribute("order", order);

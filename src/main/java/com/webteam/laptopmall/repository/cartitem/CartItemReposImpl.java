@@ -32,8 +32,8 @@ public class CartItemReposImpl extends BaseReposImpl<CartItem, Long> implements 
         int updatedEntities = 0;
         try {
             trans.begin();
-            TypedQuery<CartItem> typedQuery = ciQuery.buildUpdateQtyOnly(em, cartItemId, newQty);
-            updatedEntities = typedQuery.executeUpdate();
+            Query query = ciQuery.buildUpdateQtyOnly(em, cartItemId, newQty);
+            updatedEntities = query.executeUpdate();
             trans.commit();
         } catch (NoResultException e) {
             log.log(Level.SEVERE, e.getMessage());
@@ -45,8 +45,12 @@ public class CartItemReposImpl extends BaseReposImpl<CartItem, Long> implements 
     }
 
     @Override
-    public List<CartItem> getByUserId(Long userId) {
-//        return getResultList(em -> ciQuery.buildGetByUserId(em, userId));
-        return null;
+    public List<CartItem> getListByUserId(Long userId) {
+        return getResultList(em -> ciQuery.buildGetListByUserId(em, userId));
+    }
+
+    @Override
+    public CartItem getByUserAndProductId(Long userId, Long productId) {
+        return getSingleResult(em -> ciQuery.buildGetByUserAndProductId(em, userId, productId));
     }
 }

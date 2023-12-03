@@ -43,32 +43,28 @@ public class CartServlet extends HttpServlet {
         String url = "/WEB-INF/views/cart/check-cart.jsp";
 
         HttpSession session = req.getSession();
-        UserDTO customer = (UserDTO) session.getAttribute("customer");
-        if (customer == null){
-            UserDTO user = (UserDTO) session.getAttribute("user");
-            customer = userService.getByUsername(user.getUsername());
-        }
+
+        String username = (String) session.getAttribute("username");
+        UserDTO customer = userService.getByUsername(username);
+
         List<CartItemDTO> cart = cartService.getCartByUserId(customer.getId());
 
         if(cart == null || cart.size()<1) {
-            logger.info("Cart is empty!");
             url = "/home-page?cart=empty";
+            resp.sendRedirect(req.getContextPath() + url);
         }
         else{
-            BigDecimal totalDiscountedAmount = cartService.totalDiscountedAmountOfCart(cart);
-            BigDecimal totalOriginalAmount = cartService.totalOriginalAmountOfCart(cart);
-            BigDecimal totalDiscountAmount = cartService.totalDiscountAmountOfCart(cart);
+            String totalDiscountedAmount = cartService.totalDiscountedAmountOfCartCurrentFormat(cart);
+            String totalOriginalAmount = cartService.totalOriginalAmountOfCartCurrentFormat(cart);
+            String totalDiscountAmount = cartService.totalDiscountAmountOfCartCurrentFormat(cart);
             int qtyItems = cartService.totalQtyOfCart(cart);
             req.setAttribute("totalDiscountedAmount", totalDiscountedAmount);
             req.setAttribute("totalOriginalAmount", totalOriginalAmount);
             req.setAttribute("totalDiscountAmount", totalDiscountAmount);
             req.setAttribute("qtyItems", qtyItems);
-
-            session.setAttribute("customer", customer);
+            req.setAttribute("cart", cart);
+            getServletContext().getRequestDispatcher(url).forward(req, resp);
         }
-
-        req.setAttribute("cart", cart);
-        getServletContext().getRequestDispatcher(url).forward(req, resp);
     }
 
     @Override

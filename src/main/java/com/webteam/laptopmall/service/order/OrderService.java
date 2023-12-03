@@ -6,8 +6,8 @@ import com.webteam.laptopmall.dto.OrderDTO;
 import java.util.List;
 
 public interface OrderService {
-    void save(OrderDTO orderDTO);
+    OrderDTO save(OrderDTO orderDTO);
     void setOrderItemByCart(OrderDTO orderDTO, List<CartItemDTO> cart);
     String getMailBody (OrderDTO orderDTO);
-    void saveOrderAndDeleteCart(OrderDTO order, List<CartItemDTO> cart);
+    OrderDTO saveOrderAndDeleteCart(OrderDTO order, List<CartItemDTO> cart);
 }

@@ -11,22 +11,9 @@
     <link rel="stylesheet" href="<c:url value="/static/css/check-cart.css"/>">
 </head>
 <body class="column">
-<header class="row center">
-    <div class="back_to_shop left" style="margin-top: 15px">
-        <form action="home-page" method="post" class="center">
-            <input type="hidden" name="action" value="Return Home">
-            <button class="back_to_shop row left">
-                <ion-icon name="chevron-back-outline"></ion-icon>
-                <span> Back To Shop </span>
-            </button>
-        </form>
-    </div>
-    <h2>LaptopMall</h2>
-    <div class="contact_shop right">
-        &nbsp;
-    </div>
-</header>
+<jsp:include page="../navbar.jsp"></jsp:include>
 <section class="column center">
+    <div style="height: 70px; width: 100px"></div>
     <div class="process_payment">
         <ul class="process_list center row">
             <li class="process_step column center">
@@ -59,16 +46,17 @@
                 <div class="product_item full row">
                     <table class="product_details full">
                         <tr class="full">
-                            <a class="product_img" href="#">
+                            <div class="product_img">
                                 <div class="product_img-square center">
-                                    <img class="product_img-source" alt="${item.product.model}" src="app/prod/${item.product.id}-0.jpg">
+<%--                                    <img class="product_img-source" alt="${item.product.model}" src="${item.product.imageUrls[0]}">--%>
+                                    <img class="product_img-source" alt="${item.product.model}">
                                 </div>
-                            </a>
+                            </div>
                         </tr>
                         <tbody class="row">
                         <tr class="product_details-left column">
                             <td class="product_details-title left">
-                                <a href="#">
+                                <a href="get-prod-by-id?id=${item.product.id}">
                                     <strong>${item.product.model}</strong>
                                 </a>
                             </td>
@@ -79,22 +67,20 @@
                                 <span>${item.product.version}</span>
                             </td>
                             <td class="product_details-number left">
-                                <form action="update" class="product_details-number-count row" method="post" id="quantity-form">
-                                    <input type="hidden" name="productId"
-                                    value="<c:out value='${item.product.id}'/>">
-                                    <button name="buttonUpdate" value="-1" class="button-minus">
+                                <form action="update-cart-item" class="product_details-number-count row" method="post" id="quantity-form">
+                                    <input type="hidden" name="productId" value="${item.product.id}">
+                                    <button name="action" value="decrease" class="button-minus">
                                         <ion-icon name="remove-outline"></ion-icon>
                                     </button>
                                     <input type="text" name="quantity" value="<c:out value='${item.qty}'/>" onchange="submitQuantity()">
-                                    <button name="buttonUpdate" value="1" class="button-add">
+                                    <button name="action" value="increase" class="button-add">
                                         <ion-icon name="add-outline"></ion-icon>
                                     </button>
                                 </form>
                             </td>
                         </tr>
                         <tr class="product_details-right column">
-                            <c:choose>
-                                <c:when test="${item.product.priceDiscounted > 0}">
+                                <c:if test="${item.product.discountPercent > 0 and item.product.discountPercent != null}">
                                 <td class="product_details-price right">
                                     <span><strong>${item.totalDiscountedAmountOfCartItemCurrentFormat()}</strong></span>
                                 </td>
@@ -104,19 +90,17 @@
                                 <td class="product_details-price-text right">
                                     <span>Discounted</span>
                                 </td>
-                                </c:when>
-                                <c:otherwise>
+                                </c:if>
+                                <c:if test="${item.product.discountPercent <= 0 || item.product.discountPercent == null}">
                                     <td class="product_details-price right">
-                                        <span><strong>${item.totalDiscountAmountOfCartItemCurrentFormat()}</strong></span>
+                                        <span><strong>${item.totalOriginalAmountOfCartItemCurrentFormat()}</strong></span>
                                     </td>
-                                </c:otherwise>
-                            </c:choose>
+                                </c:if>
                             <td class="product_details-remove right">
-                                <form action="delete" class="product_details-number-count row" method="post">
-                                    <input type="hidden" name="productCode"
-                                    value="<c:out value='${item.product.id}'/>">
-                                    <input type="hidden" name="productNumber" value="0">
-                                    <button name="action" value="Remove Item" class="button-remove">
+                                <form action="delete-cart-item" class="product_details-number-count row" method="post">
+                                    <input type="hidden" name="productId"
+                                    value="${item.product.id}">
+                                    <button class="button-remove">
                                         <ion-icon name="trash-outline"></ion-icon>
                                     </button>
                                 </form>

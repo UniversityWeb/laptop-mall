@@ -28,9 +28,9 @@ public class OrderServiceImpl implements OrderService{
     }
 
     @Override
-    public void save(OrderDTO orderDTO) {
+    public OrderDTO save(OrderDTO orderDTO) {
         Order order = OrderMapper.INSTANCE.toEntity(orderDTO);
-        orderRepos.save(order);
+        return OrderMapper.INSTANCE.toDTO(orderRepos.save(order));
     }
 
     @Override
@@ -49,14 +49,15 @@ public class OrderServiceImpl implements OrderService{
 
         String listItem = "";
         for (OrderItemDTO orderItemDTO: orderDTO.getOrderItems()) {
-            listItem += "<td><div style='width: 50px; height: 50px; object-fit: cover; overflow: hidden;'>" +
+            listItem += "<tr><td><div style='width: 50px; height: 50px; object-fit: cover; overflow: hidden;'>" +
                     "<img src='" + orderItemDTO.getProduct().getModel() +"' alt='product images' style='width: 100%; height: auto;'>" +
                     "</div></td>" +
                     "<td style='width: 150px; overflow: auto;'>" + orderItemDTO.getProduct().getModel() +"</td>" +
                     "<td style='width: 50px; overflow: auto;'>"+ orderItemDTO.getProduct().getColor() +"</td>" +
                     "<td style='width: 100px; overflow: auto; text-align: right'> x"+ orderItemDTO.getQty() +"</td>" +
-                    "<td style='width: 100px; overflow: auto; text-align: right'><del>"+ orderItemDTO.getProduct().getPrice() +"</del></td>" +
-                    "<td style='width: 100px; overflow: auto; text-align: right'>" + orderItemDTO.getCurPrice() +"</td>";
+                    "<td style='width: 100px; overflow: auto; text-align: right'><del>"+ orderItemDTO.getProduct().priceCurrentFormat() +"</del></td>" +
+                    "<td style='width: 100px; overflow: auto; text-align: right'>"+ orderItemDTO.getProduct().priceDiscountedCurrentFormat() +"</td>" +
+                    "<td style='width: 100px; overflow: auto; text-align: right'>" + orderItemDTO.totalDiscountedOfCartItemCurrentFormat() +"</td></tr>";
         }
 
         return  "<section style='width: 720px; height: auto;'>" +
@@ -75,7 +76,7 @@ public class OrderServiceImpl implements OrderService{
                 "<div><h1 style='height: 15px;'>Your Invoice</h1></div>" +
                 "<hr style='width: 100%; margin: 0; border-bottom: 1px solid #bbbbbb;'>" +
                 "<div style='width: 100%;'>" +
-                "<p><strong>Order ID:"+ orderDTO.getId() +"</strong></p>" +
+                "<p><strong>Order ID: "+ orderDTO.getId() +"</strong></p>" +
                 "<hr style='width: 100%; margin: 0; border-bottom: 1px solid #bbbbbb;'>" +
                 "<div style='padding: 5px 10px;'>" +
                 "<p>Order date: " + orderDTO.getOrderDate().toString() + "</p>" +
@@ -88,6 +89,7 @@ public class OrderServiceImpl implements OrderService{
                 "<table style='display: flex; flex-direction: column; align-items: center;'>"
                 + listItem + "<tr style='margin: 10px 0px;'><td>&nbsp;</td><td>&nbsp;</td>" +
                 "<td>Total:</td><td style='width: 100px; overflow: auto; text-align: right'>&nbsp;</td>" +
+                "<td style='width: 100px; overflow: auto; text-align: right'>&nbsp;</td>" +
                 "<td style='width: 100px; overflow: auto; text-align: right'>&nbsp;</td>" +
                 "<td style='width: 100px; overflow: auto; text-align: right;'>"
                 + orderDTO.totalDiscountedAmountOfOrderCurrentFormat() + "</td></tr></table>" +
@@ -104,9 +106,9 @@ public class OrderServiceImpl implements OrderService{
     }
 
     @Override
-    public void saveOrderAndDeleteCart(OrderDTO order, List<CartItemDTO> cart) {
+    public OrderDTO saveOrderAndDeleteCart(OrderDTO order, List<CartItemDTO> cart) {
         cart.forEach(cartItem -> cartItemService.deleteById(cartItem.getId()));
         order.getOrderItems().forEach(orderItem -> orderItemService.save(orderItem));
-        this.save(order);
+        return this.save(order);
     }
 }

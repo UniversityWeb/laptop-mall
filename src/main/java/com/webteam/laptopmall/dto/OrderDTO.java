@@ -112,7 +112,7 @@ public class OrderDTO {
     public BigDecimal totalDiscountedAmountOfOrder() {
         BigDecimal totalDiscounted = new BigDecimal(0);
         for (OrderItemDTO orderItemDTO: this.getOrderItems()) {
-            totalDiscounted.add(orderItemDTO.getCurPrice());
+            totalDiscounted = totalDiscounted.add(orderItemDTO.totalDiscountedOfCartItem());
         }
         return totalDiscounted;
     }

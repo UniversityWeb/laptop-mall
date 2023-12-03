@@ -67,7 +67,11 @@
       </ul>
     </div>
     <img class="nav__btn-icon icon-obj" src="./static/images/btnsearch.svg" onclick="openModalSearch()">
-    <img class="nav__btn-icon icon-obj" src="./static/images/cart.svg" alt="cart">
+    <form action="cart" method="post">
+      <button>
+      <img class="nav__btn-icon icon-obj" src="./static/images/cart.svg" alt="cart">
+      </button>
+    </form>
     <img class="nav__btn-icon icon-obj" src="./static/images/account.svg" alt="">
   </div>
 

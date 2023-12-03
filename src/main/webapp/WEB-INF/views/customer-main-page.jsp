@@ -38,14 +38,15 @@
             <div class=" swiper-wrapper product-wrapper">
                 <c:forEach var="product" items="${laptops}">
                     <div class="swiper-slide">
-                        <div class="product-item">
+                        <form class="product-item" action="add-cart-item" method="post">
+                            <input type="hidden" name="productId" value="${product.id}">
                             <img class="product-img" alt="" src="<c:url value="/static/images/smartphone-product.png"/>" />
                             <b class="product-name"><c:out value="${product.model}" /></b>
                             <button type="submit" class="button__add-cart">
                                 <i class="fa-solid fa-cart-shopping button__icon"></i>
                                 <span>Add to cart</span>
                             </button>
-                        </div>
+                        </form>
                     </div>
                 </c:forEach>
 
