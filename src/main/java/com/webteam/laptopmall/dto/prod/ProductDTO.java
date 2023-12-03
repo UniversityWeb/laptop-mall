@@ -4,6 +4,8 @@ import com.webteam.laptopmall.customenum.ECategory;
 import com.webteam.laptopmall.utility.CurrencyUtil;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class ProductDTO {
     protected Long id;
@@ -17,6 +19,7 @@ public abstract class ProductDTO {
     protected String color;
     protected int releaseYear;
     protected ECategory category;
+    protected List<String> imageUrls = new ArrayList<>();
 
     protected ProductDTO() {
     }
@@ -156,6 +159,29 @@ public abstract class ProductDTO {
     }
     public String getDiscountedPriceCurrentFormat() {
         return CurrencyUtil.getVNFormat(this.getDiscountedPrice());
+    }
+
+    public BigDecimal getDiscountedPrice() {
+        double price = this.price.doubleValue();
+        double discountedPrice = price - price * (discountPercent / 100);
+        return new BigDecimal(discountedPrice);
+    }
+
+    public String getPriceCurrencyFormat() {
+        return CurrencyUtil.getVNFormat(this.price);
+    }
+
+    public String getDiscountedPriceCurrencyFormat() {
+        BigDecimal discountedPrice = getDiscountedPrice();
+        return CurrencyUtil.getVNFormat(discountedPrice);
+    }
+
+    public List<String> getImageUrls() {
+        return imageUrls;
+    }
+
+    public void setImageUrls(List<String> imageUrls) {
+        this.imageUrls = imageUrls;
     }
 }
 
