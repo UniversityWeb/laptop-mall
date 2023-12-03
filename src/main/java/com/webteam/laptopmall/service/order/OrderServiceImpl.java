@@ -12,6 +12,8 @@ import com.webteam.laptopmall.service.cartItem.CartItemService;
 import com.webteam.laptopmall.service.cartItem.CartItemServiceImpl;
 import com.webteam.laptopmall.service.orderItem.OrderItemService;
 import com.webteam.laptopmall.service.orderItem.OrderItemServiceImpl;
+import com.webteam.laptopmall.service.prod.ProdService;
+import com.webteam.laptopmall.service.prod.ProdServiceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,11 +22,13 @@ public class OrderServiceImpl implements OrderService{
     private OrderRepos orderRepos;
     private CartItemService cartItemService;
     private OrderItemService orderItemService;
+    private ProdService prodService;
 
     public OrderServiceImpl(){
         orderRepos = new OrderReposImpl();
         orderItemService = new OrderItemServiceImpl();
         cartItemService = new CartItemServiceImpl();
+        prodService = new ProdServiceImpl();
     }
 
     @Override
@@ -107,7 +111,11 @@ public class OrderServiceImpl implements OrderService{
 
     @Override
     public OrderDTO saveOrderAndDeleteCart(OrderDTO order, List<CartItemDTO> cart) {
-        cart.forEach(cartItem -> cartItemService.deleteById(cartItem.getId()));
+        cart.forEach(cartItem ->{
+            cartItem.getProduct().setStockQty(cartItem.getProduct().getStockQty() - cartItem.getQty());
+            prodService.update(cartItem.getProduct());
+            cartItemService.deleteById(cartItem.getId());
+        });
         order.getOrderItems().forEach(orderItem -> orderItemService.save(orderItem));
         return this.save(order);
     }
