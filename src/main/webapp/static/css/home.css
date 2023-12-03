@@ -4,6 +4,10 @@ header{
     place-items: center;
 }
 
+body{
+    overflow-x: hidden;
+}
+
 section{
     height: auto;
     width: 100%;
@@ -21,7 +25,7 @@ footer{
 
 .pr-video{
     position: relative;
-
+    background-color: var(--color1);
     margin: auto;
     width: 100%;
     height: auto;
@@ -158,8 +162,6 @@ footer{
     flex-direction: row;
     gap: 30px;
     background-color: var(--color6);
-
-;
     /* background-color: var(--color5); */
 }
 
@@ -177,6 +179,7 @@ footer{
     height: 90%;
     background-color: var(--color0);
 }
+
 .product-item:hover{
     transform: translate(-5px,-10px);
     cursor: pointer;
@@ -211,7 +214,13 @@ footer{
 }
 
 .laptop-title{
-    background: #FCB5B7;
+    height: auto;
+    background: var(--color0);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
 }
 
 .girl-laptop{
@@ -222,9 +231,10 @@ footer{
     object-fit: cover;
 }
 .txt-laptop{
-    font-size: 400%;
-    color: var(--color0);
-    margin-left: 15%;
+    transform: scale(1.5);
+    color: var(--color1);
+    font-weight: bolder;
+    margin-bottom: 10%;
 }
 .boy-laptop{
     width: 13%;
@@ -276,7 +286,7 @@ footer{
 
 
 .accessory-title{
-    background: var(--color2);
+    background: var(--color1);
 }
 
 .accessory-txt{
@@ -312,7 +322,7 @@ footer{
     position: relative;
 }
 .accessory__list-item{
-    height: auto;
+    height: 500px;
     border-radius: 10px;
     width: 100%;
     overflow: hidden;
@@ -320,6 +330,11 @@ footer{
     flex-direction: row;
     gap: 30px;
     background-color: rgba(209, 210, 214, 0.20);
+}
+
+.product-wrapper{
+    height: auto;
+    padding: 2%;
 }
 
 /*Mobile*/
@@ -354,4 +369,51 @@ footer{
     .giphy-9{
         margin-left: 6%;
     }
+}
+
+canvas {
+    display: flex;
+}
+
+#canvas3d_laptop{
+    transform: scale(0.5);
+}
+
+.more-product input{
+    background: transparent;
+    outline: none;
+    border: none;
+    margin-top: 50%;
+}
+
+
+
+.line{
+    width: 100%;
+    height: 2px;
+    background-color: var(--color2);
+    border-radius: 30px;
+}
+
+.more-product{
+    display: grid;
+    place-items: center;
+    width: auto;
+}
+
+.more-product:hover .line{
+    animation: linear inputhover 0.2s;
+}
+
+.more-product:active .line{
+    background-color: var(--color3);
+}
+.more-product:active input{
+    color:  var(--color3);
+}
+
+
+@keyframes inputhover{
+    from{width: 0%;}
+    to{width: 100%;}
 }

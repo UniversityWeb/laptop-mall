@@ -29,3 +29,13 @@ btn.forEach(item =>{
     });
 });
 
+var  icon = document.querySelectorAll('.hover_icon')
+icon.forEach(i=>{
+    i.addEventListener('mouseover', ()=> {
+        i.classList.add('fa-bounce');
+    });
+    i.addEventListener('mouseout', function() {
+        i.classList.remove('fa-bounce');
+    });
+})
+
