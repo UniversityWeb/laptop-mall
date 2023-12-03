@@ -121,37 +121,37 @@
         </div>
         <ul  class="search-item__list " id="productList">
             <c:forEach var="product" items="${prods}">
-                            <li class="search__product-result">
-                                <div class="product__img">
-                                    <img src="<c:url value="/static/images/headphone-white.png" />" alt="">
-                                </div>
-                                <div class="product_info">
-                                    <span class="product__name"><c:out value="${product.model}" /></span>
-                                    <span class="product__id"><c:out value="${product.id}" /></span>
-                                    <span class="product__price"><c:out value="${product.price}" /></span>
-                                    <div class="product_des">
-                                        <span>Color:  <c:out value="${product.color}"/></span>
-                                    </div>
-                                    <div class="product__selection">
-                                        <form  action="add-cart-item" method="post" style="width: 30%;">
-                                            <button type="submit" class="button__add-cart" >
-                                                <i class="fa-solid fa-cart-shopping button__icon"></i>
-                                                <span>Add to cart</span>
-                                            </button>
-                                        </form>
+                <a href="get-prod-by-id?id=${product.id}" class="search__product-result">
+                    <div class="product__img">
+                        <img src="<c:url value="/static/images/headphone-white.png" />" alt="">
+                    </div>
+                    <div class="product_info">
+                        <span class="product__name"><c:out value="${product.model}" /></span>
+                        <span class="product__id"><c:out value="${product.id}" /></span>
+                        <span class="product__price"><c:out value="${product.price}" /></span>
+                        <div class="product_des">
+                            <span>Color:  <c:out value="${product.color}"/></span>
+                        </div>
+                        <div class="product__selection">
+                            <form  action="add-cart-item" method="post" style="width: 30%;">
+                                <button type="submit" class="button__add-cart" >
+                                    <i class="fa-solid fa-cart-shopping button__icon"></i>
+                                    <span>Add to cart</span>
+                                </button>
+                            </form>
 
-                                        <form action="get-prod-by-id?id=${product.id}" method="get" class="input__group-selection">
-                                            <input type="submit" value="LEARN MORE">
-                                            <div class="line"></div>
-                                        </form>
-                                        <div class="input__group-selection">
-                                            <input type="submit" value="FIND SUPPORT">
-                                            <div class="line"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </c:forEach>
+                            <a href="get-prod-by-id?id=${product.id}" class="input__group-selection">
+                                <input type="submit" value="LEARN MORE">
+                                <div class="line"></div>
+                            </a>
+                            <div class="input__group-selection">
+                                <input type="submit" value="FIND SUPPORT">
+                                <div class="line"></div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </c:forEach>
         </ul>
     </section>
 </section>

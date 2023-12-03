@@ -14,19 +14,13 @@
 
 <jsp:include page="navbar.jsp"></jsp:include>
 <section class="pr-container">
-<%--    <canvas id="canvas3d_text" class="pr-video"></canvas>--%>
     <img class="pr-video" alt="video" src="./static/images/prvideo.gif" />
 </section>
 <section class="laptop-container">
     <section class="laptop-title">
-<%--        <canvas id="canvas3d_laptop"></canvas>--%>
         <span class="txt-laptop">Laptop</span>
     </section>
     <section  class="laptop-content">
-<%--        <section class="laptop-mall">--%>
-<%--            <img class="laptop-fish" src="<c:url value="/static/images/laptopfish.gif"/>" alt="laptop-fish">--%>
-<%--            <img class="laptopmall-frame" src="<c:url value="/static/images/laptopmall-frame.png"/>" alt="laptopmall-frame">--%>
-<%--        </section>--%>
         <section class="laptop__list-gif">
             <img  src="<c:url value="/static/images/giphy1.gif"/>" alt="giphy">
             <img src="<c:url value="/static/images/giphy8.gif"/>" alt="giphy">
@@ -52,7 +46,7 @@
             <div class="product-container swiper product-Swiper">
                 <div class=" swiper-wrapper product-wrapper">
                     <c:forEach var="product" items="${laptops}">
-                        <div class="swiper-slide">
+                        <a href="get-prod-by-id?id=${product.id}" class="swiper-slide">
                             <form  action="add-cart-item" method="post" class="product-item">
                                 <img class="product-img" alt="" src="<c:url value="/static/images/laptop-product.png"/>" />
                                 <b class="product-name" name="model"><c:out value="${product.model}" /></b>
@@ -62,7 +56,7 @@
                                     <span>Add to cart</span>
                                 </button>
                             </form>
-                        </div>
+                        </a>
                     </c:forEach>
                 </div>
                 <img class="icon-obj swiper-button-prev" alt="" src="<c:url value="/static/images/btnback.svg"/>" />
@@ -91,7 +85,7 @@
         <section class="accessory__list-item swiper product-Swiper">
             <div class=" swiper-wrapper product-wrapper">
                 <c:forEach var="product" items="${keyboards}">
-                    <div class="swiper-slide">
+                    <a href="get-prod-by-id?id=${product.id}" class="swiper-slide">
                         <form  action="add-cart-item" method="post" class="product-item">
                             <img class="product-img" alt="" src="<c:url value="/static/images/keyboard.png"/>" />
                             <b class="product-name" name="model"><c:out value="${product.model}" /></b>
@@ -101,7 +95,7 @@
                                 <span>Add to cart</span>
                             </button>
                         </form>
-                    </div>
+                    </a>
                 </c:forEach>
             </div>
             <img class="icon-obj swiper-button-prev" alt="" src="<c:url value="/static/images/btnback.svg"/>" />
@@ -122,7 +116,7 @@
         <section class="accessory__list-item swiper product-Swiper">
             <div class=" swiper-wrapper product-wrapper">
                 <c:forEach var="product" items="${monitors}">
-                    <div class="swiper-slide">
+                    <a href="get-prod-by-id?id=${product.id}" class="swiper-slide">
                         <form  action="add-cart-item" method="post" class="product-item">
                             <img class="product-img" alt="" src="<c:url value="/static/images/monitor.svg"/>" />
                             <b class="product-name" name="model"><c:out value="${product.model}" /></b>
@@ -132,7 +126,7 @@
                                 <span>Add to cart</span>
                             </button>
                         </form>
-                    </div>
+                    </a>
                 </c:forEach>
             </div>
             <img class="icon-obj swiper-button-prev" alt="" src="<c:url value="/static/images/btnback.svg"/>" />
@@ -149,14 +143,5 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="<c:url value="/static/js/base.js"/>" async defer ></script>
 <script src="<c:url value="/static/js/home.js"/>" async defer ></script>
-<%--<script async src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"></script>--%>
-<%--<script type="importmap">--%>
-<%--      {--%>
-<%--        "imports": {--%>
-<%--          "@splinetool/runtime": "https://unpkg.com/@splinetool/runtime@0.9.516/build/runtime.js"--%>
-<%--        }--%>
-<%--      }--%>
-<%--  </script>--%>
-<%--<script type="module" src="<c:url value="/static/js/pline.js"/>" async defer ></script>--%>
 </body>
 </html>
