@@ -1,6 +1,7 @@
 package com.webteam.laptopmall.dto;
 
 import com.webteam.laptopmall.dto.prod.ProductDTO;
+import com.webteam.laptopmall.utility.CurrencyUtil;
 
 import java.math.BigDecimal;
 
@@ -56,5 +57,30 @@ public class OrderItemDTO {
 
     public void setCurPrice(BigDecimal curPrice) {
         this.curPrice = curPrice;
+    }
+
+    public BigDecimal totalDiscountedOfCartItem(){
+        return this.totalOriginalOfCartItem().subtract(this.totalDiscountOfCartItem());
+    }
+
+    public BigDecimal totalOriginalOfCartItem(){
+        return this.product.getPrice().multiply(new BigDecimal(this.qty));
+    }
+
+    public BigDecimal totalDiscountOfCartItem(){
+        return this.product.priceDiscount().multiply(new BigDecimal(this.qty));
+    }
+
+    public String getCurrPiceCurrentFormat() {
+        return CurrencyUtil.getVNFormat(this.curPrice);
+    }
+    public String totalDiscountedOfCartItemCurrentFormat(){
+        return CurrencyUtil.getVNFormat(this.totalDiscountedOfCartItem());
+    }
+    public String totalOriginalOfCartItemCurrentFormat(){
+        return CurrencyUtil.getVNFormat(this.totalOriginalOfCartItem());
+    }
+    public String totalDiscountOfCartItemCurrentFormat(){
+        return CurrencyUtil.getVNFormat(this.totalDiscountOfCartItem());
     }
 }

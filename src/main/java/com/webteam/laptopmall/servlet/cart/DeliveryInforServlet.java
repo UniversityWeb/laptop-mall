@@ -3,6 +3,10 @@ package com.webteam.laptopmall.servlet.cart;
 import com.webteam.laptopmall.dto.CartItemDTO;
 import com.webteam.laptopmall.dto.OrderDTO;
 import com.webteam.laptopmall.dto.UserDTO;
+import com.webteam.laptopmall.service.cart.CartService;
+import com.webteam.laptopmall.service.cart.CartServiceImpl;
+import com.webteam.laptopmall.service.user.UserService;
+import com.webteam.laptopmall.service.user.UserServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,9 +19,13 @@ import java.util.List;
 
 @WebServlet("/delivery-infor")
 public class DeliveryInforServlet extends HttpServlet {
+    private CartService cartService;
+    private UserService userService;
     @Override
     public void init() throws ServletException {
         super.init();
+        cartService = new CartServiceImpl();
+        userService = new UserServiceImpl();
     }
 
     @Override
@@ -31,16 +39,25 @@ public class DeliveryInforServlet extends HttpServlet {
         String url = "/WEB-INF/views/cart/delivery-infor.jsp";
 
         HttpSession session = req.getSession();
-        UserDTO customer = (UserDTO) session.getAttribute("customer");
+        String username = (String) session.getAttribute("username");
+        UserDTO customer = userService.getByUsername(username);
         OrderDTO order = (OrderDTO) session.getAttribute("order");
+        List<CartItemDTO> cart = cartService.getCartByUserId(customer.getId());
 
         if (order == null) {
             order = new OrderDTO();
         }
 
         order.setCustomer(customer);
-        session.setAttribute("customer", null);
+        session.setAttribute("customer", customer);
         session.setAttribute("order", order);
+
+        String totalDiscountedAmount = cartService.totalDiscountedAmountOfCartCurrentFormat(cart);
+        String totalOriginalAmount = cartService.totalOriginalAmountOfCartCurrentFormat(cart);
+        String totalDiscountAmount = cartService.totalDiscountAmountOfCartCurrentFormat(cart);
+        req.setAttribute("totalDiscountedAmount", totalDiscountedAmount);
+        req.setAttribute("totalOriginalAmount", totalOriginalAmount);
+        req.setAttribute("totalDiscountAmount", totalDiscountAmount);
         getServletContext().getRequestDispatcher(url).forward(req, resp);
     }
 

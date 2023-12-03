@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface CartItemRepos extends BaseRepos<CartItem, Long> {
     boolean updateQtyOnly(Long cartItemId, int newQty);
-    List<CartItem> getByUserId(Long userId);
+    List<CartItem> getListByUserId(Long userId);
+    CartItem getByUserAndProductId(Long userId, Long productId);
 }

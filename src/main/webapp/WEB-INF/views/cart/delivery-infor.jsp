@@ -19,22 +19,9 @@
     <link rel="stylesheet" href="<c:url value="/static/css/delivery-infor.css"/>">
 </head>
 <body class="column">
-<header class="row center">
-    <div class="back_to_shop left">
-        <form action="home-page" method="post" class="center">
-            <input type="hidden" name="action" value="Return Home">
-            <button class="back_to_shop row left">
-                <ion-icon name="chevron-back-outline"></ion-icon>
-                <span> Back To Shop </span>
-            </button>
-        </form>
-    </div>
-    <h2>LaptopMall</h2>
-    <div class="contact_shop right">
-        &nbsp;
-    </div>
-</header>
+<jsp:include page="../navbar.jsp"></jsp:include>
 <section class="column center">
+    <div style="height: 70px; width: 100px"></div>
     <div class="process_payment">
         <ul class="process_list center row">
             <li class="process_step column center">
@@ -165,7 +152,9 @@
                     </div>
                 </div>
                 <hr>
-                <button class="button_payment full" onclick="submitForm('form-infor')">Payment</button>
+                <div class="full center">
+                    <button class="button_payment" onclick="submitForm('form-infor')">Payment</button>
+                </div>
                 <form action="cart" method="post" class="full center">
                     <button class="button_return">Return</button>
                 </form>

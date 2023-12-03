@@ -2,6 +2,7 @@ package com.webteam.laptopmall.servlet.cart;
 
 import com.webteam.laptopmall.dto.CartItemDTO;
 import com.webteam.laptopmall.dto.OrderDTO;
+import com.webteam.laptopmall.dto.UserDTO;
 import com.webteam.laptopmall.service.cart.CartService;
 import com.webteam.laptopmall.service.cart.CartServiceImpl;
 
@@ -33,7 +34,15 @@ public class PaymentMethodServlet extends HttpServlet {
         String url = "/WEB-INF/views/cart/payment-method.jsp";
         HttpSession session = req.getSession();
         OrderDTO order = (OrderDTO) session.getAttribute("order");
+        System.out.println(order.getCustomer());
         List<CartItemDTO> cart = cartService.getCartByUserId(order.getCustomer().getId());
+
+        String totalDiscountedAmount = cartService.totalDiscountedAmountOfCartCurrentFormat(cart);
+        String totalOriginalAmount = cartService.totalOriginalAmountOfCartCurrentFormat(cart);
+        String totalDiscountAmount = cartService.totalDiscountAmountOfCartCurrentFormat(cart);
+        req.setAttribute("totalDiscountedAmount", totalDiscountedAmount);
+        req.setAttribute("totalOriginalAmount", totalOriginalAmount);
+        req.setAttribute("totalDiscountAmount", totalDiscountAmount);
 
         req.setAttribute("cart", cart);
         getServletContext().getRequestDispatcher(url).forward(req, resp);

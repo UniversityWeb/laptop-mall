@@ -56,4 +56,10 @@ public class SendVoiceServlet extends HttpServlet {
         }
         resp.sendRedirect(getServletContext().getContextPath() + url);
     }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+        doPost(req, resp);
+    }
 }

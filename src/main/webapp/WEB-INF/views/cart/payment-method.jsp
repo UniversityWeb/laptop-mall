@@ -12,22 +12,9 @@
     <link rel="stylesheet" href="<c:url value="/static/css/payment-method.css"/>">
 </head>
 <body class="column">
-<header class="row center">
-    <div class="back_to_shop left">
-        <form action="home-page" method="post" class="center">
-            <input type="hidden" name="action" value="Return Home">
-            <button class="back_to_shop row left" style="pointer-events: all">
-                <ion-icon name="chevron-back-outline"></ion-icon>
-                <span> Method Delivery </span>
-            </button>
-        </form>
-    </div>
-    <h2>LaptopMall</h2>
-    <div class="contact_shop right">
-        &nbsp;
-    </div>
-</header>
+<jsp:include page="../navbar.jsp"></jsp:include>
 <section class="column center">
+    <div style="height: 70px; width: 100px"></div>
     <div class="process_payment">
         <ul class="process_list center row">
             <li class="process_step column center">
@@ -52,12 +39,16 @@
         <div class="content_left">
             <h1>Delivery Information Details:</h1>
             <div class="information_delivery">
+                <label>Email</label>
+                <p>:&nbsp;${order.customer.email}</p>
                 <label>Full Name</label>
                 <p>:&nbsp;${order.customer.fullName}</p>
                 <label>Address</label>
                 <p>:&nbsp;${order.customer.address}</p>
                 <label>Phone Number</label>
                 <p>:&nbsp;${order.customer.phoneNo}</p>
+                <label>Delivery Method</label>
+                <p>:&nbsp;${order.deliveryMethod}</p>
             </div>
             <hr>
             <h1>Payment Method:</h1>
@@ -87,16 +78,17 @@
                 <div class="product_item full row">
                     <table class="product_details full">
                         <tr class="full">
-                            <a class="product_img" href="#">
+                            <div class="product_img">
                                 <div class="product_img-square center">
-                                    <img class="product_img-source" alt="${item.product.model}" src="app/prod/${item.product.id}-0.jpg">
+<%--                                    <img class="product_img-source" alt="${item.product.model}" src="${item.product.imageUrls[0]}">--%>
+                                    <img class="product_img-source" alt="${item.product.model}">
                                 </div>
-                            </a>
+                            </div>
                         </tr>
                         <tbody class="row">
                         <tr class="product_details-left column">
                             <td class="product_details-title left">
-                                <a href="product_details-link">
+                                <a href="get-prod-by-id?id=${item.product.id}">
                                     <strong>${item.product.model}</strong>
                                 </a>
                             </td>
@@ -110,7 +102,7 @@
                         <tr class="product_details-right column">
                             <td class="product_details-price right">
                                 <c:choose>
-                                    <c:when test="${item.product.priceDiscounted > 0}">
+                                    <c:when test="${item.product.discountPercent > 0 and item.product.discountPercent != null}">
                                         <span><strong>${item.totalDiscountedAmountOfCartItemCurrentFormat()}</strong></span>
                                     </c:when>
                                     <c:otherwise>
@@ -139,9 +131,10 @@
                     </div>
                 </div>
                 <hr>
-                <button class="button_payment full" onclick="submitForm('form-method')">Payment</button>
-
-                <form action="check-infor-delivery" method="post" class="full center">
+                <div class="full center">
+                    <button class="button_payment" onclick="submitForm('form-method')">Payment</button>
+                </div>
+                <form action="delivery-infor" method="post" class="full center">
                     <input type="hidden" name="action" value="Shipping Information">
                     <button class="button_return">Return</button>
                 </form>

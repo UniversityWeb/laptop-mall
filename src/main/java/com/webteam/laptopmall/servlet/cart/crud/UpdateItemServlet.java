@@ -4,6 +4,8 @@ import com.webteam.laptopmall.dto.CartItemDTO;
 import com.webteam.laptopmall.dto.UserDTO;
 import com.webteam.laptopmall.service.cart.CartService;
 import com.webteam.laptopmall.service.cart.CartServiceImpl;
+import com.webteam.laptopmall.service.user.UserService;
+import com.webteam.laptopmall.service.user.UserServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,9 +17,10 @@ import java.io.IOException;
 import java.util.List;
 import java.util.logging.Logger;
 
-@WebServlet("/update")
+@WebServlet("/update-cart-item")
 public class UpdateItemServlet extends HttpServlet {
     private CartService cartService;
+    private UserService userService;
 
     private static final Logger logger = Logger.getLogger(UpdateItemServlet.class.getName());
 
@@ -25,10 +28,11 @@ public class UpdateItemServlet extends HttpServlet {
     public void init() throws ServletException {
         super.init();
         cartService = new CartServiceImpl();
+        userService = new UserServiceImpl();
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         resp.setContentType("text/html");
         req.setCharacterEncoding("UTF-8");
@@ -37,18 +41,34 @@ public class UpdateItemServlet extends HttpServlet {
         String url = "/cart";
 
         HttpSession session = req.getSession();
-        UserDTO customer = (UserDTO) session.getAttribute("customer");
+        String username = (String) session.getAttribute("username");
+        UserDTO customer = userService.getByUsername(username);
+
         List<CartItemDTO> cart = cartService.getCartByUserId(customer.getId());
 
-        String buttonUpdate = req.getParameter("buttonUpdate");
-        Long productId = (Long) req.getAttribute("productId");
+        String action = req.getParameter("action");
+
+        if (action == null){
+            action = "";
+        }
+
+        String productIdString = req.getParameter("productId");
+        Long productId = Long.valueOf(productIdString);
+        String quantityString = req.getParameter("quantity");
+        int quantity;
 
         CartItemDTO cartItem = cartService.getItemOfCartById(cart, productId);
 
-        if(buttonUpdate.equals("") || buttonUpdate == null){
-            String quantityString = req.getParameter("quantity");
-
-            int quantity;
+        if(action.equals("increase")){
+            quantity = cartItem.getQty() + 1;
+        }
+        else if (action.equals("decrease")){
+            quantity = cartItem.getQty() - 1;
+            if (quantity <= 0){
+                cartService.deleteItem(cartItem);
+            }
+        }
+        else{
             try{
                 quantity = Integer.valueOf(quantityString);
                 if (quantity < 0){
@@ -58,29 +78,11 @@ public class UpdateItemServlet extends HttpServlet {
                 quantity = cartItem.getQty();
                 logger.severe("ERROR: " + e.getMessage());
             }
-
-            cartItem.setQty(quantity);
-            cartService.updateItem(cart, cartItem);
-        }
-        else{
-            int quantity;
-            try{
-                quantity = Integer.valueOf(buttonUpdate);
-            } catch (NumberFormatException e){
-                quantity = 0;
-                logger.severe("ERROR: " + e.getMessage());
-            }
-
-            cartItem.setQty(quantity);
-            cartService.addItem(cart, cartItem);
         }
 
-        getServletContext().getRequestDispatcher(url).forward(req, resp);
-    }
+        cartItem.setQty(quantity);
+        cartService.updateQtyOnly(cartItem);
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
-        doGet(req, resp);
+        resp.sendRedirect(req.getContextPath() + url);
     }
 }

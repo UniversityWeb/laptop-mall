@@ -1,6 +1,7 @@
 package com.webteam.laptopmall.dto;
 
 import com.webteam.laptopmall.dto.prod.ProductDTO;
+import com.webteam.laptopmall.utility.CurrencyUtil;
 
 import java.math.BigDecimal;
 import java.text.NumberFormat;
@@ -60,14 +61,13 @@ public class CartItemDTO {
         this.product = product;
     }
 
-    private NumberFormat currency = NumberFormat.getCurrencyInstance(Locale.US);
     public BigDecimal totalDiscountedAmountOfCartItem() {
         BigDecimal totalOriginalAmount = this.totalOriginalAmountOfCartItem();
         BigDecimal totalDiscountAmount = this.totalDiscountAmountOfCartItem();
         return totalOriginalAmount.subtract(totalDiscountAmount);
     }
 
-    public BigDecimal totalOriginalAmountOfCartItem( ) {
+    public BigDecimal totalOriginalAmountOfCartItem() {
         BigDecimal pricePerUnit = this.getProduct().getPrice();
         Integer quantity = this.getQty();
         return pricePerUnit.multiply(new BigDecimal(quantity));
@@ -76,20 +76,20 @@ public class CartItemDTO {
     public BigDecimal totalDiscountAmountOfCartItem() {
         Double discountPercent = this.getProduct().getDiscountPercent();
         BigDecimal totalOriginalAmount = this.totalOriginalAmountOfCartItem();
-        if (discountPercent == null)
+        if (discountPercent == null || discountPercent<=0)
             return new BigDecimal(0);
         return totalOriginalAmount.divide(new BigDecimal(100)).multiply(new BigDecimal(discountPercent));
     }
 
     public String totalDiscountedAmountOfCartItemCurrentFormat() {
-        return currency.format(this.totalDiscountedAmountOfCartItem());
+        return CurrencyUtil.getVNFormat(this.totalDiscountedAmountOfCartItem());
     }
 
     public String totalOriginalAmountOfCartItemCurrentFormat() {
-        return currency.format(this.totalOriginalAmountOfCartItem());
+        return CurrencyUtil.getVNFormat(this.totalOriginalAmountOfCartItem());
     }
 
     public String totalDiscountAmountOfCartItemCurrentFormat() {
-        return currency.format(this.totalDiscountAmountOfCartItem());
+        return CurrencyUtil.getVNFormat((this.totalDiscountAmountOfCartItem()));
     }
 }

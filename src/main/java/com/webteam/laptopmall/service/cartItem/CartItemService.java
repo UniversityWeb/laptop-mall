@@ -14,5 +14,6 @@ public interface CartItemService {
     void updateQtyOnly(Long cartItemId, Integer qty);
     OrderItemDTO toOrderItem(CartItemDTO item);
 
-    List<CartItem> getByUserId(Long userId);
+    List<CartItemDTO> getListByUserId(Long userId);
+    CartItemDTO getByUserAndProductId(Long userId, Long productId);
 }

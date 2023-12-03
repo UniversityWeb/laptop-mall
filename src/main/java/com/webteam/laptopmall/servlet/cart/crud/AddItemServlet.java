@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-@WebServlet("/add-cart")
+@WebServlet("/add-cart-item")
 public class AddItemServlet extends HttpServlet {
 
     private ProdService prodService;
@@ -52,30 +52,23 @@ public class AddItemServlet extends HttpServlet {
         String url = "/home-page";
 
         HttpSession session = req.getSession();
-        UserDTO customer = (UserDTO) session.getAttribute("customer");
-        if (customer == null){
-            UserDTO user = (UserDTO) session.getAttribute("user");
-            customer = userService.getByUsername(user.getUsername());
-        }
+        String username = (String) session.getAttribute("username");
+        UserDTO customer = userService.getByUsername(username);
 
-        Long productId = (Long) req.getAttribute("productId");
+        List<CartItemDTO> cart = cartService.getCartByUserId(customer.getId());
+        String productIdString = req.getParameter("productId");
 
         try{
+            Long productId = Long.valueOf(productIdString);
             ProductDTO product = prodService.getById(productId);
-            List<CartItemDTO> cart = cartService.getCartByUserId(customer.getId());
-
-            if(cart == null){
-                cart = new ArrayList<>();
-            }
 
             CartItemDTO cartItem = new CartItemDTO(1, customer, product);
-            cartService.addItem(cart, cartItem);
+            cartService.addItem(cartItem);
             url = "/cart";
         } catch (Exception e){
             logger.severe(e.getMessage());
         }
 
-        session.setAttribute("customer", customer);
         resp.sendRedirect(req.getContextPath() + url);
     }
 

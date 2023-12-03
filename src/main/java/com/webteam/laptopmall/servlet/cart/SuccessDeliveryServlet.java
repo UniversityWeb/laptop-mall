@@ -25,4 +25,10 @@ public class SuccessDeliveryServlet extends HttpServlet {
 
         getServletContext().getRequestDispatcher(url).forward(req, resp);
     }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+        doPost(req, resp);
+    }
 }

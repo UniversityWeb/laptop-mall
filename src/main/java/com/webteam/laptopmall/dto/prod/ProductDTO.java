@@ -1,6 +1,7 @@
 package com.webteam.laptopmall.dto.prod;
 
 import com.webteam.laptopmall.customenum.ECategory;
+import com.webteam.laptopmall.utility.CurrencyUtil;
 
 import java.math.BigDecimal;
 
@@ -138,5 +139,22 @@ public abstract class ProductDTO {
 
     public void setCategory(ECategory category) {
         this.category = category;
+    }
+
+    public BigDecimal priceDiscount(){
+        return this.price.multiply(new BigDecimal(this.discountPercent)).divide(new BigDecimal(100));
+    }
+    public BigDecimal priceDiscounted(){
+        return this.price.subtract(this.priceDiscount());
+    }
+
+    public String priceCurrentFormat() {
+        return CurrencyUtil.getVNFormat(this.price);
+    }
+    public String priceDiscountCurrentFormat() {
+        return CurrencyUtil.getVNFormat(this.priceDiscount());
+    }
+    public String priceDiscountedCurrentFormat() {
+        return CurrencyUtil.getVNFormat(this.priceDiscounted());
     }
 }
