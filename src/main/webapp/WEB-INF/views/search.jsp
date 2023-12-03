@@ -165,7 +165,7 @@
     </section>
 </section>
 <footer></footer>
-<jsp:include page="chatbox.jsp"></jsp:include>
+<jsp:include page="customer-chatbox.jsp"></jsp:include>
 <script src="<c:url value="/static/js/base.js"/>" async defer ></script>
 <script src="<c:url value="/static/js/search.js"/>" async defer ></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
