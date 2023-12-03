@@ -16,12 +16,12 @@
 <body>
 <div id="chat-box" class="chat_box">
     <div class="chatbox__navbar">
-        <img class="logo-chatbox" src="./static/images/logo-light.svg" alt="">
-        <img id="close_chat" class="close__chatbox" src="./static/images/btn-close.svg" alt="">
+        <img class="logo-chatbox" src="<c:url value="/static/images/logo_short.svg"/>" alt="">
+        <img id="close_chat" class="close__chatbox" src="<c:url value="/static/images/btn-close.svg"/>" alt="">
     </div>
     <div class="chatbox__content">
         <div class="chatbox__chat-received">
-            <img class="chat__bot-img" src="./static/images/account_icon.svg" alt="">
+            <img class="chat__bot-img" src="<c:url value="/static/images/account_icon.svg"/>" alt="">
             <ul class="list__bubble-chat">
                 <li class="bubble-chat__item">
                     <p>Hi hiiiiiiiii</p>
@@ -46,7 +46,7 @@
             </ul>
         </div>
         <div class="chatbox__chat-received">
-            <img class="chat__bot-img" src="./static/images/account_icon.svg" alt="">
+            <img class="chat__bot-img" src="<c:url value="/static/images/account_icon.svg"/>" alt="">
             <ul class="list__bubble-chat">
                 <li class="bubble-chat__item">
                     <p>Hi hiiiiiiiii</p>
@@ -56,10 +56,10 @@
     </div>
     <div class="chatbox__group-items">
         <input class="chatbox__input" name="" id="" cols="30" rows="10"></textarea>
-        <img class="chatbox__send" src="./static/images/send.svg" alt="">
+        <img class="chatbox__send" src="<c:url value="/static/images/send.svg"/>" alt="">
     </div>
 </div>
-<img id="chat-icon" class="chat_icon" src="./static/images/chat_btn.svg" alt="">
+<img id="chat-icon" class="chat_icon" src="<c:url value="/static/images/chat_btn.svg"/>" alt="">
 <script src="<c:url value="/static/js/chatbox.js"/>" async defer ></script>
 </body>
 </html>
