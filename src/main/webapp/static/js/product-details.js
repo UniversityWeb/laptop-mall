@@ -133,9 +133,8 @@ function increaseQtyOfProd(maxQtyStr) {
     inputQty.value = qty <= maxQty ? qty : maxQty;
 }
 
-function addToCart(prodId) {
-    const inputQty = document.getElementById("input-qty");
-    const qty = inputQty.value;
-
+function submitAddToCartForm() {
+    document.getElementById('add-to-cart').elements['qty'].value = document.getElementById('input-qty').value;
+    document.getElementById('add-to-cart').submit();
 }
 

@@ -14,7 +14,7 @@
 <body>
 <input type="checkbox" id="check">
 <jsp:include page="navbar.jsp"></jsp:include>
-<nav style="margin-top: var(--nav-height);">
+<nav style="margin-top: var(--nav-height) + 10px;">
     <div class="navigation">
         <a href="#prod-features">Features</a>
         <a href="#prod-specifications">Specifications</a>
@@ -37,7 +37,7 @@
                     </c:forEach>
                 </ul>
                 <div class="prod_img-full">
-                    <img id="prod_img-full" src="" alt="item-selected">
+                    <img id="prod_img-full" src="" alt="item-selected" style="width: 400px;height: 300px;">
                     <div class="back-next_selector">
                         <i id="backImgProd" class="fa-solid fa-angle-left"></i>
                         <i id="nextImgProd" class="fa-solid fa-angle-right"></i>
@@ -330,10 +330,6 @@
                 ${prod.brand}
             </div>
             <div class="group-basic-info">
-                <div class="prod__id-content">
-                    <input type="text" name="" id="prod-id" value=" ${prod.id}">
-                    <button onclick="copyToClipboard()"><i class="fa-solid fa-copy"></i></button>
-                </div>
                 <span class="prod-name">
                     ${prod.model}
                 </span>
@@ -354,16 +350,6 @@
                     <ul class="product-attribute__values">
                         <li class="prod-value__item">
                             ${prod.color}
-                        </li>
-                    </ul>
-                </div>
-                <div class="product-attributes">
-                        <span class="product-attributes__name">
-                            Category
-                        </span>
-                    <ul class="product-attribute__values">
-                        <li class="prod-value__item">
-                            ${prod.category}
                         </li>
                     </ul>
                 </div>
@@ -391,11 +377,18 @@
                             <div class="discount-price">-29%</div>
                         </div>
                     </div>
+                    <%
+                        String contextPath = request.getContextPath();
+                    %>
                     <div class="selections-content">
-                        <button class="button__add-cart">
-                            <i class="fa-solid fa-cart-shopping button__icon"></i>
-                            <span>Add to cart</span>
-                        </button>
+                        <form id="add-to-cart" action="<%= contextPath %>/add-cart-item" method="post">
+                            <input type="hidden" name="productId" value="${prod.id}">
+                            <input type="hidden" name="qty">
+                            <button class="button__add-cart" type="submit" onclick="submitAddToCartForm()">
+                                <i class="fa-solid fa-cart-shopping button__icon"></i>
+                                <span>Add to cart</span>
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
