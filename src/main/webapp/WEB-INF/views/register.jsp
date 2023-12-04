@@ -4,6 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link href="<c:url value="/static/images/logo_short.svg"/>" rel="icon"/>
     <title>Laptop Mall | Register</title>
     <link rel="stylesheet" href="<c:url value="/static/css/register.css" />">
 </head>
@@ -27,7 +28,7 @@
 
 
         <div class="register_form-input">
-            <input type="text" name="phoneNo" placeholder=" " required><br>
+            <input type="text" name="phoneNo" placeholder=" " maxlength="11" required><br>
             <label>Phone no</label>
         </div>
 

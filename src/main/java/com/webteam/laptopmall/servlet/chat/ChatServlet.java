@@ -2,8 +2,8 @@ package com.webteam.laptopmall.servlet.chat;
 
 import com.webteam.laptopmall.entity.user.User;
 import com.webteam.laptopmall.exception.UserNotFoundException;
-import com.webteam.laptopmall.service.login.LoginService;
-import com.webteam.laptopmall.service.login.LoginServiceImpl;
+import com.webteam.laptopmall.service.user.UserService;
+import com.webteam.laptopmall.service.user.UserServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,12 +18,12 @@ import java.util.logging.Logger;
 public class ChatServlet extends HttpServlet {
 
     private static final Logger log = Logger.getLogger(ChatServlet.class.getName());
-    protected LoginService loginService;
+    protected UserService userService;
 
     @Override
     public void init() throws ServletException {
         super.init();
-        loginService = new LoginServiceImpl();
+        userService = new UserServiceImpl();
     }
 
     @Override
@@ -32,7 +32,7 @@ public class ChatServlet extends HttpServlet {
         HttpSession session = req.getSession();
         String username = (String) session.getAttribute("username");
         try {
-            User.ERole role = loginService.getRoleByUsername(username);
+            User.ERole role = userService.getRoleByUsername(username);
             if (role.equals(User.ERole.SALESPERSON)) {
                 url = "/WEB-INF/views/salesperson-chatbox.jsp";
             }

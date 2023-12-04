@@ -99,14 +99,14 @@ public abstract class BaseReposImpl<T, ID> implements BaseRepos<T, ID> {
     public int deleteAll() {
         EntityManager em = emf.createEntityManager();
         EntityTransaction trans = em.getTransaction();
-        int deletedEntities = 0;
+        int deletedRow = 0;
 
         try {
             trans.begin();
             String entityName = getClassType().getSimpleName();
             String sqlStr = String.format("DELETE FROM %s", entityName);
-            Query jpqlQuery = em.createQuery(sqlStr);
-            deletedEntities = jpqlQuery.executeUpdate();
+            Query query = em.createQuery(sqlStr);
+            deletedRow = query.executeUpdate();
             trans.commit();
         } catch (Exception e) {
             log.log(Level.SEVERE, e.getMessage());
@@ -115,7 +115,26 @@ public abstract class BaseReposImpl<T, ID> implements BaseRepos<T, ID> {
             em.close();
         }
 
-        return deletedEntities;
+        return deletedRow;
+    }
+
+    protected int executeUpdate(Function<EntityManager, Query> query) {
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        int rowCount = 0;
+
+        try {
+            trans.begin();
+            rowCount = query.apply(em).executeUpdate();
+            trans.commit();
+        } catch (Exception e) {
+            log.log(Level.SEVERE, e.getMessage());
+            trans.rollback();
+        } finally {
+            em.close();
+        }
+
+        return rowCount;
     }
 
     protected abstract Class<T> getClassType();

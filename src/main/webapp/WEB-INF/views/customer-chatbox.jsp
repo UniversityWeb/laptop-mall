@@ -4,6 +4,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="<c:url value="/static/images/logo_short.svg"/>" rel="icon"/>
 
     <link rel="stylesheet" href="<c:url value="/static/css/base.css" />">
     <link rel="stylesheet" href="<c:url value="/static/css/chatbox.css" />">

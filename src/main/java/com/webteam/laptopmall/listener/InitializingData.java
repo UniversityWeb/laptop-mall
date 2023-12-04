@@ -23,8 +23,7 @@ import com.webteam.laptopmall.repository.prod.ProdRepos;
 import com.webteam.laptopmall.repository.prod.ProdReposImpl;
 import com.webteam.laptopmall.repository.user.UserRepos;
 import com.webteam.laptopmall.repository.user.UserReposImpl;
-import com.webteam.laptopmall.service.login.LoginService;
-import com.webteam.laptopmall.service.login.LoginServiceImpl;
+import com.webteam.laptopmall.utility.PassUtil;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -43,7 +42,6 @@ public class InitializingData  implements ServletContextListener {
     private ProdRepos prodRepos;
     private UserRepos userRepos;
     private MessageRepos msgRepos;
-    private LoginService loginService;
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
@@ -63,7 +61,6 @@ public class InitializingData  implements ServletContextListener {
         prodRepos = new ProdReposImpl();
         userRepos = new UserReposImpl();
         msgRepos = new MessageReposImpl();
-        loginService = new LoginServiceImpl();
     }
 
     private void deleteAll() {
@@ -368,7 +365,7 @@ public class InitializingData  implements ServletContextListener {
     private List<User> initUser() {
         List<User> users = new ArrayList<>();
 
-        final String hashedPass =  loginService.hashPass("123456");
+        final String hashedPass =  PassUtil.hashPass("123456");
         User user1 = new User("HCM", "nguyenvana0606@gmail.com", "Nguyễn Văn A",
                 EGender.MALE, "0123456789", "vana0505", hashedPass, User.ERole.CUSTOMER);
         User user2 = new User("Hà Nội", "nguyenvanb0505@gmail.com", "Lê Hoàng Giang",
