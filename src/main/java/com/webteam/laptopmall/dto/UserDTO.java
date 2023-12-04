@@ -16,6 +16,8 @@ public class UserDTO {
     @JsonIgnore
     private String passHash;
     private User.ERole role;
+    @JsonIgnore
+    private String avatarUrl;
 
     public UserDTO() {
     }
@@ -42,6 +44,16 @@ public class UserDTO {
         this.username = username;
         this.passHash = passHash;
         this.role = role;
+    }
+
+    public UserDTO(Long id, String address, String email, String fullName, EGender gender, String phoneNo, String username) {
+        this.id = id;
+        this.address = address;
+        this.email = email;
+        this.fullName = fullName;
+        this.gender = gender;
+        this.phoneNo = phoneNo;
+        this.username = username;
     }
 
     public UserDTO(String address, String email, String fullName, String phoneNo) {
@@ -121,5 +133,13 @@ public class UserDTO {
 
     public void setRole(User.ERole role) {
         this.role = role;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
     }
 }

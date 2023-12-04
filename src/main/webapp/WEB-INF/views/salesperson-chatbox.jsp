@@ -5,6 +5,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="<c:url value="/static/images/logo_short.svg"/>" rel="icon"/>
 
   <link rel="stylesheet" href="<c:url value="/static/css/base.css" />">
   <link rel="stylesheet" href="<c:url value="/static/css/chatbox.css" />">

@@ -1,7 +1,7 @@
 package com.webteam.laptopmall.servlet.login;
 
-import com.webteam.laptopmall.service.login.LoginService;
-import com.webteam.laptopmall.service.login.LoginServiceImpl;
+import com.webteam.laptopmall.service.user.UserService;
+import com.webteam.laptopmall.service.user.UserServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,12 +13,12 @@ import java.io.IOException;
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 
-    private LoginService loginService;
+    private UserService userService;
 
     @Override
     public void init() throws ServletException {
         super.init();
-        loginService = new LoginServiceImpl();
+        userService = new UserServiceImpl();
     }
 
     @Override
@@ -31,14 +31,12 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("username");
         String plainPass = req.getParameter("plainPass");
-        boolean isSuccess = loginService.login(username, plainPass);
-        String url;
+        boolean isSuccess = userService.login(username, plainPass);
         if (isSuccess) {
             req.getSession().setAttribute("username", username);
-            url = "/home-page";
+            resp.sendRedirect(req.getContextPath() + "/home-page");
         } else {
-            url = "/WEB-INF/views/access-denied.html";
+            getServletContext().getRequestDispatcher("/WEB-INF/views/access-denied.html").forward(req, resp);
         }
-        getServletContext().getRequestDispatcher(url).forward(req, resp);
     }
 }

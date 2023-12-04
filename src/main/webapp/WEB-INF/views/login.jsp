@@ -4,6 +4,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <link href="<c:url value="/static/images/logo_short.svg"/>" rel="icon"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link href="<c:url value="/static/images/logo_short.svg"/>" rel="icon"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,7 @@
     <link rel="stylesheet" href="<c:url value="/static/css/login.css"/>" type="text/css">
 </head>
 <body class="center">
+
 <section class="content column center">
     <h1>Login</h1>
     <p>Please enter your username and password to continue.</p>
@@ -24,7 +26,7 @@
             <label>Password</label>
         </div>
 
-        <a href="register">Register</a>
+        <a href="register" style="margin-top: 20px;">Register</a>
 
         <div class="login_form-input">
             <input type="submit" value="Login" class="button_login">
