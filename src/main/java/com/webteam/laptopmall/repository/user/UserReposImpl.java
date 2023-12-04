@@ -8,6 +8,7 @@ import com.webteam.laptopmall.repository.prod.ProdReposImpl;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,5 +30,10 @@ public class UserReposImpl extends BaseReposImpl<User, Long> implements UserRepo
     @Override
     public User getUserByUsername(String username) {
         return getSingleResult(em -> uQuery.buildGetByUsername(em, username));
+    }
+
+    @Override
+    public List<String> getAllCustomerUsernames() {
+        return getResultList(em -> uQuery.buildGetAllCustomerUsernames(em));
     }
 }

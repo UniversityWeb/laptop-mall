@@ -11,4 +11,6 @@ public interface UserService {
     List<UserDTO> getAll();
 
     UserDTO getByUsername(String username);
+
+    List<String> getAllCustomerUsernames();
 }

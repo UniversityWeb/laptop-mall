@@ -9,6 +9,7 @@ import com.webteam.laptopmall.builder.entity.monitor.MonitorBuilderImpl;
 import com.webteam.laptopmall.customenum.ECategory;
 import com.webteam.laptopmall.customenum.EGender;
 import com.webteam.laptopmall.entity.CartItem;
+import com.webteam.laptopmall.entity.ChatMessage;
 import com.webteam.laptopmall.entity.prod.Laptop;
 import com.webteam.laptopmall.entity.prod.MechanicalKeyboard;
 import com.webteam.laptopmall.entity.prod.Monitor;
@@ -16,6 +17,8 @@ import com.webteam.laptopmall.entity.prod.Product;
 import com.webteam.laptopmall.entity.user.User;
 import com.webteam.laptopmall.repository.cartitem.CartItemRepos;
 import com.webteam.laptopmall.repository.cartitem.CartItemReposImpl;
+import com.webteam.laptopmall.repository.chatmessage.MessageRepos;
+import com.webteam.laptopmall.repository.chatmessage.MessageReposImpl;
 import com.webteam.laptopmall.repository.prod.ProdRepos;
 import com.webteam.laptopmall.repository.prod.ProdReposImpl;
 import com.webteam.laptopmall.repository.user.UserRepos;
@@ -27,6 +30,8 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 import java.math.BigDecimal;
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -37,6 +42,7 @@ public class InitializingData  implements ServletContextListener {
     private CartItemRepos cartItemRepos;
     private ProdRepos prodRepos;
     private UserRepos userRepos;
+    private MessageRepos msgRepos;
     private LoginService loginService;
 
     @Override
@@ -45,33 +51,76 @@ public class InitializingData  implements ServletContextListener {
 
         deleteAll();
 
-        List<User> savedUsers =  initUser();
+        List<User> users =  initUser();
         List<Product> savedProducts =  initProduct();
-        List<CartItem> savedCartItems =  initCartItem(savedUsers, savedProducts);
+        List<CartItem> savedCartItems =  initCartItem(users, savedProducts);
+        List<ChatMessage> savedChatMessages = initChatMessage(users.get(0).getUsername(),
+                users.get(1).getUsername(), users.get(users.size() - 1).getUsername());
     }
 
     private void init() {
         cartItemRepos = new CartItemReposImpl();
         prodRepos = new ProdReposImpl();
         userRepos = new UserReposImpl();
+        msgRepos = new MessageReposImpl();
         loginService = new LoginServiceImpl();
     }
 
     private void deleteAll() {
-        int deleteCartItems = cartItemRepos.deleteAll();
-        int deleteProds = prodRepos.deleteAll();
-        int deleteUsers = userRepos.deleteAll();
+        int deletedCartItems = cartItemRepos.deleteAll();
+        int deletedProds = prodRepos.deleteAll();
+        int deletedChatMessages = msgRepos.deleteAll();
     }
 
-    private List<CartItem> initCartItem(List<User> savedUsers, List<Product> savedProducts) {
+    private List<ChatMessage> initChatMessage(String customerUsername1,
+                                              String customerUsername2,
+                                              String salespersonUsername) {
 
-        User customer = userRepos.getUserByUsername( savedUsers.get(0).getUsername() );
+        List<ChatMessage> chatMessages = new ArrayList<>();
+
+        User customer1 = userRepos.getUserByUsername(customerUsername1);
+        User customer2 = userRepos.getUserByUsername(customerUsername2);
+        User salesperson = userRepos.getUserByUsername(salespersonUsername);
+
+        chatMessages.add(new ChatMessage("Chào Shop", ChatMessage.EType.TEXT, Timestamp.from(Instant.now()),
+                customer1, salesperson));
+        chatMessages.add(new ChatMessage("Laptop này còn không ạ!", ChatMessage.EType.TEXT, Timestamp.from(Instant.now()),
+                customer1, salesperson));
+        chatMessages.add(new ChatMessage("Không còn bạn nhé :vV", ChatMessage.EType.TEXT, Timestamp.from(Instant.now()),
+                salesperson, customer1));
+        chatMessages.add(new ChatMessage(customer1.getUsername() + " close chat.", ChatMessage.EType.NOTIFICATION, Timestamp.from(Instant.now()),
+                customer2, salesperson));
+
+
+        chatMessages.add(new ChatMessage("Chào Shop", ChatMessage.EType.TEXT, Timestamp.from(Instant.now()),
+                customer2, salesperson));
+        chatMessages.add(new ChatMessage("Màn hình này còn không ạ!", ChatMessage.EType.TEXT, Timestamp.from(Instant.now()),
+                customer2, salesperson));
+        chatMessages.add(new ChatMessage("Còn bạn nhé", ChatMessage.EType.TEXT, Timestamp.from(Instant.now()),
+                salesperson, customer2));
+        chatMessages.add(new ChatMessage("Ok, e cảm ơn", ChatMessage.EType.TEXT, Timestamp.from(Instant.now()),
+                customer2, salesperson));
+        chatMessages.add(new ChatMessage(customer2.getUsername() + " close chat.", ChatMessage.EType.NOTIFICATION, Timestamp.from(Instant.now()),
+                customer2, salesperson));
+
+        List<ChatMessage> savedChatMessages = new ArrayList<>();
+        chatMessages.forEach(cm -> {
+            ChatMessage saved = msgRepos.save(cm);
+            savedChatMessages.add(saved);
+        });
+
+        return savedChatMessages;
+    }
+
+    private List<CartItem> initCartItem(List<User> users, List<Product> savedProducts) {
+
+        User customer = userRepos.getUserByUsername( users.get(0).getUsername() );
         CartItem cartItem = new CartItem(4, customer, savedProducts.get(0));
         CartItem cartItem2 = new CartItem(2, customer, savedProducts.get(1));
         CartItem cartItem3 = new CartItem(1, customer, savedProducts.get(2));
 
 
-        User customer2 = userRepos.getUserByUsername( savedUsers.get(1).getUsername() );
+        User customer2 = userRepos.getUserByUsername( users.get(1).getUsername() );
         CartItem cartItem4 = new CartItem(2, customer2, savedProducts.get(3));
         CartItem cartItem5 = new CartItem(8, customer2, savedProducts.get(4));
         CartItem cartItem6 = new CartItem(4, customer2, savedProducts.get(5));
@@ -329,7 +378,7 @@ public class InitializingData  implements ServletContextListener {
         User user4 = new User("Quảng Ninh", "nguyenvand0808@gmail.com", "Nguyễn Trường An",
                 EGender.MALE, "0123456786", "vand0808", hashedPass, User.ERole.SALESPERSON);
         User user5 = new User("Cần Thơ", "nguyenvan0909e@gmail.com", "Trần Văn An",
-                EGender.MALE, "0123456785", "vane0909", hashedPass, User.ERole.SALESPERSON);
+                EGender.MALE, "0123456785", "vanannek", hashedPass, User.ERole.SALESPERSON);
 
         users.add(user1);
         users.add(user2);
@@ -337,12 +386,10 @@ public class InitializingData  implements ServletContextListener {
         users.add(user4);
         users.add(user5);
 
-        List<User> savesUsers = new ArrayList<>();
         users.forEach(u -> {
-            User savedUser = userRepos.save(u);
-            savesUsers.add(savedUser);
+            userRepos.save(u);
         });
 
-        return savesUsers;
+        return users;
     }
 }
