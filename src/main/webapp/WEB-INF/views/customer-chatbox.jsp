@@ -12,7 +12,7 @@
 
 <div id="chat-box" class="chat_box">
     <div class="chatbox__navbar">
-        <img class="logo-chatbox" src="<c:url value="/static/images/logo-light.svg"/>" alt=""/>
+        <img class="logo-chatbox" src="<c:url value="/static/images/logo_short.svg"/>" alt=""/>
         <img id="close_chat" class="close__chatbox" src="<c:url value="/static/images/btn-close.svg"/>" alt=""/>
     </div>
 
