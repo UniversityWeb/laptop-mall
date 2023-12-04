@@ -10,6 +10,7 @@ import com.webteam.laptopmall.repository.prod.ProdRepos;
 import com.webteam.laptopmall.repository.prod.ProdReposImpl;
 
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 public class ProdServiceImpl implements ProdService {
@@ -69,6 +70,21 @@ public class ProdServiceImpl implements ProdService {
         return prods.stream()
                 .map(ProductMapper::toDTO)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Long createNewProdID() {
+        Long prodID=  generateRandomId();
+        while(getById(prodID) != null)
+            prodID=  generateRandomId();
+        return prodID;
+    }
+
+    public static long generateRandomId() {
+        Random random = new Random();
+        long randomId = random.nextLong();
+
+        return randomId;
     }
 
 }

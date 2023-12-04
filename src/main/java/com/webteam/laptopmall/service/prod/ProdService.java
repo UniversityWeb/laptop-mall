@@ -17,4 +17,6 @@ public interface ProdService {
 
     List<ProductDTO> getProdsByCategory(ECategory eCategory);
 
+    Long createNewProdID();
+
 }
