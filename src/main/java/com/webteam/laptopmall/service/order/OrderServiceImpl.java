@@ -12,17 +12,23 @@ import com.webteam.laptopmall.service.cartItem.CartItemService;
 import com.webteam.laptopmall.service.cartItem.CartItemServiceImpl;
 import com.webteam.laptopmall.service.orderItem.OrderItemService;
 import com.webteam.laptopmall.service.orderItem.OrderItemServiceImpl;
+import com.webteam.laptopmall.servlet.cart.CartServlet;
 import com.webteam.laptopmall.service.prod.ProdService;
 import com.webteam.laptopmall.service.prod.ProdServiceImpl;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 public class OrderServiceImpl implements OrderService{
     private OrderRepos orderRepos;
     private CartItemService cartItemService;
     private OrderItemService orderItemService;
     private ProdService prodService;
+
+    private static final Logger logger = Logger.getLogger(CartServlet.class.getName());
 
     public OrderServiceImpl(){
         orderRepos = new OrderReposImpl();
@@ -35,6 +41,12 @@ public class OrderServiceImpl implements OrderService{
     public OrderDTO save(OrderDTO orderDTO) {
         Order order = OrderMapper.INSTANCE.toEntity(orderDTO);
         return OrderMapper.INSTANCE.toDTO(orderRepos.save(order));
+    }
+
+    @Override
+    public void update(OrderDTO orderDTO) {
+        Order order = OrderMapper.INSTANCE.toEntity(orderDTO);
+        orderRepos.update(order);
     }
 
     @Override
@@ -118,5 +130,56 @@ public class OrderServiceImpl implements OrderService{
         });
         order.getOrderItems().forEach(orderItem -> orderItemService.save(orderItem));
         return this.save(order);
+    }
+
+    @Transactional
+    @Override
+    public List<OrderDTO> getListByUserIdAndStatus(Long userId, Order.EStatus status) {
+        try{
+            List<Order> orders = orderRepos.getListByUserIdAndStatus(userId, status);
+            return orders.stream()
+                    .map(OrderMapper.INSTANCE::toDTO)
+                    .collect(Collectors.toList());
+        } catch (Exception e){
+            logger.info(e.getMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public List<OrderDTO> getALl() {
+        try{
+            List<Order> orders = orderRepos.getAll();
+            return orders.stream()
+                    .map(OrderMapper.INSTANCE::toDTO)
+                    .collect(Collectors.toList());
+        } catch (Exception e){
+            logger.info(e.getMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public OrderDTO getByUserAndOrderId(Long userId, Long orderId) {
+        try{
+            Order order = orderRepos.getByUserAndOrderId(userId, orderId);
+            return OrderMapper.INSTANCE.toDTO(order);
+        }catch (Exception e){
+            logger.info(e.getMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public List<OrderDTO> getListByUserId(Long userId) {
+        try{
+            List<Order> orders = orderRepos.getListByUserId(userId);
+            return orders.stream()
+                    .map(OrderMapper.INSTANCE::toDTO)
+                    .collect(Collectors.toList());
+        }catch (Exception e){
+            logger.info(e.getMessage());
+            return null;
+        }
     }
 }
