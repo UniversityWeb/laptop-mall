@@ -28,7 +28,7 @@
 <img id="chat-icon" class="chat_icon" src="<c:url value="/static/images/chat_btn.svg"/>" alt=""/>
 
 <script type="text/javascript">
-    var currentUsername = "${user.username}";
+    var currentUsername = "<%= request.getSession().getAttribute("username") %>";
     var curChattingUsername = "vanannek";
     var ws = getWebsocket(curChattingUsername);
 
@@ -58,14 +58,14 @@
 
     ws.onmessage = function (event) {
         var chatMessage = JSON.parse(event.data);
-        curChattingUsername = chatMessage.senderUsername;
+        curChattingUsername = chatMessage.sender.username;
         addMsg(chatMessage)
     };
 
     function addMsg(chatMessage) {
-        const msgStr = chatMessage.message;
+        const msgStr = chatMessage.msg;
         if (chatMessage.type === "TEXT") {
-            const isSender = chatMessage.senderUsername === currentUsername;
+            const isSender = chatMessage.sender.username === currentUsername;
             addTextToChatbox(msgStr, isSender);
         } else if (chatMessage.type === "NOTIFICATION") {
             addNotificationToChatbox(msgStr);

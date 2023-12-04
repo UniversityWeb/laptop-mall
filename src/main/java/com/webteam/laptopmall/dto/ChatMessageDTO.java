@@ -9,8 +9,8 @@ public class ChatMessageDTO {
     private String msg;
     private ChatMessage.EType type;
     private Timestamp sendingTime;
-    private UserDTO sender;
-    private UserDTO receiver;
+    private UserDTO sender = new UserDTO();
+    private UserDTO receiver = new UserDTO();
 
     public ChatMessageDTO() {
     }

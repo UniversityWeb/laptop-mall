@@ -30,7 +30,7 @@
 </div>
 
 <script type="text/javascript">
-  var currentUsername = "${user.username}";
+  var currentUsername = '<%= request.getSession().getAttribute("username") %>';
   var curChattingUsername = null;
   var ws = getWebsocket(curChattingUsername);
 
@@ -103,11 +103,11 @@
   }
 
   function addMessage(chatMessage) {
-    const sender = chatMessage.senderUsername;
+    const sender = chatMessage.sender.username;
     const chat = document.getElementById('chat');
 
     if (chat) {
-      const msg = chatMessage.message;
+      const msg = chatMessage.msg;
       const isCurrentUser = sender === currentUsername;
       const senderColor = isCurrentUser ? 'green' : 'red';
       const formattedSender = '<span style="color: ' + senderColor + ';">[' + sender + ']</span>';

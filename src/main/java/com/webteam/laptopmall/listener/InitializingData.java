@@ -329,7 +329,7 @@ public class InitializingData  implements ServletContextListener {
         User user4 = new User("Quảng Ninh", "nguyenvand0808@gmail.com", "Nguyễn Trường An",
                 EGender.MALE, "0123456786", "vand0808", hashedPass, User.ERole.SALESPERSON);
         User user5 = new User("Cần Thơ", "nguyenvan0909e@gmail.com", "Trần Văn An",
-                EGender.MALE, "0123456785", "vane0909", hashedPass, User.ERole.SALESPERSON);
+                EGender.MALE, "0123456785", "vanannek", hashedPass, User.ERole.SALESPERSON);
 
         users.add(user1);
         users.add(user2);
