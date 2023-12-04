@@ -20,14 +20,24 @@ class ChatMessageMapperTest {
         ChatMessageDTO chatMessageDTO = ChatMessageMapper.INSTANCE.toDTO(chatMessage);
 
         assertEquals(chatMessage.getId(), chatMessageDTO.getId());
+        assertEquals(chatMessage.getMsg(), chatMessageDTO.getMsg());
+        assertEquals(chatMessage.getType(), chatMessageDTO.getType());
+        assertEquals(chatMessage.getSendingTime(), chatMessageDTO.getSendingTime());
+        assertEquals(chatMessage.getSender().getId(), chatMessageDTO.getSender().getId());
+        assertEquals(chatMessage.getReceiver().getId(), chatMessageDTO.getReceiver().getId());
     }
 
     @Test
     void testToEntity() {
-        ChatMessageDTO ChatMessageDTO = new ChatMessageDTO(1L, "HIHI", ChatMessage.EType.TEXT,
+        ChatMessageDTO chatMessageDTO = new ChatMessageDTO(1L, "HIHI", ChatMessage.EType.TEXT,
                 Timestamp.from(Instant.now()), new UserDTO(), new UserDTO());
-        ChatMessage ChatMessage = ChatMessageMapper.INSTANCE.toEntity(ChatMessageDTO);
+        ChatMessage chatMessage = ChatMessageMapper.INSTANCE.toEntity(chatMessageDTO);
 
-        assertEquals(ChatMessageDTO.getId(), ChatMessage.getId());
+        assertEquals(chatMessage.getId(), chatMessageDTO.getId());
+        assertEquals(chatMessage.getMsg(), chatMessageDTO.getMsg());
+        assertEquals(chatMessage.getType(), chatMessageDTO.getType());
+        assertEquals(chatMessage.getSendingTime(), chatMessageDTO.getSendingTime());
+        assertEquals(chatMessage.getSender().getId(), chatMessageDTO.getSender().getId());
+        assertEquals(chatMessage.getReceiver().getId(), chatMessageDTO.getReceiver().getId());
     }
 }

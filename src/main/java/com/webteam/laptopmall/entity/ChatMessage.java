@@ -81,6 +81,14 @@ public class ChatMessage {
         this.msg = msg;
     }
 
+    public EType getType() {
+        return type;
+    }
+
+    public void setType(EType type) {
+        this.type = type;
+    }
+
     public Timestamp getSendingTime() {
         return sendingTime;
     }

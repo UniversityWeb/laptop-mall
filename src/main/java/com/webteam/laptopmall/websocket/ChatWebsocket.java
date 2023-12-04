@@ -19,9 +19,12 @@ import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.util.logging.Logger;
 
 @ServerEndpoint("/chat/{senderUsername}/{receiverUsername}")
 public class ChatWebsocket {
+
+    private static final Logger log = Logger.getLogger(ChatWebsocket.class.getName());
     private Session session;
     private UserDTO sender;
     private UserDTO receiver;
@@ -64,7 +67,7 @@ public class ChatWebsocket {
         if (!chatService.isOnline(receiver.getUsername())) {
             return;
         }
-        String msg = String.format("`%s` close chat.", sender);
+        String msg = String.format("`%s` close chat.", sender.getUsername());
         sendAndSaveMessage(msg, ChatMessage.EType.NOTIFICATION);
     }
 
@@ -87,7 +90,7 @@ public class ChatWebsocket {
 
             session.getBasicRemote().sendText(jsonMessage);
         } catch (IOException e) {
-            e.printStackTrace();
+            log.severe(e.getMessage());
         }
     }
 

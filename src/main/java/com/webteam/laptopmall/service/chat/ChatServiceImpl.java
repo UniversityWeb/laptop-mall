@@ -1,6 +1,7 @@
 package com.webteam.laptopmall.service.chat;
 
 import com.webteam.laptopmall.dto.ChatMessageDTO;
+import com.webteam.laptopmall.dto.UserDTO;
 import com.webteam.laptopmall.websocket.ChatWebsocket;
 
 import java.util.Set;
@@ -35,7 +36,8 @@ public class ChatServiceImpl implements ChatService {
     public void sendMessageToOneUser(ChatMessageDTO message) {
         String targetUser = message.getReceiver().getUsername();
         for (ChatWebsocket chatWebsocket : chatWebsockets) {
-            if (chatWebsocket.getSender().equals(targetUser)) {
+            UserDTO sender = chatWebsocket.getSender();
+            if (sender.getUsername().equals(targetUser)) {
                 chatWebsocket.sendMessage(message);
                 return;
             }
@@ -50,7 +52,7 @@ public class ChatServiceImpl implements ChatService {
     @Override
     public boolean isOnline(String username) {
         for (ChatWebsocket chatWebsocket : chatWebsockets) {
-            if (chatWebsocket.getSender().equals(username)) {
+            if (chatWebsocket.getSender().getUsername().equals(username)) {
                 return true;
             }
         }

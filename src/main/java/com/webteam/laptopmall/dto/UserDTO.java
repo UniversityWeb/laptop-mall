@@ -1,5 +1,6 @@
 package com.webteam.laptopmall.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.webteam.laptopmall.customenum.EGender;
 import com.webteam.laptopmall.entity.user.User;
 
@@ -12,6 +13,7 @@ public class UserDTO {
     private String phoneNo;
 
     private String username;
+    @JsonIgnore
     private String passHash;
     private User.ERole role;
 
