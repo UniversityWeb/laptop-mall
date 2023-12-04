@@ -2,8 +2,8 @@ package com.webteam.laptopmall.restcontroller.chat;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.webteam.laptopmall.dto.UserDTO;
-import com.webteam.laptopmall.service.chatmessage.MessageService;
-import com.webteam.laptopmall.service.chatmessage.MessageServiceImpl;
+import com.webteam.laptopmall.service.user.UserService;
+import com.webteam.laptopmall.service.user.UserServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,38 +15,36 @@ import java.io.PrintWriter;
 import java.util.List;
 import java.util.logging.Logger;
 
-@WebServlet("/get-chatted-users")
-public class GetChattedUsersServlet extends HttpServlet {
+@WebServlet("/get-customers")
+public class GetCustomersServlet extends HttpServlet {
 
-    private static final Logger log = Logger.getLogger(GetChattedUsersServlet.class.getName());
-    private MessageService messageService;
+    private static final Logger log = Logger.getLogger(GetCustomersServlet.class.getName());
+    private UserService userService;
 
     @Override
     public void init() throws ServletException {
         super.init();
-        messageService = new MessageServiceImpl();
+        userService = new UserServiceImpl();
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String username = req.getParameter("username");
-
-        String jsonMsgs = getChattedUsers(username);
+        String jsonCustomerUsernames = getAllCustomerUsernames();
 
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
 
         PrintWriter pw = resp.getWriter();
-        pw.println(jsonMsgs);
-        pw.flush();
+        pw.println(jsonCustomerUsernames);
+        pw.close();
     }
 
-    private String getChattedUsers(String username) {
-        List<UserDTO> chattedUsers = messageService.getChattedUsersByCurrentUser(username);
+    private String getAllCustomerUsernames() {
+        List<String> customerUsernames = userService.getAllCustomerUsernames();
 
         try {
             ObjectMapper objectMapper = new ObjectMapper();
-            return objectMapper.writeValueAsString(chattedUsers);
+            return objectMapper.writeValueAsString(customerUsernames);
         } catch (Exception e) {
             log.severe(e.getMessage());
             return "";

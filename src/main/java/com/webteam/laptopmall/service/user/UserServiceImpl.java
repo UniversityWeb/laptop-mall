@@ -61,4 +61,9 @@ public class UserServiceImpl implements UserService {
         User user = userRepos.getUserByUsername(username);
         return uMapper.toDTO(user);
     }
+
+    @Override
+    public List<String> getAllCustomerUsernames() {
+        return userRepos.getAllCustomerUsernames();
+    }
 }

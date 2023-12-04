@@ -54,15 +54,14 @@
 
   function fetchChattedUsers(sender) {
     const contextPath = '<%= request.getContextPath() %>';
-    const restUrl = window.location.protocol + "//" + window.location.host + contextPath + "/get-chatted-users" +
-            "?username=" + sender;
+    const restUrl = window.location.protocol + "//" + window.location.host + contextPath + "/get-customers";
     console.log("fetchChattedUsers - restUrl: " + restUrl);
     fetch(restUrl)
             .then(response => response.json())
-            .then(chattedUsers => {
+            .then(customerUsernames => {
               clearConversations();
-              chattedUsers.forEach(user => {
-                addConversationItem(user.username);
+              customerUsernames.forEach(username => {
+                addConversationItem(username);
               });
             })
             .catch(error => console.error('Error fetching chatted users:', error));
