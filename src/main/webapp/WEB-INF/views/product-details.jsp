@@ -14,7 +14,7 @@
 <body>
 <input type="checkbox" id="check">
 <jsp:include page="navbar.jsp"></jsp:include>
-<nav style="margin-top: var(--nav-height);">
+<nav style="margin-top: var(--nav-height) + 10px;">
     <div class="navigation">
         <a href="#prod-features">Features</a>
         <a href="#prod-specifications">Specifications</a>
@@ -37,7 +37,7 @@
                     </c:forEach>
                 </ul>
                 <div class="prod_img-full">
-                    <img id="prod_img-full" src="" alt="item-selected">
+                    <img id="prod_img-full" src="" alt="item-selected" style="width: 400px;height: 300px;">
                     <div class="back-next_selector">
                         <i id="backImgProd" class="fa-solid fa-angle-left"></i>
                         <i id="nextImgProd" class="fa-solid fa-angle-right"></i>
