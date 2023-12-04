@@ -35,13 +35,6 @@
                             <img src="<c:url value="${imgUrl}"/>" alt="item">
                         </li>
                     </c:forEach>
-
-                    <li class="prod_img-item">
-                        <img src="<c:url value="/static/images/headphone-white.png"/>" alt="item">
-                    </li>
-                    <li class="prod_img-item">
-                        <img src="<c:url value="/static/images/headphone-white.png"/>" alt="item">
-                    </li>
                 </ul>
                 <div class="prod_img-full">
                     <img id="prod_img-full" src="" alt="item-selected">

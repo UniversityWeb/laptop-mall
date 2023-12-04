@@ -87,6 +87,9 @@ public class ImageServiceImpl implements ImageService {
         } catch (Exception e) {
             log.log(Level.SEVERE, e.getMessage());
         }
+        if (imgUrls.isEmpty()) {
+            imgUrls.add("/app/prod/default/0.jpeg");
+        }
         return imgUrls;
     }
 

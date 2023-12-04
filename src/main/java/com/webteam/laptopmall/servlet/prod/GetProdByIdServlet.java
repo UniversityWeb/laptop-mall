@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 @MultipartConfig()
@@ -39,12 +40,12 @@ public class GetProdByIdServlet extends HttpServlet {
 
         String idStr = req.getParameter("id");
         Long id = Long.valueOf(idStr);
-        String realPath= req.getServletContext().getRealPath("/app/prod");
+        String realPath= req.getServletContext().getRealPath("/");
 
         String url;
         try {
             ProductDTO prodDTO = prodService.getById(id);
-            prodDTO = imgService.loadProdImageUrls(prodDTO,realPath);
+            prodDTO = imgService.loadProdImageUrls(prodDTO, realPath);
             req.setAttribute("prod", prodDTO);
             url = "/WEB-INF/views/product-details.jsp";
         } catch (ProductNotFoundException e) {
