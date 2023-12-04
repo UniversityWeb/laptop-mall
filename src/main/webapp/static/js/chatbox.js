@@ -1,7 +1,7 @@
 var chatIcon = document.getElementById("chat-icon");
 var chatBox = document.getElementById("chat-box");
 chatIcon.addEventListener("click", ()=>{
-    if (chatBox.style.display == 'none'){
+    if (chatBox.style.display != 'flex'){
         chatBox.style.display = 'flex'
         chatIcon.style.boxShadow='0px 0px 1.77408px 0px #CDB2F5, 0px 0px 3.54815px 0px #CDB2F5, 0px 0px 12.41853px 0px #CDB2F5, 0px 0px 24.83706px 0px #CDB2F5, 0px 0px 42.57781px 0px #CDB2F5, 0px 0px 74.51117px 0px #CDB2F5'
     }

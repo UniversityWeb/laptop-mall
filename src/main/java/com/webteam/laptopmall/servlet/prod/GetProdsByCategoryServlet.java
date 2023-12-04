@@ -1,5 +1,6 @@
 package com.webteam.laptopmall.servlet.prod;
 
+import com.webteam.laptopmall.customenum.ECategory;
 import com.webteam.laptopmall.dto.prod.ProductDTO;
 import com.webteam.laptopmall.service.prod.ProdService;
 import com.webteam.laptopmall.service.prod.ProdServiceImpl;
@@ -12,9 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/get-prods-by-model")
-public class GetProdsByModelServlet extends HttpServlet {
-
+@WebServlet("/get-prods-by-category")
+public class GetProdsByCategoryServlet extends HttpServlet {
     private ProdService prodService;
 
     @Override
@@ -29,12 +29,20 @@ public class GetProdsByModelServlet extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
         req.setCharacterEncoding("UTF-8");
 
-        String model = req.getParameter("model");
-        model = model.trim();
-        List<ProductDTO> prodDTDs = prodService.getProdsByModel("%" + model + "%");
+        String category = req.getParameter("category");
+        List<ProductDTO> prodDTDs = prodService.getProdsByCategory(getECategory(category));
         String url = "/WEB-INF/views/search.jsp";
         req.setAttribute("prods", prodDTDs);
-
         getServletContext().getRequestDispatcher(url).forward(req, resp);
+    }
+
+    private ECategory getECategory(String category){
+        if (category.equals("laptop"))
+            return ECategory.LAPTOP;
+        if (category.equals("keyboard"))
+            return ECategory.MECHANICAL_KEYBOARD;
+        if (category.equals("monitor"))
+            return ECategory.MONITOR;
+        return null;
     }
 }

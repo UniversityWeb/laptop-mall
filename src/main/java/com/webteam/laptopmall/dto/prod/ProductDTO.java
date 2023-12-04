@@ -161,12 +161,6 @@ public abstract class ProductDTO {
         return CurrencyUtil.getVNFormat(this.getDiscountedPrice());
     }
 
-    public BigDecimal getDiscountedPrice() {
-        double price = this.price.doubleValue();
-        double discountedPrice = price - price * (discountPercent / 100);
-        return new BigDecimal(discountedPrice);
-    }
-
     public String getPriceCurrencyFormat() {
         return CurrencyUtil.getVNFormat(this.price);
     }

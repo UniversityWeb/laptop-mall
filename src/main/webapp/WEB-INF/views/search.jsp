@@ -5,8 +5,10 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+    <link href="<c:url value="/static/images/logo_short.svg"/>" rel="icon"/>
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.2/css/all.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="<c:url value="/static/css/base.css"/>" type="text/css">
     <link rel="stylesheet" href="<c:url value="/static/css/search.css"/>" type="text/css">
 </head>
@@ -64,7 +66,7 @@
                 <p>FILTER</p>
             </li>
             <li class="filter-select__clear">
-                <i id="reset-icon" class="fa-solid fa-arrows-rotate "></i>
+                <i id="reset-icon" class="fa-solid fa-arrows-rotate "> </i>
             </li>
         </ul>
         <ul class="sort-selects">
@@ -74,76 +76,91 @@
             <li id="sort-btn" class="sort-select__arrow">
                 <i  class="fa-solid fa-chevron-down select-sort__btn"></i>
                 <div id="sort-container" class="sort-container">
-                    <input type="submit" value="Lastest">
-                    <input type="submit" value="Oldest">
-                    <input type="submit" value="A-Z">
-                    <input type="submit" value="Z-A">
+                    <input type="button" id="sortLtoH" value="Price Low to High">
+                    <input type="button" id="sortHtoL" value="Price High to Low">
+                    <input type="button" id="sortAtoZ" value="A-Z">
+                    <input type="button" id="sortZtoA" value="Z-A">
                 </div>
             </li>
         </ul>
     </section>
     <section class="result-content">
         <div class="filter-select__content">
-            <div class="radio_group">
-                <input type="radio"  name="priceFilter" id="radio-price0" value="all"  onclick="filterProducts()">
-                <label class="form-check-label" for="radio-price0">
-                    All
-                </label>
+            <span class="filter-title">Price</span>
+            <div class="filter-price-prods">
+                <div class="radio_group">
+                    <input type="radio"  name="priceFilter" id="radio-price0" value="all"  onclick="filterProducts()">
+                    <label class="form-check-label" for="radio-price0">
+                        All
+                    </label>
+                </div>
+                <div class="radio_group">
+                    <input type="radio" name="priceFilter" id="radio-price1" value="50"  onclick="filterProducts()">
+                    <label class="form-check-label" for="radio-price1">
+                        $50 and below
+                    </label>
+                </div>
+                <div class="radio_group">
+                    <input type="radio" name="priceFilter" id="radio-price2" value="100"  onclick="filterProducts()">
+                    <label class="form-check-label" for="radio-price2">
+                        $100 and below
+                    </label>
+                </div>
+                <div class="radio_group">
+                    <input type="radio" name="priceFilter" id="radio-price3" value="1000"  onclick="filterProducts()">
+                    <label class="form-check-label" for="radio-price3">
+                        $1000 and below
+                    </label>
+                </div>
             </div>
-            <div class="radio_group">
-                <input type="radio" name="priceFilter" id="radio-price1" value="50"  onclick="filterProducts()">
-                <label class="form-check-label" for="radio-price1">
-                    $50 and below
-                </label>
-            </div>
-            <div class="radio_group">
-                <input type="radio" name="priceFilter" id="radio-price2" value="100"  onclick="filterProducts()">
-                <label class="form-check-label" for="radio-price2">
-                    $100 and below
-                </label>
-            </div>
-            <div class="radio_group">
-                <input type="radio" name="priceFilter" id="radio-price3" value="1000"  onclick="filterProducts()">
-                <label class="form-check-label" for="radio-price3">
-                    $1000 and below
-                </label>
-            </div>
+            <span class="filter-title">Category</span>
+            <select id="categorySelect" class="form-select filter-select-prods" aria-label="Default select example">
+                <option selected>All</option>
+                <option>Laptop</option>
+                <option>Keyboard</option>
+                <option>Monitor</option>
+            </select>
+            <span class="filter-title">Branch</span>
+            <select id="brandSelect" class="form-select filter-select-prods" aria-label="Default select example">
+                <option selected >All</option>
+            </select>
         </div>
-        <ul  class="swiper mySwiper  ">
-                <li class="swiper-wrapper">
-                    <ul  class="swiper-slide  search-item__list " id="productList">
-                        <c:forEach var="product" items="${prods}">
-                            <li class="search__product-result">
-                                <div class="product__img">
-                                    <img src="<c:url value="/static/images/headphone-white.png" />" alt="">
-                                </div>
-                                <div class="product_info">
-                                    <span class="product__name"><c:out value="${product.model}" /></span>
-                                    <span class="product__id"><c:out value="${product.id}" /></span>
-                                    <span class="product__price"><c:out value="${product.price}" /></span>
-                                    <div class="product_des">
-                                        <span>Color:  <c:out value="${product.color}"/></span>
-                                    </div>
-                                    <div class="product__selection">
-                                        <button class="button__add-cart" style="width: 30%;">
-                                            <i class="fa-solid fa-cart-shopping button__icon"></i>
-                                            <span>Add to cart</span>
-                                        </button>
-                                        <div class="input__group-selection">
-                                            <input type="submit" value="LEARN MORE">
-                                            <div class="line"></div>
-                                        </div>
-                                        <div class="input__group-selection">
-                                            <input type="submit" value="FIND SUPPORT">
-                                            <div class="line"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </c:forEach>
-                    </ul>
+        <ul  class="search-item__list " id="productList">
+            <c:forEach var="product" items="${prods}">
+                <li class="search__product-result">
+                    <div class="product__img">
+                        <img src="<c:url value="/static/images/headphone-white.png" />" alt="">
+                    </div>
+                    <div class="product_info">
+                        <span class="product__name"><c:out value="${product.model}" /></span>
+                        <span class="product__id"><c:out value="${product.id}" /></span>
+                        <span class="product__price"><c:out value="${product.price}" /></span>
+                        <input type="hidden" class="product__brand" value="${product.brand}">
+                        <input type="hidden" class="product__category" value="${product.category}">
+                        <div class="product_des">
+                            <span>Color:  <c:out value="${product.color}"/></span>
+                        </div>
+                        <div class="product__selection">
+                            <form  action="add-cart-item" method="post" style="width: 50%;">
+                                <button type="submit" class="button__add-cart" style="width: 80%;">
+                                    <input type="hidden" name="productId" value="${product.id}">
+                                    <i class="fa-solid fa-cart-shopping button__icon"></i>
+                                    <span>Add to cart</span>
+                                </button>
+                            </form>
+
+                            <a href="get-prod-by-id?id=${product.id}" class="input__group-selection">
+                                <input type="submit" value="LEARN MORE">
+                                <div class="line"></div>
+                            </a>
+                            <div class="input__group-selection">
+                                <input type="submit" value="FIND SUPPORT">
+                                <div class="line"></div>
+                            </div>
+                        </div>
+                    </div>
                 </li>
-                <div class="swiper-pagination"></div>
+            </c:forEach>
         </ul>
     </section>
 </section>
@@ -152,6 +169,8 @@
 <script src="<c:url value="/static/js/base.js"/>" async defer ></script>
 <script src="<c:url value="/static/js/search.js"/>" async defer ></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 </body>
 
 </html>

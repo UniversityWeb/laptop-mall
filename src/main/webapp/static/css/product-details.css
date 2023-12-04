@@ -25,6 +25,8 @@ nav{
     justify-content: space-between;
     align-items: center;
     background-color: #1c1c1c;
+    height: 40px;
+
 }
 
 nav .navigation{
@@ -277,6 +279,7 @@ nav .navigation a:hover{
 .prod-specification__content{
     margin-top: 2%;
     width: auto;
+    width: 45%;
 }
 
 .prod-specifications-header{
@@ -309,17 +312,19 @@ nav .navigation a:hover{
 
 .prod_basic_info{
     margin-right: 1%;
+    min-width: 400px;
     display: flex;
     align-items: start;
     justify-content: center;
     overflow-y: auto;
+    overflow-x: hidden;
     flex-direction: column;
     gap: 0;
 }
 .group-basic-info ,.brand-name{
     background-color: var(--color0);
     position: sticky;
-    max-width: 500px;
+    width: 80%;
 
     box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.10), 0px 0px 6px 0px rgba(0, 0, 0, 0.09), 0px 0px 8px 0px rgba(0, 0, 0, 0.05), 0px 0px 9px 0px rgba(0, 0, 0, 0.01), 0px 0px 10px 0px rgba(0, 0, 0, 0.00);
 }
@@ -377,13 +382,28 @@ nav .navigation a:hover{
 .prod-value__item::selection{
     background: none;
 }
+.prod__id-content input{
+    background-color: var(--color7);
+    border: none;
+    outline: none;
+    height: 30px;
+    width: 80%;
+    text-align: center;
+    font-style: italic;
+}
 
-.qty-title{
+.prod__id-content button{
+    border:  none;
+    background:  none;
+    cursor: pointer;
+}
+
+.amount-title{
     font-weight: 600;
     color: var(--color1);
 }
 
-.qty-content{
+.amount-content{
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -407,7 +427,7 @@ nav .navigation a:hover{
     color: var(--color0);
 }
 
-.qty-value{
+.amount-value{
     width: 30%;
     height: 60%;
     border-radius: var(--radius-btn);
@@ -416,7 +436,6 @@ nav .navigation a:hover{
     background-color: var(--color5);
     padding:0 20px ;
     color: var(--color2);
-    justify-content: center;
 }
 
 .sub-btn:hover,.plus-btn:hover{
@@ -474,44 +493,6 @@ nav .navigation a:hover{
     flex-direction: row;
     height: 120px;
 }
-
-.button__add-cart{
-    width: 80%;
-    height: 50px;
-    border-radius: var(--radius-btn);
-    background-color: var(--color1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    gap:4%;
-    border: none;
-    cursor: pointer;
-}
-.button__add-cart span{
-    position: relative;
-    color: var(--color0);
-    font-size: 80%;
-    font-weight: 600;
-    /* transition: opacity 0.4s ease-in-out; */
-}
-.button__add-cart i{
-    color: var(--color0);
-}
-.button__add-cart:hover span{
-    animation: hiddenItem 0.5s ease-in-out 0.1s forwards;
-}
-
-@keyframes hiddenItem {
-    from {
-        opacity: 100%;
-    }
-    to {
-        opacity: 0%;
-        display: none;
-    }
-}
-
 
 .line{
     width: 90%;

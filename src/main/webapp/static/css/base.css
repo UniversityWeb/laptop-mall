@@ -123,6 +123,11 @@ a{
     width: 95%;
     height: 50%;
 }
+
+.button-inner:hover .btn-txt{
+    color: var(--color0);
+}
+
 .btn-txt ,.smartphone__btn-txt{
     position: relative;
     margin: auto;
@@ -132,13 +137,13 @@ a{
     width: 95%;
     height: auto;
 }
+
 .btn-obj:hover{
     transform: scale(1.02);
     background-color: var(--color1);
     cursor: pointer;
     display: grid;
     place-items: center;
-    color: var(--color0);
 }
 
 .icon-obj:hover{
@@ -182,5 +187,6 @@ a{
         display: none;
     }
 }
+
 
 

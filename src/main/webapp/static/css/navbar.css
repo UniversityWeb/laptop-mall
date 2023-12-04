@@ -45,11 +45,21 @@
 .nav__btn-icon{
     position: relative;
     margin: auto;
+    height: 80%;
+    width: 50px;
+    display: grid;
+    place-items: center;
+    border: none;
+    background-color: transparent;
+    color: var(--color1);
 }
 .nav__btn-icon::after{
     margin-left: -30px;
 }
 
+.nav__btn-icon i{
+    font-size: 1.1rem;
+}
 
 .navbar-logo{
     position: relative;
@@ -102,6 +112,7 @@
     color: var(--color0);
     cursor: pointer;
 }
+
 .navbar__menu-item p{
     margin: auto;
     font-weight: 500;
@@ -234,7 +245,7 @@
     color: var(--color1);
     font-size: 70%;
 }
-.search__link-item img{
+.search__link-item i{
     width: 10%;
     margin-left: 5%;
 }
@@ -321,4 +332,19 @@ input[type="search"]::-webkit-search-cancel-button {
     .input-txt__group .find-btn{
         display: none;
     }
+}
+
+.cart-bubble {
+    position: absolute;
+    top: -10px;
+    right: -1px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: var(--color3);
+    color: white;
+    font-size: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

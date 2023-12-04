@@ -40,9 +40,9 @@ public class HomeServlet extends HttpServlet {
             List<ProductDTO> laptops= prodService.getProdsByCategory(ECategory.LAPTOP);
             List<ProductDTO> keyboards= prodService.getProdsByCategory(ECategory.MECHANICAL_KEYBOARD);
             List<ProductDTO> monitors= prodService.getProdsByCategory(ECategory.MONITOR);
-            req.setAttribute("laptops",laptops);
-            req.setAttribute("keyboards",keyboards);
-            req.setAttribute("monitors",monitors);
+            req.setAttribute("laptops",getNumberProdsDTO(laptops,10));
+            req.setAttribute("keyboards",getNumberProdsDTO(keyboards,10));
+            req.setAttribute("monitors",getNumberProdsDTO(monitors,10));
         }
         getServletContext().getRequestDispatcher(url).forward(req, resp);
     }
@@ -57,6 +57,12 @@ public class HomeServlet extends HttpServlet {
             url = "/WEB-INF/views/access-denied.html";
         }
         return url;
+    }
+
+    private List<ProductDTO> getNumberProdsDTO(List<ProductDTO> prods,int number){
+        if (prods.size() < number)
+            return prods;
+        return prods.subList(0,number);
     }
 
     @Override
