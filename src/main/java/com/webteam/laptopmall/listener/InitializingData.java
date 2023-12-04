@@ -63,15 +63,15 @@ public class InitializingData  implements ServletContextListener {
         int deleteUsers = userRepos.deleteAll();
     }
 
-    private List<CartItem> initCartItem(List<User> savedUsers, List<Product> savedProducts) {
+    private List<CartItem> initCartItem(List<User> users, List<Product> savedProducts) {
 
-        User customer = userRepos.getUserByUsername( savedUsers.get(0).getUsername() );
+        User customer = userRepos.getUserByUsername( users.get(0).getUsername() );
         CartItem cartItem = new CartItem(4, customer, savedProducts.get(0));
         CartItem cartItem2 = new CartItem(2, customer, savedProducts.get(1));
         CartItem cartItem3 = new CartItem(1, customer, savedProducts.get(2));
 
 
-        User customer2 = userRepos.getUserByUsername( savedUsers.get(1).getUsername() );
+        User customer2 = userRepos.getUserByUsername( users.get(1).getUsername() );
         CartItem cartItem4 = new CartItem(2, customer2, savedProducts.get(3));
         CartItem cartItem5 = new CartItem(8, customer2, savedProducts.get(4));
         CartItem cartItem6 = new CartItem(4, customer2, savedProducts.get(5));
@@ -337,12 +337,10 @@ public class InitializingData  implements ServletContextListener {
         users.add(user4);
         users.add(user5);
 
-        List<User> savesUsers = new ArrayList<>();
         users.forEach(u -> {
             User savedUser = userRepos.save(u);
-            savesUsers.add(savedUser);
         });
 
-        return savesUsers;
+        return users;
     }
 }
