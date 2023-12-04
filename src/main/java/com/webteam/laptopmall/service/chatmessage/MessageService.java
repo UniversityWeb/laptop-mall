@@ -7,7 +7,6 @@ import java.util.List;
 
 public interface MessageService {
     ChatMessageDTO save(ChatMessageDTO chatMessage);
-    List<UserDTO> getChattedUsersByCurrentUser(String curUsername);
     List<ChatMessageDTO> getMessagesForCustomer(String username);
     List<ChatMessageDTO> getMessagesForSalesperson(String sender, String receiver);
 }

@@ -8,6 +8,7 @@ import com.webteam.laptopmall.repository.chatmessage.MessageRepos;
 import com.webteam.laptopmall.repository.chatmessage.MessageReposImpl;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MessageServiceImpl implements MessageService {
 
@@ -27,17 +28,18 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public List<UserDTO> getChattedUsersByCurrentUser(String curUsername) {
-        return mRepos.getChattedUsersByCurrentUser(curUsername);
-    }
-
-    @Override
     public List<ChatMessageDTO> getMessagesForCustomer(String username) {
-        return mRepos.getMessagesForCustomer(username);
+        List<ChatMessage> msgs = mRepos.getMessagesForCustomer(username);
+        return msgs.stream()
+                .map(cmMapper::toDTO)
+                .collect(Collectors.toList());
     }
 
     @Override
     public List<ChatMessageDTO> getMessagesForSalesperson(String sender, String receiver) {
-        return mRepos.getMessagesForSalesperson(sender, receiver);
+        List<ChatMessage> msgs = mRepos.getMessagesForSalesperson(sender, receiver);
+        return msgs.stream()
+                .map(cmMapper::toDTO)
+                .collect(Collectors.toList());
     }
 }
