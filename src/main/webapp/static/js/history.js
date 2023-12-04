@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const selectedButton = document.querySelector(`.history-menu-choose[value="${tabParam}"]`)
     if (selectedButton){
         selectedButton.classList.add("active");
-        console.log("active")
     }
 })
 
@@ -26,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
         setActiveOrUnactive(orderedStep, "unactive");
         setActiveOrUnactive(paymentStep, "unactive");
         setActiveOrUnactive(shippingStep, "unactive");
-        setActiveOrUnactive(resultStep, "unactive");
+        setActiveOrUnactive(resultStep, "active");
     }
     else{
         if(orderStatus === "DELIVERED"){
@@ -55,8 +54,8 @@ function setActiveOrUnactive(element, status){
     element.classList.add(status);
 }
 
-function submitControlForm(action){
-    const controlForm = document.getElementById("controlForm");
+function submitFormWithAction(formId, action){
+    const controlForm = document.getElementById(formId);
     controlForm.action = action;
     controlForm.submit();
 }

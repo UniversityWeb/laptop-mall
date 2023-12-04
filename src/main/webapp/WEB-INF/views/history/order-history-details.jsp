@@ -19,16 +19,16 @@
     <link rel="stylesheet" href="<c:url value="/static/css/order-history-details.css"/>">
 </head>
 <body>
-<header class="center">
-    <p style="color: #fff;">header nè</p>
-</header>
+
+<jsp:include page="../navbar.jsp"></jsp:include>
 <section class="content column">
+    <div style="height: 100px; width: 100px"></div>
     <div class="history-title center column">
         <h1>Ordered</h1>
         <hr>
     </div>
-    <form class="history-menu row center" action="filter-order" method="get">
-        button name="tab" value="ALL" class="history-menu-choose column center">
+    <form class="history-menu row center" action="history" method="get">
+        <button button name="tab" value="ALL" class="history-menu-choose column center">
         <p>All</p>
         </button>
         <button name="tab" value="PENDING" class="history-menu-choose column center">
@@ -54,7 +54,7 @@
         </button>
     </form>
     <div class="history_details-header row center">
-        <form class="history_details-header-left center row">
+        <form class="history_details-header-left center row" action="history" method="get">
             <button class="button-return center row">
                 <ion-icon name="chevron-back-outline"></ion-icon>
                 <p>RETURN</p>
@@ -63,12 +63,17 @@
         <div class="history_details-header-right row">
             <div class="history_details-order-id row">
                 <p>ORDER ID:&nbsp;</p>
-                <p>${order.id}</p>
+                <p>${orderHistory.id}</p>
             </div>
             <p>&nbsp;|&nbsp;</p>
             <div class="history_details-order-status row">
                 <p>ORDER STATUS:&nbsp;</p>
-                <p>${order.status}</p>
+                <p>${orderHistory.status}</p>
+            </div>
+            <p>&nbsp;|&nbsp;</p>
+            <div class="history_details-order-status row">
+                <p>ORDER DATE:&nbsp;</p>
+                <p>${orderHistory.orderDate}</p>
             </div>
         </div>
     </div>
@@ -91,13 +96,13 @@
                 </div>
                 <div class="history_details-information-line row center">
                     <label>Delivery Method</label>
-                    <p>: ${orderHistory.customer.deliveryMethod}</p>
+                    <p>: ${orderHistory.deliveryMethod}</p>
                 </div>
             </div>
             <hr>
-            <ul class="order-process row center" id="order-process-container"  order-status="${order.status}" payment-status="${order.payment.status}">
-                <li class="order-step column center">
-                    <span class="order_step-icon center" id="odered-status"><ion-icon name="reader-outline"></ion-icon></span>
+            <ul class="order-process row center" id="order-process-container"  order-status="${orderHistory.status}" payment-status="${orderHistory.payment.status}">
+                <li class="order-step column center" id="odered-status">
+                    <span class="order_step-icon center"><ion-icon name="reader-outline"></ion-icon></span>
                     <span class="order_step-title">Ordered</span>
                 </li>
                 <li class="order_step column center" id="payment-status">
@@ -110,15 +115,15 @@
                 </li>
 
                 <li class="order_step column center" id="result-status">
-                    <c:if test="${item.status != 'CANCELLED' and item.status != 'RETURNED'}">
+                    <c:if test="${orderHistory.status != 'CANCELLED' and orderHistory.status != 'RETURNED'}">
                         <span class="order_step-icon center"><ion-icon name="download-outline"></ion-icon></span>
                         <span class="order_step-title">Delivered</span>
                     </c:if>
-                    <c:if test="${item.status == 'CANCELLED'}">
+                    <c:if test="${orderHistory.status == 'CANCELLED'}">
                         <span class="order_step-icon center"><ion-icon name="sync-outline"></ion-icon></span>
                         <span class="order_step-title">Cancelled</span>
                     </c:if>
-                    <c:if test="${item.status == 'RETURNED'}">
+                    <c:if test="${orderHistory.status == 'RETURNED'}">
                         <span class="order_step-icon center"><ion-icon name="sync-outline"></ion-icon></span>
                         <span class="order_step-title">Returned</span>
                     </c:if>
@@ -129,7 +134,6 @@
     <hr>
     <div class="history_cart center column">
         <div class="product_list">
-
             <c:forEach var="item" items="${orderHistory.orderItems}">
             <div class="product_item row center">
                 <table class="product_details">
@@ -141,7 +145,7 @@
                     <tbody class="row">
                     <tr class="product_details-left column">
                         <td class="product_details-title">
-                            <strong>${item.product.decs}</strong>
+                            <strong>${item.product.model}</strong>
                         </td>
                         <td class="product_details-color">
                             <span>${item.product.color}</span>
@@ -152,10 +156,10 @@
                     </tr>
                     <tr class="product_details-right column">
                         <td class="product_details-price">
-                            <span><strong>${item.currPrice}</strong></span>
+                            <span><strong>${item.getCurrPiceCurrentFormat()}</strong></span>
                         </td>
                         <td class="product_details-price-text right">
-                            <span><del>${item.product.price}</del></span>
+                            <span><del style="font-size: 0.9em">${item.product.priceCurrentFormat()}</del></span>
                         </td>
                         <td>x1</td>
                     </tr>
@@ -168,7 +172,7 @@
                 <table>
                     <tr>
                         <td class="history_cart-summary-left">Order Total</td>
-                        <td class="history_cart-summary-right"><del>13.989.800đ</del></td>
+                        <td class="history_cart-summary-right"><del>${orderHistory.totalOriginalAmountOfOrderCurrentFormat()}</del></td>
                     </tr>
                     <tr>
                         <td class="history_cart-summary-left">Ship COD</td>
@@ -176,11 +180,11 @@
                     </tr>
                     <tr>
                         <td class="history_cart-summary-left">Order total before discount</td>
-                        <td class="history_cart-summary-right" style="font-weight: bold;">10.989.800đ</td>
+                        <td class="history_cart-summary-right" style="font-weight: bold;">${orderHistory.totalDiscountedAmountOfOrderCurrentFormat()}</td>
                     </tr>
                     <tr>
                         <td class="history_cart-summary-left">Payment Method</td>
-                        <td class="history_cart-summary-right">${order.payment.paymentMethod}</td>
+                        <td class="history_cart-summary-right">${orderHistory.payment.paymentMethod}</td>
                     </tr>
                 </table>
             </div>

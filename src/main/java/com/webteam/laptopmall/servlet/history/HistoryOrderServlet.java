@@ -7,7 +7,6 @@ import com.webteam.laptopmall.service.order.OrderService;
 import com.webteam.laptopmall.service.order.OrderServiceImpl;
 import com.webteam.laptopmall.service.user.UserService;
 import com.webteam.laptopmall.service.user.UserServiceImpl;
-import com.webteam.laptopmall.servlet.cart.crud.AddItemServlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,14 +15,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-@WebServlet("/change-order-status")
-public class ChangeOrderStatusServlet extends HttpServlet {
+@WebServlet("/history")
+public class HistoryOrderServlet extends HttpServlet {
     private OrderService orderService;
     private UserService userService;
-
-    private static final Logger logger = Logger.getLogger(AddItemServlet.class.getName());
     @Override
     public void init() throws ServletException {
         super.init();
@@ -32,29 +30,35 @@ public class ChangeOrderStatusServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         resp.setContentType("text/html");
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
 
-        String url = "/order-details";
+        String url = "//WEB-INF/views/history/order-history.jsp";
 
         HttpSession session = req.getSession();
+        String tab = req.getParameter("tab");
         String username = (String) session.getAttribute("username");
         UserDTO customer = userService.getByUsername(username);
+        if (tab == null){
+            tab = "ALL";
+        }
 
-        String status = req.getParameter("status");
-        String orderIdString = req.getParameter("orderId");
+        List<OrderDTO> ordersHistory;
+        if (tab.equals("ALL")){
+            ordersHistory = orderService.getListByUserId(customer.getId());
+        }
+        else {
+            ordersHistory = orderService.getListByUserIdAndStatus(customer.getId(), Order.EStatus.valueOf(tab));
+        }
 
-        Long orderId = Long.valueOf(orderIdString);
-        OrderDTO orderHistory = orderService.getByUserAndOrderId(customer.getId(), orderId);
+        if (ordersHistory.size()<1){
+            url = "/WEB-INF/views/history/order-history-empty.jsp";
+        }
 
-        orderHistory.setStatus(Order.EStatus.valueOf(status));
-        orderService.update(orderHistory);
-
-        req.setAttribute("orderId", orderId);
-
+        req.setAttribute("ordersHistory", ordersHistory);
         getServletContext().getRequestDispatcher(url).forward(req, resp);
     }
 }

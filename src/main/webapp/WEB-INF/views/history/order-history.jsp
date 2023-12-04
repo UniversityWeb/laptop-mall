@@ -19,17 +19,17 @@
     <link rel="stylesheet" href="<c:url value="/static/css/order-history.css"/>">
 </head>
 <body>
-<header class="center">
-    <p style="color: #fff;">header nè</p>
-</header>
+
+<jsp:include page="../navbar.jsp"></jsp:include>
 <section class="content column">
+    <div style="height: 100px; width: 100px"></div>
     <div class="history-title center column">
         <h1>Ordered</h1>
         <hr>
     </div>
-    <form class="history-menu row center" action="filter-order" method="get">
-        button name="tab" value="ALL" class="history-menu-choose column center">
-        <p>All</p>
+    <form class="history-menu row center" action="history" method="get">
+        <button name="tab" value="ALL" class="history-menu-choose column center">
+            <p>All</p>
         </button>
         <button name="tab" value="PENDING" class="history-menu-choose column center">
             <p>Pending</p>
@@ -53,19 +53,9 @@
             <p>Refunded</p>
         </button>
     </form>
-    <div class="history-search column center">
-        <p>If you already have a account, please log in to track your order. If you don't have a account, you can enter your information in the table below for tracking.</p>
-        <form action="#" method="get" class="history-search-id row">
-            <div class="history-search-id-input column">
-                <input type="text" name="productID" placeholder=" ">
-                <label>Order ID</label>
-            </div>
-            <input type="submit" value="Search" class="button-search">
-        </form>
-    </div>
     <div class="history-content center">
         <div class="product_history-list center column">
-            <c:forEach var="item" items="${orders}">
+            <c:forEach var="item" items="${ordersHistory}">
                 <div class="product_history-item column center">
                     <div class="product_history-order row">
                         <div class="product_history-order-left">
@@ -73,7 +63,7 @@
                         </div>
                         <div class="product_history-order-right row">
                             <p>Total:&nbsp;</p>
-                            <p>10.989.800đ</p>
+                            <p>${item.totalDiscountedAmountOfOrderCurrentFormat()}</p>
                         </div>
                     </div>
 
@@ -99,10 +89,10 @@
                             </tr>
                             <tr class="product_details-right column">
                                 <td class="product_details-price">
-                                    <span><strong>${orderItem.subTotal}</strong></span>
+                                    <span><strong>${orderItem.getCurrPiceCurrentFormat()}</strong></span>
                                 </td>
                                 <td>&nbsp;</td>
-                                <td>x${orderItem.quantity}</td>
+                                <td>x${orderItem.qty}</td>
                             </tr>
                             </tbody>
                         </table>
@@ -110,21 +100,21 @@
                     </c:forEach>
                     <div class="product_history-controls row">
                         <div class="product_history-controls-left row">
-                            <p>Completed</p>
+                            <p>${item.status}</p>
                         </div>
-                        <form class="product_history-controls-right row" id="controlForm" method="get">
-                            <input type="hidden" name="orderId" value="${item.id}">
+                        <div class="product_history-controls-right row">
+                            <form id="${item.id}" method="post">
+                                <input type="hidden" name="orderId" value="${item.id}">
                             <c:if test="${item.status == 'PENDING'}">
-                                <button class="button-cancel" name="status" value="CANCELLED" onclick="submitFormWithAction('change-order-status')">Cancel</button>
+                                <button class="button-cancel" name="status" value="CANCELLED" onclick="submitFormWithAction('${item.id}','change-order-status')">Cancel</button>
                             </c:if>
                             <c:if test="${item.status == 'SHIPPED'}">
-                                <button class="button-return" name="status" value="RETURNED" onclick="submitFormWithAction('change-order-status')">Return</button>
+                                <button class="button-return" name="status" value="RETURNED" onclick="submitFormWithAction('${item.id}','change-order-status')">Return</button>
+                                <button class="button-deliver" name="status" value="DELIVERED" onclick="submitFormWithAction('${item.id}','change-order-status')">Deliver</button>
                             </c:if>
-                            <c:if test="${item.status == 'SHIPPED'}">
-                                <button class="button-deliver" name="status" value="DELIVERED" onclick="submitFormWithAction('change-order-status')">Deliver</button>
-                            </c:if>
-                            <button class="button-details" onclick="submitControlForm('order-details')">Details</button>
-                        </form>
+                            <button class="button-details" onclick="submitFormWithAction('${item.id}','order-details')">Details</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
                 <hr>

@@ -117,7 +117,19 @@ public class OrderDTO {
         return totalDiscounted;
     }
 
+    public BigDecimal totalOriginalAmountOfOrder() {
+        BigDecimal totalOriginal = new BigDecimal(0);
+        for (OrderItemDTO orderItemDTO: this.getOrderItems()) {
+            totalOriginal = totalOriginal.add(orderItemDTO.totalOriginalOfCartItem());
+        }
+        return totalOriginal;
+    }
+
     public String totalDiscountedAmountOfOrderCurrentFormat() {
         return CurrencyUtil.getVNFormat(this.totalDiscountedAmountOfOrder());
+    }
+
+    public String totalOriginalAmountOfOrderCurrentFormat() {
+        return CurrencyUtil.getVNFormat(this.totalOriginalAmountOfOrder());
     }
 }

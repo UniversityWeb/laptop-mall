@@ -19,15 +19,15 @@
     <link rel="stylesheet" href="<c:url value="/static/css/order-history-empty.css"/>">
 </head>
 <body>
-<header class="center">
-    <p style="color: #fff;">header nè</p>
-</header>
+
+<jsp:include page="../navbar.jsp"></jsp:include>
 <section class="content column">
+    <div style="height: 100px; width: 100px"></div>
     <div class="history-title center column">
         <h1>Ordered</h1>
         <hr>
     </div>
-    <form class="history-menu row center" action="filter-order" method="get">
+    <form class="history-menu row center" action="history" method="get">
         <button name="tab" value="ALL" class="history-menu-choose column center">
             <p>All</p>
         </button>
@@ -53,16 +53,6 @@
             <p>Refunded</p>
         </button>
     </form>
-    <div class="history-search column center">
-        <p>If you already have a account, please log in to track your order. If you don't have a account, you can enter your information in the table below for tracking.</p>
-        <form action="#" method="get" class="history-search-id row">
-            <div class="history-search-id-input column">
-                <input type="text" name="productID" placeholder=" ">
-                <label>Order ID</label>
-            </div>
-            <input type="submit" value="Search" class="button-search">
-        </form>
-    </div>
     <div class="history-content center">
         <img src="<c:url value="/static/images/empty.gif"/>" alt="You have no order yet">
     </div>
