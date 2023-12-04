@@ -1,10 +1,8 @@
 package com.webteam.laptopmall.restcontroller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.webteam.laptopmall.dto.prod.LaptopDTO;
-import com.webteam.laptopmall.dto.prod.ProductDTO;
-import com.webteam.laptopmall.service.image.ImageService;
-import com.webteam.laptopmall.service.image.ImageServiceImpl;
+import com.webteam.laptopmall.io.image.prod.ProdImgIO;
+import com.webteam.laptopmall.io.image.prod.ProdImgIOImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,12 +18,12 @@ import java.util.logging.Logger;
 public class GetImageUrlsOfProd extends HttpServlet {
 
     private static final Logger log = Logger.getLogger(GetImageUrlsOfProd.class.getName());
-    private ImageService imgService;
+    private ProdImgIO prodImgIO;
 
     @Override
     public void init() throws ServletException {
         super.init();
-        imgService = new ImageServiceImpl();
+        prodImgIO = new ProdImgIOImpl();
     }
 
     @Override
@@ -34,7 +32,7 @@ public class GetImageUrlsOfProd extends HttpServlet {
         Long prodId = Long.valueOf(prodIdStr);
 
         String realPath = getServletContext().getRealPath("/");
-        List<String> imgUrls = imgService.loadProdImageUrls(prodId, realPath);
+        List<String> imgUrls = prodImgIO.loadProdImageUrls(prodId, realPath);
 
         String jsonMsgs = "";
         try {

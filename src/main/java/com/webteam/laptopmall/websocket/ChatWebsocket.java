@@ -51,7 +51,7 @@ public class ChatWebsocket {
         if (sender == null) {
             return;
         }
-        if (!chatService.isOnline(receiverUsername)) {
+        if (receiver == null || !chatService.isOnline(receiverUsername)) {
             return;
         }
 
@@ -64,7 +64,7 @@ public class ChatWebsocket {
         if (!chatService.close(this)) {
             return;
         }
-        if (!chatService.isOnline(receiver.getUsername())) {
+        if (receiver == null || !chatService.isOnline(receiver.getUsername())) {
             return;
         }
         String msg = String.format("`%s` close chat.", sender.getUsername());

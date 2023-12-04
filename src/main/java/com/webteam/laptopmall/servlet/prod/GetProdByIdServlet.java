@@ -2,9 +2,8 @@ package com.webteam.laptopmall.servlet.prod;
 
 import com.webteam.laptopmall.dto.prod.ProductDTO;
 import com.webteam.laptopmall.exception.ProductNotFoundException;
-import com.webteam.laptopmall.repository.prod.ProdReposImpl;
-import com.webteam.laptopmall.service.image.ImageService;
-import com.webteam.laptopmall.service.image.ImageServiceImpl;
+import com.webteam.laptopmall.io.image.prod.ProdImgIO;
+import com.webteam.laptopmall.io.image.prod.ProdImgIOImpl;
 import com.webteam.laptopmall.service.prod.ProdService;
 import com.webteam.laptopmall.service.prod.ProdServiceImpl;
 
@@ -15,8 +14,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 @MultipartConfig()
@@ -25,13 +22,13 @@ public class GetProdByIdServlet extends HttpServlet {
 
     private static final Logger log = Logger.getLogger(GetProdByIdServlet.class.getName());
     private ProdService prodService;
-    private ImageService imgService;
+    private ProdImgIO prodImgIO;
 
     @Override
     public void init() throws ServletException {
         super.init();
         prodService = new ProdServiceImpl();
-        imgService = new ImageServiceImpl();
+        prodImgIO = new ProdImgIOImpl();
     }
 
     @Override
@@ -45,7 +42,7 @@ public class GetProdByIdServlet extends HttpServlet {
         String url;
         try {
             ProductDTO prodDTO = prodService.getById(id);
-            prodDTO = imgService.loadProdImageUrls(prodDTO, realPath);
+            prodDTO = prodImgIO.loadProdImageUrls(prodDTO, realPath);
             req.setAttribute("prod", prodDTO);
             url = "/WEB-INF/views/product-details.jsp";
         } catch (ProductNotFoundException e) {
