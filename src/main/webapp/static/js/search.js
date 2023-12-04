@@ -76,9 +76,133 @@ function filterProducts() {
 
 }
 
+
+
+// Get brand name
+
+var brandElements = document.querySelectorAll('#productList .product__brand');
+var brands = new Set();
+brandElements.forEach(function(brandElement) {
+    brands.add(brandElement.value);
+});
+
+var brandSelect = document.getElementById('brandSelect');
+brands.forEach(function(brand) {
+    var option = document.createElement('option');
+    option.value = brand;
+    option.text = brand;
+    brandSelect.add(option);
+});
+
+// Filter brand name
+var allBrands = Array.from(brandElements).map(function(brandElement) {
+    return brandElement.value;
+});
+brandSelect.addEventListener('change', function () {
+    var selectedBrand = brandSelect.value;
+
+    brandElements.forEach(function(brandElement, index) {
+        var productItem = brandElement.closest('.search__product-result');
+        if (selectedBrand === 'All' || brandElement.value === selectedBrand) {
+            productItem.style.display = 'flex';
+        } else {
+            productItem.style.display = 'none';
+        }
+    });
+});
+
+// category
+
+var categoryElements = document.querySelectorAll('#productList .product__category');
+var allCategorys = Array.from(categoryElements).map(function(categoryElement) {
+    return categoryElement.value;
+});
+
+var categorySelect = document.getElementById('categorySelect');
+
+categorySelect.addEventListener('change', function () {
+    var selectedCategory = categorySelect.value;
+
+    categoryElements.forEach(function(categoryElement, index) {
+        console.log(categoryElement.value)
+        var productItem = categoryElement.closest('.search__product-result');
+        if (selectedCategory === 'All' || convertCategoryName(categoryElement.value) === selectedCategory) {
+            productItem.style.display = 'flex';
+        } else {
+            productItem.style.display = 'none';
+        }
+    });
+});
+
+function  convertCategoryName(eName){
+    if (eName == 'LAPTOP')
+        return 'Laptop'
+    if (eName == 'MECHANICAL_KEYBOARD')
+        return 'Keyboard'
+    if (eName == 'MONITOR')
+        return 'Monitor'
+}
+
+// Sort
+
+var productElements = document.querySelectorAll('#productList .search__product-result');
+
+var sortLtoH = document.getElementById('sortLtoH');
+var sortHtoL = document.getElementById('sortHtoL');
+var sortAtoZ = document.getElementById('sortAtoZ');
+var sortZtoA = document.getElementById('sortZtoA');
+
+sortLtoH.addEventListener('click', function () {
+    sortProducts('asc');
+});
+
+sortHtoL.addEventListener('click', function () {
+    sortProducts('desc');
+});
+
+sortAtoZ.addEventListener('click', function () {
+    sortProducts('asc', 'name');
+});
+
+sortZtoA.addEventListener('click', function () {
+    sortProducts('desc', 'name');
+});
+
+function sortProducts(order, sortBy = 'price') {
+    var sortedProducts = Array.from(productElements).sort(function (a, b) {
+        var valueA, valueB;
+
+        if (sortBy === 'price') {
+            valueA = parseFloat(a.querySelector('.product__price').textContent);
+            valueB = parseFloat(b.querySelector('.product__price').textContent);
+        } else if (sortBy === 'name') {
+            valueA = a.querySelector('.product__name').textContent;
+            valueB = b.querySelector('.product__name').textContent;
+        }
+
+        if (order === 'asc') {
+            return valueA - valueB;
+        } else {
+            return valueB - valueA;
+        }
+    });
+
+    productElements.forEach(function (productElement) {
+        productElement.remove();
+    });
+
+    sortedProducts.forEach(function (sortedProduct) {
+        document.getElementById('productList').appendChild(sortedProduct);
+    });
+}
+
+/// reset
+
 document.getElementById('reset-icon').addEventListener('click', () => {
     document.querySelectorAll('select').forEach(s=>{
         s.value = 'All';
+        s.item(0).selected=true
     })
+    location.reload(true)
     document.getElementById('radio-price0').checked = true;
 });

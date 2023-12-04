@@ -30,6 +30,7 @@ public class GetProdsByModelServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
 
         String model = req.getParameter("model");
+        model = model.trim();
         List<ProductDTO> prodDTDs = prodService.getProdsByModel("%" + model + "%");
         String url = "/WEB-INF/views/search.jsp";
         req.setAttribute("prods", prodDTDs);

@@ -66,7 +66,7 @@
                 <p>FILTER</p>
             </li>
             <li class="filter-select__clear">
-                <i id="reset-icon" class="fa-solid fa-arrows-rotate "></i>
+                <i id="reset-icon" class="fa-solid fa-arrows-rotate "> </i>
             </li>
         </ul>
         <ul class="sort-selects">
@@ -76,10 +76,10 @@
             <li id="sort-btn" class="sort-select__arrow">
                 <i  class="fa-solid fa-chevron-down select-sort__btn"></i>
                 <div id="sort-container" class="sort-container">
-                    <input type="submit" value="Lastest">
-                    <input type="submit" value="Oldest">
-                    <input type="submit" value="A-Z">
-                    <input type="submit" value="Z-A">
+                    <input type="button" id="sortLtoH" value="Price Low to High">
+                    <input type="button" id="sortHtoL" value="Price High to Low">
+                    <input type="button" id="sortAtoZ" value="A-Z">
+                    <input type="button" id="sortZtoA" value="Z-A">
                 </div>
             </li>
         </ul>
@@ -114,16 +114,15 @@
                 </div>
             </div>
             <span class="filter-title">Category</span>
-            <select class="form-select filter-select-prods" aria-label="Default select example">
+            <select id="categorySelect" class="form-select filter-select-prods" aria-label="Default select example">
                 <option selected>All</option>
-                <option>1</option>
-                <option>2</option>
+                <option>Laptop</option>
+                <option>Keyboard</option>
+                <option>Monitor</option>
             </select>
             <span class="filter-title">Branch</span>
-            <select class="form-select filter-select-prods" aria-label="Default select example">
+            <select id="brandSelect" class="form-select filter-select-prods" aria-label="Default select example">
                 <option selected >All</option>
-                <option>1</option>
-                <option>2</option>
             </select>
         </div>
         <ul  class="search-item__list " id="productList">
@@ -136,6 +135,8 @@
                         <span class="product__name"><c:out value="${product.model}" /></span>
                         <span class="product__id"><c:out value="${product.id}" /></span>
                         <span class="product__price"><c:out value="${product.price}" /></span>
+                        <input type="hidden" class="product__brand" value="${product.brand}">
+                        <input type="hidden" class="product__category" value="${product.category}">
                         <div class="product_des">
                             <span>Color:  <c:out value="${product.color}"/></span>
                         </div>
