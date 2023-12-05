@@ -1,14 +1,12 @@
 package com.webteam.laptopmall.entity.prod;
 
 import com.webteam.laptopmall.customenum.ECategory;
-import com.webteam.laptopmall.dto.CartItemDTO;
 import com.webteam.laptopmall.entity.CartItem;
+import com.webteam.laptopmall.entity.OrderItem;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.text.NumberFormat;
 import java.util.List;
-import java.util.Locale;
 import java.util.Objects;
 
 @Entity
@@ -101,8 +99,7 @@ public abstract class Product {
         if (!Objects.equals(stockQty, product.stockQty)) return false;
         if (!Objects.equals(version, product.version)) return false;
         if (!Objects.equals(color, product.color)) return false;
-        if (category != product.category) return false;
-        return Objects.equals(cartItems, product.cartItems);
+        return Objects.equals(category, product.category);
     }
 
     @Override
@@ -121,7 +118,6 @@ public abstract class Product {
         result = 31 * result + (color != null ? color.hashCode() : 0);
         result = 31 * result + releaseYear;
         result = 31 * result + (category != null ? category.hashCode() : 0);
-        result = 31 * result + (cartItems != null ? cartItems.hashCode() : 0);
         return result;
     }
 

@@ -98,8 +98,7 @@
                                 </c:if>
                             <td class="product_details-remove right">
                                 <form action="delete-cart-item" class="product_details-number-count row" method="post">
-                                    <input type="hidden" name="productId"
-                                    value="${item.product.id}">
+                                    <input type="hidden" name="productId" value="${item.product.id}">
                                     <button class="button-remove">
                                         <ion-icon name="trash-outline"></ion-icon>
                                     </button>

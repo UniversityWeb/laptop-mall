@@ -88,7 +88,7 @@
         <i class="fa-solid fa-user hover_icon" ></i>
       </button>
     </form>
-    <form action="<%= contextPath %>/history" method="post">
+    <form action="<%= contextPath %>/history" method="get">
       <button type="submit" class="nav__btn-icon ">
         <i class="fa-solid fa-clock-rotate-left hover_icon"></i>
       </button>

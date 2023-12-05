@@ -12,10 +12,9 @@
     <link rel="stylesheet" href="<c:url value="/static/css/order-history-details.css"/>">
 </head>
 <body>
-<header class="center">
-    <p style="color: #fff;">header nè</p>
-</header>
+<jsp:include page="../navbar.jsp"></jsp:include>
 <section class="content column">
+    <div style="height: 100px; width: 100px"></div>
     <div class="history-title center column">
         <h1>Ordered</h1>
         <hr>
