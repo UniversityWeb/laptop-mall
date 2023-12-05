@@ -1,6 +1,7 @@
 package com.webteam.laptopmall.io.image.prod;
 
 import com.webteam.laptopmall.dto.prod.ProductDTO;
+import com.webteam.laptopmall.utility.FileUtil;
 
 import javax.servlet.http.Part;
 import java.io.File;
@@ -17,6 +18,7 @@ import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class ProdImgIOImpl implements ProdImgIO {
 
@@ -53,6 +55,14 @@ public class ProdImgIOImpl implements ProdImgIO {
             saveProdImage(realPath, prodId, part);
         }
         return null;
+    }
+
+    @Override
+    public void deleteAllWithoutDefault(String realPath, Long prodId) {
+        String prodFolder = getProdFolderById(realPath, prodId);
+        String defaultImgPattern = "0.";
+        String fileName = FileUtil.getImagesWithPattern(prodFolder, defaultImgPattern);
+        FileUtil.deleteAllFilesInFolder(realPath, fileName);
     }
 
     private String getFileExtension(Part part) {
