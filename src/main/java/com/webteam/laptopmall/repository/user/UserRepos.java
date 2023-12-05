@@ -13,7 +13,7 @@ public interface UserRepos extends BaseRepos<User, Long> {
     int updateWithoutPassword(User user);
     User.ERole getRoleByUsername(String username);
 
-    boolean isValid(Long userId, PassUpdateForm passUpdateForm);
+    boolean isValid(PassUpdateForm passUpdateForm);
 
     int updatePassOnly(Long userId, String newHashedPass);
 }

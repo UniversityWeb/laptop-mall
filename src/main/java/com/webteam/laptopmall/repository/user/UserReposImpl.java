@@ -45,14 +45,14 @@ public class UserReposImpl extends BaseReposImpl<User, Long> implements UserRepo
     }
 
     @Override
-    public boolean isValid(Long userId, PassUpdateForm passUpdateForm) {
+    public boolean isValid(PassUpdateForm passUpdateForm) {
         String oldPlainPass = passUpdateForm.getOldPlainPass();
         String newPlainPass = passUpdateForm.getNewPlainPass();
         String reTypePlainPass = passUpdateForm.getReTypePlainPass();
         if (!newPlainPass.equals(reTypePlainPass)) {
             return false;
         }
-        Optional<User> userOpt = getById(userId);
+        Optional<User> userOpt = getById(passUpdateForm.getUserId());
         String oldHashedPass = "";
         if (userOpt.isPresent()) {
             oldHashedPass = userOpt.get().getPassHash();

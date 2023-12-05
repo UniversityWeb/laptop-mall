@@ -86,8 +86,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean isValid(Long id, PassUpdateForm passUpdateForm) {
-        return userRepos.isValid(id, passUpdateForm);
+    public boolean isValid(PassUpdateForm passUpdateForm) {
+        return userRepos.isValid(passUpdateForm);
     }
 
     @Override

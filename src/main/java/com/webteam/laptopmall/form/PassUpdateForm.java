@@ -1,6 +1,9 @@
 package com.webteam.laptopmall.form;
 
+import java.util.logging.Logger;
+
 public class PassUpdateForm {
+    private Long userId;
     private String oldPlainPass;
     private String newPlainPass;
     private String reTypePlainPass;
@@ -8,10 +11,19 @@ public class PassUpdateForm {
     public PassUpdateForm() {
     }
 
-    public PassUpdateForm(String oldPlainPass, String newPlainPass, String reTypePlainPass) {
+    public PassUpdateForm(Long userId, String oldPlainPass, String newPlainPass, String reTypePlainPass) {
+        this.userId = userId;
         this.oldPlainPass = oldPlainPass;
         this.newPlainPass = newPlainPass;
         this.reTypePlainPass = reTypePlainPass;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getOldPlainPass() {
