@@ -26,22 +26,8 @@
         </form>
         <form class="tab-bar__item" action="seller-main-page" method="post">
             <input class="tab-bar__item-input" type="submit" name="action" value="All">
-            <input class="tab-bar__item-input" id="filter-btn" type="button" value="Filter">
-            <input class="tab-bar__item-input" id="sort-btn" type="button" value="Sort">
-            <input class="tab-bar__item-input" id="statistics-btn" type="button" value="Statistics">
             <input class="tab-bar__item-input" type="submit" name="action" value="New">
         </form>
-        <div id="filter-container" class="sort-container">
-            <input type="button" id="filterLaptop" value="Laptop">
-            <input type="button" id="filterKeyboard" value="Keyboard">
-            <input type="button" id="filterMonitor" value="Monitor">
-        </div>
-        <div id="sort-container" class="sort-container">
-            <input type="button" id="sortLtoH" value="Price Low to High">
-            <input type="button" id="sortHtoL" value="Price High to Low">
-            <input type="button" id="sortAtoZ" value="A-Z">
-            <input type="button" id="sortZtoA" value="Z-A">
-        </div>
     </div>
     <section class="product-container">
         <ul class="product-list">
