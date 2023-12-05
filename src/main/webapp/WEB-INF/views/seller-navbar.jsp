@@ -45,7 +45,7 @@
                 <i class="fa-solid fa-comment hover_icon"></i>
             </button>
         </form>
-        <form action="<%= contextPath %>/user-profile" method="post">
+        <form action="<%= contextPath %>/user-profile" method="get">
             <button type="submit" class="nav__btn-icon hover_icon">
                 <i class="fa-solid fa-user"></i>
             </button>
