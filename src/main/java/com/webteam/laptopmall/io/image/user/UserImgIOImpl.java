@@ -23,7 +23,10 @@ public class UserImgIOImpl implements UserImgIO {
         String userFolder = getUserFolderByUsername(realPath, username);
         String pathToSave = userFolder + File.separator + fileName;
 
-        FileUtil.deleteAllFilesInFolder(userFolder, fileName);
+        File folder = new File(userFolder);
+        if (!folder.exists()) {
+            folder.mkdirs();
+        }
 
         try (InputStream fileContent = part.getInputStream()) {
             Files.copy(fileContent, Paths.get(pathToSave), StandardCopyOption.REPLACE_EXISTING);
