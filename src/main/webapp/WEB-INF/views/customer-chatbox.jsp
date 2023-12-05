@@ -121,8 +121,7 @@
     function fetchMsgsForCustomer(username) {
         const contextPath = '<%= request.getContextPath() %>';
         const restUrl = window.location.protocol + "//" + window.location.host + contextPath +
-            "/get-messages-for-customer?username=" + username;
-        console.log("fetchMessages - restUrl: " + restUrl);
+            "/api/customer/get-messages-for-customer?username=" + username;
         fetch(restUrl)
             .then(response => response.json())
             .then(chatMessages => {

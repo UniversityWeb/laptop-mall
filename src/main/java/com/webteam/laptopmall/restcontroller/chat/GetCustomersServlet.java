@@ -15,7 +15,7 @@ import java.io.PrintWriter;
 import java.util.List;
 import java.util.logging.Logger;
 
-@WebServlet("/get-customers")
+@WebServlet("/api/salesperson/get-customers")
 public class GetCustomersServlet extends HttpServlet {
 
     private static final Logger log = Logger.getLogger(GetCustomersServlet.class.getName());

@@ -28,7 +28,7 @@ public class ChatServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String url = "/WEB-INF/views/access-denied.html";
+        String url = "/WEB-INF/views/access-denied.jsp";
         HttpSession session = req.getSession();
         String username = (String) session.getAttribute("username");
         try {
