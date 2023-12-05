@@ -17,6 +17,6 @@ public interface UserService {
     List<String> getAllCustomerUsernames();
     int updateWithoutPassword(UserDTO userDTO);
     User.ERole getRoleByUsername(String username);
-    boolean isValid(Long id, PassUpdateForm passUpdateForm);
+    boolean isValid(PassUpdateForm passUpdateForm);
     int updatePassOnly(Long userId, String newHashedPass);
 }

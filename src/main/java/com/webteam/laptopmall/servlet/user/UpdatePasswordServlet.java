@@ -31,8 +31,8 @@ public class UpdatePasswordServlet extends HttpServlet {
         String newPlainPass = req.getParameter("newPlainPass");
         String reTypePlainPass = req.getParameter("reTypePlainPass");
 
-        PassUpdateForm passUpdateForm = new PassUpdateForm(oldPlainPass, newPlainPass, reTypePlainPass);
-        boolean isValid = userService.isValid(id, passUpdateForm);
+        PassUpdateForm passUpdateForm = new PassUpdateForm(id, oldPlainPass, newPlainPass, reTypePlainPass);
+        boolean isValid = userService.isValid(passUpdateForm);
         if (isValid) {
             String newHashedPass = PassUtil.hashPass(newPlainPass);
             userService.updatePassOnly(id, newHashedPass);
