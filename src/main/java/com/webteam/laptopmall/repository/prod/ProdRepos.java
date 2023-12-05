@@ -8,9 +8,7 @@ import java.util.List;
 
 public interface ProdRepos extends BaseRepos<Product, Long> {
     Product update(Product prod);
-
     List<Product> getProdsByModel(String model);
-
     List<Product> getProdsByCategory(ECategory eCategory);
 }
 
