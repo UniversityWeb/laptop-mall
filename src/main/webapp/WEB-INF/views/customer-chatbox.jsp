@@ -19,9 +19,6 @@
 
     <div class="chatbox__content">
     </div>
-    <div id="notifyChat" class="notify-chat">
-        <i id="iconChatAction" class="fa-duotone fa-ellipsis fa-beat"></i>
-    </div>
     <div class="chatbox__group-items">
         <input class="chatbox__input" name="" id="input-msg" cols="30" rows="10">
         <i class="fa-solid fa-paper-plane chatbox__send" onclick="sendMsg()"></i>
@@ -85,7 +82,7 @@
 
         if (isSender) {
             chatContainer.innerHTML += `
-            <div class="chat__my-img">My</div>
+            <div class="chat__my-img"></div>
             <ul class="list__bubble-chat">
                 <li class="bubble-chat__item">
                     <p>` + message + `</p>
@@ -110,11 +107,14 @@
             console.error("chatboxContent container not found.");
             return;
         }
-        var chatNotify = document.getElementById("notifyChat")
-        chatNotify.innerHTML += `
+        chatboxContent.innerHTML += `
+        <div class="chatbox__notification" style="
+                padding: 10px;
+                text-align: center;">
             <p class="notification__text">`
             + message +
-            `</p>`;
+            `</p>
+        </div>`;
     }
 
     function fetchMsgsForCustomer(username) {
