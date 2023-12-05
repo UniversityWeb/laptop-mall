@@ -84,16 +84,14 @@ h1, h2, h3 {
     resize: none;
     border-radius: var(--radius-btn);
     margin-left: 1%;
-    padding:  10px 20px ;
+    padding:  10px ;
     width: 70%;
     border-width: 0;
     outline: none;
 }
 
 .chatbox__send{
-   color: var(--color0);
-    font-size: 2rem;
-    margin-right: 2%;
+    width: 8%;
 }
 
 .chatbox__send:hover{
@@ -174,33 +172,4 @@ h1, h2, h3 {
 }
 .chatbox__chat-Sent .bubble-chat__item{
     margin-left: auto;
-}
-
-img::selection{
-    background: none;
-}
-*::selection{
-    background: var(--color5);
-}
-
-.notify-chat{
-    width: 100%;
-    background-color: var(--color0);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 20px;
-}
-
-#iconChatAction{
-    display: none;
-}
-.chatbox__input:focus #iconChatAction{
-    display: flex;
-}
-
-.notification__text{
-    color: var(--color3);
-    font-style: italic;
 }
