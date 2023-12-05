@@ -3,59 +3,17 @@ package com.webteam.laptopmall.io.image.prod;
 import com.webteam.laptopmall.dto.prod.ProductDTO;
 import com.webteam.laptopmall.utility.FileUtil;
 
-import javax.servlet.http.Part;
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class ProdImgIOImpl implements ProdImgIO {
 
     private static final Logger log = Logger.getLogger(ProdImgIOImpl.class.getName());
-
-    @Override
-    public String saveProdImage(String realPath, Long prodId, Part part) {
-        String pathToSave = createPathToSave(realPath, prodId, part);
-
-        try (InputStream fileContent = part.getInputStream()) {
-            Files.copy(fileContent, Paths.get(pathToSave), StandardCopyOption.REPLACE_EXISTING);
-            return pathToSave;
-        } catch (IOException e) {
-            log.severe(e.getMessage());
-            return "";
-        }
-    }
-
-    private String generateFileName(Long prodId, String extension) {
-        Long index = new Random().nextLong();
-        return index + extension;
-    }
-
-    private String createPathToSave(String realPath, Long prodId, Part part) {
-        String extension = getFileExtension(part);
-        String prodFolder = getProdFolderById(realPath, prodId);
-        String fileName = generateFileName(prodId, extension);
-        return prodFolder.concat(fileName);
-    }
-
-    @Override
-    public List<String> saveProdImages(String realPath, Long prodId, List<Part> parts) {
-        for (Part part : parts) {
-            saveProdImage(realPath, prodId, part);
-        }
-        return null;
-    }
 
     @Override
     public void deleteAllWithoutDefault(String realPath, Long prodId) {
@@ -63,11 +21,6 @@ public class ProdImgIOImpl implements ProdImgIO {
         String defaultImgPattern = "0.";
         String fileName = FileUtil.getImagesWithPattern(prodFolder, defaultImgPattern);
         FileUtil.deleteAllFilesInFolder(realPath, fileName);
-    }
-
-    private String getFileExtension(Part part) {
-        String fileName = Path.of(part.getSubmittedFileName()).getFileName().toString();
-        return fileName.substring(fileName.lastIndexOf(".") + 1);
     }
 
     @Override
