@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+*{
+    color: #181818;
+    font-family: 'Roboto';
+}
+
+body{
+    width: 100%;
+    height: 90vh;
+    background-color: #bdbdbd;
+    display: grid;
+    place-items: center;
+}
+
+.content{
+    width: 40%;
+    height: auto;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background-color: #fff;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.register_form{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    gap: 30px;
+    width: 70%;
+
+}
+
+.register_form input{
+    width: 100%;
+    height: 30px;
+    outline: none;
+}
+
+.register_form-input{
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.register_form label{
+    float: left;
+    margin-top: -10px;
+    color: #616161;
+    transition: transform 0.5s ease-out;
+}
+
+.register_form-input input[type="text"],
+.register_form-input input[type="email"],
+.register_form-input input[type="password"]{
+    border: none;
+    border-bottom: 1px solid #000;
+    background-color: transparent;
+    font-size: 1em;
+}
+
+.register_form-input input:not(:placeholder-shown) ~ label{
+    transform: translateY(-60px);
+    font-size: 0.8em;
+    color: #181818;
+    transition: color 0.7s ease-out;
+}
+
+.register_form-input input:not(:placeholder-shown){
+    transition: border-color 0.7s ease-out;
+}
+
+.register_form-input input:focus ~ label{
+    transform: translateY(-55px);
+    outline: none;
+    color: #2189FF;
+    font-size: 0.8em;
+    transition: transform 0.2s ease-in;
+}
+
+.register_form-input input[type="text"]:focus,
+.register_form-input input[type="password"]:focus,
+.register_form-input select{
+    border-bottom: 1px solid #2189FF;
+}
+
+.register_form-selection:focus{
+    color: #2189FF;
+    border: 1px solid #2189FF;
+}
+
+.register_form .button_register{
+    border: 1px solid #fff;
+    border-radius: 15px;
+    font-family: 'Roboto';
+    background-color: #181818;
+    color: #fff;
+    width: 50%;
+    height: 35px;
+    margin: auto;
+    margin-top: 2%;
+}
+
+.button_register:hover{
+    color: #fff;
+    background-color: #2189FF;
+    border: 1px solid #2189FF;
+    cursor: pointer;
+}
+
+.register_form-selection{
+    outline: none;
+    height: 30px;
+}
+
+.register_form-selection{
+    width: 100%;
+    border: 1px solid #000;
+    font-size: 1em;
+    border-radius: 20px;
+    padding: 0 15px;
+    height: 40px;
+}
+.register_form-selection:hover{
+    cursor: pointer;
+}
+.group__select-gender .register_form-selection:focus  ~ label{
+    color: #2189FF;
+    /* font-size: 0.8em;*/
+    transition: transform 0.2s ease-in;
+}
+
+.group__select-gender label{
+    position: relative;
+    color: #616161;
+    transition: transform 0.5s ease-out;
+    display: grid;
+    place-items: center;
+    margin-top: 2px;
+}
+
+.group__select-gender {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    gap: 5%;
+    padding: 10px 0;
+}
+
+@media screen and (max-width:900px){
+    #description{
+        display: none;
+        transition: transform 0.2s ease-out;
+    }
+}

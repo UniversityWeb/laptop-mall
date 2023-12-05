@@ -1,0 +1,269 @@
+.prod-input__container{
+    margin-top: var(--nav-height);
+    padding: 1% 5% ;
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    justify-content: flex-start;
+}
+#laptopContent{
+    display: flex;
+}
+#keyboardContent,#monitorContent{
+    display: none;
+}
+
+.prod-category__info ,.prod-basic__info{
+    background: var(--color0);
+    width: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    padding: 50px 5px;
+    border-radius: 30px;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.10), 0px 0px 6px 0px rgba(0, 0, 0, 0.09), 0px 0px 8px 0px rgba(0, 0, 0, 0.05), 0px 0px 9px 0px rgba(0, 0, 0, 0.01), 0px 0px 10px 0px rgba(0, 0, 0, 0.00);
+}
+.register_form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: left;
+    gap: 30px;
+    width: 100%;
+
+}
+
+.register_form input{
+    width: 100%;
+    height: 30px;
+    outline: none;
+}
+
+.register_form-input{
+    width: 80%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.register_form label{
+    float: left;
+    margin-top: -10px;
+    color: #616161;
+    transition: transform 0.5s ease-out;
+}
+
+.register_form-input input[type="text"],
+.register_form-input input[type="email"],
+.register_form-input input[type="password"]{
+    border: none;
+    border-bottom: 1px solid #000;
+    background-color: transparent;
+    font-size: 1em;
+}
+
+.register_form-input input:not(:placeholder-shown) ~ label{
+    transform: translateY(-60px);
+    font-size: 0.8em;
+    color: #181818;
+    transition: color 0.7s ease-out;
+}
+
+.register_form-input input:not(:placeholder-shown){
+    transition: border-color 0.7s ease-out;
+}
+
+.register_form-input input:focus ~ label{
+    transform: translateY(-55px);
+    outline: none;
+    color: #2189FF;
+    font-size: 0.8em;
+    transition: transform 0.2s ease-in;
+}
+
+.register_form-input textarea{
+    border-radius: 10px;
+    padding: 30px;
+
+}
+.register_form-input textarea:focus{
+    border-color: #2189FF;
+}
+.register_form-input textarea:focus ~ label{
+    color: #2189FF;
+}
+.register_form-input input[type="text"]:focus,
+.register_form-input input[type="password"]:focus,
+.register_form-input select{
+    border-bottom: 1px solid #2189FF;
+}
+
+.register_form-selection:focus{
+    color: #2189FF;
+    border: 1px solid #2189FF;
+}
+
+.register_form .button_register{
+    border: 1px solid #fff;
+    border-radius: 15px;
+    font-family: 'Roboto';
+    background-color: #181818;
+    color: #fff;
+    width: 50%;
+    height: 35px;
+    margin: auto;
+    margin-top: 2%;
+}
+
+.button_register:hover{
+    color: #fff;
+    background-color: #2189FF;
+    border: 1px solid #2189FF;
+    cursor: pointer;
+}
+
+.register_form-selection{
+    outline: none;
+    height: 30px;
+}
+
+.register_form-selection{
+    width: 100%;
+    border: 1px solid #000;
+    font-size: 1em;
+    border-radius: 20px;
+    padding: 0 15px;
+    height: 40px;
+}
+.register_form-selection:hover{
+    cursor: pointer;
+}
+.group__select-gender .register_form-selection:focus  ~ label{
+    color: #2189FF;
+    /* font-size: 0.8em;*/
+    transition: transform 0.2s ease-in;
+}
+
+.group__select-gender label{
+    position: relative;
+    color: #616161;
+    transition: transform 0.5s ease-out;
+    display: grid;
+    place-items: center;
+    margin-top: 2px;
+}
+
+.group__select-gender {
+    width: 80%;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    gap: 5%;
+    padding: 10px 0;
+}
+
+@media screen and (max-width:900px){
+    #description{
+        display: none;
+        transition: transform 0.2s ease-out;
+    }
+}
+
+
+/*  */
+.select-file__input{
+    margin-top: 5%;
+}
+.product-info__listimg{
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.img-list{
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+    width: 100%;
+    padding: 2%;
+    gap: 2%;
+}
+.img-item{
+    background: rgba(24, 24, 24, 0.40);
+    border: solid 1px var(--color1);
+    width: 30%;
+    height: auto;
+    display: flex;
+    flex-direction: column-reverse;
+}
+.img-item img{
+    width: 40%;
+    height: auto;
+    object-fit: cover;
+    margin: auto;
+}
+
+.img-item:hover{
+    cursor: pointer;
+    transform: scale(1.02);
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.10), 0px 0px 6px 0px rgba(0, 0, 0, 0.09), 0px 0px 8px 0px rgba(0, 0, 0, 0.05), 0px 0px 9px 0px rgba(0, 0, 0, 0.01), 0px 0px 10px 0px rgba(0, 0, 0, 0.00);
+}
+
+.img-item:hover .img-bottom{
+    display: grid;
+}
+
+.img-bottom{
+    background: var(--color1);
+    width: 100%;
+    height:50px;
+    border-width: 0;
+    right: 0;
+    display: none;
+    place-items: center;
+}
+.img-bottom i{
+    color: var(--color0);
+}
+.img-bottom i:hover{
+    transform: scale(1.1);
+    color: var(--color5);
+}
+.product-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10%;
+}
+.product-item img{
+    width: 80%;
+    margin-top: 5%;
+}
+.product-item label{
+    font-weight: 550;
+    color: var(--color2);
+}
+.product-item:hover{
+    justify-content: space-between;
+}
+.product-item:hover .product-bottom{
+    display: flex;
+
+}
+.product-bottom{
+    margin-bottom: 0;
+    height: 50px;
+    width: 100%;
+    background-color: var(--color1);
+    border-radius: 0 0 var(--radius-btn) var(--radius-btn);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 18%;
+}
+.product-bottom i{
+    color: var(--color0);
+}
+.product-bottom i:hover{
+    transform: scale(1.1);
+    color: var(--color5);
+}

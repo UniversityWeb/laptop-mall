@@ -1,0 +1,16 @@
+version: '3'
+services:
+  laptop-mall-db:
+    container_name: laptop-mall-db
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=LaptopMall
+      - MYSQL_ROOT_HOST=%
+    ports:
+      - "3307:3306"
+    volumes:
+      - laptop-mall-data:/var/lib/mysql
+
+volumes:
+  laptop-mall-data:

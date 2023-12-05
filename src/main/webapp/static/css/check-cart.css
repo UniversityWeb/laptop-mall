@@ -1,0 +1,89 @@
+/* product-list */
+.product_item{
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+.product_img-square{
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+}
+
+.product_img-square img{
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.product_details-left{
+    width: 50%;
+}
+
+.product_details-right{
+    width: 50%;
+}
+
+.product_details-number-count input[type="text"]{
+    width: 30px;
+    height: auto;
+    display: flex;
+    align-items: center;
+    border: 1px solid #181818;
+    background: none;
+    text-align: center;
+}
+.button-add, .button-minus{
+    width: 30px;
+    height: 30px;
+    border: 1px solid #181818;
+    background: none;
+}
+
+.product_details-title a{
+    font-size: 20px;
+}
+
+.product_details-color span{
+    font-size: 14px;
+}
+
+.product_details-code span{
+    font-size: 15px;
+}
+
+.product_details-number-count{
+    margin-top: 10px;
+}
+
+.product_details-price span{
+    font-size: 20px;
+}
+
+.product_details-price-discount span{
+    color: #2189FF;
+    font-size: 13px;
+}
+
+.product_details-price-text span{
+    font-size: 13px;
+    color: #181818;
+}
+
+.button-minus{
+    border-radius: 50% 0 0 50%;
+}
+
+.button-add{
+    border-radius: 0 50% 50% 0;
+}
+
+.button-remove{
+    border: none;
+    background: none;
+}
+
+.button-remove ion-icon{
+    width: 24px;
+    height: 24px;
+}
