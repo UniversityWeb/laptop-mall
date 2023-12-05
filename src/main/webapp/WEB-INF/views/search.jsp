@@ -129,7 +129,7 @@
             <c:forEach var="product" items="${prods}">
                 <li class="search__product-result">
                     <div class="product__img">
-                        <img src="<c:url value="/static/images/headphone-white.png" />" alt="">
+                        <img src="<c:url value="${product.imageUrls[0]}"/>" alt="">
                     </div>
                     <div class="product_info">
                         <span class="product__name"><c:out value="${product.model}" /></span>

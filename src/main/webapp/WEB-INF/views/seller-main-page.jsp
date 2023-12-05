@@ -48,8 +48,7 @@
             <c:forEach var="product" items="${prods}">
                 <li class="product-item">
                     <div class="img-boder">
-                        <img src="app/prod/${product.id}-0.png" alt="zz">
-
+                        <img src="<c:url value="${product.imageUrls[0]}"/>" alt="zz">
                     </div>
                     <label><c:out value="${product.model}" /></label>
                     <form action="seller-main-page" method="post" class="product-bottom">
