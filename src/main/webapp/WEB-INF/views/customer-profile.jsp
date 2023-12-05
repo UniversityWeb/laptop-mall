@@ -41,6 +41,8 @@
 
     <form action="<%= contextPath %>/user-profile" method="post" class="register_form column">
         <div class="register_form-input" style="margin-top: 30px">
+            <input type="hidden" name="id" value="${user.id}">
+
             <input type="text" name="fullName" value="${user.fullName}" placeholder=" " required><br>
             <label>Full name</label>
         </div>
