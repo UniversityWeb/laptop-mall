@@ -81,8 +81,7 @@
                         <tr class="full">
                             <div class="product_img">
                                 <div class="product_img-square center">
-<%--                                    <img class="product_img-source" alt="${item.product.model}" src="${item.product.imageUrls[0]}">--%>
-                                    <img class="product_img-source" alt="${item.product.model}">
+                                    <img class="product_img-source" alt="${item.product.model}" src="<c:url value="${item.product.imageUrls[0]}"/>">
                                 </div>
                             </div>
                         </tr>

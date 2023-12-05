@@ -182,7 +182,7 @@ public class InitializingData  implements ServletContextListener {
                 .material("Aluminum")
                 .operatingSystem(Laptop.EOS.WINDOWS)
                 .brand("HP")
-                .model("Laptop HP 15s fq5162TU i5 1235U/8GB/512GB/Win11 (7C134PA)")
+                .model("Laptop HP 15s fq5162TU i5")
                 .desc("Powerful and stylish laptop for everyday use")
                 .price(new BigDecimal("99500000.00"))
                 .stockQty(50)
@@ -216,7 +216,7 @@ public class InitializingData  implements ServletContextListener {
                 .material("Aluminum")
                 .operatingSystem(Laptop.EOS.LINUX)
                 .brand("Dell")
-                .model("Laptop Dell Inspiron 15 3530 i7 1355U/8GB/512GB/120Hz/OfficeHS/Win11 (71011775)")
+                .model("Laptop Dell Inspiron 15 3530 i7")
                 .desc("Powerful and stylish laptop for everyday use")
                 .price(new BigDecimal("29950000.00"))
                 .stockQty(50)
@@ -262,7 +262,7 @@ public class InitializingData  implements ServletContextListener {
                 .desc("Description of the keyboard")
                 .price(new BigDecimal("2555000.00"))
                 .stockQty(50)
-                .discountPercent(0.05)
+                .discountPercent(5)
                 .version("Version2")
                 .color("Black")
                 .category(ECategory.MECHANICAL_KEYBOARD)
@@ -284,7 +284,7 @@ public class InitializingData  implements ServletContextListener {
                 .desc("Description of the keyboard")
                 .price(new BigDecimal("1200000.00"))
                 .stockQty(50)
-                .discountPercent(0.05)
+                .discountPercent(5)
                 .version("Version2")
                 .color("White")
                 .category(ECategory.MECHANICAL_KEYBOARD)
@@ -320,11 +320,11 @@ public class InitializingData  implements ServletContextListener {
                 .weight(7.2)
                 .connections(connections)
                 .brand("LG")
-                .model("27\" IPS FHD Monitor with Built-in FHD Webcam & Mic, Anti-Glare, & USB Type-C™")
+                .model("27\" IPS FHD Monitor")
                 .desc("Description of the monitor")
                 .price(new BigDecimal("10500000.00"))
                 .stockQty(50)
-                .discountPercent(0.1)
+                .discountPercent(10)
                 .version("Version2")
                 .color("Black")
                 .category(ECategory.MONITOR)
@@ -345,11 +345,11 @@ public class InitializingData  implements ServletContextListener {
                 .weight(7.2)
                 .connections(connections)
                 .brand("LG")
-                .model("24\" IPS FHD Monitor with Built-in FHD Webcam & Mic, Anti-Glare, & USB Type-C™")
+                .model("24\" IPS FHD Monitor")
                 .desc("Description of the monitor")
                 .price(new BigDecimal("6500000.00"))
                 .stockQty(50)
-                .discountPercent(0.1)
+                .discountPercent(10)
                 .version("Version3")
                 .color("Black")
                 .category(ECategory.MONITOR)
@@ -366,7 +366,7 @@ public class InitializingData  implements ServletContextListener {
         List<User> users = new ArrayList<>();
 
         final String hashedPass =  PassUtil.hashPass("123456");
-        User user1 = new User("HCM", "nguyenvana0606@gmail.com", "Nguyễn Văn A",
+        User user1 = new User("HCM", "nguyenhaquynhgiao9569@gmail.com", "Nguyễn Văn A",
                 EGender.MALE, "0123456789", "vana0505", hashedPass, User.ERole.CUSTOMER);
         User user2 = new User("Hà Nội", "nguyenvanb0505@gmail.com", "Lê Hoàng Giang",
                 EGender.MALE, "0123456788", "vanb0606", hashedPass, User.ERole.CUSTOMER);

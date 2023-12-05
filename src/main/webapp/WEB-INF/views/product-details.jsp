@@ -370,11 +370,11 @@
                 <div class="group-selections__prod">
                     <div class="prod-price">
                         <div class="prod-total__price">
-                            120.999$
+                            ${prod.getDiscountedPriceCurrentFormat()}
                         </div>
                         <div class="prod-extra__price">
-                            <div class="old-price">138.999$</div>
-                            <div class="discount-price">-29%</div>
+                            <div class="old-price">${prod.getPriceCurrencyFormat()}</div>
+                            <div class="discount-price">-${prod.discountPercent}%</div>
                         </div>
                     </div>
                     <%

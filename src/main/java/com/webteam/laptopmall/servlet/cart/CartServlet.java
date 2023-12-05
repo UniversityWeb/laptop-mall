@@ -2,6 +2,9 @@ package com.webteam.laptopmall.servlet.cart;
 
 import com.webteam.laptopmall.dto.CartItemDTO;
 import com.webteam.laptopmall.dto.UserDTO;
+import com.webteam.laptopmall.dto.prod.ProductDTO;
+import com.webteam.laptopmall.io.image.prod.ProdImgIO;
+import com.webteam.laptopmall.io.image.prod.ProdImgIOImpl;
 import com.webteam.laptopmall.service.cart.CartService;
 import com.webteam.laptopmall.service.cart.CartServiceImpl;
 import com.webteam.laptopmall.service.user.UserService;
@@ -24,6 +27,7 @@ public class CartServlet extends HttpServlet {
 
     private CartService cartService;
     private UserService userService;
+    private ProdImgIO prodImgIO;
     private static final Logger logger = Logger.getLogger(CartServlet.class.getName());
 
     @Override
@@ -31,6 +35,7 @@ public class CartServlet extends HttpServlet {
         super.init();
         cartService = new CartServiceImpl();
         userService = new UserServiceImpl();
+        prodImgIO = new ProdImgIOImpl();
     }
 
     @Override
@@ -54,6 +59,10 @@ public class CartServlet extends HttpServlet {
             resp.sendRedirect(req.getContextPath() + url);
         }
         else{
+
+            String realPath = req.getServletContext().getRealPath("/");
+            cart.forEach(cartItem -> cartItem.setProduct(prodImgIO.loadProdImageUrls(cartItem.getProduct(), realPath)));
+
             String totalDiscountedAmount = cartService.totalDiscountedAmountOfCartCurrentFormat(cart);
             String totalOriginalAmount = cartService.totalOriginalAmountOfCartCurrentFormat(cart);
             String totalDiscountAmount = cartService.totalDiscountAmountOfCartCurrentFormat(cart);

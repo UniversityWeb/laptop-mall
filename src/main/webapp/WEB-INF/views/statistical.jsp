@@ -13,12 +13,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Statistical</title>
+    <link href="<c:url value="/static/images/logo_short.svg"/>" rel="icon"/>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0">
     <link rel="stylesheet" href="<c:url value="/static/css/statistical.css"/>">
 </head>
 <body>
-<jsp:include page="navbar.jsp"></jsp:include>
+<jsp:include page="seller-navbar.jsp"></jsp:include>
 <div style="height: 80px; width: 100px"></div>
 <form class="content-controll" action="statistical" method="get" id="control-form">
     <select name="selectedMonth" id="selectedMonth" onchange="submitControlForm()">

@@ -2,6 +2,8 @@ package com.webteam.laptopmall.servlet.history;
 
 import com.webteam.laptopmall.dto.OrderDTO;
 import com.webteam.laptopmall.dto.UserDTO;
+import com.webteam.laptopmall.io.image.prod.ProdImgIO;
+import com.webteam.laptopmall.io.image.prod.ProdImgIOImpl;
 import com.webteam.laptopmall.service.order.OrderService;
 import com.webteam.laptopmall.service.order.OrderServiceImpl;
 import com.webteam.laptopmall.service.user.UserService;
@@ -19,11 +21,13 @@ import java.io.IOException;
 public class OrderDetailsServlet extends HttpServlet {
     private OrderService orderService;
     private UserService userService;
+    private ProdImgIO prodImgIO;
     @Override
     public void init() throws ServletException {
         super.init();
         orderService = new OrderServiceImpl();
         userService = new UserServiceImpl();
+        prodImgIO = new ProdImgIOImpl();
     }
 
     @Override
@@ -42,7 +46,8 @@ public class OrderDetailsServlet extends HttpServlet {
         Long orderId = Long.valueOf(orderIdString);
         OrderDTO orderHistory = orderService.getByUserAndOrderId(customer.getId(), orderId);
 
-        System.out.println(orderHistory.getPayment().getPaymentMethod());
+        String realPath = req.getServletContext().getRealPath("/");
+        orderHistory.getOrderItems().forEach(orderItem -> orderItem.setProduct(prodImgIO.loadProdImageUrls(orderItem.getProduct(), realPath)));
 
         req.setAttribute("orderHistory", orderHistory);
         getServletContext().getRequestDispatcher(url).forward(req, resp);
