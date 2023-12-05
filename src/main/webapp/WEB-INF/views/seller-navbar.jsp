@@ -21,8 +21,8 @@
             </div>
         </li>
     </ul>
-    <div class="nav__list-icon">
-        <div class="navbar-menu-container">
+    <div class="nav__list-icon" >
+        <div class="navbar-menu-container" style="display: none;">
             <img id="nav-list-btn"  src="<c:url value="/static/images/list-btn.svg"/>" >
             <ul id="nav-menu" class="navbar-menu">
                 <li class="navbar__menu-item">
