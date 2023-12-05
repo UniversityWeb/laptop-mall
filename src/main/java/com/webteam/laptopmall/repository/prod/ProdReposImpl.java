@@ -8,7 +8,6 @@ import com.webteam.laptopmall.repository.base.BaseReposImpl;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
-import javax.persistence.Query;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -92,5 +91,4 @@ public class ProdReposImpl extends BaseReposImpl<Product, Long> implements ProdR
     public List<Product> getProdsByCategory(ECategory eCategory) {
         return getResultList(em -> pQuery.buildGetProdsByCategoryl(em, eCategory));
     }
-
 }

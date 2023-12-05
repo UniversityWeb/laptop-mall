@@ -9,6 +9,7 @@ import com.webteam.laptopmall.mapper.ProductMapper;
 import com.webteam.laptopmall.repository.prod.ProdRepos;
 import com.webteam.laptopmall.repository.prod.ProdReposImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -87,4 +88,9 @@ public class ProdServiceImpl implements ProdService {
         return randomId;
     }
 
+    public String [] getNameFromList(List<ProductDTO> topBestSellProducts) {
+        List<String> listProductNames = new ArrayList<>();
+        topBestSellProducts.forEach(productDTO -> listProductNames.add(productDTO.getModel()));
+        return listProductNames.toArray(new String[0]);
+    }
 }

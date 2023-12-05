@@ -4,19 +4,23 @@ import com.webteam.laptopmall.dto.CartItemDTO;
 import com.webteam.laptopmall.dto.OrderDTO;
 import com.webteam.laptopmall.dto.OrderItemDTO;
 import com.webteam.laptopmall.dto.UserDTO;
+import com.webteam.laptopmall.dto.prod.ProductDTO;
 import com.webteam.laptopmall.entity.Order;
+import com.webteam.laptopmall.entity.prod.Product;
 import com.webteam.laptopmall.mapper.OrderMapper;
+import com.webteam.laptopmall.mapper.ProductMapper;
 import com.webteam.laptopmall.repository.order.OrderRepos;
 import com.webteam.laptopmall.repository.order.OrderReposImpl;
 import com.webteam.laptopmall.service.cartItem.CartItemService;
 import com.webteam.laptopmall.service.cartItem.CartItemServiceImpl;
 import com.webteam.laptopmall.service.orderItem.OrderItemService;
 import com.webteam.laptopmall.service.orderItem.OrderItemServiceImpl;
-import com.webteam.laptopmall.servlet.cart.CartServlet;
 import com.webteam.laptopmall.service.prod.ProdService;
 import com.webteam.laptopmall.service.prod.ProdServiceImpl;
+import com.webteam.laptopmall.utility.CurrencyUtil;
 
 import javax.transaction.Transactional;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -28,7 +32,7 @@ public class OrderServiceImpl implements OrderService{
     private OrderItemService orderItemService;
     private ProdService prodService;
 
-    private static final Logger logger = Logger.getLogger(CartServlet.class.getName());
+    private static final Logger logger = Logger.getLogger(OrderServiceImpl.class.getName());
 
     public OrderServiceImpl(){
         orderRepos = new OrderReposImpl();
@@ -181,5 +185,80 @@ public class OrderServiceImpl implements OrderService{
             logger.info(e.getMessage());
             return null;
         }
+    }
+
+    @Override
+    public String [] convertListStatusToString(Order.EStatus[] values) {
+        List<String> orderStatuses = new ArrayList<>();
+        for (Order.EStatus status: values) {
+            orderStatuses.add(String.valueOf(status));
+        }
+        return orderStatuses.toArray(new String[0]);
+    }
+
+    @Override
+    public List<Integer> getValueByStatusAndTime(Order.EStatus[] statuses, Integer month, Integer year) {
+        List<Integer> orderStatusValues = new ArrayList<>();
+        for (Order.EStatus status : statuses) {
+            List<Order> orders = orderRepos.getListByStatusAndTime(status, month, year);
+            orderStatusValues.add(orders.size());
+        }
+        return orderStatusValues;
+    }
+
+    @Override
+    public String getTotalRevenueByTime(Integer month, Integer year) {
+        BigDecimal total = new BigDecimal(0);
+        List<OrderDTO> orders = this.getListByTime(month, year);
+        for (OrderDTO order: orders) {
+            total = total.add(order.totalDiscountedAmountOfOrder());
+        }
+        return CurrencyUtil.getVNFormat(total);
+    }
+
+    @Override
+    public List<OrderDTO> getListByTime(Integer month, Integer year) {
+        List<Order> orders = orderRepos.getListByTime(month, year);
+        System.out.println(orders.size());
+        return orders.stream()
+                .map(OrderMapper.INSTANCE::toDTO)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public Integer getNoOrderByTime(Integer month, Integer year) {
+        List<Order> orders = orderRepos.getListByTime(month, year);
+        System.out.println(orders.size());
+        return orders.size();
+    }
+
+    @Override
+    public void setDataBestSellProductByTime(
+            String[] topBestSellProductsName, List<Integer> topBestSellProductsQty,
+            Integer month, Integer year) {
+
+        List<Product> products = new ArrayList<>();
+        List<Integer> qtys = new ArrayList<>();
+        List<String> productName = new ArrayList<>();
+        orderRepos.getDataProductDESCByTime(products, qtys, month, year);
+        products.forEach(product -> productName.add(product.getModel()));
+        qtys.forEach(qty -> topBestSellProductsQty.add(qty));
+        System.out.println(productName);
+        topBestSellProductsName = productName.toArray(topBestSellProductsName);
+
+    }
+
+    @Override
+    public void setDataLeastSellProductByTime(
+            String[] topLeastSellProductsName, List<Integer> topLeastSellProductsQty,
+            Integer month, Integer year) {
+
+        List<Product> products = new ArrayList<>();
+        List<Integer> qtys = new ArrayList<>();
+        List<String> productName = new ArrayList<>();
+        orderRepos.getDataProductASCByTime(products, qtys, month, year);
+        products.forEach(product -> productName.add(product.getModel()));
+        qtys.forEach(qty -> topLeastSellProductsQty.add(qty));
+        topLeastSellProductsName = productName.toArray(topLeastSellProductsName);
     }
 }
