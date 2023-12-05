@@ -116,35 +116,26 @@
         <div class="search__fast">
           <p>Quick Links</p>
           <div class="list__search-link">
-            <div class="search__link-item">
-              <p>Abcjjkcjscncsjcsjcc</p>
+            <a href="<%= contextPath %>/get-prods-by-model?model=Gaming" class="search__link-item">
+              <p>Gaming</p>
               <i class="fa-solid fa-magnifying-glass hover_icon" ></i>
-            </div>
-            <div class="search__link-item">
-              <p>Abcjjkcjscncsjcsjcc</p>
+            </a>
+            <a href="<%= contextPath %>/get-prods-by-model?model=Dell" class="search__link-item">
+              <p>Dell</p>
               <i class="fa-solid fa-magnifying-glass hover_icon" ></i>
-            </div>
-            <div class="search__link-item">
-              <p>Abcjjkcjscncsjcsjcc</p>
+            </a>
+            <a href="<%= contextPath %>/get-prods-by-model?model=Laptop" class="search__link-item">
+              <p>Laptop</p>
               <i class="fa-solid fa-magnifying-glass hover_icon" ></i>
-            </div>
-            <div class="search__link-item">
-              <p>Abcjjkcjscncsjcsjcc</p>
+            </a>
+            <a href="<%= contextPath %>/get-prods-by-model?model=Keyboard" class="search__link-item">
+              <p>Keyboard</p>
               <i class="fa-solid fa-magnifying-glass hover_icon" ></i>
-            </div>
-            <div class="search__link-item">
-              <p>Abcjjkcjscncsjcsjcc</p>
+            </a>
+            <a href="<%= contextPath %>/get-prods-by-model?model=FHD" class="search__link-item">
+              <p>FHD</p>
               <i class="fa-solid fa-magnifying-glass hover_icon" ></i>
-            </div>
-          </div>
-        </div>
-        <div class="search_history">
-          <p>Search history</p>
-          <div class="list__search-link">
-            <div class="search__link-item">
-              <p>Abcjjkcjscncsjcsjcc</p>
-              <i class="fa-solid fa-magnifying-glass hover_icon" ></i>
-            </div>
+            </a>
           </div>
         </div>
       </div>

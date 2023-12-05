@@ -3,6 +3,8 @@ package com.webteam.laptopmall.servlet.home;
 import com.webteam.laptopmall.customenum.ECategory;
 import com.webteam.laptopmall.dto.prod.ProductDTO;
 import com.webteam.laptopmall.entity.user.User;
+import com.webteam.laptopmall.io.image.prod.ProdImgIO;
+import com.webteam.laptopmall.io.image.prod.ProdImgIOImpl;
 import com.webteam.laptopmall.service.prod.ProdService;
 import com.webteam.laptopmall.service.prod.ProdServiceImpl;
 import com.webteam.laptopmall.service.user.UserService;
@@ -23,11 +25,14 @@ public class HomeServlet extends HttpServlet {
 
     private ProdService prodService;
 
+    private ProdImgIO prodImgIO;
+
     @Override
     public void init() throws ServletException {
         super.init();
         userService = new UserServiceImpl();
         prodService = new ProdServiceImpl();
+        prodImgIO = new ProdImgIOImpl();
     }
 
     @Override
@@ -35,14 +40,18 @@ public class HomeServlet extends HttpServlet {
             throws ServletException, IOException {
         String username = (String) req.getSession().getAttribute("username");
         User.ERole role = userService.getRoleByUsername(username);
+        String realPath = req.getServletContext().getRealPath("/");
         String url = getUrlByRole(role);
         if(role == User.ERole.CUSTOMER){
             List<ProductDTO> laptops= prodService.getProdsByCategory(ECategory.LAPTOP);
             List<ProductDTO> keyboards= prodService.getProdsByCategory(ECategory.MECHANICAL_KEYBOARD);
             List<ProductDTO> monitors= prodService.getProdsByCategory(ECategory.MONITOR);
-            req.setAttribute("laptops",getNumberProdsDTO(laptops,10));
-            req.setAttribute("keyboards",getNumberProdsDTO(keyboards,10));
-            req.setAttribute("monitors",getNumberProdsDTO(monitors,10));
+            laptops.forEach(prod -> prod=prodImgIO.loadProdImageUrls(prod,realPath));
+            monitors.forEach(prod -> prod=prodImgIO.loadProdImageUrls(prod,realPath));
+            keyboards.forEach(prod -> prod=prodImgIO.loadProdImageUrls(prod,realPath));
+            req.setAttribute("laptops",getNumberProdsDTO(laptops,20));
+            req.setAttribute("keyboards",getNumberProdsDTO(keyboards,20));
+            req.setAttribute("monitors",getNumberProdsDTO(monitors,20));
         }
         getServletContext().getRequestDispatcher(url).forward(req, resp);
     }

@@ -480,6 +480,12 @@ nav .navigation a:hover{
     gap: 5px;
 }
 
+#add-to-cart{
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
 .selections-content{
     width: 100%;
     height: 100%;

@@ -1,6 +1,10 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+    String contextPath = request.getContextPath();
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,28 +30,41 @@
 
     <ul class="search__recomments">
         <li class="search__recomments-item">
-                <span>ABHxbsddddddddddhcshcb</span>
+            <a href="<%= contextPath %>/get-prods-by-model?model=FHD">
+                <span>FHD</span>
                 <i class="fa-solid fa-magnifying-glass"></i>
+            </a>
         </li>
         <li class="search__recomments-item">
-            <span>ABHxbshcshcbffrfrg</span>
-            <i class="fa-solid fa-magnifying-glass"></i>
+            <a href="<%= contextPath %>/get-prods-by-model?model=Gaming">
+                <span>Gaming</span>
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </a>
+
         </li>
         <li class="search__recomments-item">
-            <span>ABHxbshcshcb</span>
-            <i class="fa-solid fa-magnifying-glass"></i>
+            <a href="<%= contextPath %>/get-prods-by-model?model=Dell">
+                <span>Dell</span>
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </a>
         </li>
         <li class="search__recomments-item">
-            <span>ABHxbscdvdfvvvvvvvvvvvvvvvhcb</span>
-            <i class="fa-solid fa-magnifying-glass"></i>
+            <a href="<%= contextPath %>/get-prods-by-model?model=Laptop">
+                <span>Laptop</span>
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </a>
         </li>
         <li class="search__recomments-item">
-            <span>ABHxbshffbfbcshcb</span>
-            <i class="fa-solid fa-magnifying-glass"></i>
+            <a href="<%= contextPath %>/get-prods-by-model?model=Keyboard">
+                <span>Keyboard</span>
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </a>
         </li>
         <li class="search__recomments-item">
-            <span>ABHxbshcshcb</span>
-            <i class="fa-solid fa-magnifying-glass"></i>
+            <a href="<%= contextPath %>/get-prods-by-model?model=Monitor">
+                <span>Monitor</span>
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </a>
         </li>
     </ul>
 </section>
@@ -154,7 +171,7 @@
                                 <div class="line"></div>
                             </a>
                             <div class="input__group-selection">
-                                <input type="submit" value="FIND SUPPORT">
+                                <input type="button" value="FIND SUPPORT" onclick="openChatbox()">
                                 <div class="line"></div>
                             </div>
                         </div>

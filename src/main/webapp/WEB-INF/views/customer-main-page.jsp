@@ -49,7 +49,7 @@
                     <c:forEach var="product" items="${laptops}">
                         <a href="get-prod-by-id?id=${product.id}" class="swiper-slide">
                             <form  action="add-cart-item" method="post" class="product-item">
-                                <img class="product-img" alt="" src="<c:url value="/static/images/laptop-product.png"/>" />
+                                <img class="product-img" alt="" src="<c:url value="${product.imageUrls[0]}"/>" />
                                 <b class="product-name" name="model"><c:out value="${product.model}" /></b>
                                 <input type="hidden" name="productId" value="${product.id}">
                                 <button type="submit" class="button__add-cart">
@@ -75,7 +75,7 @@
     </section>
     <section class="accessory__product-container">
         <section class="accessory__group-img">
-            <img class="accessory__product-img" src="<c:url value="/static/images/keyboard-white.png"/>"alt="" style="margin-left: 1%; margin-bottom:-5%;">
+            <img class="accessory__product-img" src="<c:url value="/static/images/keyboard-white.png"/>" alt="" style="margin-left: 1%; margin-bottom:-5%;">
             <img src="<c:url value="/static/images/block1.png"/>" alt="">
             <form method="get" action="get-prods-by-category" class="more-product">
                 <input type="hidden" name="category" value="keyboard">
@@ -88,7 +88,7 @@
                 <c:forEach var="product" items="${keyboards}">
                     <a href="get-prod-by-id?id=${product.id}" class="swiper-slide">
                         <form  action="add-cart-item" method="post" class="product-item">
-                            <img class="product-img" alt="" src="<c:url value="/static/images/keyboard.png"/>" />
+                            <img class="product-img" alt="" src="<c:url value="${product.imageUrls[0]}"/>" />
                             <b class="product-name" name="model"><c:out value="${product.model}" /></b>
                             <input type="hidden" name="productId" value="${product.id}">
                             <button type="submit" class="button__add-cart">
@@ -119,7 +119,7 @@
                 <c:forEach var="product" items="${monitors}">
                     <a href="get-prod-by-id?id=${product.id}" class="swiper-slide">
                         <form  action="add-cart-item" method="post" class="product-item">
-                            <img class="product-img" alt="" src="<c:url value="/static/images/monitor.svg"/>" />
+                            <img class="product-img" alt="" src="<c:url value="${product.imageUrls[0]}"/>" />
                             <b class="product-name" name="model"><c:out value="${product.model}" /></b>
                             <input type="hidden" name="productId" value="${product.id}">
                             <button type="submit" class="button__add-cart">
