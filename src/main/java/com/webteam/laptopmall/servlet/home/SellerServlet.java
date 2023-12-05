@@ -1,6 +1,8 @@
 package com.webteam.laptopmall.servlet.home;
 
 import com.webteam.laptopmall.dto.prod.ProductDTO;
+import com.webteam.laptopmall.io.image.prod.ProdImgIO;
+import com.webteam.laptopmall.io.image.prod.ProdImgIOImpl;
 import com.webteam.laptopmall.service.prod.ProdService;
 import com.webteam.laptopmall.service.prod.ProdServiceImpl;
 
@@ -15,11 +17,13 @@ import java.util.List;
 @WebServlet("/seller-main-page")
 public class SellerServlet extends HttpServlet {
     private ProdService prodService;
+    private ProdImgIO prodImgIO;
 
     @Override
     public void init() throws ServletException {
         super.init();
         prodService = new ProdServiceImpl();
+        prodImgIO = new ProdImgIOImpl();
     }
 
     @Override
@@ -28,7 +32,7 @@ public class SellerServlet extends HttpServlet {
         resp.setContentType("text/html");
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
-
+        String realPath = req.getServletContext().getRealPath("/");
         String url = "/WEB-INF/views/seller-main-page.jsp";
         String action = req.getParameter("action");
 
@@ -38,21 +42,14 @@ public class SellerServlet extends HttpServlet {
         if(action.equals("Search")){
             String model = req.getParameter("model");
             model = model.trim();
-            List<ProductDTO> prodDTDs = prodService.getProdsByModel("%" + model + "%");
-            req.setAttribute("prods", prodDTDs);
+            List<ProductDTO> prodDTOs = prodService.getProdsByModel("%" + model + "%");
+            prodDTOs.forEach(prod -> prod=prodImgIO.loadProdImageUrls(prod,realPath));
+            req.setAttribute("prods", prodDTOs);
         } else if (action.equals("All")) {
-            List<ProductDTO> prodDTDs = prodService.getAll();
-            req.setAttribute("prods", prodDTDs);
-        } else if (action.equals("New")) {
-            Long prodID = prodService.createNewProdID();
-            req.setAttribute("prodID",prodID);
-            url = "/WEB-INF/views/product-input.jsp";
-        } else if (action.equals("Update")) {
-            Long prodID = Long.valueOf(req.getParameter("prodID"));
-            req.setAttribute("prodID",prodID);
-            url = "/WEB-INF/views/product-input.jsp";
+            List<ProductDTO> prodDTOs = prodService.getAll();
+            prodDTOs.forEach(prod -> prod=prodImgIO.loadProdImageUrls(prod,realPath));
+            req.setAttribute("prods", prodDTOs);
         }
-
         getServletContext().getRequestDispatcher(url).forward(req, resp);
     }
 
