@@ -6,7 +6,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="<c:url value="/static/images/logo_short.svg"/>" rel="icon"/>
-
   <link rel="stylesheet" href="<c:url value="/static/css/base.css" />">
   <link rel="stylesheet" href="<c:url value="/static/css/chatbox.css" />">
   <link rel="stylesheet" href="<c:url value="/static/css/salesperson-chatbox.css" />">
@@ -18,16 +17,27 @@
 <div class="chat__container">
   <div class="conversations">
     <ul id="conversationListUl">
+      <li class="sender">
+        <div class="sender_avt" >
+          <img src="<c:url value="/static/images/account_icon.svg"/>" alt="">
+          <div class="pop_onl">
+          </div>
+        </div>
+        <span class="sender_name">Nguyenn Van an</span>
+      </li>
     </ul>
   </div>
 
   <div class="msg__pane">
     <div class="chat" id="chat">
     </div>
+    <div class="notify-chat">
+      <i id="iconChatAction" class="fa-duotone fa-ellipsis fa-beat"></i>
+    </div>
 
     <div class="chatbox__group-items">
-      <input type="text" id="input-msg" class="input__msg" placeholder="Type your message...">
-      <img onclick="sendMsg()" class="chatbox__send" src="<c:url value="/static/images/send.svg"/>" alt=""/>
+      <input type="text" id="input-msg" class="chatbox__input" placeholder="Type your message...">
+      <i class="fa-solid fa-paper-plane chatbox__send" onclick="sendMsg()"></i>
     </div>
   </div>
 </div>
@@ -135,6 +145,15 @@
 
     if (chat) {
       const senderColor = isSender ? 'green' : 'red';
+      <%--const formattedSender =`<li class="sender">--%>
+      <%--  <div class="sender_avt" >--%>
+      <%--    <img src="<c:url value="/static/images/account_icon.svg"/>" alt="">--%>
+      <%--    <div class="pop_onl" style="color: ' + ${senderColor} + ';">--%>
+      <%--    </div>  --%>
+      <%--  </div>--%>
+      <%--  <span class="sender_name">${sender}</span>--%>
+      <%--</li>--%>
+      <%--`--%>
       const formattedSender = '<span style="color: ' + senderColor + ';">[' + sender + ']</span>';
       const formattedMessage = formattedSender + ': ' + msg + '<br/>';
       chat.innerHTML += formattedMessage;
@@ -174,6 +193,7 @@
     fetchChattedUsers(currentUsername);
   });
 </script>
-
+<script type="text/javascript" src="<c:url value="/static/js/chatbox.js" />" charset="utf-8"></script>
+<script src="<c:url value="/static/js/base.js"/>" async defer ></script>
 </body>
 </html>

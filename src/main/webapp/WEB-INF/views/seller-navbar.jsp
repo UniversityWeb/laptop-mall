@@ -16,11 +16,6 @@
                 <b class="btn-txt">Products</b>
             </div>
         </li>
-        <li class="navbar-item">
-            <div class="button-inner btn-obj">
-                <b class="btn-txt">Messaging(0)</b>
-            </div>
-        </li>
     </ul>
     <div class="nav__list-icon">
         <div class="navbar-menu-container">
@@ -29,14 +24,16 @@
                 <li class="navbar__menu-item">
                     <p>Product Management</p>
                 </li>
-                <li class="navbar__menu-item">
-                    <p>Messaging(0)</p>
-                </li>
             </ul>
         </div>
         <form action="home-page" method="get">
             <button type="submit" class="nav__btn-icon">
                 <i class="fa-solid fa-house hover_icon"></i>
+            </button>
+        </form>
+        <form action="chat/salesperson" method="get">
+            <button type="submit" class="nav__btn-icon">
+                <i class="fa-solid fa-messages hover_icon"></i>
             </button>
         </form>
         <form action="/" method="post">
