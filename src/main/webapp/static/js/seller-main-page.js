@@ -35,12 +35,10 @@ clearbtnProd.addEventListener('click',()=>{
 //sort
 var sortBtn = document.getElementById('sort-btn')
 var sortContain =  document.getElementById('sort-container')
-var newProdBtn = document.getElementById('newProd-btn')
-var newProdContain =  document.getElementById('newProd-container')
 var filterBtn = document.getElementById('filter-btn')
 var filterContain =  document.getElementById('filter-container')
 sortBtn.addEventListener('click',()=>{
-    newProdContain.style.display='none'
+    // newProdContain.style.display='none'
     filterContain.style.display='none'
     if(sortContain.style.display=='flex')
         sortContain.style.display='none'
@@ -52,21 +50,32 @@ sortBtn.addEventListener('click',()=>{
 
 filterBtn.addEventListener('click',()=>{
     sortContain.style.display='none'
-    newProdContain.style.display='none'
+    // newProdContain.style.display='none'
     if(filterContain.style.display=='flex')
         filterContain.style.display='none'
     else
         filterContain.style.display='flex'
 
 })
-//newProd
 
-newProdBtn.addEventListener('click',()=>{
-    sortContain.style.display='none'
-    filterContain.style.display='none'
-    if(newProdContain.style.display=='flex')
-        newProdContain.style.display='none'
+confirmModal = document.getElementById("modal-confirm")
+confirmMess = document.getElementById("confirmMess")
+confirmProdID = document.getElementById("confirmProdID")
+confirmAction = document.getElementById("confirmAction")
+function openConfirmModal(proID){
+    if(confirmModal.style.display == "flex")
+        closeModalSearch()
     else
-        newProdContain.style.display='flex'
+    {
+        confirmMess.innerHTML="Are you sure you want to delete the "+proID +" product?";
+        confirmProdID.value=proID;
+        confirmAction.value="delete"
+        confirmModal.style.display = "flex";
 
-})
+    }
+
+}
+
+function closeModalConfirm() {
+    confirmModal.style.display = "none";
+}
