@@ -5,6 +5,8 @@ import com.webteam.laptopmall.dto.prod.LaptopDTO;
 import com.webteam.laptopmall.dto.prod.ProductDTO;
 import com.webteam.laptopmall.entity.prod.Product;
 import com.webteam.laptopmall.exception.ProductNotFoundException;
+import com.webteam.laptopmall.io.image.prod.ProdImgIO;
+import com.webteam.laptopmall.io.image.prod.ProdImgIOImpl;
 import com.webteam.laptopmall.mapper.ProductMapper;
 import com.webteam.laptopmall.repository.prod.ProdRepos;
 import com.webteam.laptopmall.repository.prod.ProdReposImpl;

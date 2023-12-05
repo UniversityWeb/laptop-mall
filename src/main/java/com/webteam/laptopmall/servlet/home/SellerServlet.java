@@ -31,22 +31,26 @@ public class SellerServlet extends HttpServlet {
 
         String url = "/WEB-INF/views/seller-main-page.jsp";
         String action = req.getParameter("action");
+
+        if (action == null)
+            action = "All";
+
         if(action.equals("Search")){
             String model = req.getParameter("model");
             model = model.trim();
             List<ProductDTO> prodDTDs = prodService.getProdsByModel("%" + model + "%");
-            System.out.println(prodDTDs.size());
             req.setAttribute("prods", prodDTDs);
         } else if (action.equals("All")) {
             List<ProductDTO> prodDTDs = prodService.getAll();
-            System.out.println(prodDTDs.size());
             req.setAttribute("prods", prodDTDs);
-        } else if (action.equals("laptop")) {
-            url = "/WEB-INF/views/seller-main-page.jsp";
-        } else if (action.equals("keyboard")) {
-            url = "/WEB-INF/views/seller-main-page.jsp";
-        } else if (action.equals("monitor")) {
-            url = "/WEB-INF/views/seller-main-page.jsp";
+        } else if (action.equals("New")) {
+            Long prodID = prodService.createNewProdID();
+            req.setAttribute("prodID",prodID);
+            url = "/WEB-INF/views/product-input.jsp";
+        } else if (action.equals("Update")) {
+            Long prodID = Long.valueOf(req.getParameter("prodID"));
+            req.setAttribute("prodID",prodID);
+            url = "/WEB-INF/views/product-input.jsp";
         }
 
         getServletContext().getRequestDispatcher(url).forward(req, resp);

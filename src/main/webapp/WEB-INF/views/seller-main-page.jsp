@@ -28,8 +28,8 @@
             <input class="tab-bar__item-input" type="submit" name="action" value="All">
             <input class="tab-bar__item-input" id="filter-btn" type="button" value="Filter">
             <input class="tab-bar__item-input" id="sort-btn" type="button" value="Sort">
-            <input class="tab-bar__item-input" id="newProd-btn" type="button" value="New">
-
+            <input class="tab-bar__item-input" id="statistics-btn" type="button" value="Statistics">
+            <input class="tab-bar__item-input" type="submit" name="action" value="New">
         </form>
         <div id="filter-container" class="sort-container">
             <input type="button" id="filterLaptop" value="Laptop">
@@ -42,11 +42,6 @@
             <input type="button" id="sortAtoZ" value="A-Z">
             <input type="button" id="sortZtoA" value="Z-A">
         </div>
-        <div id="newProd-container" class="sort-container">
-            <input type="submit" name="action" value="Laptop">
-            <input type="submit" name="action" value="Keyboard">
-            <input type="submit" name="action" value="Monitor">
-        </div>
     </div>
     <section class="product-container">
         <ul class="product-list">
@@ -54,57 +49,52 @@
                 <li class="product-item">
                     <div class="img-boder">
                         <img src="app/prod/${product.id}-0.png" alt="zz">
+
                     </div>
                     <label><c:out value="${product.model}" /></label>
-                    <div class="product-bottom">
+                    <form action="seller-main-page" method="post" class="product-bottom">
                         <a href="get-prod-by-id?id=${product.id}">
                             <i class="fa-solid fa-eye"></i>
                         </a>
-                        <i class="fa-solid fa-pen"></i>
-                        <i class="fa-solid fa-trash"></i>
-                    </div>
+                        <input type="hidden" style="width: 0;height: 0;" name="prodID" value="${product.id}">
+                        <button type="submit" name="action" value="Update" style="background: none;border: none; margin: 0;padding: 0;">
+                            <i class="fa-solid fa-pen"></i>
+                        </button>
+                        <i class="fa-solid fa-trash" onclick="openConfirmModal(${product.id})"></i>
+                    </form>
                 </li>
             </c:forEach>
         </ul>
     </section>
 </section>
 
-<%--<section class="product-info" style="display: ${displayProductInfo}">--%>
-<%--    <form action="products-management" method="post" class="product-info__tabbar">--%>
-<%--        <input type="hidden"  name="action" value="close">--%>
-<%--        <input type="submit" class="product-info__close" value="close">--%>
-<%--    </form>--%>
-<%--    <div class="product-info__container">--%>
-<%--        <form  action="products-management" method="post" enctype="multipart/form-data" class="product-info__form">--%>
-<%--            <div class="form-input__group">--%>
-<%--                <label>ID:</label>--%>
-<%--                <input name="prodID" class="form-input__item" type="text" value="${productIns.id}">--%>
-<%--            </div>--%>
-<%--            <div class="form-input__group">--%>
-<%--                <label>Name:</label>--%>
-<%--                <input name="prodName" class="form-input__item" type="text" value="${productIns.name}">--%>
-<%--            </div>--%>
-<%--            <div class="form-input__group">--%>
-<%--                <label>Price:</label>--%>
-<%--                <input name="prodPrice" class="form-input__item" type="text" value="${productIns.price}">--%>
-<%--            </div>--%>
-<%--            <input id="imgInput" class="select-file__input" name="images" type="file" multiple accept="image/*">--%>
-<%--            <input class="btn-save" type="submit" name="action" value="Save">--%>
-<%--        </form>--%>
-<%--        <div class="product-info__listimg">--%>
 
-<%--            <ul id="imgList" class="img-list">--%>
-<%--                <c:forEach var="imgName" items="${imgList}">--%>
-<%--                    <li class="img-item">--%>
-<%--                        <div class="img-bottom"><i class="fa-solid fa-trash"></i></div>--%>
-<%--                        <img src="app/prod/${imgName}" alt="">--%>
-<%--                    </li>--%>
-<%--                </c:forEach>--%>
-<%--            </ul>--%>
-<%--        </div>--%>
-<%--    </div>--%>
-
-<%--</section>--%>
+    <div id="modal-confirm" class="modal">
+        <div class="modal__overlay" style="margin-top: var(--nav-height); position:fixed;" onclick="closeModalSearch()">
+        </div>
+        <div class="modal__body">
+            <div class="modal__inner">
+                <form class="confirm-container">
+                    <div class="form-header">
+                        <div class="title">
+                            <span onclick="closeModalConfirm()">Confirmation Message ! </span>
+                            <i class="fa-light fa-message-smile" onclick="closeModalConfirm()"></i>
+                        </div>
+                        <i class="fa-solid fa-chevron-down" onclick="closeModalConfirm()"></i>
+                    </div>
+                    <form action="delete-prod" method="post" class="form-content">
+                        <span id="confirmMess" class="confirm-mess">None</span>
+                        <input id="confirmProdID" type="hidden" name="prodID" value="">
+                        <input id="confirmAction" type="hidden" name="action" value="delete">
+                        <div class="form-selection">
+                            <input class="confirm-btn" id="yesBtn" type="submit" value="Yes" onclick="closeModalConfirm()">
+                            <input class="confirm-btn" id="noBtn" type="button" value="No" onclick="closeModalConfirm()">
+                        </div>
+                    </form>
+                </form>
+            </div>
+        </div>
+    </div>
 <footer>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>

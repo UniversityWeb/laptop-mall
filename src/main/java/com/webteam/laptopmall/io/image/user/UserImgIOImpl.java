@@ -1,6 +1,7 @@
 package com.webteam.laptopmall.io.image.user;
 
 import com.webteam.laptopmall.dto.UserDTO;
+import com.webteam.laptopmall.utility.FileUtil;
 
 import javax.servlet.http.Part;
 import java.io.File;
@@ -20,7 +21,7 @@ public class UserImgIOImpl implements UserImgIO {
         String userFolder = getUserFolderByUsername(realPath, username);
         String pathToSave = userFolder + File.separator + fileName;
 
-        deleteAllFilesInFolder(userFolder, fileName);
+        FileUtil.deleteAllFilesInFolder(userFolder, fileName);
 
         try (InputStream fileContent = part.getInputStream()) {
             Files.copy(fileContent, Paths.get(pathToSave), StandardCopyOption.REPLACE_EXISTING);
@@ -38,29 +39,6 @@ public class UserImgIOImpl implements UserImgIO {
     private String getFileExtension(Part part) {
         String fileName = Path.of(part.getSubmittedFileName()).getFileName().toString();
         return fileName.substring(fileName.lastIndexOf(".") + 1);
-    }
-
-    public static void deleteAllFilesInFolder(String folderPath, String fileNameToIgnore) {
-        try {
-            Files.walkFileTree(Paths.get(folderPath), new SimpleFileVisitor<Path>() {
-                @Override
-                public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-                    if (!file.getFileName().toString().equals(fileNameToIgnore)) {
-                        Files.delete(file);
-                    }
-                    return FileVisitResult.CONTINUE;
-                }
-
-                @Override
-                public FileVisitResult visitFileFailed(Path file, IOException exc) throws IOException {
-                    log.severe("Failed to delete file: " + file);
-                    return FileVisitResult.CONTINUE;
-                }
-            });
-            System.out.println("All files in the folder deleted successfully.");
-        } catch (IOException e) {
-            log.severe(e.getMessage());
-        }
     }
 
     @Override
