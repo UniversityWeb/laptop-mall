@@ -69,9 +69,7 @@ public class OrderServiceImpl implements OrderService{
 
         String listItem = "";
         for (OrderItemDTO orderItemDTO: orderDTO.getOrderItems()) {
-            listItem += "<tr><td><div style='width: 50px; height: 50px; object-fit: cover; overflow: hidden;'>" +
-                    "<img src='" + orderItemDTO.getProduct().getModel() +"' alt='product images' style='width: 100%; height: auto;'>" +
-                    "</div></td>" +
+            listItem += "<tr>"+
                     "<td style='width: 150px; overflow: auto;'>" + orderItemDTO.getProduct().getModel() +"</td>" +
                     "<td style='width: 50px; overflow: auto;'>"+ orderItemDTO.getProduct().getColor() +"</td>" +
                     "<td style='width: 100px; overflow: auto; text-align: right'> x"+ orderItemDTO.getQty() +"</td>" +
@@ -107,8 +105,8 @@ public class OrderServiceImpl implements OrderService{
                 "<hr style='width: 100%; margin: 0; border-bottom: 1px solid #bbbbbb;'>" +
                 "<p>Order Details:</p>" +
                 "<table style='display: flex; flex-direction: column; align-items: center;'>"
-                + listItem + "<tr style='margin: 10px 0px;'><td>&nbsp;</td><td>&nbsp;</td>" +
-                "<td>Total:</td><td style='width: 100px; overflow: auto; text-align: right'>&nbsp;</td>" +
+                + listItem + "<td>Total:</td><td style='width: 100px; overflow: auto; text-align: right'>&nbsp;</td>" +
+                "<td style='width: 100px; overflow: auto; text-align: right'>&nbsp;</td>" +
                 "<td style='width: 100px; overflow: auto; text-align: right'>&nbsp;</td>" +
                 "<td style='width: 100px; overflow: auto; text-align: right'>&nbsp;</td>" +
                 "<td style='width: 100px; overflow: auto; text-align: right;'>"

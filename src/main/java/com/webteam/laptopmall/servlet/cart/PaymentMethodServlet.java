@@ -41,9 +41,6 @@ public class PaymentMethodServlet extends HttpServlet {
         System.out.println(order.getCustomer());
         List<CartItemDTO> cart = cartService.getCartByUserId(order.getCustomer().getId());
 
-        String realPath = req.getServletContext().getRealPath("/");
-        cart.forEach(cartItem -> cartItem.setProduct(prodImgIO.loadProdImageUrls(cartItem.getProduct(), realPath)));
-
         String totalDiscountedAmount = cartService.totalDiscountedAmountOfCartCurrentFormat(cart);
         String totalOriginalAmount = cartService.totalOriginalAmountOfCartCurrentFormat(cart);
         String totalDiscountAmount = cartService.totalDiscountAmountOfCartCurrentFormat(cart);
