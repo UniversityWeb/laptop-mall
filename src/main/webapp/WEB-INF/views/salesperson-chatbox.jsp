@@ -13,6 +13,8 @@
 </head>
 <body>
 
+<jsp:include page="seller-navbar.jsp"></jsp:include>
+
 <div class="chat__container">
   <div class="conversations">
     <ul id="conversationListUl">
