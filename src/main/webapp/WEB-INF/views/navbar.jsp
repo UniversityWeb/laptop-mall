@@ -7,6 +7,10 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+  String contextPath = request.getContextPath();
+%>
+
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
@@ -44,8 +48,8 @@
       </div>
     </li>
   </ul>
-  <div class="nav__list-icon">
-    <div class="navbar-menu-container">
+  <div class="nav__list-icon" >
+    <div class="navbar-menu-container" style="display: none">
       <img id="nav-list-btn"  src="<c:url value="/static/images/list-btn.svg"/>" >
       <ul id="nav-menu" class="navbar-menu">
         <li class="navbar__menu-item">
@@ -65,7 +69,7 @@
         </li>
       </ul>
     </div>
-    <form action="home-page" method="get">
+    <form action="<%= contextPath %>/home-page" method="get">
       <button type="submit" class="nav__btn-icon">
         <i class="fa-solid fa-house hover_icon"></i>
       </button>
@@ -73,15 +77,25 @@
     <button class="nav__btn-icon" onclick="openModalSearch()">
       <i class="fa-solid fa-magnifying-glass hover_icon" ></i>
     </button>
-    <form action="cart" method="post">
+    <form action="<%= contextPath %>/cart" method="post">
       <button type="submit" class="nav__btn-icon">
-        <i class="fa-solid fa-cart-shopping hover_icon" ></i>
+        <i class="fa-solid fa-cart-shopping hover_icon"></i>
         <div class="cart-bubble">3</div>
       </button>
     </form>
-    <form action="/" method="post">
-      <button type="submit" class="nav__btn-icon hover_icon">
-        <i class="fa-solid fa-user"></i>
+    <form action="<%= contextPath %>/user-profile" method="post">
+      <button type="submit" class="nav__btn-icon ">
+        <i class="fa-solid fa-user hover_icon" ></i>
+      </button>
+    </form>
+    <form action="<%= contextPath %>/history" method="post">
+      <button type="submit" class="nav__btn-icon ">
+        <i class="fa-solid fa-clock-rotate-left hover_icon"></i>
+      </button>
+    </form>
+    <form action="<%= contextPath %>/logout" method="post">
+      <button type="submit" class="nav__btn-icon ">
+        <i class="fa-solid fa-right-from-bracket hover_icon" ></i>
       </button>
     </form>
   </div>
@@ -92,7 +106,7 @@
   <div class="modal__body ">
     <div class="modal__inner">
       <div class="search-container">
-        <form method="get" action="get-prods-by-model" class="input-txt__group">
+        <form method="get" action="<%= contextPath %>/get-prods-by-model" class="input-txt__group">
           <input id="input-element-nav" name="model" class="input-search" type="search">
           <i id="clear-btn-search-nav" class="fa-solid fa-circle-xmark close-btn"></i>
           <button type="submit" class="find-btn" style="border: none; background-color: transparent">

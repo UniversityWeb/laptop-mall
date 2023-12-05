@@ -1,5 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+    String contextPath = request.getContextPath();
+%>
+
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
@@ -31,14 +35,19 @@
                 <i class="fa-solid fa-house hover_icon"></i>
             </button>
         </form>
-        <form action="chat/salesperson" method="get">
+        <form action="statistical" method="get">
             <button type="submit" class="nav__btn-icon">
-                <i class="fa-solid fa-messages hover_icon"></i>
+                <i class="fa-solid fa-chart-simple hover_icon"></i>
             </button>
         </form>
-        <form action="/" method="post">
+        <form action="<%= contextPath %>/user-profile" method="post">
             <button type="submit" class="nav__btn-icon hover_icon">
                 <i class="fa-solid fa-user"></i>
+            </button>
+        </form>
+        <form action="<%= contextPath %>/logout" method="post">
+            <button type="submit" class="nav__btn-icon ">
+                <i class="fa-solid fa-right-from-bracket hover_icon" ></i>
             </button>
         </form>
     </div>

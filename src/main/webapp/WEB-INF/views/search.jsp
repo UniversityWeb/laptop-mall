@@ -95,21 +95,21 @@
                     </label>
                 </div>
                 <div class="radio_group">
-                    <input type="radio" name="priceFilter" id="radio-price1" value="50"  onclick="filterProducts()">
+                    <input type="radio" name="priceFilter" id="radio-price1" value="250000"  onclick="filterProducts()">
                     <label class="form-check-label" for="radio-price1">
-                        $50 and below
+                        250.000 and below
                     </label>
                 </div>
                 <div class="radio_group">
-                    <input type="radio" name="priceFilter" id="radio-price2" value="100"  onclick="filterProducts()">
+                    <input type="radio" name="priceFilter" id="radio-price2" value="500000"  onclick="filterProducts()">
                     <label class="form-check-label" for="radio-price2">
-                        $100 and below
+                        500.000 and below
                     </label>
                 </div>
                 <div class="radio_group">
-                    <input type="radio" name="priceFilter" id="radio-price3" value="1000"  onclick="filterProducts()">
+                    <input type="radio" name="priceFilter" id="radio-price3" value="1000000"  onclick="filterProducts()">
                     <label class="form-check-label" for="radio-price3">
-                        $1000 and below
+                        1.000.000 and below
                     </label>
                 </div>
             </div>
