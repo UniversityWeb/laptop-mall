@@ -54,7 +54,7 @@ public class HomeServlet extends HttpServlet {
         } else if (role == User.ERole.CUSTOMER) {
             url = "/WEB-INF/views/customer-main-page.jsp";
         } else {
-            url = "/WEB-INF/views/access-denied.html";
+            url = "/WEB-INF/views/access-denied.jsp";
         }
         return url;
     }

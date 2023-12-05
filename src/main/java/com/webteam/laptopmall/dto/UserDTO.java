@@ -7,11 +7,13 @@ import com.webteam.laptopmall.entity.user.User;
 public class UserDTO {
     private Long id;
     private String address;
+    @JsonIgnore
     private String email;
     private String fullName;
+    @JsonIgnore
     private EGender gender;
+    @JsonIgnore
     private String phoneNo;
-
     private String username;
     @JsonIgnore
     private String passHash;

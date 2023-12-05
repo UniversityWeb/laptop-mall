@@ -44,11 +44,12 @@
 }
 .nav__btn-icon{
     position: relative;
-    margin: auto;
-    height: 80%;
+    margin-top: 10px;
+    height: 100%;
     width: 50px;
-    display: grid;
-    place-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border: none;
     background-color: transparent;
     color: var(--color1);
@@ -95,7 +96,7 @@
     height: auto;
     top: calc(var(--nav-height) - 0.4px);
     right: 5%;
-    padding: 2%;
+    padding: 2% 0;
 }
 .navbar__menu-item{
     border: solid 0.5px var(--color5);

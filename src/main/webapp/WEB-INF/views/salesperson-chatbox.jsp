@@ -13,6 +13,8 @@
 </head>
 <body>
 
+<jsp:include page="seller-navbar.jsp"></jsp:include>
+
 <div class="chat__container">
   <div class="conversations">
     <ul id="conversationListUl">
@@ -55,8 +57,8 @@
 
   function fetchChattedUsers(sender) {
     const contextPath = '<%= request.getContextPath() %>';
-    const restUrl = window.location.protocol + "//" + window.location.host + contextPath + "/get-customers";
-    console.log("fetchChattedUsers - restUrl: " + restUrl);
+    const restUrl = window.location.protocol + "//" + window.location.host + contextPath +
+            "/api/salesperson/get-customers";
     fetch(restUrl)
             .then(response => response.json())
             .then(customerUsernames => {
@@ -80,8 +82,7 @@
   function fetchMessagesForSalesperson(sender, receiver) {
     const contextPath = '<%= request.getContextPath() %>';
     const restUrl = window.location.protocol + "//" + window.location.host + contextPath +
-            "/get-messages-for-salesperson?sender=" + sender + "&receiver=" + receiver;
-    console.log("fetchMessages - restUrl: " + restUrl);
+            "/api/salesperson/get-messages-for-salesperson?sender=" + sender + "&receiver=" + receiver;
     fetch(restUrl)
             .then(response => response.json())
             .then(chatMessages => {

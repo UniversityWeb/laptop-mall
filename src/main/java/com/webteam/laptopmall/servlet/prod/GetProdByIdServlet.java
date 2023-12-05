@@ -47,7 +47,7 @@ public class GetProdByIdServlet extends HttpServlet {
             url = "/WEB-INF/views/product-details.jsp";
         } catch (ProductNotFoundException e) {
             log.log(Level.SEVERE, e.getMessage());
-            url = "/WEB-INF/views/access-denied.html";
+            url = "/WEB-INF/views/access-denied.jsp";
         }
 
         getServletContext().getRequestDispatcher(url).forward(req, resp);

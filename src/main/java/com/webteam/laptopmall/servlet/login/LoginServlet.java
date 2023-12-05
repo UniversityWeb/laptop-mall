@@ -36,7 +36,7 @@ public class LoginServlet extends HttpServlet {
             req.getSession().setAttribute("username", username);
             resp.sendRedirect(req.getContextPath() + "/home-page");
         } else {
-            getServletContext().getRequestDispatcher("/WEB-INF/views/access-denied.html").forward(req, resp);
+            getServletContext().getRequestDispatcher("/WEB-INF/views/access-denied.jsp").forward(req, resp);
         }
     }
 }
