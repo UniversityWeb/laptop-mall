@@ -5,7 +5,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link href="<c:url value="/static/images/logo_short.svg"/>" rel="icon"/>
-
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.2/css/all.css">
     <link rel="stylesheet" href="<c:url value="/static/css/base.css" />">
     <link rel="stylesheet" href="<c:url value="/static/css/chatbox.css" />">
 </head>
@@ -19,10 +19,12 @@
 
     <div class="chatbox__content">
     </div>
-
+    <div id="notifyChat" class="notify-chat">
+        <i id="iconChatAction" class="fa-duotone fa-ellipsis fa-beat"></i>
+    </div>
     <div class="chatbox__group-items">
-        <input class="chatbox__input" name="" id="input-msg" cols="30" rows="10"></textarea>
-        <img onclick="sendMsg()" class="chatbox__send" src="<c:url value="/static/images/send.svg"/>" alt=""/>
+        <input class="chatbox__input" name="" id="input-msg" cols="30" rows="10">
+        <i class="fa-solid fa-paper-plane chatbox__send" onclick="sendMsg()"></i>
     </div>
 </div>
 
@@ -83,7 +85,7 @@
 
         if (isSender) {
             chatContainer.innerHTML += `
-            <div class="chat__my-img"></div>
+            <div class="chat__my-img">My</div>
             <ul class="list__bubble-chat">
                 <li class="bubble-chat__item">
                     <p>` + message + `</p>
@@ -108,14 +110,11 @@
             console.error("chatboxContent container not found.");
             return;
         }
-        chatboxContent.innerHTML += `
-        <div class="chatbox__notification" style="
-                padding: 10px;
-                text-align: center;">
+        var chatNotify = document.getElementById("notifyChat")
+        chatNotify.innerHTML += `
             <p class="notification__text">`
             + message +
-            `</p>
-        </div>`;
+            `</p>`;
     }
 
     function fetchMsgsForCustomer(username) {

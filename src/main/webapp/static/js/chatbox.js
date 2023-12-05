@@ -20,5 +20,13 @@ function openChatbox() {
 
 function closeChatbox() {
     chatBox.style.display = 'none'
+    iconAction.style.display='none';
     chatIcon.style.boxShadow='3px 2px 8px 0px rgba(0, 0, 0, 0.10), 12px 10px 15px 0px rgba(0, 0, 0, 0.09), 26px 22px 20px 0px rgba(0, 0, 0, 0.05), 46px 39px 24px 0px rgba(0, 0, 0, 0.01), 72px 60px 26px 0px rgba(0, 0, 0, 0.00)'
 }
+
+let input = document.getElementById('input-msg');
+let iconAction  = document.getElementById('iconChatAction');
+
+input.addEventListener('input', function() {
+    iconAction.style.display='flex';
+});

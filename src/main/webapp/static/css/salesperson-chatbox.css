@@ -5,7 +5,8 @@ body, html {
 
 .chat__container {
     display: flex;
-    height: 100vh;
+    margin-top: var(--nav-height);
+    height: 90%;
 }
 
 .conversations {
@@ -38,4 +39,9 @@ body, html {
 button {
     margin-top: 5px;
     padding: 5px;
+}
+
+#input-msg{
+    width: 80%;
+    height: 30%;
 }
