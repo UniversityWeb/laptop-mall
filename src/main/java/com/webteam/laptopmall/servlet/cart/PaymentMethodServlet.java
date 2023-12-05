@@ -3,6 +3,8 @@ package com.webteam.laptopmall.servlet.cart;
 import com.webteam.laptopmall.dto.CartItemDTO;
 import com.webteam.laptopmall.dto.OrderDTO;
 import com.webteam.laptopmall.dto.UserDTO;
+import com.webteam.laptopmall.io.image.prod.ProdImgIO;
+import com.webteam.laptopmall.io.image.prod.ProdImgIOImpl;
 import com.webteam.laptopmall.service.cart.CartService;
 import com.webteam.laptopmall.service.cart.CartServiceImpl;
 
@@ -18,10 +20,12 @@ import java.util.List;
 @WebServlet("/payment-method")
 public class PaymentMethodServlet extends HttpServlet {
     private CartService cartService;
+    private ProdImgIO prodImgIO;
     @Override
     public void init() throws ServletException {
         super.init();
         cartService = new CartServiceImpl();
+        prodImgIO = new ProdImgIOImpl();
     }
 
     @Override
@@ -36,6 +40,9 @@ public class PaymentMethodServlet extends HttpServlet {
         OrderDTO order = (OrderDTO) session.getAttribute("order");
         System.out.println(order.getCustomer());
         List<CartItemDTO> cart = cartService.getCartByUserId(order.getCustomer().getId());
+
+        String realPath = req.getServletContext().getRealPath("/");
+        cart.forEach(cartItem -> cartItem.setProduct(prodImgIO.loadProdImageUrls(cartItem.getProduct(), realPath)));
 
         String totalDiscountedAmount = cartService.totalDiscountedAmountOfCartCurrentFormat(cart);
         String totalOriginalAmount = cartService.totalOriginalAmountOfCartCurrentFormat(cart);

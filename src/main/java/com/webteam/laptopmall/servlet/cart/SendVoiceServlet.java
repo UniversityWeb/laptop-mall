@@ -1,6 +1,8 @@
 package com.webteam.laptopmall.servlet.cart;
 
 import com.webteam.laptopmall.dto.OrderDTO;
+import com.webteam.laptopmall.io.image.prod.ProdImgIO;
+import com.webteam.laptopmall.io.image.prod.ProdImgIOImpl;
 import com.webteam.laptopmall.service.order.OrderService;
 import com.webteam.laptopmall.service.order.OrderServiceImpl;
 import com.webteam.laptopmall.utility.MailUtil;
@@ -18,12 +20,14 @@ import java.util.logging.Logger;
 @WebServlet("/send-voice")
 public class SendVoiceServlet extends HttpServlet {
     private OrderService orderService;
+    private ProdImgIO prodImgIO;
     private static final Logger logger = Logger.getLogger(PaymentServlet.class.getName());
 
     @Override
     public void init() throws ServletException {
         super.init();
         orderService = new OrderServiceImpl();
+        prodImgIO = new ProdImgIOImpl();
     }
 
     @Override
@@ -40,6 +44,10 @@ public class SendVoiceServlet extends HttpServlet {
         String to = order.getCustomer().getEmail();
         String from = "vanantran009@gmail.com";
         String subject = "Your Invoice";
+
+        String realPath = req.getServletContext().getRealPath("/");
+        order.getOrderItems().forEach(orderItem -> orderItem.setProduct(prodImgIO.loadProdImageUrls(orderItem.getProduct(), realPath)));
+
         String body = orderService.getMailBody(order);
 
         System.out.println(order.getCustomer().getEmail());

@@ -132,13 +132,7 @@
                     <table class="product_details">
                         <tr>
                             <div class="product_img-square center">
-                                <c:if test="${item.product.imageUrls ne null and not empty item.product.imageUrls}">
-                                    <img class="product_img-source" alt="productCode" src="${item.product.imageUrls[0]}">
-                                </c:if>
-
-                                <c:if test="${item.product.imageUrls eq null or empty item.product.imageUrls}">
-                                    <img class="product_img-source" alt="productCode">
-                                </c:if>
+                                <img class="product_img-source" alt="${item.product.model}" src="${item.product.imageUrls[0]}">
                             </div>
                         </tr>
                         <tbody class="row">

@@ -3,6 +3,8 @@ package com.webteam.laptopmall.servlet.history;
 import com.webteam.laptopmall.dto.OrderDTO;
 import com.webteam.laptopmall.dto.UserDTO;
 import com.webteam.laptopmall.entity.Order;
+import com.webteam.laptopmall.io.image.prod.ProdImgIO;
+import com.webteam.laptopmall.io.image.prod.ProdImgIOImpl;
 import com.webteam.laptopmall.service.order.OrderService;
 import com.webteam.laptopmall.service.order.OrderServiceImpl;
 import com.webteam.laptopmall.service.user.UserService;
@@ -22,11 +24,13 @@ import java.util.List;
 public class HistoryOrderServlet extends HttpServlet {
     private OrderService orderService;
     private UserService userService;
+    private ProdImgIO prodImgIO;
     @Override
     public void init() throws ServletException {
         super.init();
         orderService = new OrderServiceImpl();
         userService = new UserServiceImpl();
+        prodImgIO = new ProdImgIOImpl();
     }
 
     @Override
@@ -49,6 +53,10 @@ public class HistoryOrderServlet extends HttpServlet {
         List<OrderDTO> ordersHistory;
         if (tab.equals("ALL")){
             ordersHistory = orderService.getListByUserId(customer.getId());
+
+            String realPath = req.getServletContext().getRealPath("/");
+            ordersHistory.forEach(order -> order.getOrderItems().forEach(orderItem -> orderItem.setProduct(prodImgIO.loadProdImageUrls(orderItem.getProduct(), realPath))));
+
         }
         else {
             ordersHistory = orderService.getListByUserIdAndStatus(customer.getId(), Order.EStatus.valueOf(tab));
