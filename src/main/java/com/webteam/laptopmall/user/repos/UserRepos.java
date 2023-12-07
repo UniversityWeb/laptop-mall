@@ -15,4 +15,6 @@ public interface UserRepos extends BaseRepos<User, Long> {
     boolean isValid(PassUpdateForm passUpdateForm);
 
     int updatePassOnly(Long userId, String newHashedPass);
+
+    List<User> getUsersByRole(User.ERole role);
 }
