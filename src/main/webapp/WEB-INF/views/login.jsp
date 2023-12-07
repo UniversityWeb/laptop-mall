@@ -9,6 +9,8 @@
     <link href="<c:url value="/static/images/logo_short.svg"/>" rel="icon"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Laptop Mall | Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="<c:url value="/static/css/login.css"/>" type="text/css">
 </head>
 <body class="center">
@@ -16,7 +18,7 @@
 <section class="content column center">
     <h1>Login</h1>
     <p>Please enter your username and password to continue.</p>
-    <form action="login" method="post" class="login_form column">
+    <form action="login" method="post" class="login_form">
         <div class="login_form-input">
             <input type="text" name="username" placeholder=" " required><br>
             <label>Username</label>
@@ -26,7 +28,9 @@
             <label>Password</label>
         </div>
 
-        <a href="register" style="margin-top: 20px;">Register</a>
+        <a href="register" style="margin-top: 50px;">Register</a><br>
+
+        <a href="get-accounts" style="margin-top: 20px;">Test Account</a>
 
         <div class="login_form-input">
             <input type="submit" value="Login" class="button_login">

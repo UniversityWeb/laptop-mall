@@ -5,7 +5,6 @@ import com.webteam.laptopmall.form.PassUpdateForm;
 import com.webteam.laptopmall.repository.base.BaseRepos;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface UserRepos extends BaseRepos<User, Long> {
     User getUserByUsername(String username);
@@ -16,4 +15,6 @@ public interface UserRepos extends BaseRepos<User, Long> {
     boolean isValid(PassUpdateForm passUpdateForm);
 
     int updatePassOnly(Long userId, String newHashedPass);
+
+    List<User> getUsersByRole(User.ERole role);
 }

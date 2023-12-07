@@ -64,4 +64,9 @@ public class UserReposImpl extends BaseReposImpl<User, Long> implements UserRepo
     public int updatePassOnly(Long userId, String newHashedPass) {
         return executeUpdate(em -> uQuery.buildUpdatePassOnly(em, userId, newHashedPass));
     }
+
+    @Override
+    public List<User> getUsersByRole(User.ERole role) {
+        return getResultList(em -> uQuery.buildGetUsersByRole(em, role));
+    }
 }

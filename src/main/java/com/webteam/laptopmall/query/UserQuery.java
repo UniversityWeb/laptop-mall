@@ -1,5 +1,6 @@
 package com.webteam.laptopmall.query;
 
+import com.webteam.laptopmall.dto.UserDTO;
 import com.webteam.laptopmall.entity.user.User;
 
 import javax.persistence.EntityManager;
@@ -55,5 +56,12 @@ public class UserQuery {
         query.setParameter("newHashedPass", newHashedPass);
         query.setParameter("userId", userId);
         return query;
+    }
+
+    public TypedQuery<User> buildGetUsersByRole(EntityManager em, User.ERole role) {
+        String jpqlStr = "SELECT u FROM User u WHERE u.role = :role";
+        TypedQuery<User> typedQuery = em.createQuery(jpqlStr, User.class);
+        typedQuery.setParameter("role", role);
+        return typedQuery;
     }
 }

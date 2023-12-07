@@ -8,7 +8,6 @@ import java.util.List;
 
 public interface UserService {
     boolean login(String username, String plainPass);
-
     UserDTO register(UserDTO UserDTO);
     UserDTO deleteById(Long id);
     UserDTO getById(Long id);
@@ -19,4 +18,5 @@ public interface UserService {
     User.ERole getRoleByUsername(String username);
     boolean isValid(PassUpdateForm passUpdateForm);
     int updatePassOnly(Long userId, String newHashedPass);
+    List<UserDTO> getUsersByRole(User.ERole role);
 }
