@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet("/update-password")
@@ -37,6 +38,9 @@ public class UpdatePasswordServlet extends HttpServlet {
             String newHashedPass = PassUtil.hashPass(newPlainPass);
             userService.updatePassOnly(id, newHashedPass);
         }
+
+        HttpSession session = req.getSession();
+        req.setAttribute("userRole", userService.getByUsername(session.getAttribute("username").toString()).getRole());
 
         String url = "/user-profile";
         String contextPath = req.getContextPath();

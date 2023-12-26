@@ -38,8 +38,8 @@ public class LaptopDTO extends ProductDTO {
                      int cpuCache, int ramSize, Laptop.ERam ramType, int ramBusSpeed, int ramMaxSupport,
                      Laptop.ERom romType, int romSize, double screenSize, String screenResolution,
                      int screenRefreshRate, String screenTechnology, int brightness, boolean antiGlare,
-                     String graphicsCard, double weight, String material, Laptop.EOS operatingSystem) {
-        super(id, brand, model, desc, price, stockQty, discountPercent, version, color, releaseYear, category);
+                     String graphicsCard, double weight, String material, Laptop.EOS operatingSystem, boolean markAsDeleted) {
+        super(id, brand, model, desc, price, stockQty, discountPercent, version, color, releaseYear, category, markAsDeleted);
         this.cpuName = cpuName;
         this.cpuCores = cpuCores;
         this.cpuThreads = cpuThreads;

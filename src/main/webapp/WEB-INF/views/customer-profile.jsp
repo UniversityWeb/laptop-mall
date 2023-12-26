@@ -10,7 +10,12 @@
 </head>
 <body class="center">
 
-<jsp:include page="navbar.jsp"></jsp:include>
+<c:if test="${userRole == 'CUSTOMER'}">
+    <jsp:include page="navbar.jsp"></jsp:include>
+</c:if>
+<c:if test="${userRole == 'SALESPERSON'}">
+    <jsp:include page="seller-navbar.jsp"></jsp:include>
+</c:if>
 
 <%
     String contextPath = request.getContextPath();

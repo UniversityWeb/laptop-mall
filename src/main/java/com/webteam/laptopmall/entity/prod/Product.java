@@ -45,6 +45,8 @@ public abstract class Product {
     @Enumerated(EnumType.STRING)
     protected ECategory category;
 
+    protected boolean markAsDeleted;
+
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<CartItem> cartItems;
 
@@ -52,7 +54,7 @@ public abstract class Product {
     }
 
     public Product(String brand, String model, String desc, BigDecimal price, Integer stockQty,
-                   double discountPercent, String version, String color, ECategory category, int releaseYear) {
+                   double discountPercent, String version, String color, ECategory category, int releaseYear, boolean markAsDeleted) {
         this.brand = brand;
         this.model = model;
         this.desc = desc;
@@ -63,6 +65,7 @@ public abstract class Product {
         this.color = color;
         this.category = category;
         this.releaseYear = releaseYear;
+        this.markAsDeleted=markAsDeleted;
     }
 
     @Override
@@ -215,5 +218,13 @@ public abstract class Product {
 
     public void setCartItems(List<CartItem> cartItems) {
         this.cartItems = cartItems;
+    }
+
+    public boolean getMarkAsDeleted() {
+        return markAsDeleted;
+    }
+
+    public void setMarkAsDeleted(boolean markAsDeleted) {
+        this.markAsDeleted = markAsDeleted;
     }
 }

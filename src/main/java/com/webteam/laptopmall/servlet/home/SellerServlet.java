@@ -35,10 +35,8 @@ public class SellerServlet extends HttpServlet {
         String realPath = req.getServletContext().getRealPath("/");
         String url = "/WEB-INF/views/seller-main-page.jsp";
         String action = req.getParameter("action");
-
-        if (action == null)
+        if (action.equals(""))
             action = "All";
-
         if(action.equals("Search")){
             String model = req.getParameter("model");
             model = model.trim();
@@ -46,7 +44,7 @@ public class SellerServlet extends HttpServlet {
             prodDTOs.forEach(prod -> prod=prodImgIO.loadProdImageUrls(prod,realPath));
             req.setAttribute("prods", prodDTOs);
         } else if (action.equals("All")) {
-            List<ProductDTO> prodDTOs = prodService.getAll();
+            List<ProductDTO> prodDTOs = prodService.getProdsIsAvailable();
             prodDTOs.forEach(prod -> prod=prodImgIO.loadProdImageUrls(prod,realPath));
             req.setAttribute("prods", prodDTOs);
         }

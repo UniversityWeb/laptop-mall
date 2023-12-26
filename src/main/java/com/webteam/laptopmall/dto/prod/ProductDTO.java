@@ -20,12 +20,13 @@ public abstract class ProductDTO {
     protected int releaseYear;
     protected ECategory category;
     protected List<String> imageUrls = new ArrayList<>();
+    protected  boolean markAsDeleted;
 
     protected ProductDTO() {
     }
 
     protected ProductDTO(Long id, String brand, String model, String desc, BigDecimal price, Integer stockQty,
-                      double discountPercent, String version, String color, int releaseYear,ECategory category) {
+                         double discountPercent, String version, String color, int releaseYear,ECategory category, boolean markAsDeleted) {
         this.id = id;
         this.brand = brand;
         this.model = model;
@@ -37,6 +38,7 @@ public abstract class ProductDTO {
         this.color = color;
         this.releaseYear = releaseYear;
         this.category = category;
+        this.markAsDeleted=markAsDeleted;
     }
 
     @Override
@@ -176,6 +178,13 @@ public abstract class ProductDTO {
 
     public void setImageUrls(List<String> imageUrls) {
         this.imageUrls = imageUrls;
+    }
+
+    public boolean getMarkAsDeleted() {
+        return markAsDeleted;
+    }
+    public void setMarkAsDeleted(boolean markAsDeleted) {
+        this.markAsDeleted = markAsDeleted;
     }
 }
 

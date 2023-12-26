@@ -1,5 +1,9 @@
+<%@ page import="com.webteam.laptopmall.dto.UserDTO" %>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%
+    String contextPath = request.getContextPath();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +17,12 @@
 </head>
 <body>
 <input type="checkbox" id="check">
-<jsp:include page="navbar.jsp"></jsp:include>
+<c:if test="${userRole == 'CUSTOMER'}">
+    <jsp:include page="navbar.jsp"></jsp:include>
+</c:if>
+<c:if test="${userRole == 'SALESPERSON'}">
+    <jsp:include page="seller-navbar.jsp"></jsp:include>
+</c:if>
 <nav style="margin-top: var(--nav-height) + 10px;">
     <div class="navigation">
         <a href="#prod-features">Features</a>
@@ -377,18 +386,28 @@
                             <div class="discount-price">-${prod.discountPercent}%</div>
                         </div>
                     </div>
-                    <%
-                        String contextPath = request.getContextPath();
-                    %>
                     <div class="selections-content">
-                        <form id="add-to-cart" action="<%= contextPath %>/add-cart-item" method="post">
-                            <input type="hidden" name="productId" value="${prod.id}">
-                            <input type="hidden" name="qty">
-                            <button class="button__add-cart" type="submit" onclick="submitAddToCartForm()">
-                                <i class="fa-solid fa-cart-shopping button__icon"></i>
-                                <span>Add to cart</span>
-                            </button>
-                        </form>
+                        <c:if test="${userRole == 'CUSTOMER' and prod.markAsDeleted == false}">
+                            <form id="add-to-cart" action="<%= contextPath %>/add-cart-item" method="post">
+                                <input type="hidden" name="productId" value="${prod.id}">
+                                <input type="hidden" name="qty">
+                                <button class="button__add-cart" type="submit" onclick="submitAddToCartForm()">
+                                    <i class="fa-solid fa-cart-shopping button__icon"></i>
+                                    <span>Add to cart</span>
+                                </button>
+                            </form>
+                        </c:if>
+                        <c:if test="${userRole == 'SALESPERSON' and prod.markAsDeleted == false}">
+                            <form id="add-to-cart" action="<%= contextPath %>/update-prod" method="post">
+                                <input type="hidden" name="prodID" value="${prod.id}">
+                                <input type="hidden" name="qty">
+                                <button class="button__edit" type="submit">
+                                    <i class="fa-solid fa-pen button__icon"></i>
+                                    <span>Edit</span>
+                                </button>
+                            </form>
+                        </c:if>
+
                     </div>
                 </div>
             </div>

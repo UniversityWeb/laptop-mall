@@ -10,5 +10,7 @@ public interface ProdRepos extends BaseRepos<Product, Long> {
     Product update(Product prod);
     List<Product> getProdsByModel(String model);
     List<Product> getProdsByCategory(ECategory eCategory);
+    int markProductAsDeleted(Long prodId);
+    List<Product> getProdsIsAvailable();
 }
 

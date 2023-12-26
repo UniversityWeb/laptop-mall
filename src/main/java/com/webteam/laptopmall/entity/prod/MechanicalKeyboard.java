@@ -56,8 +56,8 @@ public class MechanicalKeyboard extends Product {
                               double discountPercent, String version, String color, ECategory category,
                               int releaseYear, Set<Laptop.EOS> compatibilities, Set<EConnection> connections,
                               String cableLength, String switchType, ELayout layout, int keyCount,
-                              String keycapMaterial, String batteryType) {
-        super(brand, model, desc, price, stockQty, discountPercent, version, color, category, releaseYear);
+                              String keycapMaterial, String batteryType, boolean markAsDeleted) {
+        super(brand, model, desc, price, stockQty, discountPercent, version, color, category, releaseYear,markAsDeleted);
         this.compatibilities = compatibilities;
         this.connections = connections;
         this.cableLength = cableLength;

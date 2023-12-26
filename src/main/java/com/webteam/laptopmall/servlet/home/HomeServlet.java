@@ -42,7 +42,13 @@ public class HomeServlet extends HttpServlet {
         User.ERole role = userService.getRoleByUsername(username);
         String realPath = req.getServletContext().getRealPath("/");
         String url = getUrlByRole(role);
-        if(role == User.ERole.CUSTOMER){
+
+        if(role == User.ERole.SALESPERSON){
+            List<ProductDTO> prodDTOs = prodService.getProdsIsAvailable();
+            prodDTOs.forEach(prod -> prod=prodImgIO.loadProdImageUrls(prod,realPath));
+            req.setAttribute("prods", prodDTOs);
+        }
+        else {
             List<ProductDTO> laptops= prodService.getProdsByCategory(ECategory.LAPTOP);
             List<ProductDTO> keyboards= prodService.getProdsByCategory(ECategory.MECHANICAL_KEYBOARD);
             List<ProductDTO> monitors= prodService.getProdsByCategory(ECategory.MONITOR);

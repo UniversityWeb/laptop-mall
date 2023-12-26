@@ -52,11 +52,11 @@ public class OrderQuery {
 
     public TypedQuery<Object[]> buildGetDataProductDESCByTime(EntityManager em, Integer month, Integer year) {
         String sqlStr = "SELECT oi.product, SUM(oi.qty) as totalQty " +
-                        "FROM Order o " +
-                        "JOIN o.orderItems oi " +
-                        "WHERE YEAR(o.orderDate) = :year AND MONTH(o.orderDate) = :month " +
-                        "GROUP BY oi.product " +
-                        "ORDER BY totalQty DESC";
+                "FROM Order o " +
+                "JOIN o.orderItems oi " +
+                "WHERE YEAR(o.orderDate) = :year AND MONTH(o.orderDate) = :month " +
+                "GROUP BY oi.product " +
+                "ORDER BY totalQty DESC";
         TypedQuery<Object[]> typedQuery = em.createQuery(sqlStr, Object[].class);
         typedQuery.setMaxResults(10);
         typedQuery.setParameter("month", month);
@@ -75,6 +75,13 @@ public class OrderQuery {
         typedQuery.setMaxResults(10);
         typedQuery.setParameter("month", month);
         typedQuery.setParameter("year", year);
+        return typedQuery;
+    }
+
+    public TypedQuery<Order> buildGetOrdersContainProdID(EntityManager em, Long prodID) {
+        String sqlStr = "SELECT o FROM Order o JOIN o.orderItems oi WHERE oi.product.id = :prodID";
+        TypedQuery<Order> typedQuery = em.createQuery(sqlStr, Order.class);
+        typedQuery.setParameter("prodID", prodID);
         return typedQuery;
     }
 }

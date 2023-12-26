@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.logging.Logger;
 
@@ -22,12 +23,14 @@ public class UserProfileServlet extends HttpServlet {
     private static final Logger log = Logger.getLogger(UserProfileServlet.class.getName());
     private UserService uService;
     private UserImgIO userImgIO;
+    private UserService userService;
 
     @Override
     public void init() throws ServletException {
         super.init();
         uService = new UserServiceImpl();
         userImgIO = new UserImgIOImpl();
+        userService = new UserServiceImpl();
     }
 
     @Override
@@ -69,6 +72,9 @@ public class UserProfileServlet extends HttpServlet {
         if (rowCount > 0) {
             req.getSession().setAttribute("username", username);
         }
+
+        HttpSession session = req.getSession();
+        req.setAttribute("userRole", userService.getByUsername(session.getAttribute("username").toString()).getRole());
 
         String url = "/user-profile";
         String contextPath = req.getContextPath();

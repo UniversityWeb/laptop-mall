@@ -18,4 +18,6 @@ public interface OrderRepos extends BaseRepos<Order, Long> {
     void getDataProductDESCByTime(List<Product> products, List<Integer> qtys, Integer month, Integer year);
 
     void getDataProductASCByTime(List<Product> products, List<Integer> qtys, Integer month, Integer year);
+
+    List<Order> getOrdersContainProdID(Long prodID);
 }

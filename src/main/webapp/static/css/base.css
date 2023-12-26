@@ -94,6 +94,7 @@ a{
     left: 0;
     display: none;
     animation: fadeIn linear 0.15s;
+    z-index: 999;
 }
 
 .modal__overlay {
@@ -151,7 +152,7 @@ a{
     cursor: pointer;
 }
 
-.button__add-cart{
+.button__add-cart,.button__edit{
     width: 50%;
     height: 50px;
     border-radius: var(--radius-btn);
@@ -164,17 +165,17 @@ a{
     border: none;
     cursor: pointer;
 }
-.button__add-cart span{
+.button__add-cart span,.button__edit span{
     position: relative;
     color: var(--color0);
     font-size: 80%;
     font-weight: 600;
     /* transition: opacity 0.4s ease-in-out; */
 }
-.button__add-cart i{
+.button__add-cart i,.button__edit i{
     color: var(--color0);
 }
-.button__add-cart:hover span{
+.button__add-cart:hover span,.button__edit:hover span{
     animation: hiddenItem 0.5s ease-in-out 0.1s forwards;
 }
 

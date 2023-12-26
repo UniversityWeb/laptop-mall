@@ -60,8 +60,8 @@ public class Monitor extends Product {
                    double discountPercent, String version, String color, ECategory category, int releaseYear,
                    double screenSize, String resolution, boolean touchScreen, EPanel panelType, int refreshRate,
                    boolean eyeCareTechnology, int brightness, boolean hdrSupported, boolean builtInSpeakers,
-                   double powerConsumption, double weight, Set<EConnection> connections) {
-        super(brand, model, desc, price, stockQty, discountPercent, version, color, category, releaseYear);
+                   double powerConsumption, double weight, Set<EConnection> connections, boolean markAsDeleted) {
+        super(brand, model, desc, price, stockQty, discountPercent, version, color, category, releaseYear,markAsDeleted);
         this.screenSize = screenSize;
         this.resolution = resolution;
         this.touchScreen = touchScreen;

@@ -80,7 +80,6 @@
     <form action="<%= contextPath %>/cart" method="post">
       <button type="submit" class="nav__btn-icon">
         <i class="fa-solid fa-cart-shopping hover_icon"></i>
-        <div class="cart-bubble">3</div>
       </button>
     </form>
     <form action="<%= contextPath %>/user-profile" method="get">

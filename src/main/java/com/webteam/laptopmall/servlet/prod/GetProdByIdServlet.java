@@ -1,11 +1,14 @@
 package com.webteam.laptopmall.servlet.prod;
 
+import com.webteam.laptopmall.dto.UserDTO;
 import com.webteam.laptopmall.dto.prod.ProductDTO;
 import com.webteam.laptopmall.exception.ProductNotFoundException;
 import com.webteam.laptopmall.io.image.prod.ProdImgIO;
 import com.webteam.laptopmall.io.image.prod.ProdImgIOImpl;
 import com.webteam.laptopmall.service.prod.ProdService;
 import com.webteam.laptopmall.service.prod.ProdServiceImpl;
+import com.webteam.laptopmall.service.user.UserService;
+import com.webteam.laptopmall.service.user.UserServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -13,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,12 +27,14 @@ public class GetProdByIdServlet extends HttpServlet {
     private static final Logger log = Logger.getLogger(GetProdByIdServlet.class.getName());
     private ProdService prodService;
     private ProdImgIO prodImgIO;
+    private UserService userService;
 
     @Override
     public void init() throws ServletException {
         super.init();
         prodService = new ProdServiceImpl();
         prodImgIO = new ProdImgIOImpl();
+        userService= new UserServiceImpl();
     }
 
     @Override
@@ -49,6 +55,12 @@ public class GetProdByIdServlet extends HttpServlet {
             log.log(Level.SEVERE, e.getMessage());
             url = "/WEB-INF/views/access-denied.jsp";
         }
+
+        HttpSession session = req.getSession();
+        String username = (String) session.getAttribute("username");
+        UserDTO user = userService.getByUsername(username);
+
+        req.setAttribute("userRole", user.getRole());
 
         getServletContext().getRequestDispatcher(url).forward(req, resp);
     }

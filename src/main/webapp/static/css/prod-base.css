@@ -6,11 +6,8 @@
     gap: 30px;
     justify-content: flex-start;
 }
-#laptopContent{
+#laptopContent,#keyboardContent,#monitorContent{
     display: flex;
-}
-#keyboardContent,#monitorContent{
-    display: none;
 }
 
 .prod-category__info ,.prod-basic__info{

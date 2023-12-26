@@ -75,24 +75,22 @@ public class ProdServiceImpl implements ProdService {
                 .collect(Collectors.toList());
     }
 
-    @Override
-    public Long createNewProdID() {
-        Long prodID=  generateRandomId();
-        while(getById(prodID) != null)
-            prodID=  generateRandomId();
-        return prodID;
-    }
-
-    public static long generateRandomId() {
-        Random random = new Random();
-        long randomId = random.nextLong();
-
-        return randomId;
-    }
-
     public String [] getNameFromList(List<ProductDTO> topBestSellProducts) {
         List<String> listProductNames = new ArrayList<>();
         topBestSellProducts.forEach(productDTO -> listProductNames.add(productDTO.getModel()));
         return listProductNames.toArray(new String[0]);
+    }
+
+    @Override
+    public int markProductAsDeleted(Long prodId) {
+        return prodRepos.markProductAsDeleted(prodId);
+    }
+
+    @Override
+    public List<ProductDTO> getProdsIsAvailable() {
+        List<Product> prods = prodRepos.getProdsIsAvailable();
+        return prods.stream()
+                .map(ProductMapper::toDTO)
+                .collect(Collectors.toList());
     }
 }

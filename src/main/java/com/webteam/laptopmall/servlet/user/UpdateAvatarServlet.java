@@ -2,14 +2,13 @@ package com.webteam.laptopmall.servlet.user;
 
 import com.webteam.laptopmall.io.image.user.UserImgIO;
 import com.webteam.laptopmall.io.image.user.UserImgIOImpl;
+import com.webteam.laptopmall.service.user.UserService;
+import com.webteam.laptopmall.service.user.UserServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
+import javax.servlet.http.*;
 import java.io.IOException;
 
 @WebServlet("/update-avatar")
@@ -19,11 +18,13 @@ import java.io.IOException;
 public class UpdateAvatarServlet extends HttpServlet {
 
     private UserImgIO userImgIO;
+    private UserService userService;
 
     @Override
     public void init() throws ServletException {
         super.init();
         userImgIO = new UserImgIOImpl();
+        userService = new UserServiceImpl();
     }
 
     @Override
@@ -35,6 +36,9 @@ public class UpdateAvatarServlet extends HttpServlet {
             String realPath = req.getServletContext().getRealPath("/");
             userImgIO.save(realPath, username, part);
         }
+
+        HttpSession session = req.getSession();
+        req.setAttribute("userRole", userService.getByUsername(session.getAttribute("username").toString()).getRole());
 
         String url = "/user-profile";
         String contextPath = req.getContextPath();

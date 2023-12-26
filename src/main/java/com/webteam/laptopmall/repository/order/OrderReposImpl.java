@@ -90,4 +90,9 @@ public class OrderReposImpl extends BaseReposImpl<Order, Long> implements OrderR
             qtys.add(Integer.valueOf(row[1].toString()));
         }
     }
+
+    @Override
+    public List<Order> getOrdersContainProdID(Long prodID) {
+        return getResultList(em -> odQuery.buildGetOrdersContainProdID(em, prodID));
+    }
 }

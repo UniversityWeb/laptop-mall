@@ -1,6 +1,6 @@
 package com.webteam.laptopmall.servlet.statistical;
 
-import com.webteam.laptopmall.dto.prod.ProductDTO;
+import com.google.gson.Gson;
 import com.webteam.laptopmall.entity.Order;
 import com.webteam.laptopmall.service.order.OrderService;
 import com.webteam.laptopmall.service.order.OrderServiceImpl;
@@ -15,8 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.google.gson.Gson;
 
 @WebServlet("/get-datas-chart")
 public class GetDatasChart extends HttpServlet {

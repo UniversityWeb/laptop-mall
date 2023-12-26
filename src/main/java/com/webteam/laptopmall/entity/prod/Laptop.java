@@ -86,8 +86,8 @@ public class Laptop extends Product {
                   int cpuCache, int ramSize, ERam ramType, int ramBusSpeed, int ramMaxSupport,
                   ERom romType, int romSize, double screenSize, String screenResolution,
                   int screenRefreshRate, String screenTechnology, int brightness, boolean antiGlare,
-                  String graphicsCard, double weight, String material, EOS operatingSystem) {
-        super(brand, model, desc, price, stockQty, discountPercent, version, color, category, releaseYear);
+                  String graphicsCard, double weight, String material, EOS operatingSystem, boolean markAsDeleted) {
+        super(brand, model, desc, price, stockQty, discountPercent, version, color, category, releaseYear,markAsDeleted);
         this.cpuName = cpuName;
         this.cpuCores = cpuCores;
         this.cpuThreads = cpuThreads;

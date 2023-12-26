@@ -14,7 +14,7 @@ public interface ProdService {
     List<ProductDTO> getProdsByModel(String model);
     List<ProductDTO> getProdsByCategory(ECategory eCategory);
 
-    Long createNewProdID();
-
     String [] getNameFromList(List<ProductDTO> topBestSellProducts);
+    int markProductAsDeleted(Long prodId);
+    List<ProductDTO> getProdsIsAvailable();
 }

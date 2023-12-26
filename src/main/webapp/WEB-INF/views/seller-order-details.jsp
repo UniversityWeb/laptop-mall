@@ -12,16 +12,16 @@
     <link rel="stylesheet" href="<c:url value="/static/css/order-history-details.css"/>">
 </head>
 <body>
-<jsp:include page="../navbar.jsp"></jsp:include>
+<jsp:include page="seller-navbar.jsp"></jsp:include>
 <section class="content column">
     <div style="height: 100px; width: 100px"></div>
     <div class="history-title center column">
         <h1>Ordered</h1>
         <hr>
     </div>
-    <form class="history-menu row center" action="history" method="get">
+    <form class="history-menu row center" action="seller-orders" method="get">
         <button name="tab" value="ALL" class="history-menu-choose column center">
-        <p>All</p>
+            <p>All</p>
         </button>
         <button name="tab" value="PENDING" class="history-menu-choose column center">
             <p>Pending</p>
@@ -46,7 +46,7 @@
         </button>
     </form>
     <div class="history_details-header row center">
-        <form class="history_details-header-left center row" action="history" method="get">
+        <form class="history_details-header-left center row" action="seller-orders" method="get">
             <button class="button-return center row">
                 <ion-icon name="chevron-back-outline"></ion-icon>
                 <p>RETURN</p>
@@ -64,7 +64,7 @@
             </div>
             <p>&nbsp;|&nbsp;</p>
             <div class="history_details-order-status row">
-                <p>ORDER STATUS:&nbsp;</p>
+                <p>ORDER DATE:&nbsp;</p>
                 <p>${orderHistory.orderDate}</p>
             </div>
         </div>
@@ -107,7 +107,7 @@
                 </li>
 
                 <li class="order_step column center" id="result-status">
-                    <c:if test="${orderHistory.status != 'CANCELLED' and orderHistory.status != 'RETURNED' and orderHistory.status != 'REFUNDED'}">
+                    <c:if test="${orderHistory.status != 'CANCELLED' and orderHistory.status != 'RETURNED'}">
                         <span class="order_step-icon center"><ion-icon name="download-outline"></ion-icon></span>
                         <span class="order_step-title">Delivered</span>
                     </c:if>
@@ -118,11 +118,6 @@
                     <c:if test="${orderHistory.status == 'RETURNED'}">
                         <span class="order_step-icon center"><ion-icon name="sync-outline"></ion-icon></span>
                         <span class="order_step-title">Returned</span>
-                    </c:if>
-
-                    <c:if test="${orderHistory.status == 'REFUNDED'}">
-                        <span class="order_step-icon center"><ion-icon name="sync-outline"></ion-icon></span>
-                        <span class="order_step-title">Refunded</span>
                     </c:if>
                 </li>
             </ul>

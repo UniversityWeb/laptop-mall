@@ -29,14 +29,12 @@ import java.util.stream.Collectors;
 public class OrderServiceImpl implements OrderService{
     private OrderRepos orderRepos;
     private CartItemService cartItemService;
-    private OrderItemService orderItemService;
     private ProdService prodService;
 
     private static final Logger logger = Logger.getLogger(OrderServiceImpl.class.getName());
 
     public OrderServiceImpl(){
         orderRepos = new OrderReposImpl();
-        orderItemService = new OrderItemServiceImpl();
         cartItemService = new CartItemServiceImpl();
         prodService = new ProdServiceImpl();
     }
@@ -130,7 +128,6 @@ public class OrderServiceImpl implements OrderService{
             prodService.update(cartItem.getProduct());
             cartItemService.deleteById(cartItem.getId());
         });
-        order.getOrderItems().forEach(orderItem -> orderItemService.save(orderItem));
         return this.save(order);
     }
 
@@ -258,5 +255,18 @@ public class OrderServiceImpl implements OrderService{
         products.forEach(product -> productName.add(product.getModel()));
         qtys.forEach(qty -> topLeastSellProductsQty.add(qty));
         topLeastSellProductsName = productName.toArray(topLeastSellProductsName);
+    }
+
+    @Override
+    public List<OrderDTO> getOrdersContainProdID(Long prodId) {
+        try{
+            List<Order> orders = orderRepos.getOrdersContainProdID(prodId);
+            return orders.stream()
+                    .map(OrderMapper.INSTANCE::toDTO)
+                    .collect(Collectors.toList());
+        } catch (Exception e){
+            logger.info(e.getMessage());
+            return null;
+        }
     }
 }

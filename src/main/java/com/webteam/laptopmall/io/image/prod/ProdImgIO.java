@@ -11,4 +11,10 @@ public interface ProdImgIO {
     ProductDTO loadProdImageUrls(ProductDTO prodDTO, String realPath);
 
     List<String> loadProdImageUrls(Long prodId, String realPath);
+
+    String save(String realPath, Long prodId, Part part);
+
+    List<String> saveProductImages(Long prodID, String realPath, List<Part> parts);
+
+    void deleteAll(String realPath, Long prodId);
 }

@@ -27,8 +27,8 @@ public class MonitorDTO extends ProductDTO {
                       double discountPercent, String version, String color, int releaseYear, ECategory category,
                       double screenSize, String resolution, boolean touchScreen, Monitor.EPanel panelType,
                       int refreshRate, boolean eyeCareTechnology, int brightness, boolean hdrSupported,
-                      boolean builtInSpeakers, double powerConsumption, double weight, Set<Monitor.EConnection> connections) {
-        super(id, brand, model, desc, price, stockQty, discountPercent, version, color, releaseYear, category);
+                      boolean builtInSpeakers, double powerConsumption, double weight, Set<Monitor.EConnection> connections, boolean markAsDeleted) {
+        super(id, brand, model, desc, price, stockQty, discountPercent, version, color, releaseYear, category,markAsDeleted);
         this.screenSize = screenSize;
         this.resolution = resolution;
         this.touchScreen = touchScreen;

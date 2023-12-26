@@ -25,8 +25,8 @@ public class MechanicalKeyboardDTO extends ProductDTO {
                                  int releaseYear, ECategory category, Set<Laptop.EOS> compatibilities,
                                  Set<MechanicalKeyboard.EConnection> connections, String cableLength,
                                  String switchType, MechanicalKeyboard.ELayout layout,
-                                 int keyCount, String keycapMaterial, String batteryType) {
-        super(id, brand, model, desc, price, stockQty, discountPercent, version, color, releaseYear, category);
+                                 int keyCount, String keycapMaterial, String batteryType, boolean markAsDeleted) {
+        super(id, brand, model, desc, price, stockQty, discountPercent, version, color, releaseYear, category,markAsDeleted);
         this.compatibilities = compatibilities;
         this.connections = connections;
         this.cableLength = cableLength;
