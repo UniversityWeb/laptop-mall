@@ -9,6 +9,8 @@ import com.webteam.laptopmall.product.service.ProdService;
 import com.webteam.laptopmall.product.service.ProdServiceImpl;
 import com.webteam.laptopmall.user.service.UserService;
 import com.webteam.laptopmall.user.service.UserServiceImpl;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -18,13 +20,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 @MultipartConfig()
 @WebServlet("/get-prod-by-id")
 public class GetProdByIdServlet extends HttpServlet {
 
-    private static final Logger log = Logger.getLogger(GetProdByIdServlet.class.getName());
+    private static final Logger log = LogManager.getLogger(GetProdByIdServlet.class);
+
     private ProdService prodService;
     private ProdImgIO prodImgIO;
     private UserService userService;
@@ -52,7 +54,7 @@ public class GetProdByIdServlet extends HttpServlet {
             req.setAttribute("prod", prodDTO);
             url = "/WEB-INF/views/product-details.jsp";
         } catch (ProductNotFoundException e) {
-            log.log(Level.SEVERE, e.getMessage());
+            log.error(e.getMessage());
             url = "/WEB-INF/views/access-denied.jsp";
         }
 

@@ -4,6 +4,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.webteam.laptopmall.message.ChatMessageDTO;
 import com.webteam.laptopmall.message.service.MessageService;
 import com.webteam.laptopmall.message.service.MessageServiceImpl;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,12 +15,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
-import java.util.logging.Logger;
 
 @WebServlet("/api/customer/get-messages-for-customer")
 public class GetMessagesForCustomerServlet extends HttpServlet {
 
-    private static final Logger log = Logger.getLogger(GetMessagesForCustomerServlet.class.getName());
+    private static final Logger log = LogManager.getLogger(GetMessagesForCustomerServlet.class);
+
     private MessageService messageService;
 
     @Override
@@ -47,7 +49,7 @@ public class GetMessagesForCustomerServlet extends HttpServlet {
             ObjectMapper objectMapper = new ObjectMapper();
             return objectMapper.writeValueAsString(msgs);
         } catch (Exception e) {
-            log.severe(e.getMessage());
+            log.error(e.getMessage());
             return "";
         }
     }

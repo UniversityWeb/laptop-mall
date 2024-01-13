@@ -1,18 +1,18 @@
 package com.webteam.laptopmall.infrastructure.repository;
 
 import com.webteam.laptopmall.infrastructure.db.DbCon;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public abstract class BaseReposImpl<T, ID> implements BaseRepos<T, ID> {
 
-    private final Logger log = Logger.getLogger(BaseReposImpl.class.getName());
+    private final Logger log = LogManager.getLogger(BaseReposImpl.class);
 
     protected DbCon dbCon;
     protected EntityManagerFactory emf;
@@ -32,7 +32,7 @@ public abstract class BaseReposImpl<T, ID> implements BaseRepos<T, ID> {
             trans.commit();
             return savedEntity;
         } catch (Exception e) {
-            log.log(Level.SEVERE, e.getMessage());
+            log.error(e.getMessage());
             trans.rollback();
         } finally {
             em.close();
@@ -50,7 +50,7 @@ public abstract class BaseReposImpl<T, ID> implements BaseRepos<T, ID> {
                 return Optional.of(entity);
             }
         } catch (NoResultException e) {
-            log.log(Level.SEVERE, e.getMessage());
+            log.error(e.getMessage());
         } finally {
             em.close();
         }
@@ -71,7 +71,7 @@ public abstract class BaseReposImpl<T, ID> implements BaseRepos<T, ID> {
             }
             trans.commit();
         } catch (NoResultException e) {
-            log.log(Level.SEVERE, e.getMessage());
+            log.error(e.getMessage());
             trans.rollback();
         } finally {
             em.close();
@@ -84,15 +84,15 @@ public abstract class BaseReposImpl<T, ID> implements BaseRepos<T, ID> {
         EntityManager em = emf.createEntityManager();
         String entityName = getClassType().getSimpleName();
         String sqlStr = String.format("SELECT e FROM %s e", entityName);
-        List<T> prods = new ArrayList<>();
+        List<T> list = new ArrayList<>();
         try {
             Class<T> classType = getClassType();
             TypedQuery<T> q = em.createQuery(sqlStr, classType);
-            prods = q.getResultList();
+            list = q.getResultList();
         } finally {
             em.close();
         }
-        return prods;
+        return list;
     }
 
     @Override
@@ -109,7 +109,7 @@ public abstract class BaseReposImpl<T, ID> implements BaseRepos<T, ID> {
             deletedRow = query.executeUpdate();
             trans.commit();
         } catch (Exception e) {
-            log.log(Level.SEVERE, e.getMessage());
+            log.error(e.getMessage());
             trans.rollback();
         } finally {
             em.close();
@@ -128,7 +128,7 @@ public abstract class BaseReposImpl<T, ID> implements BaseRepos<T, ID> {
             rowCount = query.apply(em).executeUpdate();
             trans.commit();
         } catch (Exception e) {
-            log.log(Level.SEVERE, e.getMessage());
+            log.error(e.getMessage());
             trans.rollback();
         } finally {
             em.close();
@@ -146,7 +146,7 @@ public abstract class BaseReposImpl<T, ID> implements BaseRepos<T, ID> {
             TypedQuery<V> typedQuery = query.apply(em);
             entity = typedQuery.getSingleResult();
         } catch (NoResultException e) {
-            log.log(Level.SEVERE, e.getMessage());
+            log.error(e.getMessage());
         } finally {
             em.close();
         }
@@ -160,7 +160,7 @@ public abstract class BaseReposImpl<T, ID> implements BaseRepos<T, ID> {
             TypedQuery<V> typedQuery = query.apply(em);
             items = typedQuery.getResultList();
         } catch (NoResultException e) {
-            log.log(Level.SEVERE, e.getMessage());
+            log.error(e.getMessage());
         } finally {
             em.close();
         }

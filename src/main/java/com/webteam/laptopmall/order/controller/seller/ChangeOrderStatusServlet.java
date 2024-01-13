@@ -1,14 +1,13 @@
 package com.webteam.laptopmall.order.controller.seller;
 
-import com.webteam.laptopmall.order.OrderDTO;
-import com.webteam.laptopmall.order.Order;
 import com.webteam.laptopmall.file.prod.ProdImgIO;
 import com.webteam.laptopmall.file.prod.ProdImgIOImpl;
+import com.webteam.laptopmall.order.Order;
+import com.webteam.laptopmall.order.OrderDTO;
 import com.webteam.laptopmall.order.service.OrderService;
 import com.webteam.laptopmall.order.service.OrderServiceImpl;
-import com.webteam.laptopmall.user.service.UserService;
-import com.webteam.laptopmall.user.service.UserServiceImpl;
-import com.webteam.laptopmall.cart.controller.crud.AddItemServlet;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,14 +17,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 @WebServlet("/seller-change-order-status")
 public class ChangeOrderStatusServlet extends HttpServlet {
+
+    private static final Logger log = LogManager.getLogger(ChangeOrderStatusServlet.class);
+
     private OrderService orderService;
     private ProdImgIO prodImgIO;
-    private static final Logger log = Logger.getLogger(AddItemServlet.class.getName());
+
     @Override
     public void init() throws ServletException {
         super.init();
@@ -57,7 +57,7 @@ public class ChangeOrderStatusServlet extends HttpServlet {
             orderService.update(orderHistory);
             isSuccessful = true;
         } catch (Exception e){
-            log.log(Level.SEVERE, e.getMessage());
+            log.error(e.getMessage());
         }
 
         List<OrderDTO> orders = orderService.getALl();

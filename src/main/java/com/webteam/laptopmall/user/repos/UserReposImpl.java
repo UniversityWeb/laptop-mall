@@ -8,11 +8,9 @@ import com.webteam.laptopmall.util.PassUtil;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.logging.Logger;
 
 public class UserReposImpl extends BaseReposImpl<User, Long> implements UserRepos {
 
-    private static final Logger log = Logger.getLogger(UserReposImpl.class.getName());
     private UserQuery uQuery;
 
     public UserReposImpl() {

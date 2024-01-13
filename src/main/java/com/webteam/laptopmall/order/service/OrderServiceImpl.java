@@ -14,20 +14,22 @@ import com.webteam.laptopmall.cartitem.service.CartItemServiceImpl;
 import com.webteam.laptopmall.product.service.ProdService;
 import com.webteam.laptopmall.product.service.ProdServiceImpl;
 import com.webteam.laptopmall.util.CurrencyUtil;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public class OrderServiceImpl implements OrderService{
+
+    private static final Logger log = LogManager.getLogger(OrderServiceImpl.class);
+
     private OrderRepos orderRepos;
     private CartItemService cartItemService;
     private ProdService prodService;
-
-    private static final Logger logger = Logger.getLogger(OrderServiceImpl.class.getName());
 
     public OrderServiceImpl(){
         orderRepos = new OrderReposImpl();
@@ -136,7 +138,7 @@ public class OrderServiceImpl implements OrderService{
                     .map(OrderMapper.INSTANCE::toDTO)
                     .collect(Collectors.toList());
         } catch (Exception e){
-            logger.info(e.getMessage());
+            log.info(e.getMessage());
             return null;
         }
     }
@@ -149,7 +151,7 @@ public class OrderServiceImpl implements OrderService{
                     .map(OrderMapper.INSTANCE::toDTO)
                     .collect(Collectors.toList());
         } catch (Exception e){
-            logger.info(e.getMessage());
+            log.info(e.getMessage());
             return null;
         }
     }
@@ -160,7 +162,7 @@ public class OrderServiceImpl implements OrderService{
             Order order = orderRepos.getByUserAndOrderId(userId, orderId);
             return OrderMapper.INSTANCE.toDTO(order);
         }catch (Exception e){
-            logger.info(e.getMessage());
+            log.info(e.getMessage());
             return null;
         }
     }
@@ -173,7 +175,7 @@ public class OrderServiceImpl implements OrderService{
                     .map(OrderMapper.INSTANCE::toDTO)
                     .collect(Collectors.toList());
         }catch (Exception e){
-            logger.info(e.getMessage());
+            log.info(e.getMessage());
             return null;
         }
     }
@@ -261,7 +263,7 @@ public class OrderServiceImpl implements OrderService{
                     .map(OrderMapper.INSTANCE::toDTO)
                     .collect(Collectors.toList());
         } catch (Exception e){
-            logger.info(e.getMessage());
+            log.info(e.getMessage());
             return null;
         }
     }

@@ -3,6 +3,8 @@ package com.webteam.laptopmall.user.restcontroller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.webteam.laptopmall.user.service.UserService;
 import com.webteam.laptopmall.user.service.UserServiceImpl;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,12 +14,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
-import java.util.logging.Logger;
 
 @WebServlet("/api/salesperson/get-customers")
 public class GetCustomersServlet extends HttpServlet {
 
-    private static final Logger log = Logger.getLogger(GetCustomersServlet.class.getName());
+    private static final Logger log = LogManager.getLogger(GetCustomersServlet.class);
+
     private UserService userService;
 
     @Override
@@ -45,7 +47,7 @@ public class GetCustomersServlet extends HttpServlet {
             ObjectMapper objectMapper = new ObjectMapper();
             return objectMapper.writeValueAsString(customerUsernames);
         } catch (Exception e) {
-            log.severe(e.getMessage());
+            log.error(e.getMessage());
             return "";
         }
     }

@@ -1,13 +1,12 @@
 package com.webteam.laptopmall.order.controller.history;
 
-import com.webteam.laptopmall.order.OrderDTO;
-import com.webteam.laptopmall.user.UserDTO;
 import com.webteam.laptopmall.order.Order;
+import com.webteam.laptopmall.order.OrderDTO;
 import com.webteam.laptopmall.order.service.OrderService;
 import com.webteam.laptopmall.order.service.OrderServiceImpl;
+import com.webteam.laptopmall.user.UserDTO;
 import com.webteam.laptopmall.user.service.UserService;
 import com.webteam.laptopmall.user.service.UserServiceImpl;
-import com.webteam.laptopmall.cart.controller.crud.AddItemServlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,14 +15,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.logging.Logger;
 
 @WebServlet("/change-order-status")
 public class ChangeOrderStatusServlet extends HttpServlet {
     private OrderService orderService;
     private UserService userService;
 
-    private static final Logger logger = Logger.getLogger(AddItemServlet.class.getName());
     @Override
     public void init() throws ServletException {
         super.init();

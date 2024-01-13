@@ -1,14 +1,16 @@
 package com.webteam.laptopmall.file;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.IOException;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.stream.Stream;
 
 public class FileUtil {
-    private static final Logger log = Logger.getLogger(FileUtil.class.getName());
+
+    private static final Logger log = LogManager.getLogger(FileUtil.class);
 
     public static void deleteAllFilesInFolder(String folderPath, String fileNameToIgnore) {
         try {
@@ -23,13 +25,13 @@ public class FileUtil {
 
                 @Override
                 public FileVisitResult visitFileFailed(Path file, IOException exc) throws IOException {
-                    log.severe("Failed to delete file: " + file);
+                    log.error("Failed to delete file: " + file);
                     return FileVisitResult.CONTINUE;
                 }
             });
             System.out.println("All files in the folder deleted successfully.");
         } catch (IOException e) {
-            log.severe(e.getMessage());
+            log.error(e.getMessage());
         }
     }
 
@@ -43,7 +45,7 @@ public class FileUtil {
                     .findFirst()
                     .orElse("");
         } catch (IOException e) {
-            log.log(Level.SEVERE, e.getMessage());
+            log.error(e.getMessage());
             return "";
         }
     }

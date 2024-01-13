@@ -4,18 +4,18 @@ import com.webteam.laptopmall.product.ECategory;
 import com.webteam.laptopmall.product.entity.Product;
 import com.webteam.laptopmall.product.ProdQuery;
 import com.webteam.laptopmall.infrastructure.repository.BaseReposImpl;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class ProdReposImpl extends BaseReposImpl<Product, Long> implements ProdRepos {
 
-    private static final Logger log = Logger.getLogger(ProdReposImpl.class.getName());
+    private static final Logger log = LogManager.getLogger(ProdReposImpl.class);
 
     private ProdQuery pQuery;
 
@@ -40,7 +40,7 @@ public class ProdReposImpl extends BaseReposImpl<Product, Long> implements ProdR
             trans.commit();
             return prod;
         } catch (NoResultException e) {
-            log.log(Level.SEVERE, e.getMessage());
+            log.error(e.getMessage());
             trans.rollback();
         } finally {
             em.close();
@@ -84,7 +84,7 @@ public class ProdReposImpl extends BaseReposImpl<Product, Long> implements ProdR
             deletedRow = query.executeUpdate();
             trans.commit();
         } catch (Exception e) {
-            log.log(Level.SEVERE, e.getMessage());
+            log.error(e.getMessage());
             trans.rollback();
         } finally {
             em.close();

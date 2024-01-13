@@ -1,14 +1,15 @@
 package com.webteam.laptopmall.infrastructure.db;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class DbCon {
     private static DbCon ins;
     private EntityManagerFactory emf;
-    private final Logger log = Logger.getLogger(DbCon.class.getName());
+    private final Logger log = LogManager.getLogger(DbCon.class);
 
     public static DbCon getIns() {
         if (ins == null) {
@@ -28,8 +29,9 @@ public class DbCon {
     private void initEmf() {
         try {
             emf = Persistence.createEntityManagerFactory("laptopMall");
+            log.info("EntityManagerFactory initialized successfully.");
         } catch (Exception e) {
-            log.log(Level.SEVERE, e.getMessage());
+            log.error("Error initializing EntityManagerFactory: {}", e.getMessage());
         }
     }
 

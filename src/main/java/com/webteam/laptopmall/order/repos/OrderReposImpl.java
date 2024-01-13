@@ -5,18 +5,19 @@ import com.webteam.laptopmall.product.entity.Product;
 import com.webteam.laptopmall.order.OrderQuery;
 import com.webteam.laptopmall.infrastructure.repository.BaseReposImpl;
 import com.webteam.laptopmall.product.repos.ProdReposImpl;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class OrderReposImpl extends BaseReposImpl<Order, Long> implements OrderRepos {
 
+    private static final Logger log = LogManager.getLogger(OrderReposImpl.class);
+
     private OrderQuery odQuery;
-    private static final Logger log = Logger.getLogger(ProdReposImpl.class.getName());
 
     public OrderReposImpl() {
         super();
@@ -38,7 +39,7 @@ public class OrderReposImpl extends BaseReposImpl<Order, Long> implements OrderR
             trans.commit();
             return order;
         } catch (NoResultException e) {
-            log.log(Level.SEVERE, e.getMessage());
+            log.error(e.getMessage());
             trans.rollback();
         } finally {
             em.close();

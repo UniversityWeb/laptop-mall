@@ -3,15 +3,15 @@ package com.webteam.laptopmall.cartitem.repos;
 import com.webteam.laptopmall.cartitem.CartItem;
 import com.webteam.laptopmall.cartitem.CartItemQuery;
 import com.webteam.laptopmall.infrastructure.repository.BaseReposImpl;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class CartItemReposImpl extends BaseReposImpl<CartItem, Long> implements CartItemRepos {
 
-    private final Logger log = Logger.getLogger(CartItemReposImpl.class.getName());
+    private final Logger log = LogManager.getLogger(CartItemReposImpl.class);
 
     private CartItemQuery ciQuery;
 
@@ -36,7 +36,7 @@ public class CartItemReposImpl extends BaseReposImpl<CartItem, Long> implements 
             updatedEntities = query.executeUpdate();
             trans.commit();
         } catch (NoResultException e) {
-            log.log(Level.SEVERE, e.getMessage());
+            log.error(e.getMessage());
             trans.rollback();
         } finally {
             em.close();

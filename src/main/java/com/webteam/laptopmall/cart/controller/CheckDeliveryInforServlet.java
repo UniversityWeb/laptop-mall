@@ -1,6 +1,8 @@
 package com.webteam.laptopmall.cart.controller;
 
 import com.webteam.laptopmall.order.OrderDTO;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,11 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.logging.Logger;
 
 @WebServlet("/check-infor-delivery")
 public class CheckDeliveryInforServlet extends HttpServlet {
-    private static final Logger logger = Logger.getLogger(CheckDeliveryInforServlet.class.getName());
+
+    private static final Logger log = LogManager.getLogger(CheckDeliveryInforServlet.class);
 
     @Override
     public void init() throws ServletException {
@@ -38,7 +40,7 @@ public class CheckDeliveryInforServlet extends HttpServlet {
         order.setNote(note);
 
         if(order.getDeliveryMethod() == null){
-            logger.severe("Delivery is empty");
+            log.info("Delivery is empty");
             url = "/delivery-infor?error=True";
         }
 

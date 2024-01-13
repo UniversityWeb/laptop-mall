@@ -1,11 +1,14 @@
 package com.webteam.laptopmall.util;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.logging.Logger;
 
 public class PassUtil {
-    private static final Logger log = Logger.getLogger(PassUtil.class.getName());
+
+    private static final Logger log = LogManager.getLogger(PassUtil.class);
 
     public static boolean comparePass(String passHash, String plainPass) {
         String hashedInput = hashPass(plainPass);
@@ -27,7 +30,7 @@ public class PassUtil {
             }
             return sb.toString();
         } catch (NoSuchAlgorithmException e) {
-            log.severe(e.getMessage());
+            log.error(e.getMessage());
             return plainPass;
         }
     }

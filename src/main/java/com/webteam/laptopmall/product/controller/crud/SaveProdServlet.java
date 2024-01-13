@@ -19,6 +19,8 @@ import com.webteam.laptopmall.file.prod.ProdImgIOImpl;
 import com.webteam.laptopmall.product.controller.GetProdByIdServlet;
 import com.webteam.laptopmall.product.service.ProdService;
 import com.webteam.laptopmall.product.service.ProdServiceImpl;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -30,15 +32,15 @@ import javax.servlet.http.Part;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 @MultipartConfig()
 @WebServlet("/save-prod")
 public class SaveProdServlet extends HttpServlet {
+
+    private static final Logger log = LogManager.getLogger(SaveProdServlet.class);
+
     private ProdService prodService;
     private ProdImgIO prodImgIO;
-    private static final Logger log = Logger.getLogger(GetProdByIdServlet.class.getName());
     private LaptopDTOBuilder laptopDTOBuilder;
     private KeyboardDTOBuilder keyboardDTOBuilder;
     private MonitorDTOBuilder monitorDTOBuilder;
@@ -151,7 +153,7 @@ public class SaveProdServlet extends HttpServlet {
                 isSuccessful=true;
 
             }catch (Exception e){
-                log.log(Level.SEVERE,e.getMessage());
+                log.error(e.getMessage());
             }
         } else if (category.equals(ECategory.MECHANICAL_KEYBOARD)) {
             Set<Laptop.EOS> compatibilities = new HashSet<>() ;
@@ -199,7 +201,7 @@ public class SaveProdServlet extends HttpServlet {
                 isSuccessful=true;
 
             }catch (Exception e){
-                log.log(Level.SEVERE,e.getMessage());
+                log.error(e.getMessage());
             }
         } else if (category.equals(ECategory.MONITOR)) {
             double screenSize = Double.valueOf( req.getParameter("screenSize"));
@@ -252,7 +254,7 @@ public class SaveProdServlet extends HttpServlet {
                 isSuccessful=true;
 
             }catch (Exception e){
-                log.log(Level.SEVERE,e.getMessage());
+                log.error(e.getMessage());
             }
         }
 

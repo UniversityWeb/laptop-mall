@@ -9,6 +9,8 @@ import com.webteam.laptopmall.realtimechat.service.ChatServiceImpl;
 import com.webteam.laptopmall.message.service.MessageService;
 import com.webteam.laptopmall.message.service.MessageServiceImpl;
 import com.webteam.laptopmall.user.service.UserServiceImpl;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
@@ -19,12 +21,12 @@ import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.time.Instant;
-import java.util.logging.Logger;
 
 @ServerEndpoint("/chat/{senderUsername}/{receiverUsername}")
 public class ChatWebsocket {
 
-    private static final Logger log = Logger.getLogger(ChatWebsocket.class.getName());
+    private static final Logger log = LogManager.getLogger(ChatWebsocket.class);
+
     private Session session;
     private UserDTO sender;
     private UserDTO receiver;
@@ -90,7 +92,7 @@ public class ChatWebsocket {
 
             session.getBasicRemote().sendText(jsonMessage);
         } catch (IOException e) {
-            log.severe(e.getMessage());
+            log.error(e.getMessage());
         }
     }
 

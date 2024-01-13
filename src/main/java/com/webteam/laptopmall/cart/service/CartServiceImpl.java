@@ -8,12 +8,10 @@ import com.webteam.laptopmall.util.CurrencyUtil;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.logging.Logger;
 
 public class CartServiceImpl implements CartService {
 
     private CartItemService cartItemService;
-    private static final Logger logger = Logger.getLogger(CartServiceImpl.class.getName());
     public CartServiceImpl(){
         cartItemService = new CartItemServiceImpl();
     }

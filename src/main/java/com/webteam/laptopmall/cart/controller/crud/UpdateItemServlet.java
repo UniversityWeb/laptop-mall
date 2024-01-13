@@ -6,6 +6,8 @@ import com.webteam.laptopmall.cart.service.CartService;
 import com.webteam.laptopmall.cart.service.CartServiceImpl;
 import com.webteam.laptopmall.user.service.UserService;
 import com.webteam.laptopmall.user.service.UserServiceImpl;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,14 +17,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
-import java.util.logging.Logger;
 
 @WebServlet("/update-cart-item")
 public class UpdateItemServlet extends HttpServlet {
+
+    private static final Logger log = LogManager.getLogger(UpdateItemServlet.class);
+
     private CartService cartService;
     private UserService userService;
-
-    private static final Logger logger = Logger.getLogger(UpdateItemServlet.class.getName());
 
     @Override
     public void init() throws ServletException {
@@ -77,7 +79,7 @@ public class UpdateItemServlet extends HttpServlet {
                 }
             } catch (NumberFormatException e){
                 qty = cartItem.getQty();
-                logger.severe("ERROR: " + e.getMessage());
+                log.error("ERROR: " + e.getMessage());
             }
         }
 

@@ -4,6 +4,8 @@ import com.webteam.laptopmall.product.dto.ProductDTO;
 import com.webteam.laptopmall.product.service.ProdService;
 import com.webteam.laptopmall.product.service.ProdServiceImpl;
 import com.webteam.laptopmall.file.FileUtil;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.Part;
 import java.io.File;
@@ -16,13 +18,12 @@ import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public class ProdImgIOImpl implements ProdImgIO {
 
-    private static final Logger log = Logger.getLogger(ProdImgIOImpl.class.getName());
+    private static final Logger log = LogManager.getLogger(ProdImgIOImpl.class);
+
     private ProdService prodService = new ProdServiceImpl();
 
     @Override
@@ -54,7 +55,7 @@ public class ProdImgIOImpl implements ProdImgIO {
                     .map(f -> createJSTLUrl(prodId, f.getName()))
                     .collect(Collectors.toList())) ;
         } catch (Exception e) {
-            log.log(Level.SEVERE, e.getMessage());
+            log.error(e.getMessage());
         }
         if (imgUrls.isEmpty()) {
             imgUrls.add( getDefaultImg(0) );
@@ -90,7 +91,7 @@ public class ProdImgIOImpl implements ProdImgIO {
             Files.copy(fileContent, Paths.get(pathToSave), StandardCopyOption.REPLACE_EXISTING);
             return pathToSave;
         } catch (IOException e) {
-            log.severe(e.getMessage());
+            log.error(e.getMessage());
             return "";
         }
     }

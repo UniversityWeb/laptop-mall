@@ -7,6 +7,8 @@ import com.webteam.laptopmall.file.user.UserImgIO;
 import com.webteam.laptopmall.file.user.UserImgIOImpl;
 import com.webteam.laptopmall.user.service.UserService;
 import com.webteam.laptopmall.user.service.UserServiceImpl;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,12 +17,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.logging.Logger;
 
 @WebServlet("/user-profile")
 public class UserProfileServlet extends HttpServlet {
 
-    private static final Logger log = Logger.getLogger(UserProfileServlet.class.getName());
+    private static final Logger log = LogManager.getLogger(UserProfileServlet.class);
+
     private UserService uService;
     private UserImgIO userImgIO;
     private UserService userService;
@@ -45,7 +47,7 @@ public class UserProfileServlet extends HttpServlet {
             req.setAttribute("genders", EGender.values());
             url = "/WEB-INF/views/customer-profile.jsp";
         } catch (UserNotFoundException e) {
-            log.severe(e.getMessage());
+            log.error(e.getMessage());
         }
         getServletContext().getRequestDispatcher(url).forward(req, resp);
     }

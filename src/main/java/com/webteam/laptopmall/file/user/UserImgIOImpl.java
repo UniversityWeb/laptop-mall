@@ -1,6 +1,8 @@
 package com.webteam.laptopmall.file.user;
 
 import com.webteam.laptopmall.user.UserDTO;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.Part;
 import java.io.File;
@@ -10,11 +12,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class UserImgIOImpl implements UserImgIO {
-    private static final Logger log = Logger.getLogger(UserImgIOImpl.class.getName());
+    private static final Logger log = LogManager.getLogger(UserImgIOImpl.class);
 
     @Override
     public String save(String realPath, String username, Part part) {
@@ -31,7 +31,7 @@ public class UserImgIOImpl implements UserImgIO {
             Files.copy(fileContent, Paths.get(pathToSave), StandardCopyOption.REPLACE_EXISTING);
             return pathToSave;
         } catch (IOException e) {
-            log.severe(e.getMessage());
+            log.error(e.getMessage());
             return "";
         }
     }
@@ -63,7 +63,7 @@ public class UserImgIOImpl implements UserImgIO {
                 return jstlImgUrl;
             }
         } catch (Exception e) {
-            log.log(Level.SEVERE, e.getMessage());
+            log.error(e.getMessage());
         }
         return getDefaultImg();
     }

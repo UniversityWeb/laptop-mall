@@ -6,6 +6,8 @@ import com.webteam.laptopmall.file.prod.ProdImgIOImpl;
 import com.webteam.laptopmall.order.service.OrderService;
 import com.webteam.laptopmall.order.service.OrderServiceImpl;
 import com.webteam.laptopmall.util.MailUtil;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.mail.MessagingException;
 import javax.servlet.ServletException;
@@ -15,13 +17,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.logging.Logger;
 
 @WebServlet("/send-voice")
 public class SendVoiceServlet extends HttpServlet {
+
+    private static final Logger log = LogManager.getLogger(PaymentServlet.class);
+
     private OrderService orderService;
     private ProdImgIO prodImgIO;
-    private static final Logger logger = Logger.getLogger(PaymentServlet.class.getName());
 
     @Override
     public void init() throws ServletException {
@@ -59,7 +62,7 @@ public class SendVoiceServlet extends HttpServlet {
             String errorMessage = "ERROR: Unable to send email." +
                     "Check Tomcat logs for details.< br>" +
                     "ERROR MESSAGE: " + e.getMessage();
-            logger.severe(errorMessage);
+            log.error(errorMessage);
             url = "/method-delivery";
         }
         resp.sendRedirect(getServletContext().getContextPath() + url);

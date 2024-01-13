@@ -11,6 +11,8 @@ import com.webteam.laptopmall.product.service.ProdService;
 import com.webteam.laptopmall.product.service.ProdServiceImpl;
 import com.webteam.laptopmall.user.service.UserService;
 import com.webteam.laptopmall.user.service.UserServiceImpl;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,16 +22,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
-import java.util.logging.Logger;
 
 @WebServlet("/add-cart-item")
 public class AddItemServlet extends HttpServlet {
+
+    private static final Logger log = LogManager.getLogger(AddItemServlet.class);
 
     private ProdService prodService;
     private CartService cartService;
     private UserService userService;
     private CartItemService cartItemService;
-    private static final Logger logger = Logger.getLogger(AddItemServlet.class.getName());
 
     @Override
     public void init() throws ServletException {
@@ -69,13 +71,13 @@ public class AddItemServlet extends HttpServlet {
                 }
             } catch (NumberFormatException e){
                 qty = 1;
-                logger.severe(e.getMessage());
+                log.error(e.getMessage());
             }
             CartItemDTO cartItem = new CartItemDTO(qty, customer, product);
             cartService.addItem(cartItem);
             url = "/cart";
         } catch (Exception e){
-            logger.severe(e.getMessage());
+            log.error(e.getMessage());
         }
 
         resp.sendRedirect(req.getContextPath() + url);

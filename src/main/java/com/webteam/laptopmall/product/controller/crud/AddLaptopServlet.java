@@ -7,7 +7,6 @@ import com.webteam.laptopmall.file.prod.ProdImgIO;
 import com.webteam.laptopmall.file.prod.ProdImgIOImpl;
 import com.webteam.laptopmall.product.service.ProdService;
 import com.webteam.laptopmall.product.service.ProdServiceImpl;
-import com.webteam.laptopmall.product.controller.GetProdByIdServlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,13 +15,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-import java.util.logging.Logger;
 
 @WebServlet("/add-laptop")
 public class AddLaptopServlet extends HttpServlet {
     private ProdService prodService;
     private ProdImgIO prodImgIO;
-    private static final Logger log = Logger.getLogger(GetProdByIdServlet.class.getName());
 
     @Override
     public void init() throws ServletException {
