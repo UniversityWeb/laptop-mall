@@ -16,7 +16,7 @@ public class ChatMessage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "message", columnDefinition = "TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci")
+    @Column(name = "message", columnDefinition = "TEXT")
     private String msg;
 
     @Enumerated(EnumType.STRING)
