@@ -94,4 +94,12 @@ public class UserServiceImpl implements UserService {
     public int updatePassOnly(Long userId, String newHashedPass) {
         return userRepos.updatePassOnly(userId, newHashedPass);
     }
+
+    @Override
+    public List<UserDTO> getUsersByRole(User.ERole role) {
+        List<User> users = userRepos.getUsersByRole(role);
+        return users.stream()
+                .map(uMapper::toDTO)
+                .collect(Collectors.toList());
+    }
 }

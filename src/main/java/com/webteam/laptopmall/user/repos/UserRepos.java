@@ -11,8 +11,7 @@ public interface UserRepos extends BaseRepos<User, Long> {
     List<String> getAllCustomerUsernames();
     int updateWithoutPassword(User user);
     User.ERole getRoleByUsername(String username);
-
     boolean isValid(PassUpdateForm passUpdateForm);
-
     int updatePassOnly(Long userId, String newHashedPass);
+    List<User> getUsersByRole(User.ERole role);
 }
