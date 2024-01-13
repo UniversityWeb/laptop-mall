@@ -107,7 +107,7 @@
                 </li>
 
                 <li class="order_step column center" id="result-status">
-                    <c:if test="${orderHistory.status != 'CANCELLED' and orderHistory.status != 'RETURNED'}">
+                    <c:if test="${orderHistory.status != 'CANCELLED' and orderHistory.status != 'RETURNED' and orderHistory.status != 'REFUNDED'}">
                         <span class="order_step-icon center"><ion-icon name="download-outline"></ion-icon></span>
                         <span class="order_step-title">Delivered</span>
                     </c:if>
@@ -118,6 +118,11 @@
                     <c:if test="${orderHistory.status == 'RETURNED'}">
                         <span class="order_step-icon center"><ion-icon name="sync-outline"></ion-icon></span>
                         <span class="order_step-title">Returned</span>
+                    </c:if>
+
+                    <c:if test="${orderHistory.status == 'REFUNDED'}">
+                        <span class="order_step-icon center"><ion-icon name="sync-outline"></ion-icon></span>
+                        <span class="order_step-title">Refunded</span>
                     </c:if>
                 </li>
             </ul>

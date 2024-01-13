@@ -1,16 +1,16 @@
-var category = document.getElementById("category")
-var laptopContent = document.getElementById("laptopContent")
-var keyboardContent = document.getElementById("keyboardContent")
-var monitorContent = document.getElementById("monitorContent")
-category.addEventListener('change', function () {
-    laptopContent.style.display = 'none';
-    keyboardContent.style.display = 'none';
-    monitorContent.style.display = 'none';
-    var categoryValue = category.value;
-    if(categoryValue == "LAPTOP")
-        laptopContent.style.display = 'flex';
-    if(categoryValue == "MECHANICAL_KEYBOARD")
-        keyboardContent.style.display = 'flex';
-    if(categoryValue == "MONITOR")
-        monitorContent.style.display = 'flex';
-});
+var imgList = document.getElementById("imgList")
+var imgInput  = document.getElementById("imgInput")
+imgInput.onchange = (e)=>{
+    for (i =0; i<imgInput.files.length;i++){
+        var newItem = document.createElement("li");
+
+        newItem.innerHTML = `
+        <div class="img-bottom">
+            <i class="delete-icon fa-solid fa-trash"></i>
+        </div>
+        <img src="${URL.createObjectURL(imgInput.files[i])}" alt="">
+    `;
+        newItem.classList.add("img-item");
+        imgList.appendChild(newItem);
+    }
+}

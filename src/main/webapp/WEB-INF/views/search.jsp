@@ -158,22 +158,23 @@
                             <span>Color:  <c:out value="${product.color}"/></span>
                         </div>
                         <div class="product__selection">
-                            <form  action="add-cart-item" method="post" style="width: 50%;">
-                                <button type="submit" class="button__add-cart" style="width: 80%;">
-                                    <input type="hidden" name="productId" value="${product.id}">
-                                    <i class="fa-solid fa-cart-shopping button__icon"></i>
-                                    <span>Add to cart</span>
-                                </button>
-                            </form>
-
+                            <c:if test="${product.markAsDeleted == false}">
+                                <form  action="add-cart-item" method="post" style="width: 50%;">
+                                    <button type="submit" class="button__add-cart" style="width: 80%;">
+                                        <input type="hidden" name="productId" value="${product.id}">
+                                        <i class="fa-solid fa-cart-shopping button__icon"></i>
+                                        <span>Add to cart</span>
+                                    </button>
+                                </form>
+                            </c:if>
                             <a href="get-prod-by-id?id=${product.id}" class="input__group-selection">
                                 <input type="submit" value="LEARN MORE">
                                 <div class="line"></div>
                             </a>
-                            <div class="input__group-selection">
-                                <input type="button" value="FIND SUPPORT" onclick="openChatbox()">
-                                <div class="line"></div>
-                            </div>
+<%--                            <div class="input__group-selection">--%>
+<%--                                <input type="button" value="FIND SUPPORT" onclick="openChatbox()">--%>
+<%--                                <div class="line"></div>--%>
+<%--                            </div>--%>
                         </div>
                     </div>
                 </li>
@@ -182,7 +183,7 @@
     </section>
 </section>
 <footer></footer>
-<jsp:include page="customer-chatbox.jsp"></jsp:include>
+<%--<jsp:include page="customer-chatbox.jsp"></jsp:include>--%>
 <script src="<c:url value="/static/js/base.js"/>" async defer ></script>
 <script src="<c:url value="/static/js/search.js"/>" async defer ></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>

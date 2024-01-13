@@ -1,9 +1,10 @@
 package com.webteam.laptopmall.mapper;
 
-import com.webteam.laptopmall.dto.OrderItemDTO;
-import com.webteam.laptopmall.dto.prod.LaptopDTO;
-import com.webteam.laptopmall.entity.OrderItem;
-import com.webteam.laptopmall.entity.prod.Laptop;
+import com.webteam.laptopmall.orderitem.OrderItemDTO;
+import com.webteam.laptopmall.product.dto.LaptopDTO;
+import com.webteam.laptopmall.orderitem.OrderItem;
+import com.webteam.laptopmall.orderitem.OrderItemMapper;
+import com.webteam.laptopmall.product.entity.Laptop;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;

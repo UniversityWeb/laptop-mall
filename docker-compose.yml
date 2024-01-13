@@ -2,15 +2,15 @@ version: '3'
 services:
   laptop-mall-db:
     container_name: laptop-mall-db
-    image: mysql:latest
+    image: postgres:latest
     environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=LaptopMall
-      - MYSQL_ROOT_HOST=%
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=LaptopMall
     ports:
-      - "3307:3306"
+      - "5432:5432"
     volumes:
-      - laptop-mall-data:/var/lib/mysql
+      - laptop-mall-data:/var/lib/postgresql
 
 volumes:
   laptop-mall-data:

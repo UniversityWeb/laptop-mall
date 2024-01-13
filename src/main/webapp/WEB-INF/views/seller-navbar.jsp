@@ -40,6 +40,11 @@
                 <i class="fa-solid fa-chart-simple hover_icon"></i>
             </button>
         </form>
+        <form action="<%= contextPath %>/seller-orders" method="get">
+            <button type="submit" class="nav__btn-icon">
+                <i class="fa-solid fa-rectangle-list hover_icon"></i>
+            </button>
+        </form>
         <form action="<%= contextPath %>/chat/salesperson" method="get">
             <button type="submit" class="nav__btn-icon hover_icon">
                 <i class="fa-solid fa-comment hover_icon"></i>

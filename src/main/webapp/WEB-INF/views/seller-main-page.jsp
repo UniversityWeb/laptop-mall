@@ -1,5 +1,8 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+    String contextPath = request.getContextPath();
+%>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -16,7 +19,7 @@
 
 <section class="prod-management__container">
     <div class="tab-bar">
-        <form method="post" action="seller-main-page" class="input-txt__group">
+        <form method="post" action="<%= contextPath %>/seller-main-page" class="input-txt__group">
             <input type="hidden" name="action" value="Search">
             <input id="input-element-prod" name="model" class="input-search" type="search">
             <i id="clear-btn-search-prod" class="fa-solid fa-circle-xmark close-btn"></i>
@@ -24,62 +27,85 @@
                 <i class="fa-regular fa-magnifying-glass "></i>
             </button>
         </form>
-        <form class="tab-bar__item" action="seller-main-page" method="post">
+        <form class="tab-bar__item" action="<%= contextPath %>/seller-main-page" method="post">
             <input class="tab-bar__item-input" type="submit" name="action" value="All">
-            <input class="tab-bar__item-input" type="submit" name="action" value="New">
+            <input  class="tab-bar__item-input" id="new-btn" type="button" value="New">
         </form>
+        <div id="new-container" class="new-container">
+            <form action="<%= contextPath %>/add-laptop" method="post" class="new-opt">
+                <input class="tab-bar__item-input" type="submit" value="Laptop">
+            </form>
+            <form action="<%= contextPath %>/add-keyboard" method="post" class="new-opt">
+                <input class="tab-bar__item-input" type="submit" value="Keyboard">
+            </form>
+            <form action="<%= contextPath %>/add-monitor" method="post" class="new-opt">
+                <input class="tab-bar__item-input" type="submit" value="Monitor">
+            </form>
+        </div>
     </div>
     <section class="product-container">
         <ul class="product-list">
             <c:forEach var="product" items="${prods}">
-                <li class="product-item">
-                    <div class="img-boder">
-                        <img src="<c:url value="${product.imageUrls[0]}"/>" alt="zz">
-                    </div>
-                    <label><c:out value="${product.model}" /></label>
-                    <form action="seller-main-page" method="post" class="product-bottom">
-                        <a href="get-prod-by-id?id=${product.id}">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                        <input type="hidden" style="width: 0;height: 0;" name="prodID" value="${product.id}">
-                        <button type="submit" name="action" value="Update" style="background: none;border: none; margin: 0;padding: 0;">
-                            <i class="fa-solid fa-pen"></i>
-                        </button>
-                        <i class="fa-solid fa-trash" onclick="openConfirmModal(${product.id})"></i>
-                    </form>
-                </li>
+                    <li class="product-item product-item-have-bottom">
+                        <div class="img-boder">
+                            <img src="<c:url value="${product.imageUrls[0]}"/>" alt="zz">
+                        </div>
+                        <span><c:out value="${product.model}" /></span>
+                            <div class="product-bottom">
+                                <a href="get-prod-by-id?id=${product.id}">
+                                    <i class="fa-solid fa-eye"></i>
+                                </a>
+                                <c:if test="${product.markAsDeleted == false}">
+                                    <form action="<%= contextPath %>/update-prod" method="post" >
+                                        <input type="hidden" style="width: 0;height: 0;" name="prodID" value="${product.id}">
+                                        <button type="submit" style="background: none;border: none; margin: 0;padding: 0;">
+                                            <i class="fa-solid fa-pen"></i>
+                                        </button>
+                                    </form>
+                                    <i class="fa-solid fa-trash" onclick="openConfirmModal(${product.id})"></i>
+                                </c:if>
+                            </div>
+                    </li>
+
+<%--                <c:if test="${product.markAsDeleted == true}">--%>
+<%--                    <li class="product-item">--%>
+<%--                        <div class="img-boder">--%>
+<%--                            <img src="<c:url value="${product.imageUrls[0]}"/>" alt="zz">--%>
+<%--                        </div>--%>
+<%--                        <span><c:out value="${product.model}" /></span>--%>
+<%--                    </li>--%>
+<%--                </c:if>--%>
             </c:forEach>
         </ul>
     </section>
 </section>
 
-
-    <div id="modal-confirm" class="modal">
-        <div class="modal__overlay" style="margin-top: var(--nav-height); position:fixed;" onclick="closeModalSearch()">
-        </div>
-        <div class="modal__body">
-            <div class="modal__inner">
-                <form class="confirm-container">
-                    <div class="form-header">
-                        <div class="title">
-                            <span onclick="closeModalConfirm()">Confirmation Message ! </span>
-                            <i class="fa-light fa-message-smile" onclick="closeModalConfirm()"></i>
-                        </div>
-                        <i class="fa-solid fa-chevron-down" onclick="closeModalConfirm()"></i>
+<div id="modal-confirm" class="modal">
+    <div class="modal__overlay" style="margin-top: var(--nav-height); position:fixed;" onclick="closeModalConfirm()">
+    </div>
+    <div class="modal__body">
+        <div class="modal__inner">
+            <div class="confirm-container">
+                <div class="form-header">
+                    <div class="title">
+                        <span onclick="closeModalConfirm()">Confirmation Message ! </span>
+                        <i class="fa-light fa-message-smile" onclick="closeModalConfirm()"></i>
                     </div>
-                    <form action="delete-prod" method="post" class="form-content">
-                        <span id="confirmMess" class="confirm-mess">None</span>
-                        <input id="confirmProdID" type="hidden" name="prodID" value="">
-                        <input id="confirmAction" type="hidden" name="action" value="delete">
-                        <div class="form-selection">
-                            <input class="confirm-btn" id="yesBtn" type="submit" value="Yes" onclick="closeModalConfirm()">
-                            <input class="confirm-btn" id="noBtn" type="button" value="No" onclick="closeModalConfirm()">
-                        </div>
-                    </form>
+                    <i class="fa-solid fa-chevron-down" onclick="closeModalConfirm()"></i>
+                </div>
+                <form action="<%= contextPath %>/delete-prod" method="post" class="form-content">
+                    <span id="confirmMess" class="confirm-mess">None</span>
+                    <input id="confirmProdID" type="hidden" name="prodID" value="">
+                    <div class="form-selection">
+                        <input class="confirm-btn" id="yesBtn" type="submit" value="Yes" onclick="closeModalConfirm()">
+                        <input class="confirm-btn" id="noBtn" type="button" value="No" onclick="closeModalConfirm()">
+                    </div>
                 </form>
             </div>
         </div>
     </div>
+</div>
+<jsp:include page="notify-modal.jsp"></jsp:include>
 <footer>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>

@@ -1,10 +1,11 @@
 package com.webteam.laptopmall.mapper;
 
-import com.webteam.laptopmall.dto.OrderDTO;
-import com.webteam.laptopmall.dto.UserDTO;
-import com.webteam.laptopmall.entity.Order;
-import com.webteam.laptopmall.entity.Payment;
-import com.webteam.laptopmall.entity.user.User;
+import com.webteam.laptopmall.order.OrderDTO;
+import com.webteam.laptopmall.user.UserDTO;
+import com.webteam.laptopmall.order.Order;
+import com.webteam.laptopmall.order.OrderMapper;
+import com.webteam.laptopmall.payment.Payment;
+import com.webteam.laptopmall.user.User;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

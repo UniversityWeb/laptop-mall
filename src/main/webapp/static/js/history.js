@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var orderStatus = orderProcess.getAttribute('order-status');
     var paymentStatus = orderProcess.getAttribute('payment-status');
 
-    if (orderStatus === 'RETURNED' || orderStatus === 'CANCELLED'){
+    if (orderStatus === 'RETURNED' || orderStatus === 'CANCELLED' || orderStatus === 'REFUNDED'){
         setActiveOrUnactive(orderedStep, "unactive");
         setActiveOrUnactive(paymentStep, "unactive");
         setActiveOrUnactive(shippingStep, "unactive");

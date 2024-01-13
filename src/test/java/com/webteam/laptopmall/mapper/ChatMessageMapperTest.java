@@ -1,9 +1,10 @@
 package com.webteam.laptopmall.mapper;
 
-import com.webteam.laptopmall.dto.ChatMessageDTO;
-import com.webteam.laptopmall.dto.UserDTO;
-import com.webteam.laptopmall.entity.ChatMessage;
-import com.webteam.laptopmall.entity.user.User;
+import com.webteam.laptopmall.message.ChatMessageDTO;
+import com.webteam.laptopmall.user.UserDTO;
+import com.webteam.laptopmall.message.ChatMessage;
+import com.webteam.laptopmall.message.ChatMessageMapper;
+import com.webteam.laptopmall.user.User;
 import org.junit.jupiter.api.Test;
 
 import java.sql.Timestamp;

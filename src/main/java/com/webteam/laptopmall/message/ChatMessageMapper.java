@@ -1,0 +1,15 @@
+package com.webteam.laptopmall.message;
+
+import org.mapstruct.Mapper;
+import org.mapstruct.Named;
+import org.mapstruct.factory.Mappers;
+
+@Mapper
+public interface ChatMessageMapper {
+    ChatMessageMapper INSTANCE = Mappers.getMapper(ChatMessageMapper.class);
+    @Named("toChatMessageDTO")
+    ChatMessageDTO toDTO(ChatMessage entity);
+
+    @Named("toChatMessage")
+    ChatMessage toEntity(ChatMessageDTO dto);
+}
