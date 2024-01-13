@@ -1,5 +1,6 @@
 package com.webteam.laptopmall.utility;
 
+import com.webteam.laptopmall.util.CurrencyUtil;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;

@@ -1,5 +1,6 @@
 package com.webteam.laptopmall.db;
 
+import com.webteam.laptopmall.infrastructure.db.DbCon;
 import org.junit.jupiter.api.Test;
 
 import javax.persistence.EntityManager;

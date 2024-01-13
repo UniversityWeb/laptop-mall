@@ -1,11 +1,12 @@
 package com.webteam.laptopmall.mapper;
 
-import com.webteam.laptopmall.dto.CartItemDTO;
-import com.webteam.laptopmall.dto.prod.LaptopDTO;
-import com.webteam.laptopmall.dto.UserDTO;
-import com.webteam.laptopmall.entity.CartItem;
-import com.webteam.laptopmall.entity.prod.Laptop;
-import com.webteam.laptopmall.entity.user.User;
+import com.webteam.laptopmall.cartitem.CartItemMapper;
+import com.webteam.laptopmall.cartitem.CartItemDTO;
+import com.webteam.laptopmall.product.dto.LaptopDTO;
+import com.webteam.laptopmall.user.UserDTO;
+import com.webteam.laptopmall.cartitem.CartItem;
+import com.webteam.laptopmall.product.entity.Laptop;
+import com.webteam.laptopmall.user.User;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

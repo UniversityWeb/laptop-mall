@@ -1,8 +1,9 @@
 package com.webteam.laptopmall.mapper;
 
-import com.webteam.laptopmall.customenum.EGender;
-import com.webteam.laptopmall.dto.UserDTO;
-import com.webteam.laptopmall.entity.user.User;
+import com.webteam.laptopmall.user.EGender;
+import com.webteam.laptopmall.user.UserDTO;
+import com.webteam.laptopmall.user.User;
+import com.webteam.laptopmall.user.UserMapper;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
