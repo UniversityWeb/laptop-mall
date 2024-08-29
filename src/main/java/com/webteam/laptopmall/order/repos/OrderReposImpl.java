@@ -94,4 +94,9 @@ public class OrderReposImpl extends BaseReposImpl<Order, Long> implements OrderR
     public List<Order> getOrdersContainProdID(Long prodID) {
         return getResultList(em -> odQuery.buildGetOrdersContainProdID(em, prodID));
     }
+
+    @Override
+    public double getTotalPrice(Long orderId) {
+        return getSingleResult(em -> odQuery.buildGetTotalPrice(em, orderId));
+    }
 }

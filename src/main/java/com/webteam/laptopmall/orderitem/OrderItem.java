@@ -1,5 +1,6 @@
 package com.webteam.laptopmall.orderitem;
 
+import com.webteam.laptopmall.order.Order;
 import com.webteam.laptopmall.product.entity.Product;
 
 import javax.persistence.*;
@@ -21,6 +22,10 @@ public class OrderItem {
     @Column(name = "cur_price")
     private BigDecimal curPrice;
 
+    @ManyToOne
+    @JoinColumn(name = "order_id", insertable = false, updatable = false)
+    private Order order;
+
     public OrderItem() {
     }
 
@@ -37,6 +42,15 @@ public class OrderItem {
         this.curPrice = curPrice;
     }
 
+    @Override
+    public String toString() {
+        return "OrderItem{" +
+                "id=" + id +
+                ", product=" + product +
+                ", qty=" + qty +
+                ", curPrice=" + curPrice +
+                '}';
+    }
 
     public Long getId() {
         return id;
@@ -68,5 +82,13 @@ public class OrderItem {
 
     public void setCurPrice(BigDecimal curPrice) {
         this.curPrice = curPrice;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
     }
 }

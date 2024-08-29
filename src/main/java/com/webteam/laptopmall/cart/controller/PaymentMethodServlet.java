@@ -6,6 +6,8 @@ import com.webteam.laptopmall.file.prod.ProdImgIO;
 import com.webteam.laptopmall.file.prod.ProdImgIOImpl;
 import com.webteam.laptopmall.cart.service.CartService;
 import com.webteam.laptopmall.cart.service.CartServiceImpl;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,8 +20,12 @@ import java.util.List;
 
 @WebServlet("/payment-method")
 public class PaymentMethodServlet extends HttpServlet {
+
+    private static final Logger log = LogManager.getLogger(PaymentMethodServlet.class);
+
     private CartService cartService;
     private ProdImgIO prodImgIO;
+
     @Override
     public void init() throws ServletException {
         super.init();
@@ -37,7 +43,7 @@ public class PaymentMethodServlet extends HttpServlet {
         String url = "/WEB-INF/views/cart/payment-method.jsp";
         HttpSession session = req.getSession();
         OrderDTO order = (OrderDTO) session.getAttribute("order");
-        System.out.println(order.getCustomer());
+        log.info(order.getCustomer());
         List<CartItemDTO> cart = cartService.getCartByUserId(order.getCustomer().getId());
 
         String realPath = req.getServletContext().getRealPath("/");

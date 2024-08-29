@@ -53,7 +53,7 @@ public class SendVoiceServlet extends HttpServlet {
 
         String body = orderService.getMailBody(order);
 
-        System.out.println(order.getCustomer().getEmail());
+        log.info(order.getCustomer().getEmail());
 
         try{
             MailUtil.sendMail(to, from, subject, body);

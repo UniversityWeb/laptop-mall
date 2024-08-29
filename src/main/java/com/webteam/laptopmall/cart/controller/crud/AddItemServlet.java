@@ -31,7 +31,6 @@ public class AddItemServlet extends HttpServlet {
     private ProdService prodService;
     private CartService cartService;
     private UserService userService;
-    private CartItemService cartItemService;
 
     @Override
     public void init() throws ServletException {
@@ -40,7 +39,6 @@ public class AddItemServlet extends HttpServlet {
         cartService = new CartServiceImpl();
         userService = new UserServiceImpl();
         cartService = new CartServiceImpl();
-        cartItemService = new CartItemServiceImpl();
     }
 
     @Override
@@ -56,7 +54,6 @@ public class AddItemServlet extends HttpServlet {
         String username = (String) session.getAttribute("username");
         UserDTO customer = userService.getByUsername(username);
 
-        List<CartItemDTO> cart = cartService.getCartByUserId(customer.getId());
         String productIdString = req.getParameter("productId");
         String qtyString = req.getParameter("qty");
 

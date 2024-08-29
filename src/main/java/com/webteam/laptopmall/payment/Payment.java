@@ -5,14 +5,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "payment_details")
 public class Payment {
-    public enum EMethod {
-        CASH_ON_DELIVERY, MOMO, VN_PAY
-    }
-
-    public enum EStatus {
-        PENDING, AUTHORIZED, FAILED, REFUNDED, CHANGE_BACK
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -62,5 +54,25 @@ public class Payment {
 
     public void setStatus(EStatus status) {
         this.status = status;
+    }
+
+    public enum EMethod {
+        CASH_ON_DELIVERY("Cash on delivery"),
+        MOMO("MOMO"),
+        VN_PAY("VNPay");
+
+        private final String displayName;
+
+        EMethod(String displayName) {
+            this.displayName = displayName;
+        }
+
+        public String getDisplayName() {
+            return displayName;
+        }
+    }
+
+    public enum EStatus {
+        PENDING, AUTHORIZED, FAILED, REFUNDED, CHANGE_BACK
     }
 }

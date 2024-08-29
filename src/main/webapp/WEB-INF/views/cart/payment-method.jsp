@@ -58,23 +58,22 @@
             </c:if>
             <form class="payment-method row" id="form-method" action="payment" method="post">
                 <div class="payment-method-input row left">
-                    <input type="radio" name="paymentMethod" value="CASH_ON_DELIVERY">
-                    <p>Cash Payment</p>
+                    <input type="radio" name="paymentMethod" value="CASH_ON_DELIVERY" required>
+                    <p>Cash on delivery</p>
                 </div>
                 <div class="payment-method-input row left">
-                    <input type="radio" name="paymentMethod" value="MOMO">
-                    <p>MOMO Payment</p>
+                    <input type="radio" name="paymentMethod" value="MOMO" required>
+                    <p>MOMO</p>
                 </div>
                 <div class="payment-method-input row left">
-                    <input type="radio" name="paymentMethod" value="VN_PAY">
-                    <p>VNPAY payment</p>
+                    <input type="radio" name="paymentMethod" value="VN_PAY" required>
+                    <p>VNPay</p>
                 </div>
             </form>
         </div>
         <div class="content_right">
             <div class="content_right-container">
                 <h1>Order Summary</h1>
-                <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                 <c:forEach var="item" items="${cart}">
                 <div class="product_item full row">
                     <table class="product_details full">

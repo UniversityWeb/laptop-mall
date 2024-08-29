@@ -71,7 +71,7 @@ public class UpdateItemServlet extends HttpServlet {
         }
         else{
             String qtyString = req.getParameter("qty");
-            System.out.println(qtyString);
+            log.info(qtyString);
             try{
                 qty = Integer.valueOf(qtyString);
                 if (qty < 0){

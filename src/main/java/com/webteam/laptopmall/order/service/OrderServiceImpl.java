@@ -212,7 +212,7 @@ public class OrderServiceImpl implements OrderService{
     @Override
     public List<OrderDTO> getListByTime(Integer month, Integer year) {
         List<Order> orders = orderRepos.getListByTime(month, year);
-        System.out.println(orders.size());
+        log.info(orders.size());
         return orders.stream()
                 .map(OrderMapper.INSTANCE::toDTO)
                 .collect(Collectors.toList());
@@ -221,7 +221,7 @@ public class OrderServiceImpl implements OrderService{
     @Override
     public Integer getNoOrderByTime(Integer month, Integer year) {
         List<Order> orders = orderRepos.getListByTime(month, year);
-        System.out.println(orders.size());
+        log.info(orders.size());
         return orders.size();
     }
 
@@ -236,7 +236,7 @@ public class OrderServiceImpl implements OrderService{
         orderRepos.getDataProductDESCByTime(products, qtys, month, year);
         products.forEach(product -> productName.add(product.getModel()));
         qtys.forEach(qty -> topBestSellProductsQty.add(qty));
-        System.out.println(productName);
+        log.info(productName);
         topBestSellProductsName = productName.toArray(topBestSellProductsName);
 
     }
@@ -266,5 +266,10 @@ public class OrderServiceImpl implements OrderService{
             log.info(e.getMessage());
             return null;
         }
+    }
+
+    @Override
+    public double getTotalPrice(Long orderId) {
+        return orderRepos.getTotalPrice(orderId);
     }
 }

@@ -108,6 +108,8 @@ public class Order {
                 ", deliveryMethod='" + deliveryMethod + '\'' +
                 ", status=" + status +
                 ", payment=" + payment +
+                ", note='" + note + '\'' +
+                ", orderItems=" + orderItems +
                 '}';
     }
 

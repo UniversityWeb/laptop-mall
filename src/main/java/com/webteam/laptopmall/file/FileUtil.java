@@ -29,7 +29,7 @@ public class FileUtil {
                     return FileVisitResult.CONTINUE;
                 }
             });
-            System.out.println("All files in the folder deleted successfully.");
+            log.info("All files in the folder deleted successfully.");
         } catch (IOException e) {
             log.error(e.getMessage());
         }

@@ -23,6 +23,6 @@ public interface OrderService {
     Integer getNoOrderByTime(Integer month, Integer year);
     void setDataBestSellProductByTime(String[] topBestSellProductsName, List<Integer> topBestSellProductsQty, Integer month, Integer year);
     void setDataLeastSellProductByTime(String[] topLeastSellProductsName, List<Integer> topLeastSellProductsQty, Integer month, Integer year);
-
     List<OrderDTO> getOrdersContainProdID(Long prodId);
+    double getTotalPrice(Long orderId);
 }
